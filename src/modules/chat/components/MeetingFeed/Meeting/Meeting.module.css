@@ -1,0 +1,30 @@
+.component {
+    padding: 10px;
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.profile {
+    display: flex;
+}
+
+.place {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.place p {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
