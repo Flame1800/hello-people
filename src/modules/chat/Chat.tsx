@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import DialogFeed from './components/DialogFeed';
 import chatStore from './stores/chatStore';
-import { observer } from 'mobx-react-lite';
-import { io } from 'socket.io-client';
-import style from './Chat.module.css';
+import {observer} from 'mobx-react-lite';
+import {io} from 'socket.io-client';
 import MessageFeed from './components/MessageFeed';
 import dialogFeedStore from './stores/dialogFeedStore';
 import MeetingFeed from './components/MeetingFeed';
+import {ChatWrapper} from './ChatStyle'
+import Tab from "./components/common/Tab";
+import Search from "./components/Header/Search";
 
 type ChatProps = {
     api: string;
 };
 
 const Chat: React.FC<ChatProps> = (props) => {
-    const { getCurrentMessageFeed, setCurrentMessageFeed, setSocket } = chatStore;
-    const { getDialog } = dialogFeedStore;
+    const {getCurrentMessageFeed, setCurrentMessageFeed, setSocket} = chatStore;
+    const {getDialog} = dialogFeedStore;
     const dialog = getDialog(getCurrentMessageFeed());
 
-    const [ content, setContent ] = useState<'chat' | 'place' | 'meeting'>('chat');
+    const [content, setContent] = useState<'chat' | 'place' | 'meeting'>('chat');
 
     useEffect(() => {
         setSocket(io());
@@ -30,22 +32,31 @@ const Chat: React.FC<ChatProps> = (props) => {
     };
 
     return (
-        <div className={style.component}>
-            <h2>Диалоги</h2>
-            <button type={'button'} onClick={() => switchCategory('chat')}>Чаты</button>
-            <button onClick={() => switchCategory('place')}>Места</button>
-            <button onClick={() => switchCategory('meeting')}>Встречи</button>
+        <ChatWrapper>
+            <Search/>
+            <div className="tabs">
+                <div onClick={() => switchCategory('chat')}>
+                    <Tab active={content === 'chat'}>Чаты</Tab>
+                </div>
+                <div onClick={() => switchCategory('place')}>
+                    <Tab active={content === 'place'}>Места</Tab>
+                </div>
+                <div onClick={() => switchCategory('meeting')}>
+                    <Tab active={content === 'meeting'}>Встречи</Tab>
+                </div>
+            </div>
 
-            <div className={style.content}>
+
+            <div>
                 {content === 'chat' && <DialogFeed category='chat'/>}
-                {content === 'chat' && ((dialog && <MessageFeed {...dialog}/>) || <div>Диалог не выбран</div>)}
+                {content === 'chat' && (dialog && <MessageFeed {...dialog}/>)}
 
                 {content === 'place' && <DialogFeed category='place'/>}
-                {content === 'place' && ((dialog && <MessageFeed {...dialog}/>) || <div>Место не выбрано</div>)}
+                {content === 'place' && (dialog && <MessageFeed {...dialog}/>)}
 
-                {content === 'meeting' && <MeetingFeed />}
+                {content === 'meeting' && <MeetingFeed/>}
             </div>
-        </div>
+        </ChatWrapper>
     );
 };
 
