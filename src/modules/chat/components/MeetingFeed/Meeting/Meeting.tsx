@@ -1,9 +1,9 @@
 import React from 'react';
 
 import style from './Meeting.module.css';
-import { User } from '../../../models/User';
-import { Place } from '../../../models/Place';
-import Icon from '../../common/Icon';
+import {User} from '../../../models/User';
+import {Place} from '../../../models/Place';
+import Icon from '../../common/UserAvatar';
 
 export type MeetingProps = {
     id: string,
@@ -13,7 +13,7 @@ export type MeetingProps = {
 };
 
 const Meeting: React.FC<MeetingProps> = (props) => {
-    const { id, text, place, author } = props;
+    const {id, text, place, author} = props;
     return (
         <div className={style.component}>
 
@@ -24,7 +24,8 @@ const Meeting: React.FC<MeetingProps> = (props) => {
                 </div>
 
                 <div>
-                    <Icon url='https://cdn-icons.flaticon.com/png/512/3944/premium/3944356.png?token=exp=1647860685~hmac=79d37b11a2b2146948bef8f2d62b02f6'/>
+                    <Icon
+                        url='https://cdn-icons.flaticon.com/png/512/3944/premium/3944356.png?token=exp=1647860685~hmac=79d37b11a2b2146948bef8f2d62b02f6'/>
                 </div>
             </div>
 

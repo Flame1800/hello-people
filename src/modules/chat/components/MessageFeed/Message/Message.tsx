@@ -1,9 +1,9 @@
 import React from 'react';
-import { User } from '../../../models/User';
+import {User} from '../../../models/User';
 import chatStore from '../../../stores/chatStore';
 
 import style from './Message.module.css';
-import Icon from '../../common/Icon';
+import Icon from '../../common/UserAvatar';
 
 export type MessageProps = {
     id: string,
@@ -15,8 +15,8 @@ export type MessageProps = {
 };
 
 const Message: React.FC<MessageProps> = (props) => {
-    const { id, text, date, isRead, author, type } = props;
-    const { getUser } = chatStore;
+    const {id, text, date, isRead, author, type} = props;
+    const {getUser} = chatStore;
     const currentUser = getUser();
 
     return (
@@ -39,7 +39,8 @@ const Message: React.FC<MessageProps> = (props) => {
                 (!isRead ?
                         <Icon url="https://cdn-icons-png.flaticon.com/512/54/54346.png"/>
                         :
-                        <Icon url='https://cdn-icons.flaticon.com/png/512/5299/premium/5299035.png?token=exp=1647864949~hmac=358ac284f43973146df5c07b47209679' />
+                        <Icon
+                            url='https://cdn-icons.flaticon.com/png/512/5299/premium/5299035.png?token=exp=1647864949~hmac=358ac284f43973146df5c07b47209679'/>
                 )}
             </div>
         </div>

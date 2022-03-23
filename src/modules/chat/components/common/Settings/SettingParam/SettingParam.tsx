@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import style from './SettingParam.module.css';
-import Icon from '../../Icon';
+import Icon from '../../UserAvatar';
 import Toggle from '../../Toggle';
 import chatStore from '../../../../stores/chatStore';
 
@@ -15,18 +15,18 @@ export type SettingParamProps = {
 };
 
 const SettingParam: React.FC<SettingParamProps> = (props) => {
-    const { id, icon, text, action, haveToggle, isToggle } = props;
-    const { settingsChat } = chatStore;
-    const [ toggle, setToggle ] = useState(isToggle || false);
+    const {id, icon, text, action, haveToggle, isToggle} = props;
+    const {settingsChat} = chatStore;
+    const [toggle, setToggle] = useState(isToggle || false);
 
     useEffect(() => {
         action();
         if (settingsChat) {
-           const setting = settingsChat.find(setting => setting.id === id);
-           if (setting) setting.isToggle = toggle;
+            const setting = settingsChat.find(setting => setting.id === id);
+            if (setting) setting.isToggle = toggle;
         }
 
-    }, [ toggle ]);
+    }, [toggle]);
 
     return (
         <div className={style.component}>

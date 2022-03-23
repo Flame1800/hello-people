@@ -1,12 +1,13 @@
 import React from 'react';
-import { User } from '../../../models/User';
+import {User} from '../../../models/User';
 import chatStore from '../../../stores/chatStore';
-import Icon from '../../common/Icon';
 
 import style from './Dialog.module.css';
-import { observer } from 'mobx-react-lite';
-import { findPrivateCompanion } from '../../../utils/findPrivateCompanion';
-import { MessageType } from '../../../models/Message';
+import {observer} from 'mobx-react-lite';
+import {findPrivateCompanion} from '../../../utils/findPrivateCompanion';
+import {MessageType} from '../../../models/Message';
+import styled from "styled-components";
+import UserAvatar from "../../common/UserAvatar";
 
 export type DialogProps = {
     id: string,
@@ -22,8 +23,8 @@ export type DialogProps = {
 
 
 const Dialog: React.FC<DialogProps> = (props) => {
-    const { id, type, messages, avatar, name, members, category, author } = props;
-    const { getUser, setCurrentMessageFeed } = chatStore;
+    const {id, type, messages, avatar, name, members, category, author} = props;
+    const {getUser, setCurrentMessageFeed} = chatStore;
     const companion = findPrivateCompanion(members, getUser());
     const lastMessage = messages[messages.length - 1];
     const newMessagesCount = messages.filter(message => !message.isRead && message.author.id !== getUser().id).length;
@@ -34,7 +35,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
 
     return (
         <div className={style.component} onClick={dialogOnClickHandler}>
-            {type === 'conversation' ? <Icon url={avatar}/> : <Icon url={companion.avatar}/>}
+            {type === 'conversation' ? <UserAvatar url={avatar}/> : <UserAvatar url={companion.avatar}/>}
             <div>
                 <span>{type === 'conversation' ? name || 'Нет имени' : companion.name}</span>
                 <p>
@@ -49,11 +50,21 @@ const Dialog: React.FC<DialogProps> = (props) => {
             </div>
             <div className={style.info}>
                 <span>{type === 'conversation' ? `активны ${members.length} чел` : lastMessage.date}</span>
-                {(newMessagesCount > 0) && <span className={style.newMessage}><p>{ newMessagesCount}</p></span>}
+                {(newMessagesCount > 0) && <span className={style.newMessage}><p>{newMessagesCount}</p></span>}
             </div>
 
         </div>
     );
 };
+
+const Wrapper = styled.div`
+  max-width: 380px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+
+`
 
 export default observer(Dialog);
