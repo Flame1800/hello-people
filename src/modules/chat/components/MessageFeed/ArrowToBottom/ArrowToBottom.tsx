@@ -10,19 +10,27 @@ type ArrowToBottomProps = {
 
 const ArrowToBottom: React.FC<ArrowToBottomProps> = (props) => {
     const { messagesRef } = props;
+    const scroll = messagesRef.current;
+
+    useEffect(() => {}, [messageFeedStore.onScrollToggle])
 
     useEffect(() => {
-        messagesRef.current?.scrollTo(0, messagesRef.current?.scrollHeight)
-    }, [messageFeedStore.goBottomToggle])
+        messagesRef.current?.scrollTo(0, messagesRef.current?.scrollHeight);
+    }, [ messageFeedStore.goBottomToggle ]);
 
     const onClickHandler = (ref: React.RefObject<HTMLDivElement>) => {
-        ref.current?.scrollTo(0, ref.current?.scrollHeight)
+        ref.current?.scrollTo(0, ref.current?.scrollHeight);
     };
 
     return (
-        <div className={style.component} onClick={() => onClickHandler(messagesRef)}>
-            V
-        </div>
+        <>
+            { scroll && scroll.scrollTop + scroll.clientHeight + 100 < scroll.scrollHeight &&
+                <div className={style.component} onClick={() => onClickHandler(messagesRef)}>
+                    V
+                </div>
+            }
+        </>
+
     );
 };
 

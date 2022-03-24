@@ -2,6 +2,8 @@ import { makeAutoObservable } from 'mobx';
 
 class messageFeedStore {
 
+    onScrollToggle: boolean = false;
+
     goBottomToggle: boolean = false;
 
     constructor() {
@@ -10,6 +12,10 @@ class messageFeedStore {
 
     goBottom = () => {
         this.goBottomToggle = !this.goBottomToggle;
+    };
+
+    onScroll = () => {
+        this.onScrollToggle = !this.onScrollToggle;
     };
 }
 

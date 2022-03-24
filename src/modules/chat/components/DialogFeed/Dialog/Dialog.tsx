@@ -10,6 +10,7 @@ import styled from "styled-components";
 import UserAvatar from "../../common/UserAvatar";
 import { CategoryType } from '../../../models/CategoryType';
 import { DialogType } from '../../../models/DialogType';
+import messageFeedStore from '../../../stores/messageFeedStore';
 
 export type DialogProps = {
     id: string,
@@ -33,6 +34,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
 
     const dialogOnClickHandler = () => {
         setCurrentDialogId(id);
+        messageFeedStore.goBottom()
     };
 
     return (
