@@ -1,13 +1,12 @@
 import React from 'react';
 import {User} from '../../../models/User';
 import chatStore from '../../../stores/chatStore';
-
-import style from './Dialog.module.css';
 import {observer} from 'mobx-react-lite';
 import {findPrivateCompanion} from '../../../utils/findPrivateCompanion';
 import {MessageType} from '../../../models/Message';
-import styled from "styled-components";
 import UserAvatar from "../../common/UserAvatar";
+import {DialogWrapper} from './DialogStyles'
+import {DateTime} from 'luxon'
 
 export type DialogProps = {
     id: string,
@@ -29,42 +28,41 @@ const Dialog: React.FC<DialogProps> = (props) => {
     const lastMessage = messages[messages.length - 1];
     const newMessagesCount = messages.filter(message => !message.isRead && message.author.id !== getUser().id).length;
 
+    const date = new Date(lastMessage.date)
+    console.log(date)
+
     const dialogOnClickHandler = () => {
         setCurrentMessageFeed(id);
     };
 
     return (
-        <div className={style.component} onClick={dialogOnClickHandler}>
+        <DialogWrapper onClick={dialogOnClickHandler}>
             {type === 'conversation' ? <UserAvatar url={avatar}/> : <UserAvatar url={companion.avatar}/>}
-            <div>
-                <span>{type === 'conversation' ? name || 'Нет имени' : companion.name}</span>
-                <p>
-                    {type === 'conversation' && (lastMessage.author.id === getUser().id ?
-                        `Вы: ${lastMessage.text}` :
-                        `${lastMessage.author.name.split(' ')[0]}: ${lastMessage.text}`)}
-                    {type === 'private' && (lastMessage.author.id === getUser().id ?
-                        `Вы: ${lastMessage.text}` :
-                        `${lastMessage.text}`)
-                    }
-                </p>
+            <div className="content">
+                <div className='head'>
+                <span className="user-name">
+                    {type === 'conversation' ? name || 'Нет имени' : companion.name}
+                </span>
+                    <span className='date'>
+                    {type === 'conversation' ? `активны ${members.length} чел` : lastMessage.date}
+                </span>
+                </div>
+                <div className="info">
+                    <p className='last-message'>
+                        {type === 'conversation' && (lastMessage.author.id === getUser().id ?
+                            `Вы: ${lastMessage.text}` :
+                            `${lastMessage.author.name.split(' ')[0]}: ${lastMessage.text}`)}
+                        {type === 'private' && (lastMessage.author.id === getUser().id ?
+                            `Вы: ${lastMessage.text}` :
+                            `${lastMessage.text}`)
+                        }
+                    </p>
+                    {(newMessagesCount > 0) && <span className='notification'><p>{newMessagesCount}</p></span>}
+                </div>
             </div>
-            <div className={style.info}>
-                <span>{type === 'conversation' ? `активны ${members.length} чел` : lastMessage.date}</span>
-                {(newMessagesCount > 0) && <span className={style.newMessage}><p>{newMessagesCount}</p></span>}
-            </div>
-
-        </div>
+        </DialogWrapper>
     );
 };
 
-const Wrapper = styled.div`
-  max-width: 380px;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-
-`
 
 export default observer(Dialog);

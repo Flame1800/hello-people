@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import Message from './Message/Message';
 import {User} from '../../models/User';
-import Icon from '../common/UserAvatar';
+import UserAvatar from '../common/UserAvatar';
 import chatStore from '../../stores/chatStore';
 import EntryField from '../EntryField';
 import Modal from '../common/Modal';
 import Settings from '../common/Settings';
 
-import style from './MessageFeed.module.css';
 import {observer} from 'mobx-react-lite';
 import {findPrivateCompanion} from '../../utils/findPrivateCompanion';
 import ArrowToBottom from './ArrowToBottom/ArrowToBottom';
 import {MessageType} from '../../models/Message';
+import {MessageFeedStyle} from './MessageFeedStyle'
 
 type MessageFeedProps = {
     id: string,
@@ -35,23 +35,24 @@ const MessageFeed: React.FC<MessageFeedProps> = (props) => {
     }
 
     return (
-        <div className={style.component}>
-            <div className={style.header}>
-                <span className={style.back} onClick={backOnClickHandler}><Icon
-                    url='https://cdn-icons-png.flaticon.com/512/54/54509.png'/></span>
-                {type === 'private' ? <Icon url={companion?.avatar}/> : <Icon url={avatar}/>}
-                <span>
-                    {type === 'private' ? companion?.name : name}
-                </span>
-                <div
-                    className={style.settings}
-                    onClick={() => setModalActive(true)}
-                >
-                    <Icon
-                        url='https://cdn-icons.flaticon.com/png/512/4254/premium/4254068.png?token=exp=1647863159~hmac=ec3a60557d0557ab28e6276d5c674b9f'/>
+        <MessageFeedStyle>
+            <div className="head">
+                <div className="first-side">
+                    <img src='/img/back-icon.svg' alt='back' className="btn-back" onClick={backOnClickHandler}/>
+                    <UserAvatar url={type === 'private' ? companion?.avatar : avatar}/>
+                    <div className="companion">
+                        <span className="name">
+                            {type === 'private' ? companion?.name : name}
+                        </span>
+                        <div className="status">
+                            была 3 мин назад
+                        </div>
+                    </div>
+
                 </div>
+                <img src='/img/info-icon.svg' alt='back' onClick={() => setModalActive(true)}/>
             </div>
-            <div className={style.messages}>
+            <div className="messages">
                 {messages.map(message => <Message key={message.id} {...message} type={type}/>)}
                 <div id={id + 'messageFeedBottom'}/>
                 <ArrowToBottom id={id + 'messageFeedBottom'}/>
@@ -61,7 +62,7 @@ const MessageFeed: React.FC<MessageFeedProps> = (props) => {
             <Modal active={modalActive} setActive={setModalActive}
                    content={<Settings settingsList={getSettingsChat()}/>}/>
 
-        </div>
+        </MessageFeedStyle>
     );
 };
 

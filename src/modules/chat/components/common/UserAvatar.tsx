@@ -12,21 +12,29 @@ const UserAvatar: React.FC<IconProps> = (props) => {
     return (
         <Wrapper>
             {url
-                ? <img src={url} alt="avatar"/>
-                : <img src="/img/avatar.svg" alt="avatar"/>
+                ? <ImageStyle src={url} alt="avatar"/>
+                : <ImageStyle src="/img/avatar.svg" alt="avatar"/>
             }
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
+  background: #fff;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
-  img {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    object-fit: contain;
-  }
+const ImageStyle = styled.img`
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: contain;
 `
 
 export default UserAvatar;

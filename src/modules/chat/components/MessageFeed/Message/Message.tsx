@@ -2,8 +2,9 @@ import React from 'react';
 import {User} from '../../../models/User';
 import chatStore from '../../../stores/chatStore';
 
-import style from './Message.module.css';
 import Icon from '../../common/UserAvatar';
+import CheckMarkICon from "./CheckMarkICon";
+import {MessageWrapper, MessageStyle, MessageInfo, MessageAvatar, MyMessageWrapper} from './MessageStyle'
 
 export type MessageProps = {
     id: string,
@@ -19,31 +20,33 @@ const Message: React.FC<MessageProps> = (props) => {
     const {getUser} = chatStore;
     const currentUser = getUser();
 
-    return (
-        <div className={currentUser.id === author.id ? style.component : style.companion}>
-            {type === 'private' ?
-                <>
-                    <p>{author.name}: </p>
-                    <p>{text}</p>
-                </>
-                :
-                <>
-                    <Icon url={author.avatar}/>
-                    <>{author.name}:</>
-                    <p>{text}</p>
-                </>
-            }
-            <div className={style.info}>
-                <p>{date}</p>
-                {author.id === currentUser.id &&
-                (!isRead ?
-                        <Icon url="https://cdn-icons-png.flaticon.com/512/54/54346.png"/>
-                        :
-                        <Icon
-                            url='https://cdn-icons.flaticon.com/png/512/5299/premium/5299035.png?token=exp=1647864949~hmac=358ac284f43973146df5c07b47209679'/>
-                )}
+    const content = (<>
+        {type !== 'private' && <MessageAvatar alt='avatar' src={author.avatar}/>}
+        <MessageStyle>
+            <div className='text'>
+                {type !== 'private' && author.id !== currentUser.id
+                    && <div className='user-name'>{author.name}</div>}
+                {text}
             </div>
-        </div>
+            <MessageInfo>
+                <p className='date'>{date}</p>
+                {author.id === currentUser.id && <CheckMarkICon active={isRead}/>}
+            </MessageInfo>
+        </MessageStyle>
+    </>)
+
+    if (author.id === currentUser.id) {
+        return (
+            <MyMessageWrapper>
+                {content}
+            </MyMessageWrapper>
+        )
+    }
+
+    return (
+        <MessageWrapper>
+            {content}
+        </MessageWrapper>
     );
 };
 

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 type dialog = {
-  id: string,
-  name: string,
-  date: string,
+    id: string,
+    name: string,
+    date: Date,
 };
 
 const service = {
