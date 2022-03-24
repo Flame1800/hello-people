@@ -5,6 +5,7 @@ import chatStore from '../../stores/chatStore';
 import dialogFeedStore from '../../stores/dialogFeedStore';
 
 import style from './EnrtyField.module.css';
+import messageFeedStore from '../../stores/messageFeedStore';
 
 type EntryFieldProps = {
     dialogId: string,
@@ -15,6 +16,7 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
     const { getMessage, setMessage } = entryFieldStore;
     const { getSocket, getUser } = chatStore;
     const { addMessageToDialog, makeAllMessagesIsRead } = dialogFeedStore;
+    const { goBottom } = messageFeedStore;
     const socket = getSocket();
 
     const inputOnChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +37,7 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
             socket.send(getMessage());
             setMessage('');
         }
+        goBottom();
     };
 
     return (

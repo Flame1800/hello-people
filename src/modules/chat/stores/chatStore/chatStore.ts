@@ -1,16 +1,16 @@
 import { makeAutoObservable } from 'mobx';
-import { User } from '../../models/User';
+import { UserType } from '../../models/UserType';
 import { userPetr } from '../../mocks/dialogs';
 import { Socket } from 'socket.io-client';
 import { SettingParamProps } from '../../components/common/Settings/SettingParam/SettingParam';
 
 
 class ChatStore {
-    api: string = 'http://localhost:3000'
+    api: string = 'http://localhost:3000';
 
-    user: User = userPetr;
+    user: UserType = userPetr;
 
-    currentMessageFeedId: string = '';
+    currentDialogId: string = '';
 
     socket: Socket | undefined;
 
@@ -52,14 +52,14 @@ class ChatStore {
 
     getUser = () => this.user;
 
-    setUser = (user:User) => {
+    setUser = (user:UserType) => {
       this.user = user;
     };
 
-    getCurrentMessageFeed = () => this.currentMessageFeedId;
+    getCurrentDialogId = () => this.currentDialogId;
 
-    setCurrentMessageFeed = (messageFeed: string) => {
-        this.currentMessageFeedId = messageFeed;
+    setCurrentDialogId = (messageFeed: string) => {
+        this.currentDialogId = messageFeed;
     };
 
     getSocket = () => this.socket;

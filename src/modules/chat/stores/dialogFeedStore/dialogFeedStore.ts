@@ -1,17 +1,15 @@
 import { makeAutoObservable } from 'mobx';
 import { DialogProps } from '../../components/DialogFeed/Dialog/Dialog';
-import { dialogsMock, meetingMock } from '../../mocks/dialogs';
-import { MeetingProps } from '../../components/MeetingFeed/Meeting/Meeting';
+import { dialogsMock } from '../../mocks/dialogs';
 import { MessageType } from '../../models/Message';
+import { CategoryType } from '../../models/CategoryType';
 
 
 class dialogFeedStore {
     dialogs: DialogProps[] = dialogsMock;
 
-    meetings: MeetingProps[] = meetingMock;
-
     constructor() {
-        makeAutoObservable(this, );
+        makeAutoObservable(this);
     }
 
     makeAllMessagesIsRead = (userId: string, dialogId: string) => {
@@ -37,6 +35,16 @@ class dialogFeedStore {
 
     getDialogs = () => this.dialogs;
 
+    getDialogsByTypeAndFilter = (category: CategoryType, search?: string) => {
+        return this.getDialogs()
+            .filter(dialog => (dialog.category === category) && (search ? dialog.name?.includes(search) : true))
+            .sort((a, b) => {
+                if (a.pined && b.pined) return 0;
+                if (a.pined && !b.pined) return -1;
+                return 1;
+            });
+    };
+
     getDialog = (id: string) => this.getDialogs().find(dialog => dialog.id === id);
 
     setDialog = (id: string, newDialog: DialogProps) => {
@@ -50,10 +58,6 @@ class dialogFeedStore {
             this.setDialog(id, { ...dialog });
         }
     };
-
-    getMeetings = () => this.meetings;
-
-    setMeetings = (newMeetings: MeetingProps[]) => this.meetings = newMeetings;
 }
 
 export default new dialogFeedStore();

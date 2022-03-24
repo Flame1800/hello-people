@@ -1,17 +1,18 @@
 import React from 'react';
-import {User} from '../../../models/User';
+import {UserType} from '../../../models/UserType';
 import chatStore from '../../../stores/chatStore';
 
 import style from './Message.module.css';
 import Icon from '../../common/UserAvatar';
+import { DialogType } from '../../../models/DialogType';
 
 export type MessageProps = {
     id: string,
-    author: User,
+    author: UserType,
     text: string,
     date: string,
     isRead: boolean,
-    type: 'private' | 'conversation',
+    type: DialogType,
 };
 
 const Message: React.FC<MessageProps> = (props) => {
