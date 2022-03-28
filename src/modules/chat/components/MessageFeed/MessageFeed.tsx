@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, { MutableRefObject, useRef, useState } from 'react';
+import _ from 'lodash';
 import Message from './Message/Message';
-import {User} from '../../models/User';
 import UserAvatar from '../common/UserAvatar';
+import {UserType} from '../../models/UserType';
 import chatStore from '../../stores/chatStore';
 import EntryField from '../EntryField';
 import Modal from '../common/Modal';
+
 import Settings from '../common/Settings';
 
 import {observer} from 'mobx-react-lite';
@@ -12,27 +14,34 @@ import {findPrivateCompanion} from '../../utils/findPrivateCompanion';
 import ArrowToBottom from './ArrowToBottom/ArrowToBottom';
 import {MessageType} from '../../models/Message';
 import {MessageFeedStyle} from './MessageFeedStyle'
+import { CategoryType } from '../../models/CategoryType';
+import { DialogType } from '../../models/DialogType';
+import messageFeedStore from '../../stores/messageFeedStore';
 
 type MessageFeedProps = {
     id: string,
-    type: 'private' | 'conversation',
-    category: 'chat' | 'place',
+    type: DialogType,
+    category: CategoryType,
     messages: MessageType[],
-    members: User[],
+    members: UserType[],
     avatar?: string,
     name?: string,
 };
 
 const MessageFeed: React.FC<MessageFeedProps> = (props) => {
     const {id, messages, name, avatar, members, type, category} = props;
-    const {setCurrentMessageFeed, getSettingsChat, getUser} = chatStore;
+    const {setCurrentDialogId, getSettingsChat, getUser} = chatStore;
+    const { onScroll } = messageFeedStore;
+    const [modalActive, setModalActive] = useState(false);
+    const messagesRef = useRef<HTMLDivElement>(null);
+
     const companion = findPrivateCompanion(members, getUser());
 
-    const [modalActive, setModalActive] = useState(false);
-
     const backOnClickHandler = () => {
-        setCurrentMessageFeed('');
+        setCurrentDialogId('');
     }
+
+    const onScrollHandler = _.throttle(onScroll, 50);
 
     return (
         <MessageFeedStyle>
@@ -48,14 +57,12 @@ const MessageFeed: React.FC<MessageFeedProps> = (props) => {
                             была 3 мин назад
                         </div>
                     </div>
-
                 </div>
                 <img src='/img/info-icon.svg' alt='back' onClick={() => setModalActive(true)}/>
             </div>
-            <div className="messages">
+            <div className="messages" ref={messagesRef} onScroll={onScrollHandler}>
                 {messages.map(message => <Message key={message.id} {...message} type={type}/>)}
-                <div id={id + 'messageFeedBottom'}/>
-                <ArrowToBottom id={id + 'messageFeedBottom'}/>
+                <ArrowToBottom messagesRef={messagesRef}/>
             </div>
 
             <EntryField dialogId={id}/>

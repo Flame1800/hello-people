@@ -1,22 +1,22 @@
-import {DialogProps} from '../components/DialogFeed/Dialog/Dialog';
-import {User} from '../models/User';
-import {MeetingProps} from '../components/MeetingFeed/Meeting/Meeting';
+import { DialogProps } from '../components/DialogFeed/Dialog/Dialog';
+import { UserType } from '../models/UserType';
+import { MeetingProps } from '../components/MeetingFeed/Meeting/Meeting';
 
-const userIvan: User = {
+const userIvan: UserType = {
     id: '1',
     name: 'Иван Иванов',
     avatar: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg',
     lastOnline: new Date().toISOString(),
 }
 
-export const userPetr: User = {
+export const userPetr: UserType = {
     id: '2',
     name: 'Пётр Ян',
     avatar: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg',
     lastOnline: new Date().toISOString(),
 }
 
-const userGena: User = {
+const userGena: UserType = {
     id: '3',
     name: 'Гена Генадий',
     avatar: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg',
@@ -35,14 +35,14 @@ export const dialogsMock: DialogProps[] = [
                 id: '1',
                 author: userIvan,
                 text: 'Привет!',
-                date: '18:01',
+                date: '19.03.2022 18:01',
                 isRead: true,
             },
             {
                 id: '2',
                 author: userPetr,
                 text: 'Здарова!',
-                date: '18:02',
+                date: '19.03.2022 18:02',
                 isRead: true,
             },
             {
@@ -105,7 +105,7 @@ export const dialogsMock: DialogProps[] = [
                 isRead: false,
             },
         ],
-        members: [userIvan, userPetr, userGena],
+        members: [ userIvan, userPetr, userGena ],
         author: userGena,
         pined: false,
     },
@@ -120,32 +120,32 @@ export const dialogsMock: DialogProps[] = [
                 id: '6',
                 author: userIvan,
                 text: 'Всем привет!',
-                date: '18:05',
+                date: '19.03.2022 18:05',
                 isRead: true,
             },
             {
                 id: '7',
                 author: userPetr,
                 text: 'Хай',
-                date: '18:07',
+                date: '19.03.2022 18:07',
                 isRead: true,
             },
             {
                 id: '8',
                 author: userGena,
                 text: 'Общий!',
-                date: '18:08',
+                date: '19.03.2022 18:08',
                 isRead: false,
             },
             {
                 id: '9',
                 author: userGena,
                 text: 'Какие планы?',
-                date: '18:11',
+                date: '19.03.2022 18:11',
                 isRead: false,
             },
         ],
-        members: [userIvan, userPetr, userGena],
+        members: [ userIvan, userPetr, userGena ],
         author: userGena,
         pined: true,
     },
@@ -185,7 +185,47 @@ export const dialogsMock: DialogProps[] = [
                 isRead: false,
             },
         ],
-        members: [userIvan, userPetr, userGena],
+        members: [ userIvan, userPetr, userGena ],
+        author: userGena,
+        pined: true,
+    },
+    {
+        id: '5',
+        type: 'conversation',
+        category: 'meeting',
+        name: 'Встреча в Coco-Jambo',
+        avatar: 'https://cdn-icons-png.flaticon.com/512/1651/1651865.png',
+        messages: [
+            {
+                id: '6',
+                author: userIvan,
+                text: 'Сегодня в 6 часов!',
+                date: '19.03.2022 18:05',
+                isRead: true,
+            },
+            {
+                id: '7',
+                author: userPetr,
+                text: 'Отлично, я буду!',
+                date: '19.03.2022 18:07',
+                isRead: true,
+            },
+            {
+                id: '8',
+                author: userGena,
+                text: 'Жаль, не смогу присутствовать!',
+                date: '19.03.2022 18:08',
+                isRead: false,
+            },
+            {
+                id: '9',
+                author: userGena,
+                text: 'А завтра будет сбор?',
+                date: '19.03.2022 18:11',
+                isRead: false,
+            },
+        ],
+        members: [ userIvan, userPetr, userGena ],
         author: userGena,
         pined: true,
     },
