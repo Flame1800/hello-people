@@ -13,6 +13,7 @@ const Search = () => {
 };
 
 const Wrapper = styled.div`
+  max-width: 380px;
   display: flex;
   margin-top: 40px;
 

@@ -46,16 +46,13 @@ const Chat: React.FC<ChatProps> = (props) => {
                 </div>
             </div>
 
+            {content === 'chat' && <DialogFeed category='chat'/>}
+            {content === 'chat' && (dialog && <MessageFeed {...dialog}/>)}
 
-            <div>
-                {content === 'chat' && <DialogFeed category='chat'/>}
-                {content === 'chat' && (dialog && <MessageFeed {...dialog}/>)}
+            {content === 'place' && <DialogFeed category='place'/>}
+            {content === 'place' && (dialog && <MessageFeed {...dialog}/>)}
 
-                {content === 'place' && <DialogFeed category='place'/>}
-                {content === 'place' && (dialog && <MessageFeed {...dialog}/>)}
-
-                {content === 'meeting' && <MeetingFeed/>}
-            </div>
+            {content === 'meeting' && <MeetingFeed/>}
         </ChatWrapper>
     );
 };

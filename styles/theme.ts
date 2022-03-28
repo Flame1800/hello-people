@@ -17,7 +17,7 @@ export const theme = {
 
     size: {
         extraLarge: '1320px',
-        large: '960p',
+        large: '960px',
         medium: '720px',
         small: '540px',
     },

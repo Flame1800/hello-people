@@ -9,6 +9,7 @@ export const ChatWrapper = styled.div`
   padding: 0 20px;
 
   .tabs {
+    max-width: 380px;
     display: flex;
     margin-top: 30px;
     margin-bottom: 24px;
