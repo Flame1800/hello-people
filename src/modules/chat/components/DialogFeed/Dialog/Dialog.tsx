@@ -5,11 +5,11 @@ import {observer} from 'mobx-react-lite';
 import {findPrivateCompanion} from '../../../utils/findPrivateCompanion';
 import {MessageType} from '../../../models/Message';
 import UserAvatar from "../../common/UserAvatar";
-import { CategoryType } from '../../../models/CategoryType';
-import { DialogType } from '../../../models/DialogType';
+import {CategoryType} from '../../../models/CategoryType';
+import {DialogType} from '../../../models/DialogType';
 import messageFeedStore from '../../../stores/messageFeedStore';
 import {DialogWrapper} from './DialogStyles'
-import {DateTime} from 'luxon'
+
 
 export type DialogProps = {
     id: string,

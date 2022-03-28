@@ -1,6 +1,5 @@
-import { DialogProps } from '../components/DialogFeed/Dialog/Dialog';
-import { UserType } from '../models/UserType';
-import { MeetingProps } from '../components/MeetingFeed/Meeting/Meeting';
+import {DialogProps} from '../components/DialogFeed/Dialog/Dialog';
+import {UserType} from '../models/UserType';
 
 const userIvan: UserType = {
     id: '1',
@@ -105,7 +104,7 @@ export const dialogsMock: DialogProps[] = [
                 isRead: false,
             },
         ],
-        members: [ userIvan, userPetr, userGena ],
+        members: [userIvan, userPetr, userGena],
         author: userGena,
         pined: false,
     },
@@ -145,7 +144,7 @@ export const dialogsMock: DialogProps[] = [
                 isRead: false,
             },
         ],
-        members: [ userIvan, userPetr, userGena ],
+        members: [userIvan, userPetr, userGena],
         author: userGena,
         pined: true,
     },
@@ -185,7 +184,7 @@ export const dialogsMock: DialogProps[] = [
                 isRead: false,
             },
         ],
-        members: [ userIvan, userPetr, userGena ],
+        members: [userIvan, userPetr, userGena],
         author: userGena,
         pined: true,
     },
@@ -225,29 +224,8 @@ export const dialogsMock: DialogProps[] = [
                 isRead: false,
             },
         ],
-        members: [ userIvan, userPetr, userGena ],
+        members: [userIvan, userPetr, userGena],
         author: userGena,
         pined: true,
     },
-];
-
-const placeCocoJambo = {
-    id: '1',
-    name: 'Coco-Jambo',
-    category: 'Ночной клуб',
-}
-
-export const meetingMock: MeetingProps[] = [
-    {
-        id: '1',
-        author: userGena,
-        text: 'Хочу новых знакомств',
-        place: placeCocoJambo,
-    },
-    {
-        id: '2',
-        author: userIvan,
-        text: 'Диско-танцы сегодня, нужен напарник!',
-        place: placeCocoJambo,
-    }
 ];
