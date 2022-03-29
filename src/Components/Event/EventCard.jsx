@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-const Card = () => {
+const EventCard = () => {
     return (
         <Wrapper>
             <div className="event">
@@ -25,7 +25,6 @@ const Card = () => {
 };
 
 const Wrapper = styled.div`
-  height: 200px;
   max-width: 800px;
   width: 100%;
   display: flex;
@@ -34,6 +33,30 @@ const Wrapper = styled.div`
   background: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
+  padding: 20px;
+
+  .event {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  img {
+    max-width: 350px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+
+  .name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .category {
+
+  }
 `
 
-export default Card;
+export default EventCard;
