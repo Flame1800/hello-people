@@ -1,35 +1,39 @@
 import React from 'react';
-import {User} from '../../../models/User';
+import {UserType} from '../../../models/UserType';
 import chatStore from '../../../stores/chatStore';
 import {observer} from 'mobx-react-lite';
 import {findPrivateCompanion} from '../../../utils/findPrivateCompanion';
 import {MessageType} from '../../../models/Message';
 import UserAvatar from "../../common/UserAvatar";
+import {CategoryType} from '../../../models/CategoryType';
+import {DialogType} from '../../../models/DialogType';
+import messageFeedStore from '../../../stores/messageFeedStore';
 import {DialogWrapper} from './DialogStyles'
-import {DateTime} from 'luxon'
+
 
 export type DialogProps = {
     id: string,
-    type: 'private' | 'conversation',
-    category: 'chat' | 'place',
+    type: DialogType,
+    category: CategoryType,
     messages: MessageType[],
-    members: User[],
+    members: UserType[],
     avatar?: string,
     name?: string,
-    author?: User,
+    author?: UserType,
     pined?: boolean,
 };
 
 
 const Dialog: React.FC<DialogProps> = (props) => {
     const {id, type, messages, avatar, name, members, category, author} = props;
-    const {getUser, setCurrentMessageFeed} = chatStore;
+    const {getUser, setCurrentDialogId} = chatStore;
     const companion = findPrivateCompanion(members, getUser());
     const lastMessage = messages[messages.length - 1];
     const newMessagesCount = messages.filter(message => !message.isRead && message.author.id !== getUser().id).length;
 
     const dialogOnClickHandler = () => {
-        setCurrentMessageFeed(id);
+        setCurrentDialogId(id);
+        messageFeedStore.goBottom()
     };
 
     return (

@@ -2,17 +2,28 @@ import React from 'react';
 import styled from "styled-components";
 import Image from "next/image";
 import {theme} from "../../../../../styles/theme";
+import { observer } from 'mobx-react-lite';
+import entryFieldStore from '../../stores/entryFieldStore';
 
 const Search = () => {
+    const { getSearchText, setSearchText } = entryFieldStore;
+
     return (
         <Wrapper>
-            <input placeholder="Поиск" type="text" className="search"/>
+            <input
+                placeholder="Поиск"
+                type="text"
+                className="search"
+                value={getSearchText()}
+                onChange={(event => setSearchText(event.currentTarget.value))}
+            />
             <Image src='/img/add-dialog.svg' alt='add-dialog' width={36} height={36}/>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
+  max-width: 380px;
   display: flex;
   margin-top: 40px;
 
@@ -32,4 +43,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default Search;
+export default observer(Search);

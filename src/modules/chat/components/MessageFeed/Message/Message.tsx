@@ -1,18 +1,23 @@
 import React from 'react';
-import {User} from '../../../models/User';
+import {UserType} from '../../../models/UserType';
 import chatStore from '../../../stores/chatStore';
 
 import Icon from '../../common/UserAvatar';
 import CheckMarkICon from "./CheckMarkICon";
+<<<<<<< HEAD
 import {MessageWrapper, MessageStyle, MessageInfo, MessageAvatar, MeMessageWrapper} from './MessageStyle'
+=======
+import {MessageWrapper, MessageStyle, MessageInfo, MessageAvatar, MyMessageWrapper} from './MessageStyle'
+import { DialogType } from '../../../models/DialogType';
+>>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
 
 export type MessageProps = {
     id: string,
-    author: User,
+    author: UserType,
     text: string,
     date: string,
     isRead: boolean,
-    type: 'private' | 'conversation',
+    type: DialogType,
 };
 
 const Message: React.FC<MessageProps> = (props) => {

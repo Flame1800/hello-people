@@ -4,17 +4,30 @@ import entryFieldStore from '../../stores/entryFieldStore';
 import chatStore from '../../stores/chatStore';
 import dialogFeedStore from '../../stores/dialogFeedStore';
 
+<<<<<<< HEAD
 import styled from "styled-components";
+=======
+import style from './EnrtyField.module.css';
+import messageFeedStore from '../../stores/messageFeedStore';
+>>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
 
 type EntryFieldProps = {
     dialogId: string,
 };
 
 const EntryField: React.FC<EntryFieldProps> = (props) => {
+<<<<<<< HEAD
     const {dialogId} = props;
     const {getMessage, setMessage} = entryFieldStore;
     const {getSocket, getUser} = chatStore;
     const {addMessageToDialog, makeAllMessagesIsRead} = dialogFeedStore;
+=======
+    const { dialogId } = props;
+    const { getMessage, setMessage } = entryFieldStore;
+    const { getSocket, getUser } = chatStore;
+    const { addMessageToDialog, makeAllMessagesIsRead } = dialogFeedStore;
+    const { goBottom } = messageFeedStore;
+>>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
     const socket = getSocket();
 
     const inputOnChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +48,7 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
             socket.send(getMessage());
             setMessage('');
         }
+        goBottom();
     };
 
 

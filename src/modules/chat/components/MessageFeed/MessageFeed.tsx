@@ -1,34 +1,91 @@
+<<<<<<< HEAD
 import React from 'react';
 import Message from './Message/Message';
 import {User} from '../../models/User';
 import EntryField from '../EntryField';
+=======
+import React, { MutableRefObject, useRef, useState } from 'react';
+import _ from 'lodash';
+import Message from './Message/Message';
+import UserAvatar from '../common/UserAvatar';
+import {UserType} from '../../models/UserType';
+import chatStore from '../../stores/chatStore';
+import EntryField from '../EntryField';
+import Modal from '../common/Modal';
+
+import Settings from '../common/Settings';
+>>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
 
 import {observer} from 'mobx-react-lite';
 import ArrowToBottom from './ArrowToBottom/ArrowToBottom';
 import {MessageType} from '../../models/Message';
+<<<<<<< HEAD
 import {MessageFeedStyle} from './MessageFeed.style'
 import MessageFeedHeader from "./MessageFeedHeader/MessageFeedHeader";
+=======
+import {MessageFeedStyle} from './MessageFeedStyle'
+import { CategoryType } from '../../models/CategoryType';
+import { DialogType } from '../../models/DialogType';
+import messageFeedStore from '../../stores/messageFeedStore';
+>>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
 
 type MessageFeedProps = {
     id: string,
-    type: 'private' | 'conversation',
-    category: 'chat' | 'place',
+    type: DialogType,
+    category: CategoryType,
     messages: MessageType[],
-    members: User[],
+    members: UserType[],
     avatar?: string,
     name?: string,
 };
 
 const MessageFeed: React.FC<MessageFeedProps> = (props) => {
+<<<<<<< HEAD
     const {id, messages, type} = props;
+=======
+    const {id, messages, name, avatar, members, type, category} = props;
+    const {setCurrentDialogId, getSettingsChat, getUser} = chatStore;
+    const { onScroll } = messageFeedStore;
+    const [modalActive, setModalActive] = useState(false);
+    const messagesRef = useRef<HTMLDivElement>(null);
+
+    const companion = findPrivateCompanion(members, getUser());
+
+    const backOnClickHandler = () => {
+        setCurrentDialogId('');
+    }
+>>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
+
+    const onScrollHandler = _.throttle(onScroll, 50);
 
     return (
         <MessageFeedStyle>
+<<<<<<< HEAD
             <ArrowToBottom id={id + 'messageFeedBottom'}/>
             <MessageFeedHeader {...props} />
             <div className="messages">
                 {messages.map(message => <Message key={message.id} {...message} type={type}/>)}
                 <div id={id + 'messageFeedBottom'}/>
+=======
+            <div className="head">
+                <div className="first-side">
+                    <img src='/img/back-icon.svg' alt='back' className="btn-back" onClick={backOnClickHandler}/>
+                    <UserAvatar url={type === 'private' ? companion?.avatar : avatar}/>
+                    <div className="companion">
+                        <span className="name">
+                            {type === 'private' ? companion?.name : name}
+                        </span>
+                        <div className="status">
+                            была 3 мин назад
+                        </div>
+                    </div>
+                </div>
+                <img src='/img/info-icon.svg' alt='back' onClick={() => setModalActive(true)}/>
+            </div>
+            <div className="messages" ref={messagesRef} onScroll={onScrollHandler}>
+                {messages.map(message => <Message key={message.id} {...message} type={type}/>)}
+                <ArrowToBottom messagesRef={messagesRef}/>
+>>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
             </div>
             <EntryField dialogId={id}/>
         </MessageFeedStyle>

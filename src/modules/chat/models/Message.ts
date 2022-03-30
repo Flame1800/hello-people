@@ -1,8 +1,8 @@
-import { User } from './User';
+import { UserType } from './UserType';
 
 export type MessageType = {
     id: string,
-    author: User,
+    author: UserType,
     text: string,
 
     date: string,
