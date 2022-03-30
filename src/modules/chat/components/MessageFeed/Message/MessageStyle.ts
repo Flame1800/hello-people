@@ -19,22 +19,12 @@ export const MessageAvatar = styled.img`
 
 export const MessageStyle = styled.div`
   width: fit-content;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
+  padding: 10px;
   border-radius: 10px;
   background: #F0F0F0;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
   margin-bottom: 15px;
   margin-right: 20px;
   max-width: 60%;
-
-  .text {
-    margin-right: 50px;
-  }
 
   .user-name {
     font-weight: 600;
@@ -42,10 +32,22 @@ export const MessageStyle = styled.div`
     line-height: 22px;
     color: #6e6e6e;
   }
+
+  .message-text {
+    display: flow-root;
+    justify-content: end;
+    align-items: center;
+    flex-wrap: wrap;
+    word-break: break-word;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
 `
 
 
-export const MyMessageWrapper = styled(MessageWrapper)`
+export const MeMessageWrapper = styled(MessageWrapper)`
   flex-direction: row-reverse;
 
   ${MessageStyle} {
@@ -55,15 +57,12 @@ export const MyMessageWrapper = styled(MessageWrapper)`
 `
 
 export const MessageInfo = styled.div`
-  height: 15px;
   display: flex;
   align-items: center;
-  margin-left: 30px;
-  position: relative;
+  margin-left: 14px;
   float: right;
-  right: -5px;
-  top: -5px;
-
+  position: relative;
+  top: 5px;
 
   .date {
     font-weight: 400;
@@ -72,5 +71,6 @@ export const MessageInfo = styled.div`
     color: #808080;
     margin-right: 5px;
     width: max-content;
+    white-space: nowrap;
   }
 `

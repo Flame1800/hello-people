@@ -28,9 +28,6 @@ const Dialog: React.FC<DialogProps> = (props) => {
     const lastMessage = messages[messages.length - 1];
     const newMessagesCount = messages.filter(message => !message.isRead && message.author.id !== getUser().id).length;
 
-    const date = new Date(lastMessage.date)
-    console.log(date)
-
     const dialogOnClickHandler = () => {
         setCurrentMessageFeed(id);
     };

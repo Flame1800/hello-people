@@ -4,7 +4,7 @@ import chatStore from '../../../stores/chatStore';
 
 import Icon from '../../common/UserAvatar';
 import CheckMarkICon from "./CheckMarkICon";
-import {MessageWrapper, MessageStyle, MessageInfo, MessageAvatar, MyMessageWrapper} from './MessageStyle'
+import {MessageWrapper, MessageStyle, MessageInfo, MessageAvatar, MeMessageWrapper} from './MessageStyle'
 
 export type MessageProps = {
     id: string,
@@ -23,23 +23,23 @@ const Message: React.FC<MessageProps> = (props) => {
     const content = (<>
         {type !== 'private' && <MessageAvatar alt='avatar' src={author.avatar}/>}
         <MessageStyle>
-            <div className='text'>
-                {type !== 'private' && author.id !== currentUser.id
-                    && <div className='user-name'>{author.name}</div>}
+            {type !== 'private' && author.id !== currentUser.id
+                && <div className='user-name'>{author.name}</div>}
+            <p className='message-text'>
                 {text}
-            </div>
-            <MessageInfo>
-                <p className='date'>{date}</p>
-                {author.id === currentUser.id && <CheckMarkICon active={isRead}/>}
-            </MessageInfo>
+                <MessageInfo>
+                    <p className='date'>{date}</p>
+                    {author.id === currentUser.id && <CheckMarkICon active={isRead}/>}
+                </MessageInfo>
+            </p>
         </MessageStyle>
     </>)
 
     if (author.id === currentUser.id) {
         return (
-            <MyMessageWrapper>
+            <MeMessageWrapper>
                 {content}
-            </MyMessageWrapper>
+            </MeMessageWrapper>
         )
     }
 
