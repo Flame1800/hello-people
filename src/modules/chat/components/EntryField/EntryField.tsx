@@ -3,31 +3,19 @@ import {observer} from 'mobx-react-lite';
 import entryFieldStore from '../../stores/entryFieldStore';
 import chatStore from '../../stores/chatStore';
 import dialogFeedStore from '../../stores/dialogFeedStore';
-
-<<<<<<< HEAD
 import styled from "styled-components";
-=======
-import style from './EnrtyField.module.css';
 import messageFeedStore from '../../stores/messageFeedStore';
->>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
 
 type EntryFieldProps = {
     dialogId: string,
 };
 
 const EntryField: React.FC<EntryFieldProps> = (props) => {
-<<<<<<< HEAD
     const {dialogId} = props;
     const {getMessage, setMessage} = entryFieldStore;
     const {getSocket, getUser} = chatStore;
     const {addMessageToDialog, makeAllMessagesIsRead} = dialogFeedStore;
-=======
-    const { dialogId } = props;
-    const { getMessage, setMessage } = entryFieldStore;
-    const { getSocket, getUser } = chatStore;
-    const { addMessageToDialog, makeAllMessagesIsRead } = dialogFeedStore;
-    const { goBottom } = messageFeedStore;
->>>>>>> 997970c8a2bf63499360254e13db873bbb2b80e5
+    const {goBottom} = messageFeedStore;
     const socket = getSocket();
 
     const inputOnChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +44,7 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
         <Wrapper>
             <textarea
                 className="message-input"
-                rows="1"
+                rows={1}
                 onChange={inputOnChangeHandler}
                 value={getMessage()}
                 placeholder="Сообщение..."
@@ -80,6 +68,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  z-index: 10;
 
   .message-input {
     width: 100%;

@@ -5,29 +5,30 @@ import Settings from "../../common/Settings/Settings";
 import {findPrivateCompanion} from "../../../utils/findPrivateCompanion";
 import chatStore from "../../../stores/chatStore";
 import {MessageType} from "../../../models/Message";
-import {User} from "../../../models/User";
 import {MessageFeedHeaderStyle} from './MessageFeedHeader.style'
-
+import {UserType} from "../../../models/UserType";
+import {DialogType} from "../../../models/DialogType";
+import {CategoryType} from "../../../models/CategoryType";
 
 type MessageFeedProps = {
     id: string,
-    type: 'private' | 'conversation',
-    category: 'chat' | 'place',
+    type: DialogType,
+    category: CategoryType,
     messages: MessageType[],
-    members: User[],
+    members: UserType[],
     avatar?: string,
     name?: string,
 };
 
 const MessageFeedHeader: React.FC<MessageFeedProps> = (props) => {
-    const {setCurrentMessageFeed, getSettingsChat, getUser} = chatStore;
+    const {setCurrentDialogId, getSettingsChat, getUser} = chatStore;
     const {name, avatar, members, type} = props
 
     const companion = findPrivateCompanion(members, getUser());
     const [modalActive, setModalActive] = useState(false);
 
     const backOnClickHandler = () => {
-        setCurrentMessageFeed('');
+        setCurrentDialogId('');
     }
 
     return (

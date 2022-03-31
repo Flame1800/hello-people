@@ -9,15 +9,15 @@ import dialogFeedStore from './stores/dialogFeedStore';
 import {ChatWrapper} from './ChatStyle'
 import Tab from "./components/common/Tab";
 import Search from "./components/Header/Search";
-import { CategoryType } from './models/CategoryType';
-import { DialogProps } from './components/DialogFeed/Dialog/Dialog';
+import {CategoryType} from './models/CategoryType';
+import {DialogProps} from './components/DialogFeed/Dialog/Dialog';
 
 type ChatProps = {
     api: string;
 };
 
 const Chat: React.FC<ChatProps> = (props) => {
-    const {getCurrentDialogId, setCurrentDialogId, setSocket} = chatStore;
+    const {setCurrentDialogId, getCurrentDialogId, setSocket} = chatStore;
     const {getDialog} = dialogFeedStore;
     const dialog = getDialog(getCurrentDialogId());
 
