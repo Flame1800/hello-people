@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import EventCard from '../Event/EventCard';
+import EventCard from './Card/EventCard';
 import DateEvents from "./DateEvents";
 import Switch from "../Common/Switch";
 

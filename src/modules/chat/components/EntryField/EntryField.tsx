@@ -68,7 +68,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  z-index: 10;
+  z-index: 40;
 
   .message-input {
     width: 100%;

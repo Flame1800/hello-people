@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import NavBarMobile from "../MobileComponents/NavBarMobile/NavBarMobile";
+import styled from "styled-components";
 
 type Layout = {
     children: Component
@@ -7,11 +8,15 @@ type Layout = {
 
 const MainLayout: React.FC<Layout> = ({children}) => {
     return (
-        <div>
+        <Wrapper>
             {children}
             <NavBarMobile/>
-        </div>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+  padding-bottom: 80px;
+`
 
 export default MainLayout;
