@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import BackButton from "../../src/Components/Common/BackButton";
 import PageCarousel from "../../src/Components/Common/Services/PageCarousel";
-import PageContent from "../../src/Components/Event/PageContent";
+import PageContent from "../../src/Components/Place/PageContent";
 
 const EventPage = () => {
     return (
@@ -10,7 +10,7 @@ const EventPage = () => {
             <div className="head">
                 <BackButton/>
                 <div className="head-title">
-                    Мероприятие
+                    Место
                 </div>
             </div>
             <PageCarousel/>

@@ -1,14 +1,10 @@
 import React from 'react';
+import IndicatorDots from "../../Common/Carousel/IndicatorDots";
+import Buttons from "../../Common/Carousel/Buttons";
 import styled from "styled-components";
-import IndicatorDots from "./IndicatorDots";
-import Buttons from "./Buttons";
 import Carousel from 're-carousel'
 
-type CarouselType = {
-    pictures: any
-}
-
-const CarouselComponent: React.FC<CarouselType> = ({pictures}) => {
+const CardPlaceCarousel = () => {
     return (
         <Wrapper>
             <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
@@ -29,21 +25,14 @@ const CarouselComponent: React.FC<CarouselType> = ({pictures}) => {
     );
 };
 
-const ImgWrap = styled.img`
-  max-width: 460px;
-  border-radius: 20px 20px 0 0;
-  width: 100% !important;
-  object-fit: cover;
-`
-
 const Wrapper = styled.div`
   width: 100% !important;
-  height: inherit;
+  height: 190px;
 `
 
 
 const CarouselStyle = styled(Carousel)`
-  border-radius: 20px;
+  border-radius: 20px 20px 0 0;
   z-index: 0;
 
   div, img {
@@ -55,4 +44,5 @@ const CarouselStyle = styled(Carousel)`
   }
 `
 
-export default CarouselComponent;
+
+export default CardPlaceCarousel;

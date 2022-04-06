@@ -16,7 +16,6 @@ const MainLayout: React.FC<Layout> = ({children}) => {
 };
 
 const Wrapper = styled.div`
-  padding-bottom: 80px;
 `
 
 export default MainLayout;

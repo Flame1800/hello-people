@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
-import NameService from "../../Common/Services/NameService";
-import {ButtonStyle} from "../../../../styles/commonStyles";
-import PinnedPlace from "../PinnedPlace";
-import InfoListServices from "../../Common/Services/InfoListServices";
+import NameService from "../Common/Services/NameService";
+import {ButtonStyle} from "../../../styles/commonStyles";
+import PinnedPlace from "./PinnedPlace";
+import InfoListServices from "../Common/Services/InfoListServices";
 import dynamic from "next/dynamic";
-import Description from "../../Common/Services/Description";
+import Description from "../Common/Services/Description";
 
-const Map = dynamic(() => import('../../Common/Map/MapBlock'), {ssr: false})
+const Map = dynamic(() => import('../Common/Map/MapBlock'), {ssr: false})
 
 const PageContent = () => {
     return (

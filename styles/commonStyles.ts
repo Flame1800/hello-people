@@ -2,6 +2,8 @@ import styled from "styled-components";
 import {theme} from "./theme";
 
 export const ButtonStyle = styled.div`
+  max-width: 290px;
+  width: 100%;
   border-radius: 20px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
   border: ${({outline}) => !outline ? 'none' : ` 2px solid ${theme.color.orange}`};

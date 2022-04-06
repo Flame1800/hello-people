@@ -2,11 +2,11 @@ import React from 'react';
 import styled from "styled-components";
 import Image from "next/image";
 import {theme} from "../../../../../styles/theme";
-import { observer } from 'mobx-react-lite';
+import {observer} from 'mobx-react-lite';
 import entryFieldStore from '../../stores/entryFieldStore';
 
 const Search = () => {
-    const { getSearchText, setSearchText } = entryFieldStore;
+    const {getSearchText, setSearchText} = entryFieldStore;
 
     return (
         <Wrapper>
@@ -25,7 +25,7 @@ const Search = () => {
 const Wrapper = styled.div`
   max-width: 380px;
   display: flex;
-  margin-top: 40px;
+  margin-top: 10px;
 
   .search {
     background: ${theme.color.lightGray};

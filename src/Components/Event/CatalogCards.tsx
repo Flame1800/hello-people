@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import EventCard from './Card/EventCard';
 import DateEvents from "./DateEvents";
-import Switch from "../Common/Switch";
+import Switch from "./Switch";
 
 
 const CatalogCards = () => {

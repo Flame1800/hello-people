@@ -1,8 +1,8 @@
 import React from 'react';
 import Carousel from 're-carousel'
 import styled from "styled-components";
-import IndicatorDots from "../../Common/Carousel/IndicatorDots";
-import Buttons from "../../Common/Carousel/Buttons";
+import IndicatorDots from "../Carousel/IndicatorDots";
+import Buttons from "../Carousel/Buttons";
 
 const PageCarousel = () => {
     return (

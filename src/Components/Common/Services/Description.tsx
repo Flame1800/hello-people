@@ -23,6 +23,7 @@ const Wrapper = styled.div`
     font-size: 18px;
     color: #000000;
     margin-top: 11px;
+    margin-bottom: 11px;
   }
 
   .description {

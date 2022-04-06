@@ -6,7 +6,7 @@ import {observer} from 'mobx-react-lite';
 import {io} from 'socket.io-client';
 import MessageFeed from './components/MessageFeed';
 import dialogFeedStore from './stores/dialogFeedStore';
-import {ChatWrapper} from './ChatStyle'
+import {ChatWrapper, ChatTitle} from './ChatStyle'
 import Tab from "./components/common/Tab";
 import Search from "./components/Header/Search";
 import {CategoryType} from './models/CategoryType';
@@ -51,6 +51,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     return (
         <ChatWrapper>
+            <ChatTitle>ЧАТЫ</ChatTitle>
             <Search/>
             <div className="tabs">
                 {createTab('chat', 'Чаты')}
