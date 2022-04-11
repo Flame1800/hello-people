@@ -48,6 +48,10 @@ const Wrapper = styled.div`
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.07);
   border-radius: 20px 20px 0 0;
   z-index: 20;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `
 
 const NavLinkStyle = styled.a`

@@ -2,17 +2,18 @@ import React from 'react';
 import styled from "styled-components";
 import PlaceCard from "./Card/PlaceCard";
 
-const CatalogCards = () => {
+const CatalogCards = ({cards}) => {
     return (
         <Wrapper>
-            <PlaceCard/>
+            {cards.map((card) => <PlaceCard key={card.id} card={card}/>)}
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  margin-top: 40px;
   padding: 0 20px;
+  margin: 40px auto;
+  max-width: 890px;
 `
 
 export default CatalogCards;

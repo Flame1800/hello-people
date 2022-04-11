@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   border-top: 2px dashed #949494;
   padding-top: 20px;
   width: 100%;
+  position: relative;
 
   .title {
     font-style: normal;
@@ -27,11 +28,29 @@ const Wrapper = styled.div`
     font-size: 18px;
     color: #000000;
     margin-bottom: 9px;
+
+    @media (min-width: 870px) {
+      position: absolute;
+      left: -45px;
+      top: 50%;
+      transform: rotate(-90deg);
+      text-transform: lowercase;
+    }
   }
 
   .place {
     height: 200px;
     position: relative;
+    max-width: 400px;
+
+    img, div {
+      border-radius: 15px;
+    }
+
+
+    @media (min-width: 870px) {
+      height: 205px;
+    }
   }
 
   .name {
@@ -50,6 +69,17 @@ const Wrapper = styled.div`
     padding: 7px 30px;
     text-align: center;
     margin: 0 20px;
+
+  }
+
+  @media (min-width: 870px) {
+    border-top: none;
+    width: 305px;
+    margin-left: 30px;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
   }
 `
 

@@ -31,19 +31,17 @@ const CarouselComponent: React.FC<CarouselType> = ({pictures}) => {
 
 const ImgWrap = styled.img`
   max-width: 460px;
-  border-radius: 20px 20px 0 0;
-  width: 100% !important;
+  width: 100%;
   object-fit: cover;
 `
 
 const Wrapper = styled.div`
-  width: 100% !important;
+  width: 100%;
   height: inherit;
 `
 
 
 const CarouselStyle = styled(Carousel)`
-  border-radius: 20px;
   z-index: 0;
 
   div, img {

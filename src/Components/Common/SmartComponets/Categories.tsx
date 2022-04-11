@@ -25,6 +25,16 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 30px;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: 680px;
+    flex-wrap: wrap;
+    height: 90px;
+    justify-content: center;
+    align-items: baseline;
+    margin: 0 auto;
+  }
 `
 
 export default Categories;

@@ -31,15 +31,16 @@ const EventCard = () => {
                         </div>
                     </div>
                 </div>
-                <PinnedPlace/>
             </div>
+            <PinnedPlace/>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  max-width: 800px;
+  max-width: 860px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background: #FFFFFF;
@@ -48,23 +49,41 @@ const Wrapper = styled.div`
   padding: 20px;
   margin-bottom: 30px;
 
+  @media (min-width: 870px) {
+    padding: 0;
+  }
+
   .gallery {
     height: 230px;
     width: 100%;
     border-radius: 15px;
     margin-bottom: 15px;
+
+    img, div {
+      border-radius: 15px;
+    }
+
+    @media (min-width: 535px) {
+      width: 150px;
+      height: 150px;
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
   }
 
   .event {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    margin: 0 auto;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: auto;
+      padding: 10px;
+      align-items: center;
+    }
   }
 
-  .info {
-    width: 100%;
-  }
 
   .event-meta {
     display: flex;
@@ -72,6 +91,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     padding-bottom: 20px;
+
   }
 
   .user-meta {

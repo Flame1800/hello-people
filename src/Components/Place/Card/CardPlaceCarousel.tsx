@@ -4,7 +4,7 @@ import Buttons from "../../Common/Carousel/Buttons";
 import styled from "styled-components";
 import Carousel from 're-carousel'
 
-const CardPlaceCarousel = () => {
+const CardPlaceCarousel = ({pictures, cover}) => {
     return (
         <Wrapper>
             <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
@@ -17,7 +17,8 @@ const CardPlaceCarousel = () => {
                 {/*        height={190}*/}
                 {/*    />*/}
                 {/*))}*/}
-                <img src='/img/event-cover.png' style={{backgroundColor: 'pink', height: '100%'}}/>
+                <img src={process.env.SERVER_URL_PROD + cover.data.attributes.url}
+                     style={{backgroundColor: 'pink', height: '100%'}}/>
                 <div style={{backgroundColor: 'orange', height: '100%'}}>Frame 2</div>
                 <div style={{backgroundColor: 'orchid', height: '100%'}}>Frame 3</div>
             </CarouselStyle>

@@ -16,8 +16,9 @@ const CatalogCards = () => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 25px;
   padding: 0 20px;
+  max-width: 900px;
+  margin: 45px auto;
 
   .meta {
     display: flex;
@@ -37,7 +38,6 @@ const Wrapper = styled.div`
       }
     }
   }
-
 
 `
 

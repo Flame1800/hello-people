@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {theme} from "../../../styles/theme";
 
 type TabProps = {
-    active: boolean;
+    active?: boolean;
 }
 
 const Tab: React.FC<TabProps> = ({children, active}) => {

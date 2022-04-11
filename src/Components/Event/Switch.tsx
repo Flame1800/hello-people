@@ -33,9 +33,15 @@ const Wrapper = styled.div`
   line-height: 97.9%;
   text-align: center;
   height: 50px;
+
+  @media (min-width: 768px) {
+    max-width: 260px;
+    height: 40px;
+  }
 `
 
 const Button = styled.div`
+  cursor: pointer;
   background: ${({active}) => active ? "#FFFFFF" : 'none'};
   box-shadow: ${({active}) => active ? "0 0 9px rgba(0, 0, 0, 0.21)" : 'none'};
   border-radius: 65px;

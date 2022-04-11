@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
+import ProfileHead from "../../src/Components/Profile/ProfileHead/ProfileHead";
+import ProfileButtons from "../../src/Components/Profile/ProfileButtons";
+import UserContent from "../../src/Components/Profile/UserContent/UserContent";
 
 const Profile = () => {
     return (
         <Wrapper>
-            <h1>ВАШ ПРОФИЛЬ</h1>
+            <ProfileHead/>
+            <ProfileButtons/>
+            <UserContent/>
         </Wrapper>
     );
 };
