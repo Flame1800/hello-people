@@ -8,7 +8,7 @@ import {findPrivateCompanion} from '../../utils/findPrivateCompanion';
 import {observer} from 'mobx-react-lite';
 import ArrowToBottom from './ArrowToBottom/ArrowToBottom';
 import {MessageType} from '../../models/Message';
-import {MessageFeedStyle} from './MessageFeed.style'
+import {getMessageFeedStyle} from './MessageFeed.style'
 import MessageFeedHeader from "./MessageFeedHeader/MessageFeedHeader";
 import {CategoryType} from '../../models/CategoryType';
 import {DialogType} from '../../models/DialogType';
@@ -28,8 +28,9 @@ const MessageFeed: React.FC<MessageFeedProps> = (props) => {
 
     const {id, messages, type} = props;
     const {onScroll} = messageFeedStore;
+    const { getIsDesktop } = chatStore;
     const messagesRef = useRef<HTMLDivElement>(null);
-
+    const MessageFeedStyle = getMessageFeedStyle(getIsDesktop());
 
     const onScrollHandler = _.throttle(onScroll, 50);
 

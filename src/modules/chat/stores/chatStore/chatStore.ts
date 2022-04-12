@@ -14,6 +14,8 @@ class ChatStore {
 
     socket: Socket | undefined;
 
+    isDesktop: boolean = true;
+
     settingsChat: SettingParamProps[] = [
         {
             id: '1',
@@ -43,6 +45,12 @@ class ChatStore {
     constructor() {
         makeAutoObservable(this);
     };
+
+    getIsDesktop = () => this.isDesktop;
+
+    setIsDesktop = (flag: boolean) => {
+        this.isDesktop = flag;
+    }
 
     getApi = () => this.api;
 
