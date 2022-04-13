@@ -11,9 +11,11 @@ const CatalogCards = ({cards}) => {
 };
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   padding: 0 20px;
   margin: 40px auto;
-  max-width: 890px;
+  max-width: 1000px;
 `
 
 export default CatalogCards;

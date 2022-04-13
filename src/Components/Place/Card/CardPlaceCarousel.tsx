@@ -17,8 +17,7 @@ const CardPlaceCarousel = ({pictures, cover}) => {
                 {/*        height={190}*/}
                 {/*    />*/}
                 {/*))}*/}
-                <img src={process.env.SERVER_URL_PROD + cover.data.attributes.url}
-                     style={{backgroundColor: 'pink', height: '100%'}}/>
+                <img src={process.env.SERVER_URL_PROD + cover.data.attributes.url} alt='фото места'/>
                 <div style={{backgroundColor: 'orange', height: '100%'}}>Frame 2</div>
                 <div style={{backgroundColor: 'orchid', height: '100%'}}>Frame 3</div>
             </CarouselStyle>

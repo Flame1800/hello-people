@@ -40,8 +40,14 @@ const Wrapper = styled.div`
   height: 300px;
   width: 100%;
   background: #FFFFFF;
-  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 17px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
+
+  @media (min-width: 1400px) {
+    max-width: 290px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 
   .content {
     padding: 15px;

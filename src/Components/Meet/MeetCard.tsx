@@ -39,6 +39,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  @media (min-width: 768px) {
+    max-width: 300px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+
   .head {
     display: flex;
     justify-content: space-between;
@@ -51,6 +57,7 @@ const Wrapper = styled.div`
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
+    margin-bottom: 30px;
   }
 
   .meta {

@@ -24,6 +24,8 @@ const Wrapper = styled.div`
   .cards {
     margin-top: 50px;
     padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
   }
 `
 
