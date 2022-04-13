@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const MessageFeedStyle = styled.div`
+export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
   width: 100%;
-  height: 100vh;
+  height: ${isDesktop ? '70vh' : '100vh'};
   background: #fff;
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: ${isDesktop ? 'static' : 'absolute'};
   top: 0;
   right: 0;
   left: 0;
@@ -15,7 +15,12 @@ export const MessageFeedStyle = styled.div`
     max-height: 100%;
     padding-top: 30px;
     padding-bottom: 60px;
-    overflow: scroll;
+    overflow: hidden scroll;
+  }
+  
+  @media(max-width: 400px) {
+    position: absolute;
+    height: 100vh;
   }
 
 `

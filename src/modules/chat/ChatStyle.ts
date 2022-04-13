@@ -14,6 +14,20 @@ export const ChatWrapper = styled.div`
     margin-top: 30px;
     margin-bottom: 24px;
   }
+  
+  .dialogs {
+    display: flex;
+  }
+  
+  .viewType {
+    width: 40px;
+  }
+  
+  @media(max-width: 400px) {
+    .viewType {
+      visibility: hidden;
+    }
+  }
 `
 
 export const ChatTitle = styled.div`
