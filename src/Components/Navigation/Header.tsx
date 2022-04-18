@@ -2,11 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 import Link from "next/link";
 import AddButton from "./AddButton";
+import MessengerButton from "./NavButtonsSvg/MessengerButton";
 
 const Header = () => {
     return (
         <Wrapper>
-            <div className="first-side">
+            <div className="left-side">
                 <Link href='/events'>
                     <a>
                         <img src="/img/logo.svg" alt="logo"/>
@@ -14,8 +15,9 @@ const Header = () => {
                 </Link>
                 <AddButton/>
             </div>
-
-
+            <div className="right-side">
+                <MessengerButton/>
+            </div>
         </Wrapper>
     );
 };
@@ -32,13 +34,19 @@ const Wrapper = styled.div`
   border-top: 1px solid #e0e0e0;
   border-bottom: 1px solid #949494;
   display: none;
+  justify-content: space-between;
 
   @media (min-width: 1424px) {
     display: flex;
   }
 
-  .first-side {
+  .left-side {
     display: flex;
+  }
+
+  .right-side {
+    display: flex;
+    align-items: center;
   }
 `
 

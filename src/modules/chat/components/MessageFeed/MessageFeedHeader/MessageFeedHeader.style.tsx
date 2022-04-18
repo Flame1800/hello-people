@@ -7,6 +7,10 @@ export const MessageFeedHeaderStyle = styled.div`
   padding: 10px 20px;
   border-bottom: 1px solid #D9D9D9;
 
+  @media (min-width: 1420px) {
+    padding-top: 40px;
+  }
+
   .first-side {
     display: flex;
     align-items: center;

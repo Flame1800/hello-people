@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const DialogWrapper = styled.div`
-  max-width: 380px;
   width: 100%;
+  max-width: 600px;
   height: 55px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   padding: 5px;
   cursor: pointer;
-  
+
   &:hover {
     background: #E6E6E6;
     border-radius: 10px;
