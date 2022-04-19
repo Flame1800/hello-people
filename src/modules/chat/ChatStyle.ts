@@ -6,7 +6,7 @@ export const ChatWrapper = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px 20px;
 
   .tabs {
     display: flex;
@@ -15,17 +15,16 @@ export const ChatWrapper = styled.div`
   }
 
   .dialogs {
-    display: flex;
-    max-width: 600px;
+    width: 100%;
   }
 
 
   @media (min-width: 1420px) {
     background: #fff !important;
     max-width: 330px;
-    padding-top: 40px;
     position: fixed;
     right: 0;
+    top: 70px;
     border-left: 1px solid #B1B1B1;
   }
 `

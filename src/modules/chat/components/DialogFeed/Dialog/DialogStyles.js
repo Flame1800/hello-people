@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const DialogWrapper = styled.div`
   width: 100%;
-  max-width: 600px;
   height: 55px;
   margin-bottom: 20px;
   display: flex;

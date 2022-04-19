@@ -35,8 +35,8 @@ const PlaceCard = ({card}) => {
 };
 
 const Wrapper = styled.div`
-  margin-bottom: 40px;
   max-width: 390px;
+  margin: 20px auto;
   height: 300px;
   width: 100%;
   background: #FFFFFF;

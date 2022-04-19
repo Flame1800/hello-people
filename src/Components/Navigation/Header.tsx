@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import Link from "next/link";
 import AddButton from "./AddButton";
-import MessengerButton from "./NavButtonsSvg/MessengerButton";
+import DesktopMessenger from './DesktopMessenger'
 
 const Header = () => {
     return (
@@ -16,7 +16,7 @@ const Header = () => {
                 <AddButton/>
             </div>
             <div className="right-side">
-                <MessengerButton/>
+                <DesktopMessenger/>
             </div>
         </Wrapper>
     );

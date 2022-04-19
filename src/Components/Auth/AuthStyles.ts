@@ -6,7 +6,10 @@ export const AuthWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
+
+  @media (max-width: 1000px) {
+    background: #fff;
+  }
 `
 
 export const AuthTitle = styled.div`

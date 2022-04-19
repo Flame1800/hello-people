@@ -15,7 +15,7 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
     max-height: 100%;
     height: 100%;
     padding-top: 30px;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
     overflow: hidden scroll;
   }
 
@@ -24,4 +24,7 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
     height: 100vh;
   }
 
+  @media (max-width: 1430px) {
+    padding-bottom: 100px;
+  }
 `

@@ -8,21 +8,10 @@ import chatStore from "../../stores/chatStore/chatStore";
 
 const Search = () => {
     const {getSearchText, setSearchText} = entryFieldStore;
-    const {getIsDesktop, setIsDesktop} = chatStore;
-
-
-    const viewTypeHandler = () => {
-        setIsDesktop(!getIsDesktop());
-    };
 
     return (
         <Wrapper>
-            <img className="viewType"
-                 src={getIsDesktop() ? '/img/expand.svg' :
-                     '/img/collapse.svg'}
-                 alt=""
-                 onClick={viewTypeHandler}
-            />
+            {/* Тут будет ModeSwitcher */}
             <input
                 placeholder="Поиск"
                 type="text"

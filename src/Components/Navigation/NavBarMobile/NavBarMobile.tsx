@@ -14,21 +14,23 @@ const NavBar = () => {
 
     return (
         <Wrapper>
-            <Link href='/events'>
-                <NavLinkStyle href="" active={route.asPath === "/events"}><EventButton/></NavLinkStyle>
-            </Link>
-            <Link href='/places'>
-                <NavLinkStyle href="" active={route.asPath === "/places"}><PlaceButton/></NavLinkStyle>
-            </Link>
-            <Link href='/messenger'>
-                <NavLinkStyle href="" active={route.asPath === "/messenger"}><MessengerButton/></NavLinkStyle>
-            </Link>
-            <Link href='/meets'>
-                <NavLinkStyle href="" active={route.asPath === "/meets"}><MeetsButton/></NavLinkStyle>
-            </Link>
-            <Link href='/profile'>
-                <NavLinkStyle href="" active={route.asPath === "/profile"}><ProfileIcon/></NavLinkStyle>
-            </Link>
+            <div className="links">
+                <Link href='/events'>
+                    <NavLinkStyle href="" active={route.asPath === "/events"}><EventButton/></NavLinkStyle>
+                </Link>
+                <Link href='/places'>
+                    <NavLinkStyle href="" active={route.asPath === "/places"}><PlaceButton/></NavLinkStyle>
+                </Link>
+                <Link href='/messenger'>
+                    <NavLinkStyle href="" active={route.asPath === "/messenger"}><MessengerButton/></NavLinkStyle>
+                </Link>
+                <Link href='/meets'>
+                    <NavLinkStyle href="" active={route.asPath === "/meets"}><MeetsButton/></NavLinkStyle>
+                </Link>
+                <Link href='/profile'>
+                    <NavLinkStyle href="" active={route.asPath === "/profile"}><ProfileIcon/></NavLinkStyle>
+                </Link>
+            </div>
         </Wrapper>
     );
 };
@@ -36,16 +38,24 @@ const NavBar = () => {
 const Wrapper = styled.div`
   position: fixed;
   bottom: 0;
-  background: #fff;
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.07);
-  border-radius: 20px 20px 0 0;
   z-index: 20;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+
+  .links {
+    background: #fff;
+    width: 100%;
+    max-width: 1000px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.07);
+    border-radius: 20px 20px 0 0;
+  }
 
   @media (min-width: 1424px) {
     display: none;

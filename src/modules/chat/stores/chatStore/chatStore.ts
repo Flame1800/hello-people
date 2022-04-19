@@ -1,8 +1,8 @@
-import { makeAutoObservable } from 'mobx';
-import { UserType } from '../../models/UserType';
-import { userPetr } from '../../mocks/dialogs';
-import { Socket } from 'socket.io-client';
-import { SettingParamProps } from '../../components/common/Settings/SettingParam/SettingParam';
+import {makeAutoObservable} from 'mobx';
+import {UserType} from '../../models/UserType';
+import {userPetr} from '../../mocks/dialogs';
+import {Socket} from 'socket.io-client';
+import {SettingParamProps} from '../../components/common/Settings/SettingParam/SettingParam';
 
 
 class ChatStore {
@@ -14,7 +14,7 @@ class ChatStore {
 
     socket: Socket | undefined;
 
-    isDesktop: boolean = true;
+    isDesktop: boolean = false;
 
     settingsChat: SettingParamProps[] = [
         {
@@ -60,8 +60,8 @@ class ChatStore {
 
     getUser = () => this.user;
 
-    setUser = (user:UserType) => {
-      this.user = user;
+    setUser = (user: UserType) => {
+        this.user = user;
     };
 
     getCurrentDialogId = () => this.currentDialogId;

@@ -21,15 +21,16 @@ export const ButtonStyle = styled.div`
 
 export const InputStyle = styled.input`
   background: #F0F0F0;
+  max-width: 350px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 18px;
   line-height: 25px;
   padding: 13px 20px;
   width: 100%;
-  border: none;
   outline: none;
   margin-bottom: 20px;
+  border: 1px solid #9b9b9b;
 
   &::placeholder {
     color: #949494;

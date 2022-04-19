@@ -6,7 +6,7 @@ import {observer} from 'mobx-react-lite';
 import {io} from 'socket.io-client';
 import MessageFeed from './components/MessageFeed';
 import dialogFeedStore from './stores/dialogFeedStore';
-import {ChatTitle, ChatWrapper} from './ChatStyle';
+import {ChatWrapper} from './ChatStyle';
 import Tab from './components/common/Tab';
 import Search from './components/Header/Search';
 import {CategoryType} from './models/CategoryType';
@@ -17,7 +17,7 @@ type ChatProps = {
 };
 
 const Chat: React.FC<ChatProps> = (props) => {
-    const {setCurrentDialogId, getCurrentDialogId, setSocket, getIsDesktop, setIsDesktop} = chatStore;
+    const {setCurrentDialogId, getCurrentDialogId, setSocket} = chatStore;
     const {getDialog} = dialogFeedStore;
     const dialog = getDialog(getCurrentDialogId());
 
