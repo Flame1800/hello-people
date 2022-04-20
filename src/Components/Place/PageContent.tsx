@@ -5,25 +5,24 @@ import {ButtonStyle} from "../../../styles/commonStyles";
 import InfoListServices from "../Common/Services/InfoListServices";
 import dynamic from "next/dynamic";
 import Description from "../Common/Services/Description";
+import OutputEditorData from "../Common/OutputEditorData";
 
 const Map = dynamic(() => import('../Common/Map/MapBlock'), {ssr: false})
 
-const PageContent = () => {
+const PageContent = ({place}) => {
     return (
         <Wrapper>
             <NameService name="Gloria Jean's coffees" category='Кафе'/>
             <InfoListServices
-                date='25 сентября в 19:00'
-                address='СК Энергетик - Энергетиков, 47'
-                link='https://vk.com/timasurgut?from=top'
-                phone='+7-932-255-68-44'
-                link2gis="https://vk.com/timasurgut?from=top"
+                address={place.location}
+                link={place.site}
+                phone={place.tel}
+                link2gis={place.maplink}
             />
             <Description>
-                VERANDA» именно то место, куда можно прийти в любое время: утром выпить чашечку ароматного кофе, днем с
-                коллегами отведать бизнес–ланч, провести вечер в кругу близких людей.
+                <OutputEditorData data={place.description}/>
             </Description>
-            <Map location="Энергетиков, 47"/>
+            <Map location={place.location}/>
         </Wrapper>
     );
 };

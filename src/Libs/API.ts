@@ -13,5 +13,7 @@ API.getEvents = () => server('/parties')
 // Places
 API.getPlaces = () => server('/places?populate=*')
 
+API.getPlace = id => server(`/places/${id}?populate=*`)
+
 
 export default API

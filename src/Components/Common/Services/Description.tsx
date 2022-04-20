@@ -8,7 +8,6 @@ type PropsTypes = {
 const Description: React.FC<PropsTypes> = ({children}) => {
     return (
         <Wrapper>
-            <div className="title">Описание</div>
             <div className="description">{children}</div>
         </Wrapper>
     );

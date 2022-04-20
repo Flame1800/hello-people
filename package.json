@@ -16,6 +16,7 @@
     "@types/lodash": "^4.14.180",
     "@types/styled-components": "^5.1.24",
     "axios": "^0.26.1",
+    "editorjs-react-renderer": "^3.0.1",
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
     "luxon": "^2.3.1",

@@ -4,14 +4,25 @@ import styled from "styled-components";
 import IndicatorDots from "../Carousel/IndicatorDots";
 import Buttons from "../Carousel/Buttons";
 
-const PageCarousel = () => {
+const PageCarousel = ({pictures}) => {
+    console.log(pictures)
     return (
         <Wrapper>
-            <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
-                <div style={{backgroundColor: 'tomato', height: '100%'}}>Frame 1</div>
-                <div style={{backgroundColor: 'orange', height: '100%'}}>Frame 2</div>
-                <div style={{backgroundColor: 'orchid', height: '100%'}}>Frame 3</div>
-            </CarouselStyle>
+            {pictures.data
+                ?
+                (
+                    <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
+                        {
+                            pictures.data.map((picture: Object) => {
+                                return <img src={process.env.SERVER_URL_PROD + picture.attributes.url}
+                                            alt='фото места'/>
+                            })
+                        }
+                    </CarouselStyle>
+
+                )
+                : <div className="no-photo">Нет фото</div>
+            }
         </Wrapper>
     );
 };
@@ -19,6 +30,18 @@ const PageCarousel = () => {
 const Wrapper = styled.div`
   height: 50vh;
   margin-bottom: -8px;
+
+  .no-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0002;
+    font-size: 50px;
+    font-weight: 500;
+    color: #0005;
+    height: 100%;
+  }
+
 `
 
 const CarouselStyle = styled(Carousel)`
@@ -32,8 +55,9 @@ const CarouselStyle = styled(Carousel)`
     justify-content: center;
     align-items: center;
     width: 100%;
-
   }
+
+
 `
 
 export default PageCarousel;

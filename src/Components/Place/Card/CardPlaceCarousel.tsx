@@ -5,21 +5,17 @@ import styled from "styled-components";
 import Carousel from 're-carousel'
 
 const CardPlaceCarousel = ({pictures, cover}) => {
+    console.log(pictures.data)
+
     return (
         <Wrapper>
             <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
-                {/*{pictures.map(picture => (*/}
-                {/*    <ImgWrap*/}
-                {/*        key={picture.id}*/}
-                {/*        src={`${process.env.SERVER_URL}${picture.href}`}*/}
-                {/*        alt={picture.description}*/}
-                {/*        width={460}*/}
-                {/*        height={190}*/}
-                {/*    />*/}
-                {/*))}*/}
-                <img src={process.env.SERVER_URL_PROD + cover.data.attributes.url} alt='фото места'/>
-                <div style={{backgroundColor: 'orange', height: '100%'}}>Frame 2</div>
-                <div style={{backgroundColor: 'orchid', height: '100%'}}>Frame 3</div>
+                {pictures.data
+                    ? pictures.data.map((picture: Object) => {
+                        return <img src={process.env.SERVER_URL_PROD + picture.attributes.url} alt='фото места'/>
+                    })
+                    : <img src={process.env.SERVER_URL_PROD + cover.data.attributes.url} alt='фото места'/>
+                }
             </CarouselStyle>
         </Wrapper>
     );
@@ -34,6 +30,7 @@ const Wrapper = styled.div`
 const CarouselStyle = styled(Carousel)`
   border-radius: 20px 20px 0 0;
   z-index: 0;
+  border: 1px solid #dedede;
 
   div, img {
     display: flex;

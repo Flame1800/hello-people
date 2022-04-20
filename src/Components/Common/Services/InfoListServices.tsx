@@ -2,11 +2,11 @@ import React from 'react';
 import styled from "styled-components";
 
 type PropTypes = {
-    date: Date | string,
+    date?: Date | string,
     address: string,
-    link: string,
-    phone: string,
-    link2gis: string
+    link?: string,
+    phone?: string,
+    link2gis?: string
 }
 
 const InfoListServices: React.FC<PropTypes> = ({date, address, link, phone, link2gis}) => {
@@ -57,6 +57,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    cursor: pointer;
 
     img {
       width: 24px;
@@ -72,7 +73,8 @@ const Wrapper = styled.div`
     border-radius: 5px;
     border: 2px solid rgb(120, 185, 62);
     width: max-content;
-
+    cursor: pointer;
+    
     .two-gis {
       width: 54px !important;
       height: 30px;

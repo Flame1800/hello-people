@@ -13,7 +13,7 @@ const BackButton = () => {
 };
 
 const Wrapper = styled.div`
-
+  cursor: pointer;
 `
 
 export default BackButton;
