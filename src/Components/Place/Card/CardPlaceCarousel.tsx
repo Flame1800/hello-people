@@ -4,18 +4,35 @@ import Buttons from "../../Common/Carousel/Buttons";
 import styled from "styled-components";
 import Carousel from 're-carousel'
 
+
 const CardPlaceCarousel = ({pictures, cover}) => {
-    console.log(pictures.data)
+
+    const [allPictures, setAllPictures] = React.useState([])
+
+    React.useEffect(() => {
+        const arr = pictures.data ? pictures.data : []
+        arr.reverse().push(cover.data);
+        arr.reverse();
+
+        setAllPictures(arr)
+    }, [])
+
+
+    if (!pictures.data) {
+        return (
+            <Wrapper>
+                <img className='cover' src={process.env.SERVER_URL_PROD + cover.data.attributes.url} alt='фото места'/>
+            </Wrapper>
+        )
+    }
 
     return (
         <Wrapper>
             <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
                 {pictures.data
-                    ? pictures.data.map((picture: Object) => {
-                        return <img src={process.env.SERVER_URL_PROD + picture.attributes.url} alt='фото места'/>
-                    })
-                    : <img src={process.env.SERVER_URL_PROD + cover.data.attributes.url} alt='фото места'/>
-                }
+                && allPictures.map((picture: Object) => {
+                    return <img src={process.env.SERVER_URL_PROD + picture.attributes.url} alt='фото места'/>
+                })}
             </CarouselStyle>
         </Wrapper>
     );
@@ -24,6 +41,16 @@ const CardPlaceCarousel = ({pictures, cover}) => {
 const Wrapper = styled.div`
   width: 100% !important;
   height: 190px;
+
+  .cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    object-fit: cover;
+    height: 190px;
+    border-radius: 20px 20px 0 0;
+  }
 `
 
 

@@ -44,7 +44,6 @@ const OutputEditorData: React.FC<DataProps> = ({data}) => {
             {Object.keys(data).length > 0 && (
                 <OutputComponent style={style} data={JSON.parse(data)}/>
             )}
-            {typeof JSON.parse(data)}
         </>
     );
 };

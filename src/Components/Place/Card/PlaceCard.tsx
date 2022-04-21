@@ -10,7 +10,6 @@ import Link from "next/link";
 const PlaceCard = ({card}) => {
     const {attributes} = card
 
-    console.log(attributes)
 
     return (
         <Wrapper>

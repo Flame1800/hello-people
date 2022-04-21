@@ -5,9 +5,10 @@ import {ButtonStyle} from "../../../styles/commonStyles";
 import InfoListServices from "../Common/Services/InfoListServices";
 import dynamic from "next/dynamic";
 import Description from "../Common/Services/Description";
-import OutputEditorData from "../Common/OutputEditorData";
 
 const Map = dynamic(() => import('../Common/Map/MapBlock'), {ssr: false})
+const OutputEditorData = dynamic(() => import('../Common/OutputEditorData'), {ssr: false})
+
 
 const PageContent = ({place}) => {
     return (
@@ -36,6 +37,11 @@ const Wrapper = styled.div`
   box-shadow: 0 0 17px rgba(0, 0, 0, 0.1);
   padding: 20px;
   background: #fff;
+
+  @media (min-width: 768px) {
+    box-shadow: none !important;
+    background: none !important;
+  }
 `
 
 export default PageContent;

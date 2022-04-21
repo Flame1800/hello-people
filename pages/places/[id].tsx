@@ -26,6 +26,12 @@ const Wrapper = styled.div`
   padding-top: 50px;
   background: #fff;
   min-height: 100vh;
+  box-shadow: 0 0 17px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 768px) {
+    box-shadow: none !important;
+    background: none !important;
+  }
 
   .head {
     display: flex;

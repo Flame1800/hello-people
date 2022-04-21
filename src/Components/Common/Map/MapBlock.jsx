@@ -50,6 +50,10 @@ const MapStyle = styled(MapContainer)`
   height: 300px;
   border-radius: 10px;
   border: 2px solid #cccccc;
+
+  @media (min-width: 768px) {
+    height: 600px;
+  }
 `
 
 export default MapBlock

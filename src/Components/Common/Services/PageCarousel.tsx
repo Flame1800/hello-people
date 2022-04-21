@@ -1,24 +1,44 @@
 import React from 'react';
-import Carousel from 're-carousel'
 import styled from "styled-components";
 import IndicatorDots from "../Carousel/IndicatorDots";
 import Buttons from "../Carousel/Buttons";
+import {Swiper, SwiperSlide} from 'swiper/react';
+import {Pagination} from "swiper";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const PageCarousel = ({pictures}) => {
-    console.log(pictures)
     return (
         <Wrapper>
             {pictures.data
                 ?
                 (
-                    <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
+                    <Swiper
+                        slidesPerView={3}
+                        spaceBetween={30}
+                        modules={[Pagination]}
+                        pagination={{
+                            dynamicBullets: true,
+                        }}
+                        breakpoints={{
+
+                        }}
+                    >
                         {
                             pictures.data.map((picture: Object) => {
-                                return <img src={process.env.SERVER_URL_PROD + picture.attributes.url}
-                                            alt='фото места'/>
+                                return (
+                                    <SwiperSlide>
+                                        <img
+                                            src={process.env.SERVER_URL_PROD + picture.attributes.url}
+                                            alt='фото места'
+                                            className='image'
+                                        />
+                                    </SwiperSlide>
+                                )
                             })
                         }
-                    </CarouselStyle>
+                    </Swiper>
 
                 )
                 : <div className="no-photo">Нет фото</div>
@@ -31,6 +51,11 @@ const Wrapper = styled.div`
   height: 50vh;
   margin-bottom: -8px;
 
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
   .no-photo {
     display: flex;
     justify-content: center;
@@ -42,9 +67,15 @@ const Wrapper = styled.div`
     height: 100%;
   }
 
+  .image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
 `
 
-const CarouselStyle = styled(Carousel)`
+const CarouselStyle = styled.div`
   border-radius: 20px 20px 0 0;
   z-index: 0;
   width: 100%;
