@@ -21,7 +21,7 @@ const AddButton = () => {
                 <a>
                     <div className='btn'>
                         <img src="/img/add-icon.svg" alt="add"/>
-                        Добавить мероприятие
+                        Добавить событие
                     </div>
                 </a>
             </Link>
@@ -66,6 +66,8 @@ const Wrapper = styled.div`
   margin-left: 80px;
   cursor: pointer;
   transition: 0.2s;
+  margin-right: 40px;
+  padding: 3px 0;
 
   &:hover {
     border: 2px solid ${theme.color.orange};

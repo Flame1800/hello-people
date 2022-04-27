@@ -1,14 +1,23 @@
 import React from 'react';
 import styled from "styled-components";
 import Carousel from "../Common/Carousel/Carousel";
+import Link from "next/link";
+import API from "../../Libs/API";
 
-const PinnedPlace = () => {
+type PropsType = {
+    place: any
+}
+
+const PinnedPlace: React.FC<PropsType> = ({place}) => {
+
     return (
         <Wrapper>
             <div className="title">Место</div>
             <div className="place">
-                <div className="name">Название</div>
-                <Carousel pictures={[]}/>
+                <Link href={`/places/${place.id}`}>
+                    <a className="name">{place.attributes.abbTitle}</a>
+                </Link>
+                <Carousel pictures={place?.attributes.pictures.data} cover={place?.attributes.cover.data}/>
             </div>
         </Wrapper>
     );
@@ -31,8 +40,8 @@ const Wrapper = styled.div`
 
     @media (min-width: 870px) {
       position: absolute;
-      left: -45px;
-      top: 50%;
+      left: -35px;
+      top: 40%;
       transform: rotate(-90deg);
       text-transform: lowercase;
     }
@@ -41,7 +50,14 @@ const Wrapper = styled.div`
   .place {
     height: 200px;
     position: relative;
-    max-width: 400px;
+
+    .mock {
+      height: 100%;
+      position: relative;
+      max-width: 460px;
+      object-fit: cover;
+      width: 100%;
+    }
 
     img, div {
       border-radius: 15px;
@@ -54,21 +70,28 @@ const Wrapper = styled.div`
   }
 
   .name {
+    cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     border-radius: 0 0 15px 15px;
     background: #FFFFFF;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
     line-height: 97.9%;
-    z-index: 1;
+    z-index: 101;
     padding: 7px 30px;
     text-align: center;
     margin: 0 20px;
+    transition: 0.2s;
+
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
 
   }
 

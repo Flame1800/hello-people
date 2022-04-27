@@ -17,6 +17,13 @@ export const ButtonStyle = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  @media (min-width: 726px) {
+    padding: 10px 20px;
+    font-size: 16px;
+    max-width: 200px;
+    border-radius: 10px;
+  }
 `
 
 export const InputStyle = styled.input`

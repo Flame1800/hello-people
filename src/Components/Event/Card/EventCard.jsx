@@ -5,43 +5,55 @@ import PinnedPlace from "../PinnedPlace";
 import Comment from "../../Common/Comment";
 import Link from "next/link";
 import NameService from "../../Common/Services/NameService";
-import Carousel from "../../Common/Carousel/Carousel";
+import API from "../../../Libs/API";
+import {DateTime} from "luxon";
+import EventContent from "../EventContent";
+import {theme} from "../../../../styles/theme";
+import makeBeautyDate from "../../../Libs/makeBeautyDate";
 
-const EventCard = () => {
+const EventCard = ({event}) => {
+
+    const [tab, setTab] = React.useState(false)
+    const {attributes} = event
+
     return (
-        <Wrapper>
-            <div className="event">
-                <div className="gallery">
-                    <Carousel/>
-                </div>
-                <div className="info">
-                    <Link href={`/events/${0}`}>
-                        <a className="name-wrap">
-                            <NameService name='SCRAMBLED: танцы в Невесомости' category='Вечеринки'/>
-                        </a>
-                    </Link>
-                    <div className="event-meta">
-                        <div>
-                            <div className="date">Вс, 19:00</div>
-                            <div className="address">проспект Ленина, 26</div>
+        <Wrapper id={event.id}>
+            <div className="card">
+                <div className="event">
+                    {attributes.cover.data
+                        ? <img className="gallery" src={API.url + attributes.cover.data.attributes.url} alt="обложка"/>
+                        : <img className='gallery' src='/img/mock-avatar.svg' alt='моковая обложка'/>}
+                    <div className="info">
+                        <div onClick={() => setTab(!tab)} className="name-wrap">
+                            <NameService name={attributes.abbTitle} category='Вечеринки'/>
                         </div>
-                        <div className="user-meta">
-                            <Like value={34} onClick={() => console.log("event like")} active={false}/>
-                            <Comment value={34} onClick={() => console.log("event comment")}/>
+                        <div className="event-meta">
+                            <div>
+                                <div className="date">{makeBeautyDate(attributes.dateStart)}</div>
+                                <div className="address">
+                                    {attributes.place.data ? attributes.place.data.attributes.location : 'не найдено'}
+                                </div>
+                            </div>
+                            <div className="user-meta">
+                                <Like value={0} onClick={() => console.log("event like")} active={false}/>
+                                <Comment value={0} onClick={() => console.log("event comment")}/>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {attributes.place.data && <PinnedPlace place={attributes.place.data}/>}
             </div>
-            <PinnedPlace/>
+            {tab && <EventContent event={attributes}/>}
+            {tab &&
+            <a className="close" onClick={() => setTab(!tab)}>
+                <img src="/img/up.svg" alt="up"/>
+            </a>}
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
   max-width: 860px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
   background: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -49,8 +61,15 @@ const Wrapper = styled.div`
   padding: 20px;
   margin-bottom: 30px;
 
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
   @media (min-width: 870px) {
     padding: 0;
+    flex-wrap: nowrap;
   }
 
   .gallery {
@@ -58,6 +77,7 @@ const Wrapper = styled.div`
     width: 100%;
     border-radius: 15px;
     margin-bottom: 15px;
+    object-fit: cover;
 
     img, div {
       border-radius: 15px;
@@ -81,6 +101,13 @@ const Wrapper = styled.div`
       width: auto;
       padding: 10px;
       align-items: center;
+      margin-left: 10px;
+      flex-wrap: nowrap;
+    }
+
+    .info {
+      max-width: 310px;
+      width: 100%;
     }
   }
 
@@ -90,8 +117,10 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
-    padding-bottom: 20px;
 
+    @media (min-width: 768px) {
+      width: 310px;
+    }
   }
 
   .user-meta {
@@ -115,6 +144,15 @@ const Wrapper = styled.div`
     font-size: 14px;
     line-height: 126.9%;
     color: #000000;
+  }
+
+  .close {
+    width: 100%;
+    background: ${theme.color.lightGray};
+    display: flex;
+    justify-content: center;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
   }
 `
 

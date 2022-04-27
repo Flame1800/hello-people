@@ -49,10 +49,12 @@ const MapStyle = styled(MapContainer)`
   width: 100%;
   height: 300px;
   border-radius: 10px;
-  border: 2px solid #cccccc;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
 
   @media (min-width: 768px) {
-    height: 600px;
+    height: 500px;
+    max-width: 90%;
+    margin: 100px auto;
   }
 `
 

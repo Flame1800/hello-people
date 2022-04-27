@@ -13,9 +13,9 @@ const Header = () => {
                         <img src="/img/logo.svg" alt="logo"/>
                     </a>
                 </Link>
-                <AddButton/>
             </div>
             <div className="right-side">
+                <AddButton/>
                 <DesktopMessenger/>
             </div>
         </Wrapper>
@@ -25,7 +25,7 @@ const Header = () => {
 const Wrapper = styled.div`
   position: fixed;
   padding: 0 40px;
-  z-index: 10;
+  z-index: 900;
   width: 100%;
   top: 0;
   background: #fff;

@@ -21,9 +21,7 @@ const PageCarousel = ({pictures}) => {
                         pagination={{
                             dynamicBullets: true,
                         }}
-                        breakpoints={{
-
-                        }}
+                        breakpoints={{}}
                     >
                         {
                             pictures.data.map((picture: Object) => {
@@ -50,6 +48,12 @@ const PageCarousel = ({pictures}) => {
 const Wrapper = styled.div`
   height: 50vh;
   margin-bottom: -8px;
+
+  @media (min-width: 726px) {
+    height: 300px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+  }
 
   .swiper {
     width: 100%;

@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from "styled-components";
+import eventsStore from "../../Stores/eventsStore";
 
 const Switch = () => {
-    const [activeItem, setItem] = React.useState(1)
+    const {mode, changeMode} = eventsStore
 
-    const switchHandler = (num: number) => {
-        setItem(num)
+    const switchHandler = (mode: string) => {
+        changeMode(mode)
     }
 
     return (
         <Wrapper>
-            <Button onClick={() => switchHandler(1)} className="button" active={activeItem === 1}>
-                Актуальные
+            <Button onClick={() => switchHandler('new')} className="button" active={mode === 'new'}>
+                Предстоящие
             </Button>
-            <Button onClick={() => switchHandler(2)} className="button" active={activeItem === 2}>
+            <Button onClick={() => switchHandler('past')} className="button" active={mode === 'past'}>
                 Прошедшие
             </Button>
         </Wrapper>
@@ -21,7 +22,6 @@ const Switch = () => {
 };
 
 const Wrapper = styled.div`
-  margin: 0 20px;
   background: #DCDCDC;
   border-radius: 45px;
   display: flex;
@@ -33,6 +33,7 @@ const Wrapper = styled.div`
   line-height: 97.9%;
   text-align: center;
   height: 50px;
+  margin: 20px auto;
 
   @media (min-width: 768px) {
     max-width: 260px;

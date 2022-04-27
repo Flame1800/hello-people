@@ -35,6 +35,7 @@ const Btn = styled.div`
   display: flex;
   opacity: 0;
   transition: opacity 0.2s, visibility 0s linear 0.2s;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
 
   &:first-child {
     left: 10px;

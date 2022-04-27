@@ -2,18 +2,32 @@ import React from 'react';
 import HeaderServicesPage from "../../src/Components/Common/HeaderServicesPage";
 import Categories from "../../src/Components/Common/SmartComponets/Categories";
 import mockCategories from "../../src/Mocks/mockCategories";
-import CatalogCards from "../../src/Components/Event/CatalogCards";
+import CatalogCardsEvents from "../../src/Components/Event/CatalogCardsEvents";
 import styled from "styled-components";
 import API from "../../src/Libs/API";
+import eventsStore from "../../src/Stores/eventsStore";
+import {observer} from "mobx-react-lite";
+import Switch from "../../src/Components/Event/Switch";
 
+type PropsType = {
+    events: Array<any>
+}
 
-const Events = ({events}) => {
-    console.log(events)
+const Events: React.FC<PropsType> = ({events}) => {
+    const {mode, pastEvents, newEvents, setPastEvents, setNewEvents} = eventsStore
+    const currEvents = mode === 'new' ? newEvents : pastEvents
+
+    React.useEffect(() => {
+        setPastEvents(events)
+        setNewEvents(events)
+    }, [])
+
     return (
         <Wrapper>
             <HeaderServicesPage link='/events/add'>АФИША</HeaderServicesPage>
             <Categories categories={mockCategories}/>
-            <CatalogCards/>
+            <Switch/>
+            <CatalogCardsEvents events={currEvents}/>
         </Wrapper>
     );
 };
@@ -23,10 +37,10 @@ const Wrapper = styled.div`
 `
 
 Events.getInitialProps = async () => {
-    const eventsRequest = API.getEvents()
+    const eventsRequest = await API.getEvents()
 
-    return {events: eventsRequest}
+    return {events: eventsRequest.data.data}
 }
 
 
-export default Events;
+export default observer(Events);

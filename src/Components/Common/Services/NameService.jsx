@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
+import {Tooltip} from "@mui/material";
+import {theme} from "../../../../styles/theme";
 
 const NameService = ({name, category}) => {
     return (
         <Wrapper>
-            <div className="name">{name}</div>
+            <Tooltip title={name}>
+                <div className="name">{name}</div>
+            </Tooltip>
             {category && <div className="category">{category}</div>}
         </Wrapper>
     );
@@ -15,6 +19,19 @@ const Wrapper = styled.div`
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 5px;
+    cursor: pointer;
+    transition: .2s;
+
+    &:hover {
+      color: ${theme.color.orange};
+    }
+
+    @media (min-width: 726px) {
+      max-width: 310px;
+      max-height: 40px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 
   .category {

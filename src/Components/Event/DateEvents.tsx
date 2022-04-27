@@ -1,14 +1,31 @@
 import React from 'react';
 import styled from "styled-components";
+import {DateTime} from "luxon";
 
-const DateEvents = () => {
+const DateEvents = ({date}) => {
+    const today = DateTime.now()
+    const dt = DateTime.fromISO(date)
+    const day = dt.toLocaleString({
+        day: 'numeric',
+    })
+    const dayMonth = dt.toLocaleString({
+        month: 'long',
+        day: 'numeric',
+    })
+
+    const todayDayMont = today.toLocaleString({
+        month: 'long',
+        day: 'numeric',
+    })
+
+
     return (
         <Wrapper>
             <div className="date">
-                <div className="num">01</div>
-                марта
+                <div className="num">{day}</div>
+                &nbsp; {dayMonth.replace(/[0-9]/g, '')}
             </div>
-            <div className="today">сегодня</div>
+            {todayDayMont === dayMonth && <div className="today">сегодня</div>}
         </Wrapper>
     );
 };

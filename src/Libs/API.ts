@@ -1,15 +1,32 @@
 import axios from "axios";
+import * as qs from "querystring";
 
 const API = {}
 
 const server = axios.create({
-    baseURL: 'http://185.185.69.74:1337/api',
+    baseURL: `${process.env.SERVER_URL_PROD}/api`,
     timeout: 3000
 })
 
-// Events
-API.getEvents = () => server('/parties')
+API.url = process.env.SERVER_URL_PROD
 
+// Events
+
+const queryGetEvents = qs.stringify({
+    populate: [
+        'categories',
+        'comments',
+        'tags',
+        'cover',
+        'pictures',
+        'place.pictures',
+        'place.cover',
+    ],
+    sort: ['dateStart:desc']
+});
+
+API.getEvents = () => server(`/parties?${queryGetEvents}`)
+API.getEvent = (id) => server(`/parties/${id}?${queryGetEvents}`)
 // Places
 API.getPlaces = () => server('/places?populate=*')
 

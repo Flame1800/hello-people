@@ -1,20 +1,25 @@
 import React from 'react';
 import styled from "styled-components";
+import dynamic from "next/dynamic";
+
+const OutputEditorData = dynamic(() => import("../OutputEditorData"), {ssr: false})
 
 type PropsTypes = {
-    children: string
+    data: Object
 }
 
-const Description: React.FC<PropsTypes> = ({children}) => {
+const Description: React.FC<PropsTypes> = ({data}) => {
     return (
         <Wrapper>
-            <div className="description">{children}</div>
+            <div className="description">
+                <OutputEditorData data={data}/>
+            </div>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 30px;
 
   .title {

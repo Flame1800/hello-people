@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import {theme} from "../../../../styles/theme";
 
 type PropTypes = {
     date?: Date | string,
@@ -26,22 +27,22 @@ const InfoListServices: React.FC<PropTypes> = ({date, address, link, phone, link
             </div>}
             {phone
             &&
-            <div className="item">
+            <a className="item" href={`tel:${phone}`}>
                 <img src="/img/phone.svg" alt="телефон"/>
-                <a href={`tel:${phone}`} className="caption">{phone}</a>
-            </div>}
+                <div className="caption">{phone}</div>
+            </a>}
             {link
             &&
-            <div className="item">
+            <a href={link} target='_blank' className="item">
                 <img src="/img/globe.svg" alt="ссылка"/>
-                <a href={link} className="caption">{link}</a>
-            </div>}
+                <div className="caption">{link}</div>
+            </a>}
             {link2gis
             &&
-            <div className="item two-gis-wrap">
-                <a href={link2gis} className="caption">Найти в </a>
+            <a href={link2gis} target="_blank" className="item two-gis-wrap">
+                <div className="caption">Найти в</div>
                 <img src="/img/2GIS_logo.svg" className='two-gis' alt="ссылка"/>
-            </div>}
+            </a>}
 
         </Wrapper>
     );
@@ -53,11 +54,15 @@ const Wrapper = styled.div`
   margin-top: 35px;
   margin-bottom: 10px;
 
+  a {
+    font-weight: 600;
+    color: #1170FF;
+  }
+
   .item {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    cursor: pointer;
 
     img {
       width: 24px;
@@ -74,11 +79,14 @@ const Wrapper = styled.div`
     border: 2px solid rgb(120, 185, 62);
     width: max-content;
     cursor: pointer;
-    
+    color: #000;
+
     .two-gis {
       width: 54px !important;
       height: 30px;
       margin-left: 6px;
+
+
     }
   }
 `
