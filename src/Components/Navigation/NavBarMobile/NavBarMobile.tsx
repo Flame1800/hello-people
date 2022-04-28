@@ -38,7 +38,7 @@ const NavBar = () => {
 const Wrapper = styled.div`
   position: fixed;
   bottom: 0;
-  z-index: 20;
+  z-index: 200;
   left: 0;
   right: 0;
   display: flex;

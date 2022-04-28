@@ -11,12 +11,17 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
   right: 0;
   left: 0;
 
+
   .messages {
     max-height: 100%;
     height: 100%;
     padding-top: 30px;
     padding-bottom: 80px;
     overflow: hidden scroll;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
 
   @media (max-width: 400px) {

@@ -27,6 +27,11 @@ const Wrapper = styled.div`
   margin-bottom: 30px;
   cursor: pointer;
 
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+
   @media (min-width: 768px) {
     width: 680px;
     flex-wrap: wrap;

@@ -15,13 +15,18 @@ const PageCarousel = ({pictures}) => {
                 ?
                 (
                     <Swiper
-                        slidesPerView={3}
+                        slidesPerView={1}
                         spaceBetween={30}
                         modules={[Pagination]}
                         pagination={{
                             dynamicBullets: true,
                         }}
-                        breakpoints={{}}
+                        breakpoints={{
+                            // when window width is >= 768px
+                            768: {
+                                slidesPerView: 3,
+                            },
+                        }}
                     >
                         {
                             pictures.data.map((picture: Object) => {

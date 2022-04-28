@@ -12,9 +12,6 @@ const PlacePage = ({place}) => {
         <Wrapper>
             <div className="head">
                 <BackButton/>
-                <div className="head-title">
-                    Место
-                </div>
             </div>
             <PageCarousel pictures={attributes.pictures}/>
             <PageContent place={attributes}/>
@@ -23,7 +20,7 @@ const PlacePage = ({place}) => {
 };
 
 const Wrapper = styled.div`
-  padding-top: 50px;
+  padding-top: 30px;
   background: #fff;
   min-height: 100vh;
   box-shadow: 0 0 17px rgba(0, 0, 0, 0.1);

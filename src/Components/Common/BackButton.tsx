@@ -2,7 +2,7 @@ import React from 'react';
 import {useRouter} from "next/router";
 import styled from "styled-components";
 
-const BackButton = () => {
+const BackButton = ({text}) => {
     const router = useRouter()
 
     return (
@@ -14,6 +14,8 @@ const BackButton = () => {
 
 const Wrapper = styled.div`
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `
 
 export default BackButton;
