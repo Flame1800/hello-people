@@ -17,7 +17,6 @@ const AuthMainScreen: React.FC<Props> = ({mode}) => {
                     <div className="name">Номер телефона</div>
                 </RegButton>
             </Link>
-
             <RegButton>
                 <img src="/img/vk.svg" alt="телефон"/>
                 <div className="name">Вконтакте</div>
@@ -53,7 +52,10 @@ const Wrapper = styled.div`
 `
 
 const RegButton = styled.a`
+  cursor: pointer;
+  background: #fff;
   width: 100%;
+  max-width: 350px;
   height: 67px;
   display: flex;
   align-items: center;
@@ -66,6 +68,11 @@ const RegButton = styled.a`
   line-height: 27px;
   margin-bottom: 10px;
   padding: 15px;
+  transition: .3s;
+
+  &:hover {
+    background: #f1f1f1;
+  }
 
   img {
     margin-right: 15px;

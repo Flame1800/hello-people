@@ -4,12 +4,14 @@ import Image from "next/image";
 import {theme} from "../../../../../styles/theme";
 import {observer} from 'mobx-react-lite';
 import entryFieldStore from '../../stores/entryFieldStore';
+import chatStore from "../../stores/chatStore/chatStore";
 
 const Search = () => {
     const {getSearchText, setSearchText} = entryFieldStore;
 
     return (
         <Wrapper>
+            {/* Тут будет ModeSwitcher */}
             <input
                 placeholder="Поиск"
                 type="text"
@@ -17,7 +19,7 @@ const Search = () => {
                 value={getSearchText()}
                 onChange={(event => setSearchText(event.currentTarget.value))}
             />
-            <Image src='/img/add-dialog.svg' alt='add-dialog' width={36} height={36}/>
+            <img src='/img/add-dialog.svg' alt='add-dialog'/>
         </Wrapper>
     );
 };
@@ -26,6 +28,12 @@ const Wrapper = styled.div`
   max-width: 380px;
   display: flex;
   margin-top: 10px;
+
+  @media (max-width: 1420px) {
+    .viewType {
+      display: none;
+    }
+  }
 
   .search {
     background: ${theme.color.lightGray};
@@ -37,7 +45,7 @@ const Wrapper = styled.div`
     line-height: 25px;
     color: #000000;
     padding: 9px 20px;
-    margin-right: 10px;
+    margin-right: 5px;
     border: none;
     outline: none;
   }

@@ -7,12 +7,17 @@ export const MessageFeedHeaderStyle = styled.div`
   padding: 10px 20px;
   border-bottom: 1px solid #D9D9D9;
 
+  @media (min-width: 1420px) {
+    padding-top: 15px;
+  }
+
   .first-side {
     display: flex;
     align-items: center;
 
     .btn-back {
       margin-right: 30px;
+      cursor: pointer;
     }
 
     .companion {

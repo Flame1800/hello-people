@@ -21,7 +21,10 @@ const PhonePage = () => {
 
 const Wrapper = styled.div`
   padding-top: 40px;
-  background: #fff;
+
+  @media (max-width: 1000px) {
+    background: #fff;
+  }
 
   .head {
     margin-left: 20px;

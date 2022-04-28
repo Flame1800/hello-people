@@ -13,14 +13,18 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
 
   .messages {
     max-height: 100%;
+    height: 100%;
     padding-top: 30px;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
     overflow: hidden scroll;
   }
-  
-  @media(max-width: 400px) {
+
+  @media (max-width: 400px) {
     position: absolute;
     height: 100vh;
   }
 
+  @media (max-width: 1430px) {
+    padding-bottom: 100px;
+  }
 `

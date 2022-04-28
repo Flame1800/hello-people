@@ -48,9 +48,10 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
                 onChange={inputOnChangeHandler}
                 value={getMessage()}
                 placeholder="Сообщение..."
-                autoFocus
                 onKeyDown={event => !event.shiftKey && event.key === 'Enter' && sendOnClickHandler()}
-            />
+            >
+
+            </textarea>
             <img src="/img/send-icon.svg" alt="send" className="send-btn" onClick={sendOnClickHandler}/>
         </Wrapper>
     );
@@ -69,6 +70,10 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 0 20px;
   z-index: 40;
+
+  @media (min-width: 1420px) {
+    width: 330px;
+  }
 
   .message-input {
     width: 100%;
