@@ -5,9 +5,13 @@ import Categories from "../../src/Components/Common/SmartComponets/Categories";
 import mockCategories from "../../src/Mocks/mockCategories";
 import CatalogCards from "../../src/Components/Place/CatalogCards";
 import API from "../../src/Libs/API";
+import {NextPage} from "next";
 
+type Props = {
+    places: any
+}
 
-const Places = ({places}) => {
+const Places: NextPage<Props> = ({places}) => {
     return (
         <Wrapper>
             <HeaderServicesPage link='/places/add'>МЕСТА</HeaderServicesPage>

@@ -8,12 +8,13 @@ import API from "../../src/Libs/API";
 import eventsStore from "../../src/Stores/eventsStore";
 import {observer} from "mobx-react-lite";
 import Switch from "../../src/Components/Event/Switch";
+import {NextPage} from "next";
 
 type PropsType = {
     events: Array<any>
 }
 
-const Events: React.FC<PropsType> = ({events}) => {
+const Events: NextPage<PropsType> = ({events}) => {
     const {mode, pastEvents, newEvents, setPastEvents, setNewEvents} = eventsStore
     const currEvents = mode === 'new' ? newEvents : pastEvents
 

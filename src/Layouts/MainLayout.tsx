@@ -5,7 +5,7 @@ import NavBar from "../Components/Navigation/NavBar";
 import Header from "../Components/Navigation/Header";
 
 type Layout = {
-    children: Component
+    children: any
 }
 
 const MainLayout: React.FC<Layout> = ({children}) => {

@@ -4,8 +4,13 @@ import BackButton from "../../src/Components/Common/BackButton";
 import PageCarousel from "../../src/Components/Common/Services/PageCarousel";
 import PageContent from "../../src/Components/Place/PageContent";
 import API from "../../src/Libs/API";
+import {NextPage} from "next";
 
-const PlacePage = ({place}) => {
+interface Props {
+    place: any
+}
+
+const PlacePage: NextPage<Props> = ({place}) => {
     const {attributes} = place
 
     return (
@@ -20,7 +25,7 @@ const PlacePage = ({place}) => {
 };
 
 const Wrapper = styled.div`
-  padding-top: 30px;
+  padding-top: 60px;
   background: #fff;
   min-height: 100vh;
   box-shadow: 0 0 17px rgba(0, 0, 0, 0.1);

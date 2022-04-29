@@ -13,7 +13,7 @@ import {CategoryType} from './models/CategoryType';
 import {DialogProps} from './components/DialogFeed/Dialog/Dialog';
 
 type ChatProps = {
-    api: string;
+    api?: string;
 };
 
 const Chat: React.FC<ChatProps> = (props) => {

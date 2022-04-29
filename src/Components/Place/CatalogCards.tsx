@@ -2,10 +2,15 @@ import React from 'react';
 import styled from "styled-components";
 import PlaceCard from "./Card/PlaceCard";
 
-const CatalogCards = ({cards}) => {
+
+type Props = {
+    cards: any
+}
+
+const CatalogCards: React.FC<Props> = ({cards}) => {
     return (
         <Wrapper>
-            {cards.map((card) => <PlaceCard key={card.id} card={card}/>)}
+            {cards.map((card: any) => <PlaceCard key={card.id} card={card}/>)}
         </Wrapper>
     );
 };

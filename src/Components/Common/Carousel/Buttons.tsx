@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 
-const Buttons = props => {
+const Buttons = (props: any) => {
     const {index, total, loop, prevHandler, nextHandler} = props
     return (
         <Wrapper draggable={false}>

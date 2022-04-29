@@ -2,12 +2,15 @@ import React from 'react';
 import styled from "styled-components";
 import EventCard from './Card/EventCard';
 import DateEvents from "./DateEvents";
-import Switch from "./Switch";
 import * as _ from 'lodash'
 import {DateTime} from "luxon";
 
-const CatalogCardsEvents = ({events}) => {
-    const eventsWithDayField = events.map(item => {
+type Props = {
+    events: any
+}
+
+const CatalogCardsEvents: React.FC<Props> = ({events}) => {
+    const eventsWithDayField = events.map((item: any) => {
         const dt = DateTime.fromISO(item.attributes.dateStart)
         const dateString = dt.toLocaleString({
             month: 'long',

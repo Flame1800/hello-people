@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
-import IndicatorDots from "../Carousel/IndicatorDots";
-import Buttons from "../Carousel/Buttons";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Pagination} from "swiper";
-
 import "swiper/css";
 import "swiper/css/pagination";
 
-const PageCarousel = ({pictures}) => {
+type Props = {
+    pictures: any
+}
+
+const PageCarousel: React.FC<Props> = ({pictures}) => {
     return (
         <Wrapper>
             {pictures.data
@@ -29,7 +30,7 @@ const PageCarousel = ({pictures}) => {
                         }}
                     >
                         {
-                            pictures.data.map((picture: Object) => {
+                            pictures.data.map((picture: any) => {
                                 return (
                                     <SwiperSlide>
                                         <img

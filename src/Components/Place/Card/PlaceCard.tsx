@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from "styled-components";
-import Carousel from "../../Common/Carousel/Carousel";
 import Rating from "../Rating";
 import Like from "../../Common/Like";
 import Comment from "../../Common/Comment";
 import CardPlaceCarousel from "./CardPlaceCarousel";
 import Link from "next/link";
 
-const PlaceCard = ({card}) => {
-    const {attributes} = card
 
+type Props = {
+    card: any
+}
+
+const PlaceCard: React.FC<Props> = ({card}) => {
+    const {attributes} = card
 
     return (
         <Wrapper>

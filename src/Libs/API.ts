@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as qs from "querystring";
 
-const API = {}
+const API: any = {}
 
 const server = axios.create({
     baseURL: `${process.env.SERVER_URL_PROD}/api`,
@@ -26,11 +26,11 @@ const queryGetEvents = qs.stringify({
 });
 
 API.getEvents = () => server(`/parties?${queryGetEvents}`)
-API.getEvent = (id) => server(`/parties/${id}?${queryGetEvents}`)
+API.getEvent = (id: number) => server(`/parties/${id}?${queryGetEvents}`)
 // Places
 API.getPlaces = () => server('/places?populate=*')
 
-API.getPlace = id => server(`/places/${id}?populate=*`)
+API.getPlace = (id: number) => server(`/places/${id}?populate=*`)
 
 
 export default API

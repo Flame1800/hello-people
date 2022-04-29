@@ -12,6 +12,7 @@ import {useRouter} from "next/router";
 const NavBar = () => {
     const route = useRouter()
 
+
     return (
         <Wrapper>
             <div className="links">
@@ -62,9 +63,13 @@ const Wrapper = styled.div`
   }
 `
 
+interface PropsNavLink {
+    active: Boolean
+}
+
 const NavLinkStyle = styled.a`
   svg {
-    fill: ${({active}) => active ? theme.color.orange : '#000'} !important;
+    fill: ${(props: PropsNavLink) => props.active ? theme.color.orange : '#000'} !important;
   }
 `
 

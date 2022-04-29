@@ -6,7 +6,12 @@ import Description from "../Common/Services/Description";
 import {theme} from "../../../styles/theme";
 import makeBeautyDate from "../../Libs/makeBeautyDate";
 
-const EventContent = ({event}) => {
+
+type Props = {
+    event: any
+}
+
+const EventContent: React.FC<Props> = ({event}) => {
     return (
         <Wrapper>
             <div className="buttons">

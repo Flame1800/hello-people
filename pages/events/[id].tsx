@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
 import BackButton from "../../src/Components/Common/BackButton";
-import PageCarousel from "../../src/Components/Common/Services/PageCarousel";
 import EventContent from "../../src/Components/Event/EventContent";
 import API from "../../src/Libs/API";
-import PlacePage from "../places/[id]";
+import {NextPage} from "next";
 
-const EventPage = ({event}) => {
+type EventProps = {
+    event: any
+}
+
+const EventPage: NextPage<EventProps> = ({event}) => {
     return (
         <Wrapper>
             <div className="head">

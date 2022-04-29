@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import {theme} from "./theme";
 
+
 export const ButtonStyle = styled.div`
   max-width: 290px;
   width: 100%;
   border-radius: 20px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
-  border: ${({outline}) => !outline ? 'none' : ` 2px solid ${theme.color.orange}`};
+  border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
   padding: 15px 30px;
   font-weight: 700;
   font-size: 18px;

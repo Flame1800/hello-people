@@ -9,10 +9,10 @@ const Categories = ({categories}) => {
 
     return (
         <Wrapper>
-            {categories.map(({name, id}) => {
+            {categories.map((category: any) => {
                 return (
-                    <div key={id} onClick={() => setCategory(name)}>
-                        <Tab active={activeCategory === name}>{name}</Tab>
+                    <div key={category.id} onClick={() => setCategory(category.name)}>
+                        <Tab active={activeCategory === category.name}>{category.name}</Tab>
                     </div>
                 )
             })}

@@ -2,7 +2,7 @@ import React from 'react';
 import {useRouter} from "next/router";
 import styled from "styled-components";
 
-const BackButton = ({text}) => {
+const BackButton = () => {
     const router = useRouter()
 
     return (

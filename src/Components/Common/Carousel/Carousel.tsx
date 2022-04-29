@@ -5,7 +5,8 @@ import Buttons from "./Buttons";
 import Carousel from 're-carousel'
 
 type CarouselType = {
-    pictures: any
+    pictures: any,
+    cover: any
 }
 
 const CarouselComponent: React.FC<CarouselType> = ({pictures, cover}) => {
@@ -21,19 +22,23 @@ const CarouselComponent: React.FC<CarouselType> = ({pictures, cover}) => {
     }, [])
 
     if (allPictures.length === 0) {
-        return 'no photo'
+        return (
+            <div>
+                no photo
+            </div>
+        )
     }
 
     return (
         <Wrapper>
             <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
-                {allPictures.map(({attributes, id}) => {
+                {allPictures.map((picture: any) => {
                     return (
                         <img
-                            src={process.env.SERVER_URL_PROD + attributes?.url}
+                            src={process.env.SERVER_URL_PROD + picture.attributes?.url}
                             alt='фото места'
                             className='image'
-                            key={id}
+                            key={picture.id}
                         />
                     )
                 })}
@@ -42,11 +47,6 @@ const CarouselComponent: React.FC<CarouselType> = ({pictures, cover}) => {
     );
 };
 
-const ImgWrap = styled.img`
-  max-width: 460px;
-  width: 100%;
-  object-fit: cover;
-`
 
 const Wrapper = styled.div`
   width: 100%;

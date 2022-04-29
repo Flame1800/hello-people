@@ -1,6 +1,6 @@
 import {DateTime} from "luxon";
 
-export default (date: String) => {
+export default (date: string) => {
     const dt = DateTime.fromISO(date)
     const refactorDate = dt.toLocaleString({
         weekday: 'short',

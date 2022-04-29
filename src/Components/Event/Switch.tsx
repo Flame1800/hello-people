@@ -2,6 +2,10 @@ import React from 'react';
 import styled from "styled-components";
 import eventsStore from "../../Stores/eventsStore";
 
+interface PropsButton {
+    active: Boolean
+}
+
 const Switch = () => {
     const {mode, changeMode} = eventsStore
 
@@ -43,8 +47,8 @@ const Wrapper = styled.div`
 
 const Button = styled.div`
   cursor: pointer;
-  background: ${({active}) => active ? "#FFFFFF" : 'none'};
-  box-shadow: ${({active}) => active ? "0 0 9px rgba(0, 0, 0, 0.21)" : 'none'};
+  background: ${(props: PropsButton) => props.active ? "#FFFFFF" : 'none'};
+  box-shadow: ${(props: PropsButton) => props.active ? "0 0 9px rgba(0, 0, 0, 0.21)" : 'none'};
   border-radius: 65px;
   display: flex;
   justify-content: center;

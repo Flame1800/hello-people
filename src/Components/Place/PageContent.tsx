@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
-import NameService from "../Common/Services/NameService";
-import {ButtonStyle} from "../../../styles/commonStyles";
 import InfoListServices from "../Common/Services/InfoListServices";
 import dynamic from "next/dynamic";
 import Description from "../Common/Services/Description";
 
 const Map = dynamic(() => import('../Common/Map/MapBlock'), {ssr: false})
-const OutputEditorData = dynamic(() => import('../Common/OutputEditorData'), {ssr: false})
 
 
-const PageContent = ({place}) => {
-    console.log(place.categories)
+type Props = {
+    place: any
+}
+
+const PageContent: React.FC<Props> = ({place}) => {
     return (
         <Wrapper>
             <div className="place-title">{place.title}</div>

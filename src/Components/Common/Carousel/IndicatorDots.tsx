@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Dot({selected}) {
+function Dot(props: any) {
     return (
         <span
             style={{
@@ -10,11 +10,16 @@ function Dot({selected}) {
                 borderRadius: '4px',
                 backgroundColor: 'white',
                 margin: '7px 5px',
-                opacity: selected ? '1' : '0.3',
+                opacity: props.selected ? '1' : '0.3',
                 transitionDuration: '300ms'
             }}
         />
     )
+}
+
+type Props = {
+    total: any,
+    index: any
 }
 
 export default function IndicatorDots({total, index}) {
