@@ -22,6 +22,7 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
     };
 
     const sendOnClickHandler = () => {
+        console.log(getMessage().length)
         if (getMessage().length < 1) return;
         addMessageToDialog(dialogId, {
             id: new Date().toISOString(),
