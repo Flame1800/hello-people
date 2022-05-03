@@ -9,22 +9,18 @@ import {MessageFeedHeaderStyle} from './MessageFeedHeader.style'
 import {UserType} from "../../../models/UserType";
 import {DialogType} from "../../../models/DialogType";
 import {CategoryType} from "../../../models/CategoryType";
+import dialogFeedStore from '../../../stores/dialogFeedStore/dialogFeedStore';
+import messageFeedStore from '../../../stores/messageFeedStore/messageFeedStore';
 
 type MessageFeedProps = {
-    id: string,
-    type: DialogType,
-    category: CategoryType,
-    messages: MessageType[],
-    members: UserType[],
-    avatar?: string,
-    name?: string,
 };
 
 const MessageFeedHeader: React.FC<MessageFeedProps> = (props) => {
-    const {setCurrentDialogId, getSettingsChat, getUser} = chatStore;
-    const {name, avatar, members, type} = props
+    const {setCurrentDialogId, getSettingsChat, getUser, getCurrentDialogId} = chatStore;
+    const { getDialog } = dialogFeedStore;
+    const dialog = getDialog(getCurrentDialogId());
 
-    const companion = findPrivateCompanion(members, getUser());
+    const companion = findPrivateCompanion(dialog.members, getUser());
     const [modalActive, setModalActive] = useState(false);
 
     const backOnClickHandler = () => {
@@ -35,10 +31,10 @@ const MessageFeedHeader: React.FC<MessageFeedProps> = (props) => {
         <MessageFeedHeaderStyle>
             <div className="first-side">
                 <img src='/img/back-icon.svg' alt='back' className="btn-back" onClick={backOnClickHandler}/>
-                <UserAvatar url={type === 'private' ? companion?.avatar : avatar}/>
+                <UserAvatar url={dialog.type === 'private' ? companion?.avatar : dialog.avatar}/>
                 <div className="companion">
                     <span className="name">
-                        {type === 'private' ? companion?.name : name}
+                        {dialog.type === 'private' ? companion?.name : dialog.name}
                     </span>
                     <div className="status">
                         была 3 мин назад

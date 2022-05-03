@@ -45,7 +45,7 @@ class dialogFeedStore {
             });
     };
 
-    getDialog = (id: string) => this.getDialogs().find(dialog => dialog.id === id);
+    getDialog = (id: string) => this.getDialogs().filter(dialog => dialog.id === id)[0];
 
     setDialog = (id: string, newDialog: DialogProps) => {
         this.getDialogs().filter(dialog => dialog.id === id)[0] = newDialog;
