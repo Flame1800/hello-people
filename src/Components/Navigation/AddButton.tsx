@@ -17,15 +17,11 @@ const AddButton = () => {
 
     return (
         <Wrapper>
-            <Link href='/events/add'>
-                <a>
-                    <div className='btn'>
-                        <img src="/img/add-icon.svg" alt="add"/>
-                        Добавить событие
-                    </div>
-                </a>
-            </Link>
-            <img onClick={handleClick} className='dropdown' src="/img/caret-down.svg" alt="down"/>
+            <div className='btn' onClick={handleClick}>
+                <img src="/img/add-icon.svg" alt="add"/>
+                Создать
+                <img className='dropdown' src="/img/caret-down.svg" alt="down"/>
+            </div>
             <Menu
                 id="demo-positioned-menu"
                 aria-labelledby="demo-positioned-button"
@@ -41,6 +37,9 @@ const AddButton = () => {
                     horizontal: 'left',
                 }}
             >
+                <Link href='/events/add'>
+                    <a><MenuItem onClick={handleClose}>Добавить событие</MenuItem></a>
+                </Link>
                 <Link href='/places/add'>
                     <a><MenuItem onClick={handleClose}>Добавить место</MenuItem></a>
                 </Link>
@@ -53,9 +52,12 @@ const AddButton = () => {
 };
 
 const Wrapper = styled.div`
-  border: 2px solid #FFB7A9;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  background: #fff;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 40px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -63,33 +65,37 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 80px;
   cursor: pointer;
   transition: 0.2s;
-  margin-right: 40px;
   padding: 3px 0;
+  border: 2px solid #fff;
 
   &:hover {
     border: 2px solid ${theme.color.orange};
-    background: #fff8f8;
   }
 
   .btn {
     display: flex;
     align-items: center;
-    border-right: 2px solid #DADADA;
+    justify-content: center;
+    width: 100%;
     padding-right: 10px;
     padding-left: 15px;
+    position: relative;
 
     img {
       width: 20px;
       height: 20px;
-      margin-right: 7px;
+      margin-right: 5px;
     }
   }
 
   .dropdown {
-    margin-right: 10px;
+    width: 24px !important;
+    height: 24px !important;
+    margin-left: 20px;
+    position: absolute;
+    right: 15px;
   }
 
   #demo-positioned-menu {

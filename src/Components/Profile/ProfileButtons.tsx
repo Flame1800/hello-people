@@ -1,16 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
+import {Button} from "@mui/material";
+import {ButtonStyle} from "../../../styles/commonStyles";
 
 const ProfileButtons = () => {
     return (
         <Wrapper>
+            <ButtonStyle>Познакомится</ButtonStyle>
             <div className="btn-gray">
-                Редактировать
-                <img src="/img/edit-icon.svg" alt="иконка"/>
-            </div>
-            <div className="btn-gray">
-                Добавить фото
-                <img src="/img/add-gray-icon.svg" alt="иконка"/>
+                <img src="/img/chat.svg" alt="иконка"/>
             </div>
         </Wrapper>
     );
@@ -18,13 +16,21 @@ const ProfileButtons = () => {
 
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 20px;
-  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+
+  > div {
+    max-width: 140px;
+    margin: 2px 0;
+  }
 
   .btn-gray {
-    width: 48%;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 10px;
+    width: 64px;
+    height: 35px;
     border: 1px solid #949494;
     display: flex;
     justify-content: center;
@@ -32,10 +38,7 @@ const Wrapper = styled.div`
     font-weight: 700;
     font-size: 14px;
     color: #585858;
-
-    img {
-      margin-left: 5px;
-    }
+    margin-left: 10px;
   }
 `
 

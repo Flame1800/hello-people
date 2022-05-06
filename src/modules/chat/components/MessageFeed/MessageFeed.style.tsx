@@ -11,7 +11,6 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
   right: 0;
   left: 0;
 
-
   .messages {
     max-height: 100%;
     height: 100%;

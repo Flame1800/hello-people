@@ -3,26 +3,22 @@ import {theme} from "./theme";
 
 
 export const ButtonStyle = styled.div`
-  max-width: 290px;
+  height: 35px;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
   border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
-  padding: 15px 30px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 97.9%;
-  text-align: center;
   color: ${({outline}) => !outline ? '#FFFFFF' : theme.color.orange};
+  font-weight: 600;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 
-  @media (min-width: 726px) {
+  @media (min-width: 426px) {
     padding: 10px 20px;
-    font-size: 16px;
-    max-width: 200px;
+    font-size: 15px;
     border-radius: 10px;
   }
 `

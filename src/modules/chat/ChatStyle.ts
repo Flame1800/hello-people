@@ -2,11 +2,14 @@ import styled from "styled-components";
 import {theme} from "../../../styles/theme";
 
 export const ChatWrapper = styled.div`
-  background: ${theme.color.background};
-  min-height: 100vh;
+  background: #FFF;
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
+
+  @media (max-width: 1424px) {
+    height: 100vh;
+  }
 
   .tabs {
     display: flex;
@@ -18,13 +21,4 @@ export const ChatWrapper = styled.div`
     width: 100%;
   }
 
-
-  @media (min-width: 1420px) {
-    background: #fff !important;
-    max-width: 330px;
-    position: fixed;
-    right: 0;
-    top: 70px;
-    border-left: 1px solid #B1B1B1;
-  }
 `

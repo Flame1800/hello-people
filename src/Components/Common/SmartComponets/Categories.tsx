@@ -26,6 +26,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-bottom: 30px;
   cursor: pointer;
+  padding-bottom: 8px;
 
   &::-webkit-scrollbar {
     width: 0;

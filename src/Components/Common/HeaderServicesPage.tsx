@@ -12,7 +12,7 @@ const HeaderServicesPage: React.FC<ServiceProps> = ({children, link}) => {
         <Wrapper>
             <div className="title">{children}</div>
             <Link href={link}>
-                <a>
+                <a className='add-btn'>
                     <img src="/img/add-icon.svg" alt="Добавить"/>
                 </a>
             </Link>
@@ -41,6 +41,10 @@ const Wrapper = styled.div`
   @media (min-width: 768px) {
     width: fit-content;
     margin: 25px auto;
+
+    .add-btn {
+      display: none;
+    }
   }
 `
 

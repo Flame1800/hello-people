@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import eventsStore from "../../Stores/eventsStore";
+import {theme} from "../../../styles/theme";
 
 interface PropsButton {
     active: Boolean
@@ -26,29 +27,30 @@ const Switch = () => {
 };
 
 const Wrapper = styled.div`
-  background: #DCDCDC;
+  background: #fff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 45px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 5px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 97.9%;
+  font-weight: 500;
+  font-size: 15px;
   text-align: center;
   height: 50px;
   margin: 20px auto;
 
   @media (min-width: 768px) {
-    max-width: 260px;
+    max-width: 360px;
     height: 40px;
   }
 `
 
 const Button = styled.div`
   cursor: pointer;
-  background: ${(props: PropsButton) => props.active ? "#FFFFFF" : 'none'};
-  box-shadow: ${(props: PropsButton) => props.active ? "0 0 9px rgba(0, 0, 0, 0.21)" : 'none'};
+  background: ${(props: PropsButton) => props.active ?
+          "#484747" : 'none'};
+  color: ${(props: PropsButton) => props.active ? `#fff` : '#626262'};
+  border: 6px solid #fff;
   border-radius: 65px;
   display: flex;
   justify-content: center;

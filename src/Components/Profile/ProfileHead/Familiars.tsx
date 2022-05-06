@@ -7,11 +7,11 @@ const Familiars = () => {
             <div className="main-stat">
                 <img src="/img/person-icon.svg" alt="Person"/>
                 <div className="caption">
-                    <strong>15 </strong>знакомых
+                    15 знакомых
                 </div>
             </div>
             <div className="our-familiars">
-                <strong>4 </strong>общих знакомых
+                &bull; 4 знакомых
             </div>
         </Wrapper>
     );
@@ -19,6 +19,14 @@ const Familiars = () => {
 
 const Wrapper = styled.div`
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
 
   .main-stat {
     display: flex;
@@ -26,18 +34,18 @@ const Wrapper = styled.div`
 
     .caption {
       font-weight: 700;
-      font-size: 18px;
+      font-size: 15px;
       color: #373737;
+      white-space: nowrap;
     }
   }
 
   .our-familiars {
-    margin-top: 5px;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 15px;
     color: #FF7373;
-
+    margin-left: 10px;
+    white-space: nowrap;
   }
 `
 

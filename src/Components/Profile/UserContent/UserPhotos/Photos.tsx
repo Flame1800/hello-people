@@ -17,7 +17,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-bottom: 100px;
+  max-width: 840px;
+  margin: 15px auto;
 `
 
 export default Photos;

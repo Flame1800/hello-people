@@ -4,7 +4,7 @@ export const MessageFeedHeaderStyle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-bottom: 1px solid #D9D9D9;
 
   @media (min-width: 1420px) {
@@ -27,6 +27,11 @@ export const MessageFeedHeaderStyle = styled.div`
         font-weight: 600;
         font-size: 18px;
         line-height: 25px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+        display: flex;
       }
 
       .status {

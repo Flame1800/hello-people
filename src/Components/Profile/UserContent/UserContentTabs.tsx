@@ -1,26 +1,40 @@
 import React from 'react';
 import Tab from "../../Common/Tab";
 import styled from "styled-components";
+import {theme} from "../../../../styles/theme";
 
 const UserContentTabs = () => {
     return (
         <Wrapper>
-            <Tab active={true}>Фото</Tab>
-            <Tab>Места</Tab>
-            <Tab>Мероприятия</Tab>
-            <Tab>Встречи</Tab>
+            <div className='tab tab-active'>Фото</div>
+            <div className='tab'>Места</div>
+            <div className='tab'>Мероприятия</div>
+            <div className='tab'>Встречи</div>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
+  width: 100%;
+  max-width: 500px;
   display: flex;
-  flex-wrap: nowrap;
-  overflow: scroll;
-  max-width: 100%;
+  justify-content: space-around;
   position: relative;
-  border-radius: 25px;
   margin-bottom: 20px;
+  margin-top: 20px;
+  border-bottom: 1px solid #B9BABD;
+
+  .tab {
+    text-align: center;
+    font-size: 15px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .tab-active {
+    border-bottom: 3px solid ${theme.color.orange};
+  }
 `
 
 export default UserContentTabs;

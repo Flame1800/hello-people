@@ -8,12 +8,14 @@ const UserPhoto = () => {
 };
 
 const Photo = styled.img`
-  width: 32%;
-  height: 105px;
+  width: 29.5%;
+  max-width: 200px;
+  max-height: 200px;
   border-radius: 5px;
   object-fit: cover;
-  margin-top: 4px;
-  margin-right: 4px;
+  display: flex;
+  margin-left: 10px;
+  margin-bottom: 10px;
 `
 
 export default UserPhoto;

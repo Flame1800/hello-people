@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {DateTime} from "luxon";
+import {theme} from "../../../styles/theme";
 
 const DateEvents = ({date}) => {
     const today = DateTime.now()
@@ -25,7 +26,9 @@ const DateEvents = ({date}) => {
                 <div className="num">{day}</div>
                 &nbsp; {dayMonth.replace(/[0-9]/g, '')}
             </div>
-            {todayDayMont === dayMonth && <div className="today">сегодня</div>}
+            {todayDayMont === dayMonth && <div className="today">
+                <p>Сегодня</p>
+            </div>}
         </Wrapper>
     );
 };
@@ -34,14 +37,19 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   .date {
+    background: #fff;
+    border-radius: 20px;
+    padding: 15px;
     display: flex;
+    align-items: center;
     font-weight: 400;
     font-size: 18px;
     line-height: 97.9%;
     color: #FC5130;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
 
     .num {
       font-style: normal;
@@ -51,11 +59,20 @@ const Wrapper = styled.div`
   }
 
   .today {
-    background: #FFB8B8;
-    border-radius: 20.5px;
-    padding: 2px 9px;
-    font-weight: 400;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    font-weight: 800;
     font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${theme.color.orange};
+    margin-bottom: -25px;
+
+    p {
+      margin-bottom: 15px;
+    }
   }
 `
 
