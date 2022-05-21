@@ -1,16 +1,12 @@
 import React from 'react';
 import styled from "styled-components";
 
-const PopupWrapper = ({children, isShow = false}) => {
-    const [show, setShow] = React.useState(isShow)
 
-    if (show) {
-        return null
-    }
+const PopupWrapper = ({show, setShow, width = 500, children}) => {
 
     return (
-        <Wrapper onClick={() => setShow(!show)}>
-            <div onClick={(e) => e.stopPropagation()}>
+        <Wrapper active={show} width={width}>
+            <div className='content'>
                 {children}
             </div>
         </Wrapper>
@@ -18,16 +14,32 @@ const PopupWrapper = ({children, isShow = false}) => {
 };
 
 const Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1500;
-  background: rgba(162, 86, 71, 0.38);
+  background: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+  width: 100%;
+  transition: 0.3s;
+  opacity: ${({active}) => active ? 1 : 0};
+  pointer-events: ${({active}) => active ? 'all' : 'none'};
+
+
+  .content {
+    background: #fff;
+    max-width: ${({width}) => width}px;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
 `
+
 
 export default PopupWrapper;

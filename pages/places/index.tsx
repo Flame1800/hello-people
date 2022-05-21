@@ -16,7 +16,7 @@ const Places: NextPage<Props> = ({places}) => {
         <Wrapper>
             <HeaderServicesPage link='/places/add'>МЕСТА</HeaderServicesPage>
             <Categories categories={mockCategories}/>
-            <CatalogCards cards={places}/>
+            <CatalogCards cards={places.data} count={places.meta.pagination.total}/>
         </Wrapper>
     );
 };
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 Places.getInitialProps = async () => {
     const placesRequest = await API.getPlaces()
 
-    return {places: placesRequest.data.data}
+    return {places: placesRequest.data}
 }
 
 export default Places;

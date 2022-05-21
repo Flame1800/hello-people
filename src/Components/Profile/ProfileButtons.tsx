@@ -3,10 +3,10 @@ import styled from "styled-components";
 import {Button} from "@mui/material";
 import {ButtonStyle} from "../../../styles/commonStyles";
 
-const ProfileButtons = () => {
+const ProfileButtons = ({isMe}) => {
     return (
         <Wrapper>
-            <ButtonStyle>Познакомится</ButtonStyle>
+            {!isMe ? <ButtonStyle>Познакомится</ButtonStyle> : <ButtonStyle>Редактировать</ButtonStyle>}
             <div className="btn-gray">
                 <img src="/img/chat.svg" alt="иконка"/>
             </div>

@@ -2,8 +2,20 @@ import React from 'react';
 import styled from "styled-components";
 import Familiars from "./Familiars";
 import ProfileButtons from "../ProfileButtons";
+import UserStore from "../../../Stores/UserStore";
+import {observer} from "mobx-react-lite";
+import {useRouter} from "next/router";
 
-const ProfileHead = () => {
+const ProfileHead = ({user}) => {
+    const me = UserStore.user
+    const isMe = user.id === me?.id
+    const router = useRouter()
+
+    const logout = () => {
+        UserStore.logout()
+        router.push('/events')
+    }
+
     return (
         <Wrapper>
             <div className="head">
@@ -11,14 +23,14 @@ const ProfileHead = () => {
                 <div className="info">
                     <div className="wrap-name">
                         <div className="name">
-                            HelloUser
+                            {user.username}
                         </div>
                         <div className="status">
                             <span/>
                             online
                         </div>
                     </div>
-                    <ProfileButtons/>
+                    <ProfileButtons isMe={isMe}/>
                     <div>
                         <Familiars/>
                     </div>
@@ -26,8 +38,13 @@ const ProfileHead = () => {
             </div>
             <div className="description">
                 <div className="title-desc">Обо мне:</div>
-                Я люблю ходить в бары, клубы и в игровые комнаты, если хочешь со мной пообщаться то я не против
+                Этот пользователь очень ждет что сервис скоро заработает и он смог бы написать здесь все что душа
+                пожелает)
             </div>
+            {isMe && <div className="logout" onClick={() => logout()}>
+                <img width={24} height={24} src="/img/logout.svg" alt="logout"/>
+                <p>Выйти</p>
+            </div>}
         </Wrapper>
     );
 };
@@ -35,12 +52,19 @@ const ProfileHead = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   max-width: 1000px;
   margin: auto;
   padding: 40px 5%;
   border-radius: 40px;
   background: #fff;
+
+  .logout {
+    display: flex;
+    color: #FF4A4A;
+    font-weight: 500;
+    cursor: pointer;
+    height: fit-content;
+  }
 
   @media (max-width: 1424px) {
     background: #fff;
@@ -112,4 +136,4 @@ const Wrapper = styled.div`
 `
 
 
-export default ProfileHead;
+export default observer(ProfileHead);

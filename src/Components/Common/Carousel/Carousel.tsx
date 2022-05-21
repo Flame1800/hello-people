@@ -62,6 +62,7 @@ const CarouselStyle = styled(Carousel)`
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 `

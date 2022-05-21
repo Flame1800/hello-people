@@ -7,11 +7,11 @@ const Familiars = () => {
             <div className="main-stat">
                 <img src="/img/person-icon.svg" alt="Person"/>
                 <div className="caption">
-                    15 знакомых
+                    0 знакомых
                 </div>
             </div>
             <div className="our-familiars">
-                &bull; 4 знакомых
+                &bull; 0 общих
             </div>
         </Wrapper>
     );

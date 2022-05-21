@@ -3,13 +3,14 @@ import {theme} from "./theme";
 
 
 export const ButtonStyle = styled.div`
-  height: 35px;
+  height: 45px;
   width: 100%;
+  max-width: 200px;
   border-radius: 10px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
   border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
   color: ${({outline}) => !outline ? '#FFFFFF' : theme.color.orange};
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -18,13 +19,13 @@ export const ButtonStyle = styled.div`
 
   @media (min-width: 426px) {
     padding: 10px 20px;
-    font-size: 15px;
+    font-size: 17px;
     border-radius: 10px;
   }
 `
 
 export const InputStyle = styled.input`
-  background: #F0F0F0;
+  background: #fafafa;
   max-width: 350px;
   border-radius: 10px;
   font-weight: 600;
@@ -34,10 +35,10 @@ export const InputStyle = styled.input`
   width: 100%;
   outline: none;
   margin-bottom: 20px;
-  border: 1px solid #9b9b9b;
+  border: 2px solid #9b9b9b;
 
   &::placeholder {
-    color: #949494;
+    color: #9b9b9b;
   }
 `
 

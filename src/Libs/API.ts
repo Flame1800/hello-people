@@ -27,10 +27,21 @@ const queryGetEvents = qs.stringify({
 
 API.getEvents = () => server(`/parties?${queryGetEvents}`)
 API.getEvent = (id: number) => server(`/parties/${id}?${queryGetEvents}`)
-// Places
-API.getPlaces = () => server('/places?populate=*')
 
+// Places
+API.getPlaces = (length = 0) => server(`/places?populate=*&pagination[start]=${length}&pagination[limit]=25`)
 API.getPlace = (id: number) => server(`/places/${id}?populate=*`)
+
+// User
+API.getUserMe = (token: string) => server(`/users/me`, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
+API.getUser = (id: number) => server(`/users/${id}?populate=*`)
+API.getUsers = () => server(`/users`)
+// User Auth
 
 
 export default API

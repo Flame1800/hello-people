@@ -4,6 +4,20 @@ import UserContentTabs from "./UserContentTabs";
 import Photos from "./UserPhotos/Photos";
 
 const UserContent = () => {
+    const isReady = false
+
+    if (!isReady) {
+        return (
+            <Wrapper>
+                <img src="/img/Saly-2.png" alt="" height={300}/>
+                <div className='caption'>
+                    Скоро здесь будет очень интересно находится
+                    <br/> надо просто немного подождать)
+                </div>
+            </Wrapper>
+        );
+    }
+
     return (
         <Wrapper>
             <UserContentTabs/>
@@ -22,7 +36,14 @@ const Wrapper = styled.div`
   background: #fff;
   border-radius: 40px;
   padding: 30px;
-  min-height: 50vh;
+  min-height: 40vh;
+
+  .caption {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #7e7e7e;
+  }
 
   @media (max-width: 1424px) {
     background: #fff;

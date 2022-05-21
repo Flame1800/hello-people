@@ -5,11 +5,7 @@ import Link from "next/link";
 const Logo = () => {
     return (
         <Wrapper>
-            <Link href='/events'>
-                <a>
-                    <img src="/img/logo.svg" alt="logo"/>
-                </a>
-            </Link>
+            <img src="/img/logo.svg" alt="logo"/>
         </Wrapper>
     );
 };
@@ -20,7 +16,7 @@ const Wrapper = styled.div`
   z-index: 900;
   width: 250px;
   background: #fff;
-  height: 50px;
+  height: 80px;
   align-items: center;
   display: none;
   justify-content: center;

@@ -29,7 +29,7 @@ const NavBar = () => {
                     <NavLinkStyle href="" active={route.asPath === "/meets"}><MeetsButton/></NavLinkStyle>
                 </Link>
                 <Link href='/profile'>
-                    <NavLinkStyle href="" active={route.asPath === "/profile"}><ProfileIcon/></NavLinkStyle>
+                    <NavLinkStyle href="" active={route.asPath === "/user"}><ProfileIcon/></NavLinkStyle>
                 </Link>
             </div>
         </Wrapper>

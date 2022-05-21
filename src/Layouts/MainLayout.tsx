@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import NavBarMobile from "../Components/Navigation/NavBarMobile/NavBarMobile";
 import styled from "styled-components";
-import SideBar from "../Components/Navigation/SideBar";
+import SideBar from "../Components/Navigation/SideBar/SideBar";
 import Logo from "../Components/Navigation/Logo";
 import Chat from "../modules/chat/Chat";
-import PopupWrapper from "../Components/Common/PopupWrapper";
 import {AuthTitle} from "../Components/Auth/AuthStyles";
-import AuthMainScreen from "../Components/Auth/AuthMainScreen";
+import Login from "../Components/Auth/Login";
+import PopupWrapper from "../Components/Common/PopupWrapper";
+import AuthFirstStep from "../Components/Auth/Auth";
 
 type Layout = {
     children: any
@@ -26,11 +27,7 @@ const MainLayout: React.FC<Layout> = ({children}) => {
                     <Chat/>
                 </div>
             </div>
-            <PopupWrapper>
-                <img src="/img/logo-big.svg" alt="логотип HelloPeople"/>
-                <AuthTitle className="title">Вход в HelloPeople</AuthTitle>
-                <AuthMainScreen mode='log'/>
-            </PopupWrapper>
+            <AuthFirstStep/>
         </Wrapper>
     );
 };

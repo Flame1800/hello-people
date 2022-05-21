@@ -24,7 +24,7 @@ const Chat: React.FC<ChatProps> = (props) => {
     const [content, setContent] = useState<CategoryType>('chat');
 
     useEffect(() => {
-        setSocket(io());
+        // setSocket(io());
     }, []);
 
     const switchCategory = (category: CategoryType) => {
