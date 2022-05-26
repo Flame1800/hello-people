@@ -55,18 +55,20 @@ const SideBar = () => {
 const Wrapper = styled.div`
   top: 100px;
   position: sticky;
-  height: 800px;
-  width: 270px;
+  height: 40vh;
+  width: 350px;
   display: none;
   flex-direction: column;
 
-
   .nav-links {
-    border-radius: 40px 40px 0 0;
-    padding: 15px;
+    border-radius: 40px;
+    padding: 15px 35px;
     flex-direction: column;
-    height: 800px;
-    background: linear-gradient(#fff 50%, rgba(0, 0, 0, 0));
+    background: #fff;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+
   }
 
   .profile {

@@ -32,9 +32,11 @@ const Users: NextPage<Props> = ({users}) => {
 };
 
 const Wrapper = styled.div`
+  margin-top: 20px;
   min-height: 100vh;
   padding: 40px 20px;
   background: #fff;
+  border-radius: 40px;
 
   .users {
     width: 800px;

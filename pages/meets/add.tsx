@@ -6,9 +6,6 @@ import {ButtonStyle, InputStyle, TextareaStyle} from "../../styles/commonStyles"
 const Add = () => {
     return (
         <Wrapper>
-            <div className="head">
-                <BackButton/>
-            </div>
             <div className="banner">
                 <img src="/img/big-fire.svg" alt="календарь"/>
                 <div className="title">Добавить встречу</div>
@@ -19,17 +16,9 @@ const Add = () => {
             <div className="form">
                 <TextareaStyle rows={5} placeholder='Сообщение'/>
                 <InputStyle type='text' placeholder='Место' onInput={() => console.log('input')}/>
-                <div className="caption">
+                <div className="input-title">
                     Тусовка или для двоих?*
                 </div>
-                <label>
-                    тусовка
-                    <input type="radio"/>
-                </label>
-                <label>
-                    пара
-                    <input type="radio"/>
-                </label>
             </div>
             <ButtonStyle>Отправить анкету</ButtonStyle>
         </Wrapper>
@@ -37,63 +26,53 @@ const Add = () => {
 };
 
 const Wrapper = styled.div`
-  background: #fff;
-  min-height: 100vh;
-  padding: 50px 20px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .head {
-    margin-bottom: 30px;
+  @media (min-width: 600px) {
+    background: #fff;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    margin-bottom: 0;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    width: 100%;
+    margin: 40px 0;
   }
 
   .banner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
+    text-align: center;
 
     .title {
       margin: 10px 0;
-      font-style: normal;
-      font-weight: 400;
       font-size: 24px;
-      line-height: 33px;
-      text-align: center;
-      color: #000000;
     }
 
     .sub-title {
-      font-style: normal;
-      font-weight: 400;
       font-size: 16px;
-      line-height: 25px;
-      text-align: center;
       color: #585858;
+      max-width: 350px;
     }
   }
 
-  .label {
-    font-style: normal;
+  .input-title {
     font-weight: 600;
     font-size: 18px;
-    line-height: 25px;
     color: #585858;
-    padding: 0 10px;
     margin-top: 30px;
-    margin-bottom: -10px;
-  }
-
-  .caption {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 25px;
-    color: #585858;
-    padding: 0 10px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    text-align: left;
+    width: 100%;
   }
 `
 

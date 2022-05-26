@@ -35,7 +35,7 @@ const InfoListServices: React.FC<PropTypes> = ({date, address, link, phone, link
             &&
             <a href={link} target='_blank' className="item">
                 <img src="/img/globe.svg" alt="ссылка"/>
-                <div className="caption">{link}</div>
+                <div className="caption">Перейти на сайт</div>
             </a>}
             {link2gis
             &&

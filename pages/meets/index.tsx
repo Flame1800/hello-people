@@ -19,7 +19,6 @@ const Meets = () => {
 };
 
 const Wrapper = styled.div`
-  padding: 50px 0;
 
   .cards {
     margin-top: 50px;

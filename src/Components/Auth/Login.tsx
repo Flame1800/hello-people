@@ -41,7 +41,7 @@ const Login: React.FC<Props> = ({setMode, close}) => {
         } catch (e: any) {
             console.log(e)
             if (e.response) {
-                setError(e.response.data.error.message)
+                setError("Неверный логин или пароль")
             }
         }
 

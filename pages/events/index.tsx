@@ -24,18 +24,15 @@ const Events: NextPage<PropsType> = ({events}) => {
     }, [])
 
     return (
-        <Wrapper>
+        <>
             <HeaderServicesPage link='/events/add'>АФИША</HeaderServicesPage>
             <Categories categories={mockCategories}/>
             <Switch/>
             <CatalogCardsEvents events={currEvents}/>
-        </Wrapper>
+        </>
     );
 };
 
-const Wrapper = styled.div`
-  padding: 50px 0;
-`
 
 Events.getInitialProps = async () => {
     const eventsRequest = await API.getEvents()

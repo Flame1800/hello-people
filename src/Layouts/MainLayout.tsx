@@ -41,7 +41,7 @@ const Wrapper = styled.div`
   }
 
   .container {
-    max-width: 1600px;
+    max-width: 1730px;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -57,22 +57,27 @@ const Wrapper = styled.div`
   .inner-content {
     max-width: 1000px;
     width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+
+    @media (max-width: 768px) {
+      margin-top: 40px;
+    }
 
     @media (min-width: 1424px) {
-      margin: 40px 10px;
       border-radius: 40px;
       overflow-y: hidden;
     }
   }
 
   .desktop-chat-wrap {
-    background: linear-gradient(180deg, #FFFFFF 50%, rgba(255, 255, 255, 0) 73.29%);
     max-width: 350px;
     width: 100%;
-    max-height: 100vh;
+    height: 80vh;
+    background: #fff;
     top: 100px;
     position: sticky;
-    border-radius: 40px 40px 0 0;
+    border-radius: 40px;
     overflow-y: hidden;
     display: none;
     padding: 5px;

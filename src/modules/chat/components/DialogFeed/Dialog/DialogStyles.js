@@ -10,7 +10,7 @@ export const DialogWrapper = styled.div`
   cursor: pointer;
 
   &:hover {
-    background: #E6E6E6;
+    background: #f6f6f6;
     border-radius: 10px;
   }
 

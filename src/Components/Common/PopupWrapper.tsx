@@ -28,6 +28,9 @@ const Wrapper = styled.div`
   opacity: ${({active}) => active ? 1 : 0};
   pointer-events: ${({active}) => active ? 'all' : 'none'};
 
+  @media (max-width: 1000px) {
+    background: #fff;
+  }
 
   .content {
     background: #fff;

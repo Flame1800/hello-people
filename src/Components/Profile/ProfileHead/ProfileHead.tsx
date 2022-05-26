@@ -25,10 +25,9 @@ const ProfileHead = ({user}) => {
                         <div className="name">
                             {user.username}
                         </div>
-                        <div className="status">
-                            <span/>
-                            online
-                        </div>
+                    </div>
+                    <div className="first-name">
+                        {user.name}
                     </div>
                     <ProfileButtons isMe={isMe}/>
                     <div>
@@ -38,13 +37,8 @@ const ProfileHead = ({user}) => {
             </div>
             <div className="description">
                 <div className="title-desc">Обо мне:</div>
-                Этот пользователь очень ждет что сервис скоро заработает и он смог бы написать здесь все что душа
-                пожелает)
+                {user.description}
             </div>
-            {isMe && <div className="logout" onClick={() => logout()}>
-                <img width={24} height={24} src="/img/logout.svg" alt="logout"/>
-                <p>Выйти</p>
-            </div>}
         </Wrapper>
     );
 };
@@ -58,13 +52,6 @@ const Wrapper = styled.div`
   border-radius: 40px;
   background: #fff;
 
-  .logout {
-    display: flex;
-    color: #FF4A4A;
-    font-weight: 500;
-    cursor: pointer;
-    height: fit-content;
-  }
 
   @media (max-width: 1424px) {
     background: #fff;
@@ -87,32 +74,13 @@ const Wrapper = styled.div`
     height: 120px;
     border-radius: 50%;
     margin-bottom: 15px;
-    margin-right: 20px;
+    margin-right: 15px;
   }
 
   .name {
     font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-  }
-
-  .status {
-    margin-top: 2px;
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 16px;
-    color: #585858;
-    margin-left: 15px;
-
-    span {
-      margin-top: 4px;
-      margin-right: 5px;
-      background: #7BD67E;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-    }
+    font-weight: 500;
+    font-size: 20px;
   }
 
   .description {

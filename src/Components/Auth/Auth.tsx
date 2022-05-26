@@ -19,7 +19,7 @@ const Auth = () => {
                 </div>
                 <img src="/img/logo-big.svg" alt="логотип HelloPeople"/>
                 <AuthTitle
-                    className="title">{mode === 'login' ? "Войти в HelloPeople" : "Реигстрация"}</AuthTitle>
+                    className="title">{mode === 'login' ? "Войти в HelloPeople" : "Регистрация"}</AuthTitle>
                 {mode === 'reg'
                     ? <Register setMode={setMode} close={toggleAuthModal}/>
                     : <Login setMode={setMode} close={toggleAuthModal}/>}
@@ -39,13 +39,11 @@ export const AuthWrapper = styled.div`
 
   .close-btn {
     position: absolute;
-    top: -50px;
+    top: -30px;
     right: 0;
   }
 
-  @media (max-width: 1000px) {
-    background: #fff;
-  }
+
 `
 
 

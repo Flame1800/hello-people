@@ -19,7 +19,7 @@ const AddButton = () => {
         <Wrapper>
             <div className='btn' onClick={handleClick}>
                 <img src="/img/add-icon.svg" alt="add"/>
-                Создать
+                Добавить
                 <img className='dropdown' src="/img/caret-down.svg" alt="down"/>
             </div>
             <Menu
@@ -52,9 +52,11 @@ const AddButton = () => {
 };
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 90%;
   height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
   background: #fff;
   box-sizing: border-box;
   border-radius: 40px;
@@ -64,7 +66,6 @@ const Wrapper = styled.div`
   line-height: 22px;
   display: flex;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
   transition: 0.2s;
   padding: 3px 0;
@@ -77,16 +78,16 @@ const Wrapper = styled.div`
   .btn {
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
-    padding-right: 10px;
+    margin-left: 10px;
     padding-left: 15px;
     position: relative;
+    font-weight: 700;
 
     img {
       width: 20px;
       height: 20px;
-      margin-right: 5px;
+      margin-right: 10px;
     }
   }
 

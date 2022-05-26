@@ -20,9 +20,10 @@ const Wrapper = styled.div`
   align-items: center;
   display: none;
   justify-content: center;
-  margin: 0 auto;
   position: relative;
-  right: 70px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media (min-width: 1424px) {
     display: flex;

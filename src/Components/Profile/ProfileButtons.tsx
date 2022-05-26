@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from "styled-components";
-import {Button} from "@mui/material";
 import {ButtonStyle} from "../../../styles/commonStyles";
+import Link from "next/link";
 
 const ProfileButtons = ({isMe}) => {
     return (
         <Wrapper>
-            {!isMe ? <ButtonStyle>Познакомится</ButtonStyle> : <ButtonStyle>Редактировать</ButtonStyle>}
+            {!isMe
+                ? <ButtonStyle>Познакомится</ButtonStyle>
+                : <Link href="/user/edit">
+                    <a>
+                        <ButtonStyle>Редактировать</ButtonStyle>
+                    </a>
+                </Link>}
             <div className="btn-gray">
                 <img src="/img/chat.svg" alt="иконка"/>
             </div>

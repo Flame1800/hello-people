@@ -58,7 +58,7 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
 };
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   background: #FFFFFF;
@@ -71,9 +71,6 @@ const Wrapper = styled.div`
   padding: 0 20px;
   z-index: 40;
 
-  @media (min-width: 1420px) {
-    width: 330px;
-  }
 
   .message-input {
     width: 100%;

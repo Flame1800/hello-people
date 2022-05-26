@@ -13,17 +13,14 @@ type Props = {
 
 const Places: NextPage<Props> = ({places}) => {
     return (
-        <Wrapper>
+        <>
             <HeaderServicesPage link='/places/add'>МЕСТА</HeaderServicesPage>
             <Categories categories={mockCategories}/>
             <CatalogCards cards={places.data} count={places.meta.pagination.total}/>
-        </Wrapper>
+        </>
     );
 };
 
-const Wrapper = styled.div`
-  padding: 50px 0;
-`
 
 Places.getInitialProps = async () => {
     const placesRequest = await API.getPlaces()

@@ -33,13 +33,14 @@ API.getPlaces = (length = 0) => server(`/places?populate=*&pagination[start]=${l
 API.getPlace = (id: number) => server(`/places/${id}?populate=*`)
 
 // User
-API.getUserMe = (token: string) => server(`/users/me`, {
+API.getUserMe = (token: string) => server(`/users/me?populate=*`, {
     headers: {
         Authorization: `Bearer ${token}`
     }
 })
 
 API.getUser = (id: number) => server(`/users/${id}?populate=*`)
+API.updateUser = (id: number, data: any) => server.put(`/users/${id}`, data)
 API.getUsers = () => server(`/users`)
 // User Auth
 

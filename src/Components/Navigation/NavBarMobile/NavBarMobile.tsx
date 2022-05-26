@@ -8,10 +8,12 @@ import MeetsButton from "../NavButtonsSvg/MeetsButton";
 import ProfileIcon from "../NavButtonsSvg/ProfileIcon";
 import {theme} from "../../../../styles/theme";
 import {useRouter} from "next/router";
+import UiStateStore from "../../../Stores/UiStateStore";
+import UserStore from "../../../Stores/UserStore";
+import {observer} from "mobx-react-lite";
 
 const NavBar = () => {
     const route = useRouter()
-
 
     return (
         <Wrapper>
@@ -28,9 +30,16 @@ const NavBar = () => {
                 <Link href='/meets'>
                     <NavLinkStyle href="" active={route.asPath === "/meets"}><MeetsButton/></NavLinkStyle>
                 </Link>
-                <Link href='/profile'>
-                    <NavLinkStyle href="" active={route.asPath === "/user"}><ProfileIcon/></NavLinkStyle>
-                </Link>
+                {!UserStore.user
+                    ? <NavLinkStyle
+                        onClick={() => UiStateStore.toggleAuthModal(true)}
+                        active={route.asPath === "/user"}>
+                        <ProfileIcon/>
+                    </NavLinkStyle>
+                    : <Link href={`/user/${UserStore?.user.id}`}>
+                        <NavLinkStyle href="" active={route.asPath === "/user"}><ProfileIcon/></NavLinkStyle>
+                    </Link>}
+
             </div>
         </Wrapper>
     );
@@ -73,4 +82,4 @@ const NavLinkStyle = styled.a`
   }
 `
 
-export default NavBar;
+export default observer(NavBar);

@@ -45,7 +45,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
                     {type === 'conversation' ? name || 'Нет имени' : companion.name}
                 </span>
                     <span className='date'>
-                    {type === 'conversation' ? `активны ${members.length} чел` : lastMessage.date}
+                    {type === 'conversation' ? `${members.length} в чате` : lastMessage.date}
                 </span>
                 </div>
                 <div className="info">
