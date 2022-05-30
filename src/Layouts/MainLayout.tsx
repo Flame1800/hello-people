@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import NavBarMobile from "../Components/Navigation/NavBarMobile/NavBarMobile";
 import styled from "styled-components";
 import SideBar from "../Components/Navigation/SideBar/SideBar";
-import Logo from "../Components/Navigation/Logo";
+import Header from "../Components/Navigation/Header/Header";
 import Chat from "../modules/chat/Chat";
 import {AuthTitle} from "../Components/Auth/AuthStyles";
 import Login from "../Components/Auth/Login";
@@ -17,7 +17,7 @@ const MainLayout: React.FC<Layout> = ({children}) => {
     return (
         <Wrapper>
           <div className="container">
-            <Logo/>
+            <Header/>
           </div>
             <NavBarMobile/>
             <div className="container">
