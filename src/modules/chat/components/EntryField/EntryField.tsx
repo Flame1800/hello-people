@@ -3,27 +3,26 @@ import {observer} from 'mobx-react-lite';
 import entryFieldStore from '../../stores/entryFieldStore';
 import chatStore from '../../stores/chatStore';
 import dialogFeedStore from '../../stores/dialogFeedStore';
-import styled from "styled-components";
+import styled from 'styled-components';
 import messageFeedStore from '../../stores/messageFeedStore';
 
-type EntryFieldProps = {
-    dialogId: string,
-};
+type EntryFieldProps = {};
 
 const EntryField: React.FC<EntryFieldProps> = (props) => {
-    const {dialogId} = props;
     const {getMessage, setMessage} = entryFieldStore;
-    const {getSocket, getUser} = chatStore;
+    const {getSocket, getUser, getCurrentDialogId} = chatStore;
     const {addMessageToDialog, makeAllMessagesIsRead} = dialogFeedStore;
     const {goBottom} = messageFeedStore;
+    const dialogId = getCurrentDialogId();
     const socket = getSocket();
 
-    const inputOnChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputOnChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         makeAllMessagesIsRead(getUser().id, dialogId);
         setMessage(event.currentTarget.value);
     };
 
     const sendOnClickHandler = () => {
+        console.log(getMessage().length)
         if (getMessage().length < 1) return;
         addMessageToDialog(dialogId, {
             id: new Date().toISOString(),
@@ -37,6 +36,7 @@ const EntryField: React.FC<EntryFieldProps> = (props) => {
             setMessage('');
         }
         goBottom();
+        setMessage("")
     };
 
 
@@ -69,7 +69,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  z-index: 40;
+  z-index: 500;
 
 
   .message-input {
@@ -98,6 +98,6 @@ const Wrapper = styled.div`
   .send-btn {
     object-fit: scale-down;
   }
-`
+`;
 
 export default observer(EntryField);

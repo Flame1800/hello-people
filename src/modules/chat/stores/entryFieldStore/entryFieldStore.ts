@@ -12,7 +12,7 @@ class entryFieldStore {
     getMessage = () => this.message;
 
     setMessage = (newMessage: string) => {
-        this.message = newMessage;
+        this.message = newMessage.trim();
     };
 
     getSearchText = () => this.searchText;

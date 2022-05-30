@@ -3,14 +3,13 @@ import {theme} from "./theme";
 
 
 export const ButtonStyle = styled.button`
-  height: 45px;
-  width: 100%;
-  max-width: 200px;
+  height: 35px;
+  width: fit-content;
   border-radius: 10px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
   border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
   color: ${({outline}) => !outline ? '#FFFFFF' : theme.color.orange};
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   display: flex;
   justify-content: center;

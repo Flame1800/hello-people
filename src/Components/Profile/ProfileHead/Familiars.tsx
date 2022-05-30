@@ -1,27 +1,54 @@
 import React from 'react';
 import styled from "styled-components";
+import UserStore from "../../../Stores/UserStore";
 
-const Familiars = () => {
+const Familiars = ({user, isMe}) => {
+    const userFriendIds = user.friends.map(({id}) => id)
+
+    const countCommonFriends = () => {
+        if (UserStore.user) {
+            const commonFriends = UserStore?.user?.friends?.filter(({id}) => userFriendIds.indexOf(id) !== -1)
+            return commonFriends?.length || 0
+        }
+    }
+
+
     return (
         <Wrapper>
-            <div className="main-stat">
-                <img src="/img/person-icon.svg" alt="Person"/>
-                <div className="caption">
-                    0 знакомых
+
+            <div className='fam'>
+                <div className="main-stat">
+                    <img src="/img/person-icon.svg" alt="Person"/>
+                    <div className="caption">
+                        {user.friends.length} {user.friends.length === 1 ? 'знакомый' : 'знакомых'}
+                    </div>
                 </div>
-            </div>
-            <div className="our-familiars">
-                &bull; 0 общих
+                {UserStore.user && !isMe && <div className="our-familiars">
+                    &bull; {countCommonFriends()} общих
+                </div>}
             </div>
         </Wrapper>
+
     );
 };
 
 const Wrapper = styled.div`
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  .friend-msg {
+    margin-top: -15px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #464646;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    border-bottom: 1px solid;
+  }
+
+  .fam {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 
   img {
     width: 20px;

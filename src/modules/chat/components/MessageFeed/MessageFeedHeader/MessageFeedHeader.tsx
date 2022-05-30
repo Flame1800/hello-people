@@ -4,28 +4,18 @@ import Modal from "../../common/Modal";
 import Settings from "../../common/Settings/Settings";
 import {findPrivateCompanion} from "../../../utils/findPrivateCompanion";
 import chatStore from "../../../stores/chatStore";
-import {MessageType} from "../../../models/Message";
 import {MessageFeedHeaderStyle} from './MessageFeedHeader.style'
-import {UserType} from "../../../models/UserType";
-import {DialogType} from "../../../models/DialogType";
-import {CategoryType} from "../../../models/CategoryType";
 import {Tooltip} from "@mui/material";
+import dialogFeedStore from '../../../stores/dialogFeedStore/dialogFeedStore';
 
-type MessageFeedProps = {
-    id: string,
-    type: DialogType,
-    category: CategoryType,
-    messages: MessageType[],
-    members: UserType[],
-    avatar?: string,
-    name?: string,
-};
+type MessageFeedProps = {};
 
 const MessageFeedHeader: React.FC<MessageFeedProps> = (props) => {
-    const {setCurrentDialogId, getSettingsChat, getUser} = chatStore;
-    const {name, avatar, members, type} = props
+    const {setCurrentDialogId, getSettingsChat, getUser, getCurrentDialogId} = chatStore;
+    const {getDialog} = dialogFeedStore;
+    const dialog = getDialog(getCurrentDialogId());
 
-    const companion = findPrivateCompanion(members, getUser());
+    const companion = findPrivateCompanion(dialog.members, getUser());
     const [modalActive, setModalActive] = useState(false);
 
     const backOnClickHandler = () => {
@@ -36,11 +26,11 @@ const MessageFeedHeader: React.FC<MessageFeedProps> = (props) => {
         <MessageFeedHeaderStyle>
             <div className="first-side">
                 <img src='/img/back-icon.svg' alt='back' className="btn-back" onClick={backOnClickHandler}/>
-                <UserAvatar url={type === 'private' ? companion?.avatar : avatar}/>
+                <UserAvatar url={dialog.type === 'private' ? companion?.avatar : dialog.avatar}/>
                 <div className="companion">
-                    <Tooltip title={type === 'private' ? companion?.name : name}>
+                    <Tooltip title={dialog.type === 'private' ? companion?.name : dialog.name}>
                         <span className="name">
-                            {type === 'private' ? companion?.name : name}
+                            {dialog.type === 'private' ? companion?.name : dialog.name}
                         </span>
                     </Tooltip>
                     <div className="status">

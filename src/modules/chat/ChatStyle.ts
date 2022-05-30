@@ -13,7 +13,7 @@ export const ChatWrapper = styled.div`
 
   .tabs {
     display: flex;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 24px;
   }
 

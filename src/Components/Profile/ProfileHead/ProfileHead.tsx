@@ -4,22 +4,17 @@ import Familiars from "./Familiars";
 import ProfileButtons from "../ProfileButtons";
 import UserStore from "../../../Stores/UserStore";
 import {observer} from "mobx-react-lite";
-import {useRouter} from "next/router";
+import UserAvatar from "../../User/UserAvatar";
 
 const ProfileHead = ({user}) => {
     const me = UserStore.user
     const isMe = user.id === me?.id
-    const router = useRouter()
 
-    const logout = () => {
-        UserStore.logout()
-        router.push('/events')
-    }
 
     return (
         <Wrapper>
             <div className="head">
-                <img src="/img/mock-avatar.png" alt="Аватар" className="avatar"/>
+                <UserAvatar size='lg' url={user.avatar}/>
                 <div className="info">
                     <div className="wrap-name">
                         <div className="name">
@@ -29,16 +24,19 @@ const ProfileHead = ({user}) => {
                     <div className="first-name">
                         {user.name}
                     </div>
-                    <ProfileButtons isMe={isMe}/>
+                    {me && <ProfileButtons user={user} me={me}/>}
                     <div>
-                        <Familiars/>
+                        <Familiars user={user} isMe={isMe}/>
                     </div>
                 </div>
             </div>
+            {user.description &&
             <div className="description">
                 <div className="title-desc">Обо мне:</div>
                 {user.description}
             </div>
+            }
+
         </Wrapper>
     );
 };
@@ -51,6 +49,10 @@ const Wrapper = styled.div`
   padding: 40px 5%;
   border-radius: 40px;
   background: #fff;
+
+  .info {
+    margin-left: 15px;
+  }
 
 
   @media (max-width: 1424px) {

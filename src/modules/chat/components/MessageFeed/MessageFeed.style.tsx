@@ -27,6 +27,6 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
   }
 
   @media (max-width: 1430px) {
-    padding-bottom: 100px;
+    padding-bottom: 10px;
   }
 `

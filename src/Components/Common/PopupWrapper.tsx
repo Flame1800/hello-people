@@ -1,12 +1,26 @@
 import React from 'react';
 import styled from "styled-components";
+import CloseButton from "./CloseButton";
 
 
 const PopupWrapper = ({show, setShow, width = 500, children}) => {
 
+    React.useEffect(() => {
+        if (show) {
+            document.body.style.overflow = 'hidden'
+        }
+
+        if (!show) {
+            document.body.style.overflow = 'auto'
+        }
+    }, [show])
+
     return (
         <Wrapper active={show} width={width}>
             <div className='content'>
+                <div onClick={() => setShow()} className='close-btn'>
+                    <CloseButton/>
+                </div>
                 {children}
             </div>
         </Wrapper>
@@ -41,6 +55,14 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 20px;
+    position: absolute;
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 12;
+    }
   }
 `
 

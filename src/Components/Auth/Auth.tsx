@@ -14,12 +14,9 @@ const Auth = () => {
     return (
         <PopupWrapper setShow={toggleAuthModal} show={authModal} width={450}>
             <AuthWrapper>
-                <div onClick={() => toggleAuthModal()} className='close-btn'>
-                    <CloseButton/>
-                </div>
                 <img src="/img/logo-big.svg" alt="логотип HelloPeople"/>
                 <AuthTitle
-                    className="title">{mode === 'login' ? "Войти в HelloPeople" : "Регистрация"}</AuthTitle>
+                    className="title">{mode === 'log' ? "Войти в HelloPeople" : "Регистрация"}</AuthTitle>
                 {mode === 'reg'
                     ? <Register setMode={setMode} close={toggleAuthModal}/>
                     : <Login setMode={setMode} close={toggleAuthModal}/>}
@@ -36,12 +33,6 @@ export const AuthWrapper = styled.div`
   background: #fff;
   margin: 50px 0;
   width: 100%;
-
-  .close-btn {
-    position: absolute;
-    top: -30px;
-    right: 0;
-  }
 
 
 `

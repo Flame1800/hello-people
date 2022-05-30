@@ -40,8 +40,8 @@ const SideBar = () => {
                             Встречи
                         </NavLinkStyle>
                     </Link>
-                    <Link href='/user/all'>
-                        <NavLinkStyle active={route.asPath === "/user/all"}>
+                    <Link href='/search/peoples'>
+                        <NavLinkStyle active={route.asPath === "/search/peoples"}>
                             <ProfileButtonIcon/>
                             Люди
                         </NavLinkStyle>
@@ -85,7 +85,7 @@ export const NavLinkStyle = styled.a`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 15px 20px;
+  padding: 15px 30px;
   margin-bottom: 10px;
   font-weight: 400;
   font-size: 16px;
@@ -104,5 +104,20 @@ export const NavLinkStyle = styled.a`
     height: 24px;
   }
 `
+
+export const AvatarWrapper = styled(NavLinkStyle)`
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 3px 1px #0000001f;
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+
+  .username {
+    font-weight: 700;
+    margin-left: 10px;
+  }
+`
+
 
 export default observer(SideBar);

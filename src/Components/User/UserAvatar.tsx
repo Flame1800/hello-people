@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import API from "../../Libs/API";
 
 type IconProps = {
     url?: string,
@@ -11,7 +12,7 @@ const UserAvatar: React.FC<IconProps> = ({url, size = 'sm'}) => {
     const content = (
         <>
             {url
-                ? <ImageStyle src={url} alt="avatar"/>
+                ? <ImageStyle src={API.url + url} alt="avatar"/>
                 : <ImageStyle src="/img/avatar.svg" alt="avatar"/>
             }
         </>
@@ -19,6 +20,10 @@ const UserAvatar: React.FC<IconProps> = ({url, size = 'sm'}) => {
 
     if (size === 'md') {
         return (<MediumSize>{content}</MediumSize>)
+    }
+
+    if (size === 'lg') {
+        return (<LargeSize>{content}</LargeSize>)
     }
 
     return (<Wrapper>{content}</Wrapper>);
@@ -35,13 +40,19 @@ const Wrapper = styled.div`
 `
 
 const MediumSize = styled(Wrapper)`
-  width: 46px;
-  height: 46px;
+  width: 66px;
+  height: 66px;
+`
+
+
+const LargeSize = styled(Wrapper)`
+  width: 120px;
+  height: 120px;
 `
 
 const ImageStyle = styled.img`
-  width: 36px;
-  height: 36px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   overflow: hidden;
   object-fit: contain;

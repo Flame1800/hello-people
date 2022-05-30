@@ -1,11 +1,13 @@
 import React from 'react';
 import UiStateStore from "../../../Stores/UiStateStore";
-import {NavLinkStyle} from "./SideBar";
+import {AvatarWrapper, NavLinkStyle} from "./SideBar";
 import ProfileButtonIcon from "../NavButtonsSvg/ProfileButtonChanger";
 import UserStore from "../../../Stores/UserStore";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {observer} from "mobx-react-lite";
+import UserAvatar from "../../User/UserAvatar";
+import styled from "styled-components";
 
 const ProfileLink = () => {
     const route = useRouter()
@@ -25,14 +27,17 @@ const ProfileLink = () => {
 
     return (
         <Link href={`/user/${UserStore.user.id}`}>
-            <NavLinkStyle
-                active={route.asPath === "/user"}
+            <AvatarWrapper
+                active={route.asPath === `/user/${UserStore.user.id}`}
             >
-                <ProfileButtonIcon/>
-                {UserStore.user.username}
-            </NavLinkStyle>
+                <UserAvatar url={UserStore.user.avatar} size='sm'/>
+                <div className="username">
+                    {UserStore.user.username}
+                </div>
+            </AvatarWrapper>
         </Link>
     );
 };
+
 
 export default observer(ProfileLink);

@@ -2,12 +2,33 @@ import React from 'react';
 import styled from "styled-components";
 import {ButtonStyle} from "../../../styles/commonStyles";
 import Link from "next/link";
+import API from "../../Libs/API";
 
-const ProfileButtons = ({isMe}) => {
+const ProfileButtons = ({me, user}) => {
+    const userFriendIds = user.friends.map(({id}) => id)
+    const userSubscribersIds = user.subscribers.map(({id}) => id)
+    const isMe = user.id === me?.id
+
+    const meInFriendList = userFriendIds.indexOf(me.id) !== -1
+    const meInSubscriberList = userSubscribersIds.indexOf(me.id) !== -1
+
+    const isOnlySub = !meInFriendList && meInSubscriberList ? "Вы подписчик" : "Вы знакомы"
+    const checkFriendStatus = meInFriendList ? "Вы знакомы" : isOnlySub
+
+    const addUser = async () => {
+        const data = await API.updateUser(user.id, {
+            friends: [...userFriendIds, me.id]
+        })
+        console.log(data.data)
+    }
+
+
     return (
         <Wrapper>
             {!isMe
-                ? <ButtonStyle>Познакомится</ButtonStyle>
+                ? <ButtonStyle onClick={() => addUser()}>
+                    {!meInFriendList && !meInSubscriberList ? "Познакомится" : checkFriendStatus}
+                </ButtonStyle>
                 : <Link href="/user/edit">
                     <a>
                         <ButtonStyle>Редактировать</ButtonStyle>

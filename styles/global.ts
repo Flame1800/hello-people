@@ -10,7 +10,7 @@ export default createGlobalStyle`
 
   a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: none !important;
 
     &:hover {
       text-decoration: underline;

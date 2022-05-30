@@ -57,14 +57,11 @@ const Wrapper = styled.div`
   .inner-content {
     max-width: 1000px;
     width: 100%;
-    margin-left: 15px;
-    margin-right: 15px;
 
-    @media (max-width: 768px) {
-      margin-top: 40px;
-    }
 
     @media (min-width: 1424px) {
+      margin-left: 15px;
+      margin-right: 15px;
       border-radius: 40px;
       overflow-y: hidden;
     }

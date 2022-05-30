@@ -11,8 +11,7 @@ const UserContent = () => {
             <Wrapper>
                 <img src="/img/Saly-2.png" alt="" height={300}/>
                 <div className='caption'>
-                    Скоро здесь будет очень интересно находится
-                    <br/> надо просто немного подождать)
+                    Скоро здесь будет очень интересно находится надо просто немного подождать...
                 </div>
             </Wrapper>
         );
@@ -39,10 +38,11 @@ const Wrapper = styled.div`
   min-height: 40vh;
 
   .caption {
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 400;
     color: #7e7e7e;
+    max-width: 370px;
   }
 
   @media (max-width: 1424px) {

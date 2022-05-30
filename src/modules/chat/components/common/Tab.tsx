@@ -23,6 +23,11 @@ const Wrapper = styled.div<{ active: boolean }>`
   margin-right: 7px;
   color: ${({active}) => active ? 'white' : 'black'};
   background: ${({active}) => active ? theme.color.gray : 'none'};
+  cursor: pointer;
+
+  &:hover {
+    background: ${({active}) => active ? theme.color.gray : '#eaeaea'};
+  }
 `
 
 export default Tab;
