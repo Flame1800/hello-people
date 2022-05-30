@@ -16,7 +16,9 @@ type Layout = {
 const MainLayout: React.FC<Layout> = ({children}) => {
     return (
         <Wrapper>
+          <div className="container">
             <Logo/>
+          </div>
             <NavBarMobile/>
             <div className="container">
                 <SideBar/>

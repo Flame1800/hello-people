@@ -1,25 +1,29 @@
 import React from 'react';
 import styled from "styled-components";
 import Link from "next/link";
+import InfoHeader from './InfoHeader';
+import UserUX from './UserUX';
 
 const Logo = () => {
     return (
         <Wrapper>
             <img src="/img/logo.svg" alt="logo"/>
+            <InfoHeader/>
+            <UserUX/>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  padding: 0 40px;
+  padding: 0 64px;
   border-radius: 0 0 40px 40px;
   z-index: 900;
-  width: 250px;
+  width: 100%;
   background: #fff;
   height: 80px;
   align-items: center;
   display: none;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
   margin-bottom: 20px;
   margin-left: auto;
