@@ -24,7 +24,7 @@ const UserList = () => {
                 className={router.query.category === 'friends' ? 'tab tab_active' : 'tab'}
                 onClick={() => changeCategory('friends')}
             >
-                Твои знакомые
+                Мои знакомые
             </div>}
             {UserStore.user &&
             <div

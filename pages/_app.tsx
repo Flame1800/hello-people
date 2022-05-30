@@ -17,7 +17,10 @@ function MyApp({Component, pageProps}: AppProps) {
 
         const getUser = async () => {
             const currUser = await API.getUserMe(cookie.jwt)
-            UserStore.setUser(currUser.data)
+            const currUserPopulate = await API.getUser(currUser.data.id)
+
+            UserStore.setUser(currUserPopulate.data)
+            console.log(currUserPopulate.data)
         }
 
         if (cookie.jwt) {

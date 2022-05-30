@@ -55,7 +55,7 @@ const ImageStyle = styled.img`
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
-  object-fit: contain;
+  object-fit: cover;
 `
 
 

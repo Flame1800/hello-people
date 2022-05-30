@@ -3,31 +3,64 @@ import styled from "styled-components";
 import {ButtonStyle} from "../../../styles/commonStyles";
 import Link from "next/link";
 import API from "../../Libs/API";
+import UserStore from "../../Stores/UserStore";
 
 const ProfileButtons = ({me, user}) => {
-    const userFriendIds = user.friends.map(({id}) => id)
-    const userSubscribersIds = user.subscribers.map(({id}) => id)
+    const [friendState, setFriendState] = React.useState('')
+
     const isMe = user.id === me?.id
 
-    const meInFriendList = userFriendIds.indexOf(me.id) !== -1
-    const meInSubscriberList = userSubscribersIds.indexOf(me.id) !== -1
 
-    const isOnlySub = !meInFriendList && meInSubscriberList ? "Вы подписчик" : "Вы знакомы"
-    const checkFriendStatus = meInFriendList ? "Вы знакомы" : isOnlySub
+    React.useEffect(() => {
+        const myFriendIds = me.friends.map(({id}) => id)
+        const mySubscriberIds = me.subscribers.map(({id}) => id)
 
-    const addUser = async () => {
-        const data = await API.updateUser(user.id, {
-            friends: [...userFriendIds, me.id]
-        })
-        console.log(data.data)
+        const userInMyFriendList = myFriendIds.indexOf(user.id) !== -1
+        const userInMySubscriberList = mySubscriberIds.indexOf(user.id) !== -1
+
+        const userFriendState = {
+            isMyFriend: userInMyFriendList && userInMySubscriberList,
+            mySubscriber: !userInMyFriendList && userInMySubscriberList,
+            meSubscriber: userInMyFriendList && !userInMySubscriberList
+        }
+
+        const isFiendLink = userFriendState.isMyFriend || userFriendState.meSubscriber || userFriendState.mySubscriber
+        const whoSubscribe = userFriendState.meSubscriber ? "Ты подписан" : "Он подписан"
+        const chekStatus = userFriendState.isMyFriend ? "Вы знакомы" : whoSubscribe
+
+        setFriendState(isFiendLink ? chekStatus : "Познакомится")
+    }, [])
+
+
+    const changeFriendState = async () => {
+        if (friendState === 'Вы знакомы') {
+            await UserStore.deleteFriend(user.id)
+            return setFriendState("Он подписан")
+        }
+
+        if (friendState === 'Ты подписан') {
+            await UserStore.deleteFriend(user.id)
+            return setFriendState("Познакомится")
+        }
+
+        if (friendState === 'Он подписан') {
+            await UserStore.addFriend(user.id)
+            return setFriendState("Вы знакомы")
+        }
+
+        if (friendState === 'Познакомится') {
+            await UserStore.addFriend(user.id)
+            return setFriendState("Ты подписан")
+        }
+
     }
 
 
     return (
         <Wrapper>
             {!isMe
-                ? <ButtonStyle onClick={() => addUser()}>
-                    {!meInFriendList && !meInSubscriberList ? "Познакомится" : checkFriendStatus}
+                ? <ButtonStyle onClick={() => changeFriendState()}>
+                    {friendState}
                 </ButtonStyle>
                 : <Link href="/user/edit">
                     <a>

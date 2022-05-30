@@ -81,7 +81,7 @@ const Wrapper = styled.div`
 
   .name {
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 20px;
   }
 
