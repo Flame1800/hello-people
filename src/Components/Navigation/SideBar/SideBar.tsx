@@ -60,8 +60,8 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   .nav-links {
-    border-radius: 40px;
-    padding: 15px 35px;
+    border-radius: 32px;
+    padding: 32px 48px;
     flex-direction: column;
     background: #fff;
     height: inherit;
@@ -84,21 +84,20 @@ export const NavLinkStyle = styled.a`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 15px 30px;
-  margin-bottom: 10px;
-  font-weight: 400;
-  font-size: 16px;
+  padding: 16px 24px;
+  font-weight: 700;
+  font-size: 14px;
   background: ${({active}) => active ? '#FFE2DC' : 'none'};
-  border-radius: 25px;
+  border-radius: 16px;
   cursor: pointer;
 
   &:hover {
-    background: ${({active}) => active ? '#FFE2DC' : '#f1f1f1'};
+    background: ${({active}) => active ? '#FFE2DC' : '#FAFAFA'};
   }
 
   svg {
     fill: ${({active}) => active ? theme.color.orange : '#000'} !important;
-    margin-right: 10px;
+    margin-right: 24px;
     width: 24px;
     height: 24px;
   }
