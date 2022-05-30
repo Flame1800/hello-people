@@ -21,8 +21,8 @@ const UserAvatar: React.FC<IconProps> = (props) => {
 
 const Wrapper = styled.div`
   background: #fff;
-  width: 46px;
-  height: 46px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -30,8 +30,8 @@ const Wrapper = styled.div`
 `
 
 const ImageStyle = styled.img`
-  width: 46px;
-  height: 46px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   overflow: hidden;
   object-fit: contain;

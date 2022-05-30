@@ -13,7 +13,7 @@ const Search = () => {
         <Wrapper>
             {/* Тут будет ModeSwitcher */}
             <input
-                placeholder="Поиск"
+                placeholder="Поиск..."
                 type="text"
                 className="search"
                 value={getSearchText()}
@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   max-width: 380px;
   display: flex;
   margin-top: 10px;
+  align-items: center;
 
   @media (max-width: 1420px) {
     .viewType {
@@ -35,19 +36,29 @@ const Wrapper = styled.div`
     }
   }
 
+  & img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
   .search {
-    background: ${theme.color.lightGray};
+    background: #FFF;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 16px;
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 25px;
     color: #000000;
-    padding: 9px 20px;
-    margin-right: 5px;
-    border: none;
+    padding: 12px 24px;
+    margin-right: 12px;
+    border: 0.1px solid #f1f1f1;
     outline: none;
+
+    &::placeholder {
+      font-size: 14px;
+    }
   }
 `
 

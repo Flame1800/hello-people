@@ -8,6 +8,7 @@ import MessageFeed from './components/MessageFeed';
 import dialogFeedStore from './stores/dialogFeedStore';
 import { ChatWrapper } from './ChatStyle';
 import Tab from './components/common/Tab';
+import ComponentName from './components/Header/ComponentName';
 import Search from './components/Header/Search';
 import { CategoryType } from './models/CategoryType';
 import { DialogProps } from './components/DialogFeed/Dialog/Dialog';
@@ -49,9 +50,9 @@ const Chat: React.FC<ChatProps> = (props) => {
         );
     };
 
-
     return (
         <ChatWrapper>
+            <ComponentName/>
             <Search/>
             <div className="tabs">
                 {createTab('chat', 'Чаты')}
