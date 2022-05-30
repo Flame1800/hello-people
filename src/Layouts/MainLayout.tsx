@@ -62,8 +62,8 @@ const Wrapper = styled.div`
 
 
     @media (min-width: 1424px) {
-      margin-left: 15px;
-      margin-right: 15px;
+      margin-left: 16px;
+      margin-right: 16px;
       border-radius: 40px;
       overflow-y: hidden;
     }
