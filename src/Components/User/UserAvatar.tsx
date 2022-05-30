@@ -31,8 +31,8 @@ const UserAvatar: React.FC<IconProps> = ({url, size = 'sm'}) => {
 
 const Wrapper = styled.div`
   background: #fff;
-  width: 46px;
-  height: 46px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   justify-content: center;

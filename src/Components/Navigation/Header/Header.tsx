@@ -27,7 +27,7 @@ const Wrapper = styled.div`
     display: none;
     justify-content: space-between;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 64px;
     margin-left: auto;
     margin-right: auto;
 

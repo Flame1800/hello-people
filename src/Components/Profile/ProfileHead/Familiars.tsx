@@ -59,9 +59,13 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
 
+    & img {
+      margin-right: 8px;
+    }
+
     .caption {
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       color: #373737;
       white-space: nowrap;
     }
