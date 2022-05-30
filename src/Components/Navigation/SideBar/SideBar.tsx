@@ -7,7 +7,7 @@ import PlaceButton from "../NavButtonsSvg/PlaceButton";
 import {useRouter} from "next/router";
 import MeetsButton from "../NavButtonsSvg/MeetsButton";
 import ProfileButtonChanger from "../NavButtonsSvg/ProfileButtonChanger";
-import AddButton from "../AddButton";
+import AddButton from "../Header/AddButton";
 import UiStateStore from "../../../Stores/UiStateStore";
 import {observer} from "mobx-react-lite";
 import ProfileButton from "./ProfileLink";
@@ -19,7 +19,6 @@ const SideBar = () => {
     return (
         <>
             <Wrapper>
-                <AddButton/>
                 <div className='nav-links'>
                     <ProfileButton/>
                     <Link href='/events'>

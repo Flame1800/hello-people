@@ -2,11 +2,14 @@ import React from 'react';
 import styled from "styled-components";
 import Link from "next/link";
 import UserAvatar from '../../User/UserAvatar';
+import AddButton from './AddButton';
 
 const UserUX = () => {
     return (
         <Wrapper>
-            <UserAvatar />
+            <AddButton/>
+            <UserAvatar/>
+
         </Wrapper>
     );
 };
