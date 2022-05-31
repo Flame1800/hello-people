@@ -2,15 +2,16 @@ import styled from "styled-components";
 
 export const DialogWrapper = styled.div`
   width: 100%;
-  height: 55px;
-  margin-bottom: 20px;
+  height: 64px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  align-items: center;
+  padding: 10px;
   cursor: pointer;
 
   &:hover {
-    background: #f6f6f6;
+    background: #FAFAFA;
     border-radius: 10px;
   }
 
@@ -30,13 +31,13 @@ export const DialogWrapper = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 25px;
       }
 
       .date {
-        font-weight: 400;
-        font-size: 13px;
+        font-weight: 300;
+        font-size: 12px;
         line-height: 14px;
         color: #B2B2B2;
       }
@@ -60,9 +61,9 @@ export const DialogWrapper = styled.div`
       .notification {
         background: #FC5130;
         padding: 2px 6px;
-        border-radius: 9px;
-        font-weight: 800;
-        font-size: 12px;
+        border-radius: 32px;
+        font-weight: 700;
+        font-size: 10px;
         line-height: 14px;
         color: #FFFFFF;
         height: 18px;

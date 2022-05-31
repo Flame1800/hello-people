@@ -88,7 +88,7 @@ const Wrapper = styled.div`
     font-size: 16px;
     cursor: pointer;
     margin: 10px 0;
-    border-radius: 30px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
 

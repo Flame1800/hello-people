@@ -50,9 +50,9 @@ const InfoListServices: React.FC<PropTypes> = ({date, address, link, phone, link
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-top: 35px;
+  flex-direction: row;
   margin-bottom: 10px;
+  justify-content: space-around;
 
   a {
     font-weight: 600;

@@ -24,41 +24,43 @@ export const ButtonStyle = styled.button`
 `
 
 export const InputStyle = styled.input`
-  background: #fafafa;
+  background: #fff;
   max-width: 350px;
-  border-radius: 10px;
+  border-radius: 16px;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 25px;
-  padding: 13px 20px;
+  padding: 12px 24px;
   width: 100%;
   outline: none;
   margin-bottom: 20px;
-  border: 2px solid #9b9b9b;
+  border: 0.1px solid #f1f1f1;
 
   &::placeholder {
     color: #9b9b9b;
     font-weight: 500;
+    font-size: 14px;
   }
 `
 
 export const TextareaStyle = styled.textarea`
-  background: #fafafa;
-  border-radius: 10px;
+  background: #fff;
+  border-radius: 16px;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 25px;
-  padding: 13px 20px;
+  padding: 12px 24px;
   outline: none;
   width: 100%;
   max-width: 350px;
   resize: vertical;
-  border: 2px solid #9b9b9b;
+  border: 0.1px solid #f1f1f1;
   margin-bottom: 20px;
 
   &::placeholder {
-    color: #949494;
+    color: #9b9b9b;
     font-weight: 500;
+    font-size: 14px;
   }
 `
 

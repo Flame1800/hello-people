@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import BackButton from "../../src/Components/Common/BackButton";
+import Name from '../../src/Components/Common/Services/Name';
 import PageCarousel from "../../src/Components/Common/Services/PageCarousel";
 import PageContent from "../../src/Components/Place/PageContent";
 import API from "../../src/Libs/API";
@@ -17,6 +18,7 @@ const PlacePage: NextPage<Props> = ({place}) => {
         <Wrapper>
             <div className="head">
                 <BackButton/>
+                <Name place={attributes}/>
             </div>
             <PageCarousel pictures={attributes.pictures}/>
             <PageContent place={attributes}/>
@@ -25,7 +27,8 @@ const PlacePage: NextPage<Props> = ({place}) => {
 };
 
 const Wrapper = styled.div`
-  padding-top: 60px;
+
+  padding: 60px;
   background: #fff;
   min-height: 100vh;
   box-shadow: 0 0 17px rgba(0, 0, 0, 0.1);
@@ -39,7 +42,10 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     padding: 0 20px;
-    margin-bottom: 20px;
+
+    &.Name {
+      justify-content: center;
+    }
 
     .head-title {
       font-style: normal;

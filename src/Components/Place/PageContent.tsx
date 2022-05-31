@@ -14,8 +14,8 @@ type Props = {
 const PageContent: React.FC<Props> = ({place}) => {
     return (
         <Wrapper>
-            <div className="place-title">{place.title}</div>
-            <div className="place-category">нету категории</div>
+            {/*<div className="place-title">{place.title}</div>
+            <div className="place-category">Нет категории</div>*/}
             <InfoListServices
                 address={place.location}
                 link={place.site}
@@ -48,10 +48,8 @@ const Wrapper = styled.div`
   .place-category {
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 97.9%;
-    color: #949494;
-    margin-bottom: 30px;
+    font-size: 20px;
+    color: #676767;
   }
 
   @media (min-width: 768px) {

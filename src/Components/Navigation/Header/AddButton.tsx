@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {theme} from "../../../styles/theme";
+import {theme} from "../../../../styles/theme";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from "next/link";
@@ -19,8 +19,7 @@ const AddButton = () => {
         <Wrapper>
             <div className='btn' onClick={handleClick}>
                 <img src="/img/add-icon.svg" alt="add"/>
-                Добавить
-                <img className='dropdown' src="/img/caret-down.svg" alt="down"/>
+                {/*<img className='dropdown' src="/img/caret-down.svg" alt="down"/>*/}
             </div>
             <Menu
                 id="demo-positioned-menu"
@@ -52,14 +51,10 @@ const AddButton = () => {
 };
 
 const Wrapper = styled.div`
-  width: 90%;
-  height: 50px;
-  margin-bottom: 10px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 32px;
   background: #fff;
   box-sizing: border-box;
-  border-radius: 40px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -71,23 +66,16 @@ const Wrapper = styled.div`
   padding: 3px 0;
   border: 2px solid #fff;
 
-  &:hover {
-    border: 2px solid ${theme.color.orange};
-  }
-
   .btn {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-left: 10px;
-    padding-left: 15px;
     position: relative;
     font-weight: 700;
 
     img {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
+      width: 16px;
+      height: 16px;
     }
   }
 

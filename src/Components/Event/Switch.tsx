@@ -29,9 +29,10 @@ const Switch = () => {
 const Wrapper = styled.div`
   background: #fff;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 45px;
+  border-radius: 64px;
   display: flex;
   justify-content: space-around;
+  padding: 24px 4px;
   align-items: center;
   font-weight: 500;
   font-size: 15px;
@@ -51,7 +52,8 @@ const Button = styled.div`
           "#484747" : 'none'};
   color: ${(props: PropsButton) => props.active ? `#fff` : '#626262'};
   border: 6px solid #fff;
-  border-radius: 65px;
+  border-radius: 64px;
+  padding: 16px 8px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 
   @media (min-width: 726px) {
     height: 300px;
-    margin-top: 80px;
+    margin-top: 24px;
     margin-bottom: 30px;
   }
 
@@ -78,6 +78,8 @@ const Wrapper = styled.div`
   }
 
   .image {
+    max-width: 256px;
+    max-height: 256px;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -97,8 +99,6 @@ const CarouselStyle = styled.div`
     align-items: center;
     width: 100%;
   }
-
-
 `
 
 export default PageCarousel;

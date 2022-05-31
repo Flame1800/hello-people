@@ -5,7 +5,7 @@ export const ChatWrapper = styled.div`
   background: #FFF;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 48px 24px;
 
   @media (max-width: 1424px) {
     height: 100vh;
@@ -13,12 +13,12 @@ export const ChatWrapper = styled.div`
 
   .tabs {
     display: flex;
-    margin-top: 15px;
+    justify-content: space-between;
+    margin-top: 24px;
     margin-bottom: 24px;
   }
 
   .dialogs {
     width: 100%;
   }
-
 `

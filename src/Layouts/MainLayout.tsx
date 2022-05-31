@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import NavBarMobile from "../Components/Navigation/NavBarMobile/NavBarMobile";
 import styled from "styled-components";
 import SideBar from "../Components/Navigation/SideBar/SideBar";
-import Logo from "../Components/Navigation/Logo";
+import Header from "../Components/Navigation/Header/Header";
 import Chat from "../modules/chat/Chat";
 import {AuthTitle} from "../Components/Auth/AuthStyles";
 import Login from "../Components/Auth/Login";
@@ -16,7 +16,9 @@ type Layout = {
 const MainLayout: React.FC<Layout> = ({children}) => {
     return (
         <Wrapper>
-            <Logo/>
+          <div className="container">
+            <Header/>
+          </div>
             <NavBarMobile/>
             <div className="container">
                 <SideBar/>
@@ -60,8 +62,8 @@ const Wrapper = styled.div`
 
 
     @media (min-width: 1424px) {
-      margin-left: 15px;
-      margin-right: 15px;
+      margin-left: 16px;
+      margin-right: 16px;
       border-radius: 40px;
       overflow-y: hidden;
     }
@@ -77,7 +79,6 @@ const Wrapper = styled.div`
     border-radius: 40px;
     overflow-y: hidden;
     display: none;
-    padding: 5px;
 
     @media (min-width: 1424px) {
       display: block;
