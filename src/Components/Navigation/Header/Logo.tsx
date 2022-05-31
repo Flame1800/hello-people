@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   align-items: center;
   display: none;
   position: relative;
+  width: 130px;
 
   @media (min-width: 1424px) {
     display: flex;

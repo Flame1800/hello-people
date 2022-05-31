@@ -41,7 +41,7 @@ const CatalogCardsEvents: React.FC<Props> = ({events}) => {
 const Wrapper = styled.div`
   padding: 0 20px;
   max-width: 900px;
-  margin: 25px auto;
+  margin: 5px auto;
 
   .meta {
     display: flex;

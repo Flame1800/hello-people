@@ -106,7 +106,7 @@ export const NavLinkStyle = styled.a`
 export const AvatarWrapper = styled(NavLinkStyle)`
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 3px 1px #0000001f;
+  box-shadow: 0 0 6px 1px #0000001f;
   width: 100%;
   padding: 10px 20px;
   margin-bottom: 20px;

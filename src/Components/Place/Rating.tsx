@@ -14,7 +14,7 @@ const StyledRating = withStyles({
         color: theme.color.orange
     },
     iconHover: {
-        color: theme.color.lightGray
+        color: theme.color.orange
     }
 })(Rating)
 

@@ -53,7 +53,6 @@ const AddButton = () => {
 const Wrapper = styled.div`
   margin-left: auto;
   margin-right: 32px;
-  background: #fff;
   box-sizing: border-box;
   font-style: normal;
   font-weight: 400;
@@ -64,7 +63,6 @@ const Wrapper = styled.div`
   cursor: pointer;
   transition: 0.2s;
   padding: 3px 0;
-  border: 2px solid #fff;
 
   .btn {
     display: flex;
