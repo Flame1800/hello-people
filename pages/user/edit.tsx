@@ -66,11 +66,12 @@ const EditProfile: NextPage<Props> = ({user}) => {
 
     return (
         <Wrapper>
+        <div className='content'>
             <div className="title">Редактировать профиль</div>
             <div className='form'>
                 <UserAvatar url={user.avatar} size='lg'/>
                 <label htmlFor="avatar" className="input__file-button">
-                    <div className='btn-upload' type='submit'>изменить аватар</div>
+                    <div className='btn-upload' type='submit'>Изменить аватар</div>
                 </label>
                 <input
                     placeholder='Аватар'
@@ -112,33 +113,41 @@ const EditProfile: NextPage<Props> = ({user}) => {
                     rows={5}
                     value={formik.values.description}
                     onChange={formik.handleChange}
-                    placeholder='О себе'/>
-                <ButtonStyle type='submit'>Сохранить</ButtonStyle>
+                    placeholder='О себе'
+                />
+                    <div className='btn-save' type='submit'>Сохранить</div>
+                {/* <ButtonStyle type='submit'>Сохранить</ButtonStyle> */}
             </form>
             <div className="logout" onClick={() => logout()}>
                 <img width={24} height={24} src="/img/logout.svg" alt="logout"/>
                 <p>Выйти из аккаунта</p>
             </div>
+        </div>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 40px;
+  padding: 0 20px;
+
+  .content {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+      border-radius: 40px;
+      background: #fff;
+      width: 100%;
+  }
 
   .avatar-input {
     visibility: hidden;
-  }
-
-  @media (min-width: 600px) {
-    background: #fff;
-    padding-top: 50px;
-    padding-bottom: 30px;
-    margin-bottom: 0;
   }
 
   .form {
@@ -154,21 +163,42 @@ const Wrapper = styled.div`
   .title {
     margin: 10px 0;
     font-size: 24px;
+    font-weight: 700;
   }
 
   .btn-upload {
     color: ${theme.color.orange};
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 20px;
     font-weight: 500;
     background: #ffeded;
     border-radius: 10px;
-    padding: 5px 20px;
+    padding: 8px 24px;
     border: none;
     cursor: pointer;
 
     &:hover {
       background: #ffe0e0;
+    }
+  }
+
+  .btn-save {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 350px;
+    color: #000;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: 500;
+    background: #fff;
+    border: 0.1px solid #f1f1f1;
+    border-radius: 8px;
+    padding: 12px 24px;
+    cursor: pointer;
+
+    &:hover {
+      background: #FAFAFA;
     }
   }
 
