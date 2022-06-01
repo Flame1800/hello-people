@@ -64,7 +64,6 @@ const Wrapper = styled.div`
     padding: 32px 48px;
     flex-direction: column;
     background: #fff;
-    height: inherit;
     display: flex;
     justify-content: center;
 
