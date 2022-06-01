@@ -6,6 +6,8 @@ import {observer} from "mobx-react-lite";
 import Link from "next/link";
 import UserAvatar from "../../../src/Components/User/UserAvatar";
 import UserList from '../../../src/Components/Peoples/UserList/UserList'
+import Search from './Search';
+import Familiars from '../../../src/Components/Profile/ProfileHead/Familiars';
 import {useRouter} from "next/router";
 import UserStore from "../../../src/Stores/UserStore";
 
@@ -18,6 +20,8 @@ const Users: NextPage<Props> = ({users}) => {
     const [peoples, setPeoples] = React.useState(users)
     const [user, setUser] = React.useState(UserStore.user)
     const router = useRouter()
+
+    
 
     React.useEffect(() => {
         if (user && router.query.category === 'friends') {
@@ -50,12 +54,14 @@ const Users: NextPage<Props> = ({users}) => {
         <Wrapper>
             <div className="users">
                 <UserList/>
+                <Search/>
                 {peoples.map((user: any) => {
                     return (
                         <Link href={`/user/${user.id}`}>
                             <a className='user'>
                                 <UserAvatar url={user.avatar}/>
                                 <div className="username">{user.username}</div>
+                                
                             </a>
                         </Link>
                     )
@@ -66,7 +72,6 @@ const Users: NextPage<Props> = ({users}) => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 20px;
   min-height: 100vh;
   padding: 40px 20px;
   background: #fff;
@@ -84,7 +89,7 @@ const Wrapper = styled.div`
   }
 
   .user {
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     cursor: pointer;
     margin: 10px 0;
