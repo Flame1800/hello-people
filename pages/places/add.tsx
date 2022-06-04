@@ -7,7 +7,7 @@ const AddEvent = () => {
     return (
         <Wrapper>
             <div className="banner">
-                <img src="/img/Map-location.svg" alt="календарь"/>
+                <img src="/img/Map-location.svg" alt="место"/>
                 <div className="title">Добавить место</div>
                 <div className="sub-title">
                     Напишите интересное описание и доавьте фотографии или обложку.
@@ -18,15 +18,15 @@ const AddEvent = () => {
                 <InputStyle type='tel' placeholder='Номер телефона*' onInput={() => console.log('input')}/>
                 <InputStyle type='tel' placeholder='Веб-сайт или паблик' onInput={() => console.log('input')}/>
                 <Label>
-                    Напишите где находится ваше место и детально опишите его
+                    Ниже напишите где находится ваше место и опишите его.
                 </Label>
                 <TextareaStyle rows={5} placeholder='Описание'/>
                 <div className="input-title">Фото</div>
                 <Label>
-                    Фотографии должны быть качественными, анкета будет проверятся модераторами
+                    Фотографии должны быть качественными. Анкета будет проверятся модераторами.
                 </Label>
+                <ButtonStyle>Отправить анкету</ButtonStyle>
             </div>
-            <ButtonStyle>Отправить анкету</ButtonStyle>
         </Wrapper>
     );
 };

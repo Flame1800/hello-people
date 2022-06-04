@@ -7,7 +7,7 @@ type UserProps = {
     size?: string
 };
 
-const UserBadge: React.FC<UserProps> = ({user, size = 'md'}) => {
+const UserBadge: React.FC<UserProps> = ({user, size = 'sm'}) => {
 
     const badge = (
         <div className="caption">

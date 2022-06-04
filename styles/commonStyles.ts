@@ -3,7 +3,7 @@ import {theme} from "./theme";
 
 
 export const ButtonStyle = styled.button`
-  height: 35px;
+  height: 40px;
   border-radius: 10px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
   border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
@@ -25,7 +25,7 @@ export const ButtonStyle = styled.button`
 
   @media (min-width: 426px) {
     padding: 10px 20px;
-    font-size: 17px;
+    font-size: 16px;
     border-radius: 10px;
   }
 `
@@ -60,7 +60,7 @@ export const TextareaStyle = styled.textarea`
   outline: none;
   width: 100%;
   max-width: 350px;
-  resize: vertical;
+  resize: none;
   border: 0.1px solid #f1f1f1;
   margin-bottom: 20px;
 

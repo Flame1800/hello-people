@@ -9,7 +9,7 @@ const AddEvent = () => {
                 <img src="/img/calendar.svg" alt="календарь"/>
                 <div className="title">Добавить мероприятие</div>
                 <div className="sub-title">
-                    Напишите интересное описание и доавьте фотографии или обложку.
+                    Напишите интересное описание и добавьте фотографии или обложку.
                 </div>
             </div>
             <div className="form">
@@ -18,15 +18,15 @@ const AddEvent = () => {
                 <InputStyle type='tel' placeholder='Номер телефона*' onInput={() => console.log('input')}/>
                 <InputStyle type='tel' placeholder='Веб-сайт или паблик' onInput={() => console.log('input')}/>
                 <Label>
-                    Напишите где будет проходить ваше мероприятие, и что на нем будет происходить
+                    Ниже напишите где будет проходить ваше мероприятие и что на нем будет.
                 </Label>
                 <TextareaStyle rows={5} placeholder='Описание'/>
                 <div className="input-title">Фото</div>
                 <Label>
-                    Фотографии должны быть качественными, анкета будет проверятся модераторами
+                    Фотографии должны быть качественными. Анкета будет проверяться модераторами.
                 </Label>
+                <ButtonStyle>Отправить анкету</ButtonStyle>
             </div>
-            <ButtonStyle>Отправить анкету</ButtonStyle>
         </Wrapper>
     );
 };
