@@ -10,7 +10,7 @@ type PropTypes = {
     link2gis?: string
 }
 
-const InfoListServices: React.FC<PropTypes> = ({date, address, link, phone, link2gis}) => {
+const InfoListServices: React.FC<PropTypes> = ({date, address, link, phone}) => {
     return (
         <Wrapper>
             {date
@@ -37,22 +37,12 @@ const InfoListServices: React.FC<PropTypes> = ({date, address, link, phone, link
                 <img src="/img/globe.svg" alt="ссылка"/>
                 <div className="caption">Перейти на сайт</div>
             </a>}
-            {link2gis
-            &&
-            <a href={link2gis} target="_blank" className="item two-gis-wrap">
-                <div className="caption">Найти в</div>
-                <img src="/img/2GIS_logo.svg" className='two-gis' alt="ссылка"/>
-            </a>}
-
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-  justify-content: space-around;
+  margin: 50px 0;
 
   a {
     font-weight: 600;
@@ -62,31 +52,12 @@ const Wrapper = styled.div`
   .item {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     img {
       width: 24px;
       height: 24px;
       margin-right: 7px;
-    }
-  }
-
-
-  .two-gis-wrap {
-    margin-top: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 2px solid rgb(120, 185, 62);
-    width: max-content;
-    cursor: pointer;
-    color: #000;
-
-    .two-gis {
-      width: 54px !important;
-      height: 30px;
-      margin-left: 6px;
-
-
     }
   }
 `

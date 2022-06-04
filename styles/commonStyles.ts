@@ -4,7 +4,6 @@ import {theme} from "./theme";
 
 export const ButtonStyle = styled.button`
   height: 35px;
-  width: fit-content;
   border-radius: 10px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
   border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
@@ -15,6 +14,14 @@ export const ButtonStyle = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  width: 100%;
+  margin: 0 5px;
+
+  &:hover {
+    background: ${({outline}) => outline ? '#ffe6e0' : '#f33004'};
+    border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
+    color: ${({outline}) => !outline ? '#FFFFFF' : theme.color.orange};
+  }
 
   @media (min-width: 426px) {
     padding: 10px 20px;
