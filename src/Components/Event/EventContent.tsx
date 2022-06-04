@@ -15,7 +15,7 @@ const EventContent: React.FC<Props> = ({event}) => {
     return (
         <Wrapper>
             <div className="buttons">
-                <ButtonStyle onClick={() => console.log('go event')}>Присоеденится</ButtonStyle>
+                <ButtonStyle onClick={() => console.log('go event')}>Присоединится</ButtonStyle>
                 <ButtonStyle outline onClick={() => console.log('go event')}>Перейти в чат</ButtonStyle>
             </div>
             <InfoListServices

@@ -4,8 +4,8 @@ export const MessageFeedHeaderStyle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
-  border-bottom: 1px solid #D9D9D9;
+  padding: 12px 24px;
+  border-bottom: 1px solid #f6f6f6;
 
   @media (min-width: 1420px) {
     padding-top: 15px;
@@ -16,8 +16,12 @@ export const MessageFeedHeaderStyle = styled.div`
     align-items: center;
 
     .btn-back {
-      margin-right: 30px;
+      margin-right: 16px;
+      width: 32px;
+      height: 32px; 
+      align-items: center;
       cursor: pointer;
+      fill: #D9D9D9;
     }
 
     .companion {
@@ -25,7 +29,7 @@ export const MessageFeedHeaderStyle = styled.div`
 
       .name {
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 25px;
         white-space: nowrap;
         overflow: hidden;
@@ -36,11 +40,15 @@ export const MessageFeedHeaderStyle = styled.div`
 
       .status {
         font-weight: 400;
-        font-size: 14px;
+        font-size: 13px;
         line-height: 19px;
         color: #949494;
       }
     }
-
   }
+  .btn-info {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
 `
