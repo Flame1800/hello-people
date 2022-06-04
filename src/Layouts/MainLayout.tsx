@@ -32,7 +32,8 @@ const MainLayout: React.FC<Layout> = ({children}) => {
 };
 
 const Wrapper = styled.div`
-  background: url("/img/background.png") fixed;
+  background: url("/img/background.png") fixed no-repeat;
+  background-size: cover;
   min-height: 100vh;
 
   @media (max-width: 600px) {

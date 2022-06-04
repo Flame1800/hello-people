@@ -3,51 +3,52 @@ import styled from "styled-components";
 import Like from "../../Common/Like";
 import PinnedPlace from "../PinnedPlace";
 import Comment from "../../Common/Comment";
-import Link from "next/link";
 import NameService from "../../Common/Services/NameService";
 import API from "../../../Libs/API";
-import {DateTime} from "luxon";
-import EventContent from "../EventContent";
 import {theme} from "../../../../styles/theme";
 import makeBeautyDate from "../../../Libs/makeBeautyDate";
+import Link from 'next/link'
 
 const EventCard = ({event}) => {
 
-    const [tab, setTab] = React.useState(false)
     const {attributes} = event
 
     return (
         <Wrapper id={event.id}>
             <div className="card">
                 <div className="event">
-                    {attributes.cover.data
-                        ? <img className="gallery" src={API.url + attributes.cover.data.attributes.url} alt="обложка"/>
-                        : <img className='gallery' src='/img/mock-avatar.svg' alt='моковая обложка'/>}
-                    <div className="info">
-                        <div onClick={() => setTab(!tab)} className="name-wrap">
-                            <NameService name={attributes.abbTitle} category='Вечеринки'/>
-                        </div>
-                        <div className="event-meta">
-                            <div>
-                                <div className="date">{makeBeautyDate(attributes.dateStart)}</div>
-                                <div className="address">
-                                    {attributes.place.data ? attributes.place.data.attributes.location : 'не найдено'}
+                    <Link href={`/events/${event.id}`}>
+                        <a>
+                            {attributes.cover.data
+                                ? <img className="gallery" src={API.url + attributes.cover.data.attributes.url}
+                                       alt="обложка"/>
+                                : <img className='gallery' src='/img/mock-avatar.svg' alt='моковая обложка'/>}
+                        </a>
+                    </Link>
+                    <Link href={`/events/${event.id}`}>
+                        <a>
+                            <div className="info">
+                                <div className="name-wrap">
+                                    <NameService name={attributes.abbTitle} category='Вечеринки'/>
+                                </div>
+                                <div className="event-meta">
+                                    <div>
+                                        <div className="date">{makeBeautyDate(attributes.dateStart)}</div>
+                                        <div className="address">
+                                            {attributes.place.data ? attributes.place.data.attributes.location : 'не найдено'}
+                                        </div>
+                                    </div>
+                                    <div className="user-meta">
+                                        <Like value={0} onClick={() => console.log("event like")} active={false}/>
+                                        <Comment value={0} onClick={() => console.log("event comment")}/>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="user-meta">
-                                <Like value={0} onClick={() => console.log("event like")} active={false}/>
-                                <Comment value={0} onClick={() => console.log("event comment")}/>
-                            </div>
-                        </div>
-                    </div>
+                        </a>
+                    </Link>
                 </div>
                 {attributes.place.data && <PinnedPlace place={attributes.place.data}/>}
             </div>
-            {tab && <EventContent event={attributes}/>}
-            {tab &&
-            <a className="close" onClick={() => setTab(!tab)}>
-                <img src="/img/up.svg" alt="up"/>
-            </a>}
         </Wrapper>
     );
 };
@@ -56,7 +57,6 @@ const Wrapper = styled.div`
   max-width: 860px;
   align-items: center;
   background: #FFFFFF;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 30px;
@@ -78,6 +78,7 @@ const Wrapper = styled.div`
     border-radius: 15px;
     margin-bottom: 15px;
     object-fit: cover;
+    cursor: pointer;
 
     img, div {
       border-radius: 15px;
