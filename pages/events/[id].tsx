@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
-import BackButton from "../../src/Components/Common/BackButton";
 import EventContent from "../../src/Components/Event/EventContent";
 import API from "../../src/Libs/API";
 import {NextPage} from "next";
 import EventCard from "../../src/Components/Event/Card/EventCard";
-import {Comment} from "postcss";
 import CommentsBlock from "../../src/Components/Comments/CommnetsBlock";
 
 type EventProps = {
@@ -13,14 +11,13 @@ type EventProps = {
 }
 
 const EventPage: NextPage<EventProps> = ({event}) => {
-    console.log(event)
     return (
         <Wrapper>
             <div className="card">
                 <EventCard event={event}/>
             </div>
             <EventContent event={event.attributes}/>
-            {/*<CommentsBlock/>*/}
+            <CommentsBlock id={event.id} model={'party'}/>
         </Wrapper>
     );
 };

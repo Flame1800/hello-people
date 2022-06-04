@@ -6,6 +6,7 @@ import PageCarousel from "../../src/Components/Common/Services/PageCarousel";
 import PlaceContent from "../../src/Components/Place/PlaceContent";
 import API from "../../src/Libs/API";
 import {NextPage} from "next";
+import CommentsBlock from "../../src/Components/Comments/CommnetsBlock";
 
 interface Props {
     place: any
@@ -22,6 +23,7 @@ const PlacePage: NextPage<Props> = ({place}) => {
             </div>
             <PageCarousel pictures={attributes.pictures}/>
             <PlaceContent place={attributes}/>
+            <CommentsBlock id={place.id} model={'place'}/>
         </Wrapper>
     );
 };

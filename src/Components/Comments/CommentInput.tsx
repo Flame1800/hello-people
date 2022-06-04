@@ -2,14 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import UserStore from "../../Stores/UserStore";
 import {theme} from "../../../styles/theme";
+import CommentsStore from "../../Stores/CommentsStore";
+import {observer} from "mobx-react-lite";
 
 
 const CommentInput = ({reset, isResponse, replyId}) => {
     const [textValue, setTextValue] = React.useState('')
 
+    const {model, idEntity, addComment} = CommentsStore
     const {user} = UserStore
 
-    const SendOnKey = e => {
+    const SendOnKey = (e: any) => {
         if (e.code === 'Enter') {
             sendCommentHandler()
         }
@@ -17,23 +20,21 @@ const CommentInput = ({reset, isResponse, replyId}) => {
 
     const sendCommentHandler = async () => {
         if (user === null) {
-            // регистрировать юзера
+            return null
         }
 
         const comment = {
             content: textValue,
-            rate: 0,
-            user: {connect: {id: user.id}},
-            // [modelName]: {connect: {slug: model.slug}}
+            user: user.id,
+            [model]: [idEntity]
         }
 
-        const commentForApi = isResponse
-            ? {replyToComment: {connect: {id: replyId}}, ...comment}
+        const newComment = isResponse
+            ? {replyToComment: replyId, ...comment}
             : comment
 
-        // const res = await API.sendComment(commentForApi)
+        const res = await addComment({data: newComment})
 
-        // Добавить коммент
         setTextValue('')
 
         if (isResponse) {
@@ -68,6 +69,7 @@ const SendBlock = styled.div`
   border-radius: 10px;
   padding: 5px;
   background: #fff;
+  border: 1px solid #adadad;
 `
 
 const InputStyle = styled.input`
@@ -120,4 +122,4 @@ const CommentEditor = styled.div`
   }
 `
 
-export default CommentInput
+export default observer(CommentInput)

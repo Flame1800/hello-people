@@ -77,6 +77,7 @@ const Wrapper = styled.div`
     border-radius: 32px;
     overflow-y: hidden;
     display: none;
+    box-shadow: 0 0 10px -6px;
 
     @media (min-width: 1424px) {
       display: block;

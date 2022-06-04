@@ -74,7 +74,7 @@ const Wrapper = styled.div`
     background: #fff;
     display: flex;
     justify-content: center;
-
+    box-shadow: 0 0 10px -6px;
   }
 
   .profile {
