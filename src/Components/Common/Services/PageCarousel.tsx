@@ -64,6 +64,7 @@ const Wrapper = styled.div`
   .swiper {
     width: 100%;
     height: 100%;
+    max-width: 840px;
   }
 
   .no-photo {

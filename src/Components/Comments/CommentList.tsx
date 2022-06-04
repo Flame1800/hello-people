@@ -1,27 +1,24 @@
-import CommentCard from 'src/components/Comment/CommentCard/CommentCard'
 import styled from 'styled-components'
 import _ from 'lodash'
 import React from 'react'
+import CommentCard from "./CommentCard";
+import {observer} from "mobx-react-lite";
+import {toJS} from "mobx";
 
-const CommentList = ({comments, isResponse}) => {
-    const [show, setShow] = React.useState(true)
 
-    const clearComments = isResponse
-        ? _.reverse(comments)
-        : _.reverse(comments.filter(comment => !comment.replyToId))
+type PropTypes = {
+    comments: any
+}
 
-    if (!show) {
-        return <OpenBtn onClick={() => setShow(true)}>Открыть ветку</OpenBtn>
-    }
+
+const CommentList: React.FC<PropTypes> = ({comments}) => {
+    const clearComments = _.reverse(comments.filter(comment => !comment.attributes.replyToComment?.data))
 
     return (
-        <Wrapper isResponse={isResponse}>
-            {isResponse && <Branch onClick={() => setShow(false)}/>}
-            <div>
-                {clearComments.map(comment => (
-                    <CommentCard key={comment.id} comment={comment}/>
-                ))}
-            </div>
+        <Wrapper>
+            {clearComments.map((comment: any) => (
+                <CommentCard key={comment.id} comment={comment}/>
+            ))}
         </Wrapper>
     )
 }
@@ -31,29 +28,5 @@ const Wrapper = styled.div`
   position: relative;
 `
 
-const Branch = styled.div`
-  width: 6px;
-  border-left: 2px solid #c8c8c8;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -1px;
 
-  &:hover {
-    border-left: 2px solid #2196f3;
-    background: #ffffff;
-    width: 4px;
-    margin-right: 7px;
-  }
-`
-
-const OpenBtn = styled.div`
-  margin-left: 50px;
-  margin-bottom: 20px;
-  color: #17609a;
-  cursor: pointer;
-  font-size: 14px;
-`
-
-export default CommentList
+export default observer(CommentList)

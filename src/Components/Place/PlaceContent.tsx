@@ -41,6 +41,7 @@ const Wrapper = styled.div`
   position: relative;
   z-index: 2;
   width: 100%;
+  max-width: 840px;
   border-radius: 15px;
   padding: 20px;
   margin-left: auto;

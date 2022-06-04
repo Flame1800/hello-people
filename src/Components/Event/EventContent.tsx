@@ -52,7 +52,7 @@ const Wrapper = styled.div`
 
   .inner-container {
     margin: 30px auto;
-    width: 500px;
+    max-width: 500px;
   }
 
   .back {

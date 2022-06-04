@@ -22,7 +22,8 @@ const Wrapper = styled.div`
   z-index: 900;
   width: 100%;
   background: rgba(255, 255, 255, 0.87);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px -6px;
   height: 80px;
   align-items: center;
   display: none;

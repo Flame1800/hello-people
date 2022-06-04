@@ -50,4 +50,35 @@ API.getUserSubscribers = (id) => server(`/users?filter[subsribers][$eq]=`)
 // Other
 API.uploadFile = (data: any) => server.post(`/upload`, data)
 
+// Comments
+
+const queryGetComments = qs.stringify({
+    populate: [
+        'party',
+        'place',
+        'post',
+        'innerComments.user',
+        'innerComments.innerComments.user',
+        'innerComments.innerComments.innerComments.user',
+        'innerComments.innerComments.innerComments.innerComments.user',
+        'replyToComment',
+        'user',
+    ]
+});
+
+API.getComments = (id, model) => server(`/comments?${queryGetComments}&filters[${model}][id][$eq]=${id}&populate=*`)
+
+API.addComment = (data, token) => server.post(`/comments?&populate=*`, data, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
+API.removeComment = (id, token) => server.delete(`/comments/${id}`, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
+
 export default API

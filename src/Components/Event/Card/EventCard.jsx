@@ -60,6 +60,7 @@ const Wrapper = styled.div`
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 30px;
+  box-shadow: 0 0 10px -6px;
 
   .card {
     display: flex;
