@@ -4,42 +4,48 @@ import BackButton from "../../src/Components/Common/BackButton";
 import EventContent from "../../src/Components/Event/EventContent";
 import API from "../../src/Libs/API";
 import {NextPage} from "next";
+import EventCard from "../../src/Components/Event/Card/EventCard";
+import {Comment} from "postcss";
+import CommentsBlock from "../../src/Components/Comments/CommnetsBlock";
 
 type EventProps = {
     event: any
 }
 
 const EventPage: NextPage<EventProps> = ({event}) => {
+    console.log(event)
     return (
         <Wrapper>
-            <div className="head">
-                <BackButton/>
-                <div className="head-title">
-                    Мероприятие
-                </div>
+            <div className="card">
+                <EventCard event={event}/>
             </div>
-            <img src={API.url + event.attributes.cover.data.attributes.url} className='event-cover' alt=""/>
             <EventContent event={event.attributes}/>
+            {/*<CommentsBlock/>*/}
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  padding-top: 50px;
-  background: #fff;
-  min-height: 100vh;
+  min-height: 80vh;
+  padding: 0px;
+
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .event-cover {
-    width: 100%;
-    height: 700px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
     object-fit: cover;
   }
 
   .head {
     display: flex;
     align-items: center;
-    padding: 0 20px;
-    margin-bottom: 20px;
+    padding: 10px;
 
     .head-title {
       font-style: normal;

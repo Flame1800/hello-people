@@ -49,7 +49,7 @@ const Wrapper = styled.div`
     font-size: 18px;
     line-height: 97.9%;
     color: #FC5130;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 0 rgba(105, 105, 105, 0.13);
 
     .num {
       font-style: normal;

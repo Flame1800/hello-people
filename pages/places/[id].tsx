@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BackButton from "../../src/Components/Common/BackButton";
 import Name from '../../src/Components/Common/Services/Name';
 import PageCarousel from "../../src/Components/Common/Services/PageCarousel";
-import PageContent from "../../src/Components/Place/PageContent";
+import PlaceContent from "../../src/Components/Place/PlaceContent";
 import API from "../../src/Libs/API";
 import {NextPage} from "next";
 
@@ -21,13 +21,12 @@ const PlacePage: NextPage<Props> = ({place}) => {
                 <Name place={attributes}/>
             </div>
             <PageCarousel pictures={attributes.pictures}/>
-            <PageContent place={attributes}/>
+            <PlaceContent place={attributes}/>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-
   padding: 60px;
   background: #fff;
   min-height: 100vh;

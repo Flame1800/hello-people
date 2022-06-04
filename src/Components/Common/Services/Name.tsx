@@ -16,13 +16,13 @@ const Name: React.FC<Props> = ({place}) => {
 };
 
 const Wrapper = styled.div`
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
 
-    .place-title {
-    font-size: 36px;
+  .place-title {
+    font-size: 30px;
     font-weight: 700;
     margin-bottom: 4px;
     transition: .2s;
