@@ -1,31 +1,32 @@
 import React from 'react';
 import styled from "styled-components";
 import UserStore from "../../../Stores/UserStore";
+import {observer} from "mobx-react-lite";
+import UiStateStore from "../../../Stores/UiStateStore";
 
-const Familiars = ({user, isMe}) => {
-    const userFriendIds = user.friends.map(({id}) => id)
+const Familiars = ({user}) => {
 
-    const countCommonFriends = () => {
-        if (UserStore.user) {
-            const commonFriends = UserStore?.user?.friends?.filter(({id}) => userFriendIds.indexOf(id) !== -1)
-            return commonFriends?.length || 0
-        }
+    const openUsersList = (title: string) => {
+        UserStore.setUserSubscribers({
+            title,
+            users: title === 'Подписчики' ? user.subscribers : user.friends
+        })
+        UiStateStore.toggleUsersListModal()
     }
-
 
     return (
         <Wrapper>
-
-            <div className='fam'>
-                <div className="main-stat">
-                    <img src="/img/person-icon.svg" alt="Person"/>
-                    <div className="caption">
-                        {user.friends.length} {user.friends.length === 1 ? 'знакомый' : 'знакомых'}
-                    </div>
+            <div className="caption" onClick={() => openUsersList("Подписки")}>
+                <div className="value">
+                    {user.friends.length}
                 </div>
-                {UserStore.user && !isMe && <div className="our-familiars">
-                    &bull; {countCommonFriends()} общих
-                </div>}
+                {user.friends.length === 1 ? 'подписка' : 'подписки'}
+            </div>
+            <div className="subscribers caption" onClick={() => openUsersList("Подписчики")}>
+                <div className="value">
+                    {user.subscribers.length}
+                </div>
+                {user.subscribers.length === 1 ? 'подписан' : 'подписаны'}
             </div>
         </Wrapper>
 
@@ -33,51 +34,39 @@ const Familiars = ({user, isMe}) => {
 };
 
 const Wrapper = styled.div`
-  .friend-msg {
-    margin-top: -15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  .caption {
+    width: 48%;
     font-weight: 500;
-    font-size: 16px;
-    color: #464646;
-    margin-bottom: 20px;
-    margin-left: 5px;
-    border-bottom: 1px solid;
-  }
-
-  .fam {
-    margin-top: 10px;
+    font-size: 14px;
+    color: #373737;
+    white-space: nowrap;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-  }
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px dashed #a2a2a2;
+    padding: 3px 10px;
 
-  img {
-    width: 20px;
-    height: 20px;
+    .value {
+      font-weight: 900;
+    }
   }
 
   .main-stat {
     display: flex;
     align-items: center;
-
-    & img {
-      margin-right: 8px;
-    }
-
-    .caption {
-      font-weight: 700;
-      font-size: 14px;
-      color: #373737;
-      white-space: nowrap;
-    }
   }
 
-  .our-familiars {
-    font-weight: 600;
-    font-size: 15px;
+  .subscribers {
     color: #FF7373;
-    margin-left: 10px;
-    white-space: nowrap;
+    border: 1px dashed #FF7373;
   }
 `
 
-export default Familiars;
+export default observer(Familiars);

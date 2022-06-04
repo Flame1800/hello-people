@@ -35,7 +35,8 @@ const Login: React.FC<Props> = ({setMode, close}) => {
                 maxAge: 30 * 24 * 60 * 60,
                 path: '/',
             })
-            UserStore.setUser(data.user)
+
+            UserStore.setUserByToken(data.jwt)
             close()
 
         } catch (e: any) {

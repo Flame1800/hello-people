@@ -22,28 +22,36 @@ const SideBar = () => {
                 <div className='nav-links'>
                     <ProfileButton/>
                     <Link href='/events'>
-                        <NavLinkStyle active={route.asPath === "/events"}>
-                            <EventButton/>
-                            Афиша
-                        </NavLinkStyle>
+                        <a>
+                            <NavLinkStyle active={route.asPath === "/events"}>
+                                <EventButton/>
+                                Афиша
+                            </NavLinkStyle>
+                        </a>
                     </Link>
                     <Link href='/places'>
-                        <NavLinkStyle active={route.asPath === "/places"}>
-                            <PlaceButton/>
-                            Места
-                        </NavLinkStyle>
+                        <a>
+                            <NavLinkStyle active={route.asPath === "/places"}>
+                                <PlaceButton/>
+                                Места
+                            </NavLinkStyle>
+                        </a>
                     </Link>
                     <Link href='/meets'>
-                        <NavLinkStyle active={route.asPath === "/meets"}>
-                            <MeetsButton/>
-                            Встречи
-                        </NavLinkStyle>
+                        <a>
+                            <NavLinkStyle active={route.asPath === "/meets"}>
+                                <MeetsButton/>
+                                Встречи
+                            </NavLinkStyle>
+                        </a>
                     </Link>
-                    <Link href='/search/peoples'>
-                        <NavLinkStyle active={route.asPath === "/search/peoples"}>
-                            <ProfileButtonIcon/>
-                            Люди
-                        </NavLinkStyle>
+                    <Link href='/search/users'>
+                        <a>
+                            <NavLinkStyle active={route.asPath === "/search/users"}>
+                                <ProfileButtonIcon/>
+                                Люди
+                            </NavLinkStyle>
+                        </a>
                     </Link>
                 </div>
             </Wrapper>
@@ -79,7 +87,7 @@ const Wrapper = styled.div`
 
 `
 
-export const NavLinkStyle = styled.a`
+export const NavLinkStyle = styled.div`
   display: flex;
   align-items: center;
   width: 100%;

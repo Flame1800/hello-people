@@ -15,9 +15,7 @@ const ProfileLink = () => {
     if (!UserStore.user) {
         return (
             <div>
-                <NavLinkStyle
-                    onClick={() => UiStateStore.toggleAuthModal(true)}
-                >
+                <NavLinkStyle onClick={() => UiStateStore.toggleAuthModal(true)}>
                     <ProfileButtonIcon/>
                     Войти
                 </NavLinkStyle>
@@ -27,14 +25,16 @@ const ProfileLink = () => {
 
     return (
         <Link href={`/user/${UserStore.user.id}`}>
-            <AvatarWrapper
-                active={route.asPath === `/user/${UserStore.user.id}`}
-            >
-                <UserAvatar url={UserStore.user.avatar} size='sm'/>
-                <div className="username">
-                    {UserStore.user.username}
-                </div>
-            </AvatarWrapper>
+            <a>
+                <AvatarWrapper
+                    active={route.asPath === `/user/${UserStore.user.id}`}
+                >
+                    <UserAvatar url={UserStore.user.avatar} size='sm'/>
+                    <div className="username">
+                        {UserStore.user.username}
+                    </div>
+                </AvatarWrapper>
+            </a>
         </Link>
     );
 };

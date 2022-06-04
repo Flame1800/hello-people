@@ -5,7 +5,6 @@ import {observer} from "mobx-react-lite";
 import styled from "styled-components";
 import Login from "./Login";
 import Register from "./Register";
-import CloseButton from "../Common/CloseButton";
 
 const Auth = () => {
     const {toggleAuthModal, authModal} = UiStateStore

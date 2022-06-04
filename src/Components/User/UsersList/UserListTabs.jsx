@@ -5,7 +5,7 @@ import UserStore from "../../../Stores/UserStore";
 import Search from '../../../modules/chat/components/Header/Search';
 import {useRouter} from "next/router";
 
-const UserList = () => {
+const UserListTabs = () => {
     const router = useRouter()
 
     const changeCategory = (category) => {
@@ -15,7 +15,7 @@ const UserList = () => {
     return (
         <Wrapper>
             <div
-                className={router.query.category === 'all' || router.asPath === '/search/peoples' ? 'tab tab_active' : 'tab'}
+                className={router.query.category === 'all' || router.asPath === '/search/users' ? 'tab tab_active' : 'tab'}
                 onClick={() => changeCategory('all')}
             >
                 Все люди
@@ -25,14 +25,14 @@ const UserList = () => {
                 className={router.query.category === 'friends' ? 'tab tab_active' : 'tab'}
                 onClick={() => changeCategory('friends')}
             >
-                Мои знакомые
+                Подписки
             </div>}
             {UserStore.user &&
             <div
                 className={router.query.category === 'subscribers' ? 'tab tab_active' : 'tab'}
                 onClick={() => changeCategory('subscribers')}
             >
-                Хотят познакомится
+                Подписчики
             </div>}
         </Wrapper>
     );
@@ -63,4 +63,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default UserList;
+export default UserListTabs;

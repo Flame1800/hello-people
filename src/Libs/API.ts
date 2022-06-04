@@ -42,10 +42,12 @@ API.getUserMe = (token: string) => server(`/users/me?populate=*`, {
 API.getUser = (id: number) => server(`/users/${id}?populate=*`)
 API.updateUser = (id: number, data: any) => server.put(`/users/${id}`, data)
 API.getUsers = () => server(`/users`)
-
-API.uploadFile = (data: any) => server.post(`/upload`, data)
+API.getUserSubscribers = (id) => server(`/users?filter[subsribers][$eq]=`)
 
 // User Auth
 
+
+// Other
+API.uploadFile = (data: any) => server.post(`/upload`, data)
 
 export default API

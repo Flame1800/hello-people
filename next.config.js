@@ -8,7 +8,7 @@ const baseUrl =
 const nextConfig = {
     reactStrictMode: true,
     env: {
-        SERVER_URL_PROD: baseUrl,
+        SERVER_URL_PROD: 'http://185.185.69.74:1337',
     },
     async redirects() {
         return [

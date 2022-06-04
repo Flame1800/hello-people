@@ -6,53 +6,30 @@ import API from "../../Libs/API";
 import UserStore from "../../Stores/UserStore";
 
 const ProfileButtons = ({me, user}) => {
-    const [friendState, setFriendState] = React.useState('')
+    const [subscribe, setSubscribe] = React.useState('')
 
     const isMe = user.id === me?.id
 
 
     React.useEffect(() => {
         const myFriendIds = me.friends.map(({id}) => id)
-        const mySubscriberIds = me.subscribers.map(({id}) => id)
-
         const userInMyFriendList = myFriendIds.indexOf(user.id) !== -1
-        const userInMySubscriberList = mySubscriberIds.indexOf(user.id) !== -1
 
-        const userFriendState = {
-            isMyFriend: userInMyFriendList && userInMySubscriberList,
-            mySubscriber: !userInMyFriendList && userInMySubscriberList,
-            meSubscriber: userInMyFriendList && !userInMySubscriberList
-        }
-
-        const isFiendLink = userFriendState.isMyFriend || userFriendState.meSubscriber || userFriendState.mySubscriber
-        const whoSubscribe = userFriendState.meSubscriber ? "Ты подписан" : "Он подписан"
-        const chekStatus = userFriendState.isMyFriend ? "Вы знакомы" : whoSubscribe
-
-        setFriendState(isFiendLink ? chekStatus : "Познакомится")
-    }, [])
+        const chekStatus = userInMyFriendList ? "Отписаться" : "Подписатся"
+        setSubscribe(chekStatus)
+    }, [UserStore.user])
 
 
     const changeFriendState = async () => {
-        if (friendState === 'Вы знакомы') {
-            await UserStore.deleteFriend(user.id)
-            return setFriendState("Он подписан")
+        if (subscribe === 'Отписаться') {
+            await UserStore.unsubscribe(user.id)
+            return setSubscribe("Подписатся")
         }
 
-        if (friendState === 'Ты подписан') {
-            await UserStore.deleteFriend(user.id)
-            return setFriendState("Познакомится")
+        if (subscribe === 'Подписатся') {
+            await UserStore.subscribe(user.id)
+            return setSubscribe("Отписаться")
         }
-
-        if (friendState === 'Он подписан') {
-            await UserStore.addFriend(user.id)
-            return setFriendState("Вы знакомы")
-        }
-
-        if (friendState === 'Познакомится') {
-            await UserStore.addFriend(user.id)
-            return setFriendState("Ты подписан")
-        }
-
     }
 
 
@@ -60,7 +37,7 @@ const ProfileButtons = ({me, user}) => {
         <Wrapper>
             {!isMe
                 ? <ButtonStyle onClick={() => changeFriendState()}>
-                    {friendState}
+                    {subscribe}
                 </ButtonStyle>
                 : <Link href="/user/edit">
                     <a>
@@ -77,7 +54,7 @@ const ProfileButtons = ({me, user}) => {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 2px;
   align-items: center;
   margin-top: 10px;
 

@@ -15,16 +15,8 @@ function MyApp({Component, pageProps}: AppProps) {
     React.useEffect(() => {
         const cookie = parseCookies()
 
-        const getUser = async () => {
-            const currUser = await API.getUserMe(cookie.jwt)
-            const currUserPopulate = await API.getUser(currUser.data.id)
-
-            UserStore.setUser(currUserPopulate.data)
-            console.log(currUserPopulate.data)
-        }
-
         if (cookie.jwt) {
-            getUser()
+            UserStore.setUserByToken(cookie.jwt)
         }
     }, [])
 

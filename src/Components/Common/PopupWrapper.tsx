@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from "styled-components";
 import CloseButton from "./CloseButton";
 
+type PropTypes = {
+    show: boolean,
+    setShow: Function,
+    width?: number,
+    children: any
+}
 
-const PopupWrapper = ({show, setShow, width = 500, children}) => {
+const PopupWrapper: React.FC<PropTypes> = ({show, setShow, width = 450, children}) => {
 
     React.useEffect(() => {
         if (show) {

@@ -63,6 +63,7 @@ const Wrapper = styled.div`
   .head {
     display: flex;
     justify-content: start;
+    align-items: center;
     margin-bottom: 10px;
   }
 

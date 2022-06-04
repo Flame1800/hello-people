@@ -5,11 +5,12 @@ import {NextPage} from "next";
 import {observer} from "mobx-react-lite";
 import Link from "next/link";
 import UserAvatar from "../../../src/Components/User/UserAvatar";
-import UserList from '../../../src/Components/Peoples/UserList/UserList'
+import UserListTabs from '../../../src/Components/User/UsersList/UserListTabs'
 import Search from './Search';
 import Familiars from '../../../src/Components/Profile/ProfileHead/Familiars';
 import {useRouter} from "next/router";
 import UserStore from "../../../src/Stores/UserStore";
+import UserCardMini from "../../../src/Components/User/UserCard/UserCardMini";
 
 interface Props {
     users: any
@@ -21,17 +22,13 @@ const Users: NextPage<Props> = ({users}) => {
     const [user, setUser] = React.useState(UserStore.user)
     const router = useRouter()
 
-    
 
     React.useEffect(() => {
         if (user && router.query.category === 'friends') {
             return setPeoples(user.friends)
         }
         if (user && router.query.category === 'subscribers') {
-            const fiendsIds = user.friends.map(({id}) => id)
-            const cleanSubscribers = user.subscribers.filter(({id}) => fiendsIds.indexOf(id) === -1)
-
-            return setPeoples(cleanSubscribers)
+            return setPeoples(user.subscribers)
         }
         if (router.query.category === 'all') {
             return setPeoples(users)
@@ -53,26 +50,16 @@ const Users: NextPage<Props> = ({users}) => {
     return (
         <Wrapper>
             <div className="users">
-                <UserList/>
+                <UserListTabs/>
                 <Search/>
-                {peoples.map((user: any) => {
-                    return (
-                        <Link href={`/user/${user.id}`}>
-                            <a className='user'>
-                                <UserAvatar url={user.avatar}/>
-                                <div className="username">{user.username}</div>
-                                
-                            </a>
-                        </Link>
-                    )
-                })}
+                {peoples.map((user: any) => <UserCardMini user={user}/>)}
             </div>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  min-height: 80vh;
   padding: 40px 20px;
   background: #fff;
   border-radius: 40px;

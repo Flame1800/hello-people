@@ -29,13 +29,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 1000px;
   margin: 20px auto;
   background: #fff;
   border-radius: 40px;
   padding: 30px;
-  min-height: 40vh;
+  min-height: 57.5vh;
 
   .caption {
     font-size: 18px;

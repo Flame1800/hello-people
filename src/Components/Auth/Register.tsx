@@ -39,13 +39,7 @@ const Register: React.FC<Props> = ({setMode, close}) => {
             })
 
             const cookie = parseCookies()
-
-            const user = await axios(`${API.url}/api/users/me`, {
-                headers: {
-                    Authorization: `Bearer ${cookie.jwt}`
-                }
-            })
-            UserStore.setUser(user.data)
+            UserStore.setUserByToken(cookie.jwt)
             close()
 
         } catch (e: any) {

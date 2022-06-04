@@ -4,10 +4,8 @@ import styled from "styled-components";
 import SideBar from "../Components/Navigation/SideBar/SideBar";
 import Header from "../Components/Navigation/Header/Header";
 import Chat from "../modules/chat/Chat";
-import {AuthTitle} from "../Components/Auth/AuthStyles";
-import Login from "../Components/Auth/Login";
-import PopupWrapper from "../Components/Common/PopupWrapper";
-import AuthFirstStep from "../Components/Auth/Auth";
+import AuthModal from "../Components/Auth/Auth";
+import UsersListModal from "../Components/User/UsersList/UsersListModal";
 
 type Layout = {
     children: any
@@ -27,7 +25,8 @@ const MainLayout: React.FC<Layout> = ({children}) => {
                     <Chat/>
                 </div>
             </div>
-            <AuthFirstStep/>
+            <AuthModal/>
+            <UsersListModal/>
         </Wrapper>
     );
 };
@@ -60,8 +59,8 @@ const Wrapper = styled.div`
 
 
     @media (min-width: 1424px) {
-      margin-left: 16px;
-      margin-right: 16px;
+      margin-left: 20px;
+      margin-right: 20px;
       border-radius: 40px;
       overflow-y: hidden;
     }

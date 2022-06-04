@@ -29,7 +29,9 @@ const Wrapper = styled.div`
   justify-content: space-between;
   position: sticky;
   top: 0;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
   max-width: 1730px;
 
 
