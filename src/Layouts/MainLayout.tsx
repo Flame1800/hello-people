@@ -74,7 +74,7 @@ const Wrapper = styled.div`
     background: #fff;
     top: 100px;
     position: sticky;
-    border-radius: 40px;
+    border-radius: 32px;
     overflow-y: hidden;
     display: none;
     box-shadow: 0 0 10px -6px;

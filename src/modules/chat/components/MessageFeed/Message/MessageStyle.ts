@@ -41,7 +41,7 @@ export const MessageStyle = styled.div`
     word-break: break-word;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
   }
 `
@@ -66,7 +66,7 @@ export const MessageInfo = styled.div`
 
   .date {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 14px;
     color: #808080;
     margin-right: 5px;

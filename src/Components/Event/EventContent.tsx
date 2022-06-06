@@ -22,7 +22,7 @@ const EventContent: React.FC<Props> = ({event}) => {
                     <div className="cap">Назад</div>
                 </div>
                 <div className="buttons">
-                    <ButtonStyle onClick={() => console.log('go event')}>Присоеденится</ButtonStyle>
+                    <ButtonStyle onClick={() => console.log('go event')}>Присоединиться</ButtonStyle>
                     <ButtonStyle outline onClick={() => console.log('go event')}>Перейти в чат</ButtonStyle>
                     <TwoGisButton link2gis={event.maplink}/>
                 </div>
