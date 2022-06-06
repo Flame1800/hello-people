@@ -41,14 +41,14 @@ const Wrapper = styled.div`
 `
 
 const MediumSize = styled(Wrapper)`
-  width: 66px;
-  height: 66px;
+  width: 64px;
+  height: 64px;
 `
 
 
 const LargeSize = styled(Wrapper)`
-  width: 120px;
-  height: 120px;
+  width: 128px;
+  height: 128px;
 `
 
 const ImageStyle = styled.img`

@@ -19,7 +19,7 @@ const CommentInput = ({reset, isResponse, replyId}) => {
     }
 
     const sendCommentHandler = async () => {
-        if (user === null) {
+        if (user === null || textValue.length < 1 || textValue.charAt(0) === " ") {
             return null
         }
 
@@ -45,52 +45,54 @@ const CommentInput = ({reset, isResponse, replyId}) => {
     return (
         <SendBlock>
             <CommentEditor>
-                <InputStyle
+                <TextareaStyle
                     onChange={e => setTextValue(e.target.value)}
                     value={textValue}
                     onKeyDown={e => SendOnKey(e)}
                     placeholder={isResponse ? 'Ответ...' : 'Комментарий...'}
                 />
-                <Buttons>
-                    {isResponse && <div onClick={reset}>Отмена</div>}
+            </CommentEditor>
+            <Buttons>
+                    {isResponse && <div className='respone-btn' onClick={reset}>Отмена</div>}
                     <SendButton onClick={() => sendCommentHandler()}>
                         Отправить
                     </SendButton>
-                </Buttons>
-            </CommentEditor>
+            </Buttons>
         </SendBlock>
     )
 }
 
 const SendBlock = styled.div`
-  margin-bottom: 20px;
   margin-top: 10px;
   width: 100%;
-  border-radius: 10px;
-  padding: 5px;
-  background: #fff;
-  border: 1px solid #adadad;
 `
 
-const InputStyle = styled.input`
+const TextareaStyle = styled.textarea`
   width: 100%;
   padding: 10px;
   border: none;
   outline: none;
   margin-bottom: 10px;
-  resize: vertical;
+  resize: none;
   font-weight: 500;
   font-size: 17px;
+  white-space: normal;
 `
 
 const Buttons = styled.div`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 5px;
-  margin-right: 10px;
-  font-size: 13px;
+  font-size: 12px;
 
-  div {
+  .respone-btn {
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #FFF;
+    border: 1px solid #adadad;
+    margin-right: 8px;
     cursor: pointer;
   }
 `
@@ -102,8 +104,7 @@ const SendButton = styled.div`
   background: ${theme.color.orange};
   display: block;
   cursor: pointer;
-  margin-left: 10px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
 
   div {
@@ -115,6 +116,11 @@ const CommentEditor = styled.div`
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  border-radius: 10px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #adadad;
+  margin-bottom: 10px;
 
   img {
     cursor: pointer;
