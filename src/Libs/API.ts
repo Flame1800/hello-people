@@ -21,6 +21,7 @@ const queryGetEvents = qs.stringify({
         'pictures',
         'place.pictures',
         'place.cover',
+        'likes'
     ],
     sort: ['dateStart:desc']
 });

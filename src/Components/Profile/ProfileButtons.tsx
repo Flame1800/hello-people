@@ -53,7 +53,6 @@ const ProfileButtons = ({me, user}) => {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
   margin-bottom: 2px;
   align-items: center;
   margin-top: 10px;
@@ -67,7 +66,7 @@ const Wrapper = styled.div`
     padding: 10px;
     border-radius: 10px;
     width: 64px;
-    height: 35px;
+    height: 40px;
     border: 1px solid #949494;
     display: flex;
     justify-content: center;

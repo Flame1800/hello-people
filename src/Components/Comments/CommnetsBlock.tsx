@@ -14,10 +14,9 @@ const CommentsBlock = ({id, model}) => {
         CommentsStore.setModel(model)
     }, [])
 
-    // достать комменты
 
     return (
-        <Wrapper>
+        <Wrapper id='comments'>
             <Block>
                 <Title>Комментарии • {comments.length}</Title>
                 <CommentsInput/>

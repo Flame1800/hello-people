@@ -70,6 +70,7 @@ const Wrapper = styled.div`
   .wrap-name {
     display: flex;
     flex-wrap: wrap;
+    x
   }
 
   .avatar {

@@ -4,11 +4,9 @@ import UserStore from "../../../Stores/UserStore";
 import {DateTime} from "luxon";
 
 const InfoHeader = () => {
-    const {user} = UserStore
 
     return (
         <Wrapper>
-            {user && <span className='userGreetings'>Привет, {user.name || user.username}!</span>}
             <span className='headerTime'>Сейчас - {DateTime.now().toFormat('t')}</span>
         </Wrapper>
     );

@@ -41,7 +41,7 @@ const Branch = styled.div`
   left: -1px;
 
   &:hover {
-    border-left: 2px solid #2196f3;
+    border-left: 2px solid #ff7c7c;
     background: #ffffff;
     width: 4px;
     margin-right: 7px;
@@ -49,9 +49,9 @@ const Branch = styled.div`
 `
 
 const OpenBtn = styled.div`
-  margin-left: 40px;
+  margin-left: 37px;
   margin-bottom: 20px;
-  color: #17609a;
+  color: #ff7c7c;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;

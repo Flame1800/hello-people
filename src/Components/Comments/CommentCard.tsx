@@ -46,7 +46,7 @@ const CommentCard = ({comment, info}) => {
                         </WrapLink>
                         <Text>{comment.attributes.content}</Text>
                         <Footer>
-                            {!info && (
+                            {!info && comment.attributes.replyToComment && (
                                 <ResponseBtn onClick={() => setInput(true)}>
                                     Ответить
                                 </ResponseBtn>
@@ -89,7 +89,6 @@ const Container = styled.div`
 const Wrapper = styled.div`
   max-width: 600px;
   padding: 4px 0;
-  padding-left: 3px;
   display: flex;
   border-radius: 10px;
 
@@ -114,7 +113,7 @@ const Name = styled.div`
 
 const Date = styled.div`
   font-size: 13px;
-  color: #2b2b2b;
+  color: #b0b0b0;
   font-weight: 400;
   margin-right: 10px;
 `
@@ -122,6 +121,7 @@ const Date = styled.div`
 const Text = styled.div`
   font-size: 16px;
   color: #2b2b2b;
+  font-weight: 500;
 `
 
 const Footer = styled.div`
@@ -133,8 +133,9 @@ const Footer = styled.div`
 
 const ResponseBtn = styled.div`
   font-size: 14px;
-  color: #555555;
+  color: #676767;
   margin-right: 10px;
+  font-weight: 400;
   cursor: pointer;
 `
 

@@ -19,6 +19,7 @@ const CommentInput = ({reset, isResponse, replyId}) => {
     }
 
     const sendCommentHandler = async () => {
+        console.log(textValue)
         if (user === null || textValue.length < 1 || textValue.charAt(0) === " ") {
             return null
         }
@@ -33,8 +34,7 @@ const CommentInput = ({reset, isResponse, replyId}) => {
             ? {replyToComment: replyId, ...comment}
             : comment
 
-        const res = await addComment({data: newComment})
-
+        await addComment({data: newComment})
         setTextValue('')
 
         if (isResponse) {
@@ -53,10 +53,10 @@ const CommentInput = ({reset, isResponse, replyId}) => {
                 />
             </CommentEditor>
             <Buttons>
-                    {isResponse && <div className='respone-btn' onClick={reset}>Отмена</div>}
-                    <SendButton onClick={() => sendCommentHandler()}>
-                        Отправить
-                    </SendButton>
+                {isResponse && <div className='respone-btn' onClick={reset}>Отмена</div>}
+                <SendButton onClick={() => sendCommentHandler()}>
+                    Отправить
+                </SendButton>
             </Buttons>
         </SendBlock>
     )

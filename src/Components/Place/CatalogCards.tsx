@@ -12,7 +12,6 @@ type Props = {
 }
 
 const CatalogCards: React.FC<Props> = ({cards, count}) => {
-    console.log(cards)
     const [places, setPlaces] = React.useState(cards)
     const [hasMore, setHasMore] = React.useState(cards)
 
@@ -60,7 +59,7 @@ const Wrapper = styled.div`
     position: relative;
 
     .caption {
-    
+
     }
   }
 `

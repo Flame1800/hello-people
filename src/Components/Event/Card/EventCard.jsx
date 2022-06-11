@@ -8,6 +8,9 @@ import API from "../../../Libs/API";
 import {theme} from "../../../../styles/theme";
 import makeBeautyDate from "../../../Libs/makeBeautyDate";
 import Link from 'next/link'
+import LikeEvent from "../LikeEvent";
+import {toJS} from "mobx";
+import UserStore from "../../../Stores/UserStore";
 
 const EventCard = ({event}) => {
 
@@ -25,27 +28,36 @@ const EventCard = ({event}) => {
                                 : <img className='gallery' src='/img/mock-avatar.svg' alt='моковая обложка'/>}
                         </a>
                     </Link>
-                    <Link href={`/events/${event.id}`}>
-                        <a>
-                            <div className="info">
+                    <div className="info">
+                        <Link href={`/events/${event.id}`}>
+                            <a>
                                 <div className="name-wrap">
                                     <NameService name={attributes.abbTitle} category='Вечеринки'/>
                                 </div>
-                                <div className="event-meta">
-                                    <div>
-                                        <div className="date">{makeBeautyDate(attributes.dateStart)}</div>
-                                        <div className="address">
-                                            {attributes.place.data ? attributes.place.data.attributes.location : 'не найдено'}
-                                        </div>
+                            </a>
+                        </Link>
+                        <div className="event-meta">
+                            <Link href={`/events/${event.id}`}>
+                                <a>
+                                    <div className="date">{makeBeautyDate(attributes.dateStart)}</div>
+                                    <div className="address">
+                                        {attributes.place.data ? attributes.place.data.attributes.location : 'не найдено'}
                                     </div>
-                                    <div className="user-meta">
-                                        <Like value={0} onClick={() => console.log("event like")} active={false}/>
-                                        <Comment value={0} onClick={() => console.log("event comment")}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </Link>
+                                </a>
+                            </Link>
+                            {UserStore.user &&
+                            <div className="user-meta">
+                                <LikeEvent likes={attributes.likes} id={event.id}/>
+                                <Link href={`/events/${event.id}#comments`}>
+                                    <a>
+                                        <Comment value={0}/>
+                                    </a>
+                                </Link>
+                            </div>}
+
+                        </div>
+                    </div>
+
                 </div>
                 {attributes.place.data && <PinnedPlace place={attributes.place.data}/>}
             </div>
