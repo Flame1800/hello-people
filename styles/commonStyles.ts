@@ -4,7 +4,7 @@ import {theme} from "./theme";
 
 export const ButtonStyle = styled.button`
   height: 40px;
-  border-radius: 10px;
+  border-radius: 16px;
   background: ${({outline}) => outline ? 'none' : theme.color.orange};
   border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
   color: ${({outline}) => !outline ? '#FFFFFF' : theme.color.orange};
@@ -16,6 +16,7 @@ export const ButtonStyle = styled.button`
   cursor: pointer;
   width: 100%;
   margin: 0 5px;
+  transition: .3s ease-in-out;
 
   &:hover {
     background: ${({outline}) => outline ? '#ffe6e0' : '#f33004'};

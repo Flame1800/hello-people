@@ -36,7 +36,6 @@ export const AuthWrapper = styled.div`
 
 `
 
-
 export const AuthTitle = styled.div`
   font-style: normal;
   font-weight: 800;
