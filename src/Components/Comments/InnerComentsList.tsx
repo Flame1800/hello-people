@@ -2,6 +2,7 @@ import React from 'react';
 import CommentCard from "./CommentCard";
 import styled from "styled-components";
 import {observer} from "mobx-react-lite";
+import { Tooltip } from '@mui/material';
 
 type PropTypes = {
     innerComments: any
@@ -11,12 +12,14 @@ const InnerCommentsList: React.FC<PropTypes> = ({innerComments}) => {
     const [show, setShow] = React.useState(true)
 
     if (!show) {
-        return <OpenBtn onClick={() => setShow(true)}>посмотреть ответы</OpenBtn>
+        return <OpenBtn onClick={() => setShow(true)}>Посмотреть ответы ({innerComments.length})</OpenBtn>
     }
 
     return (
         <Wrapper>
-            <Branch onClick={() => setShow(false)}/>
+            <Tooltip title="Свернуть ответы" placement="left">
+              <Branch onClick={() => setShow(false)}/>
+            </Tooltip>
             {innerComments.map((comment: any) => (
                 <CommentCard key={comment.id} comment={comment}/>
             ))}
@@ -25,32 +28,28 @@ const InnerCommentsList: React.FC<PropTypes> = ({innerComments}) => {
 };
 
 const Wrapper = styled.div`
+  display: flex;
   position: relative;
-  margin-left: 35px;
-  padding-left: 10px;
-  margin-bottom: 20px;
 `
 
 const Branch = styled.div`
-  width: 6px;
-  border-left: 2px solid #c8c8c8;
+  width: 32px;
+  margin-right: 16px;
+  background-color: #ff7c7c1a;
+  border-radius: 4px;
   cursor: pointer;
-  position: absolute;
   top: 0;
   bottom: 0;
-  left: -1px;
+  transition: .1s ease-in-out;
 
   &:hover {
-    border-left: 2px solid #ff7c7c;
-    background: #ffffff;
-    width: 4px;
-    margin-right: 7px;
+    transition: .2s ease-in-out;
+    background-color: #ff7c7c56;
   }
 `
 
 const OpenBtn = styled.div`
-  margin-left: 37px;
-  margin-bottom: 20px;
+  margin-top: 8px;
   color: #ff7c7c;
   cursor: pointer;
   font-size: 15px;
