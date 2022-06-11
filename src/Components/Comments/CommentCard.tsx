@@ -108,6 +108,8 @@ const Content = styled.div`
 `
 
 const Name = styled.div`
+  display: flex;
+  flex-basis: 0;
   font-size: 16px;
   margin-right: 14px;
   margin-bottom: 4px;
