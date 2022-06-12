@@ -15,7 +15,7 @@ const ProfileButtons = ({me, user}) => {
         const myFriendIds = me.friends.map(({id}) => id)
         const userInMyFriendList = myFriendIds.indexOf(user.id) !== -1
 
-        const chekStatus = userInMyFriendList ? "Отписаться" : "Подписатся"
+        const chekStatus = userInMyFriendList ? "Отписаться" : "Подписаться"
         setSubscribe(chekStatus)
     }, [UserStore.user])
 
@@ -23,10 +23,10 @@ const ProfileButtons = ({me, user}) => {
     const changeFriendState = async () => {
         if (subscribe === 'Отписаться') {
             await UserStore.unsubscribe(user.id)
-            return setSubscribe("Подписатся")
+            return setSubscribe("Подписаться")
         }
 
-        if (subscribe === 'Подписатся') {
+        if (subscribe === 'Подписаться') {
             await UserStore.subscribe(user.id)
             return setSubscribe("Отписаться")
         }

@@ -15,7 +15,7 @@ export const ButtonStyle = styled.button`
   align-items: center;
   cursor: pointer;
   width: 100%;
-  margin: 0 5px;
+  margin: 0;
   transition: .3s ease-in-out;
 
   &:hover {
