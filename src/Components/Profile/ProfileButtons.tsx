@@ -36,17 +36,17 @@ const ProfileButtons = ({me, user}) => {
     return (
         <Wrapper>
             {!isMe
-                ? <ButtonStyle onClick={() => changeFriendState()}>
-                    {subscribe}
-                </ButtonStyle>
-                : <Link href="/user/edit">
-                    <a>
-                        <ButtonStyle>Редактировать</ButtonStyle>
-                    </a>
-                </Link>}
-            <div className="btn-gray">
-                <img src="/img/chat.svg" alt="иконка"/>
-            </div>
+                ?   <ButtonStyle onClick={() => changeFriendState()}>
+                        {subscribe}
+                    </ButtonStyle>
+                &&  <div className="btn-gray">
+                        <img src="/img/chat.svg" alt="иконка"/>
+                    </div>
+                :   <Link href="/user/edit">
+                        <a>
+                            <ButtonStyle>Редактировать</ButtonStyle>
+                        </a>
+                    </Link>}
         </Wrapper>
     );
 };
@@ -75,7 +75,12 @@ const Wrapper = styled.div`
     font-size: 14px;
     color: #585858;
     margin-left: 10px;
+    cursor: pointer;
   }
+`
+
+const ButtonMessage = styled.div`
+    
 `
 
 export default ProfileButtons;
