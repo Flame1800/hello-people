@@ -11,6 +11,7 @@ export default createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none !important;
+    height: fit-content;
 
     &:hover {
       text-decoration: underline;
