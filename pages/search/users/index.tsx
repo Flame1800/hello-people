@@ -76,7 +76,7 @@ const Wrapper = styled.div`
   }
 
   .user {
-    padding: 12px;
+    padding: 16px 24px;
     font-size: 16px;
     cursor: pointer;
     margin: 10px 0;

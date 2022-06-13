@@ -6,13 +6,13 @@ import UserUX from './UserUX';
 
 const Logo = () => {
     return (
-        <Wrapper>
+        <Wrapper href='/'>
             <img src="/img/logo.svg" alt="logo"/>
         </Wrapper>
     );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
   z-index: 900;
   height: 80px;
   align-items: center;

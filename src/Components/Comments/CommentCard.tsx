@@ -53,7 +53,12 @@ const CommentCard = ({comment, info}) => {
                             )}
                             <Date>{makeBeautyDate(comment.attributes.createdAt)}</Date>
                             {UserStore?.user?.id === user.id &&
-                            <Delete onClick={() => removeHandle(comment.id)}>+</Delete>}
+                            <Delete onClick={() => removeHandle(comment.id)}>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.46409 15.5355L15.5352 8.46448" stroke="#5f5f5f" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8.46409 8.46445L15.5352 15.5355" stroke="#5f5f5f" stroke-width="1.5" stroke-linecap="round"/>
+                              </svg>
+                            </Delete>}
                         </Footer>
                         {input && (
                             <CommentInput
@@ -63,22 +68,20 @@ const CommentCard = ({comment, info}) => {
                                 reset={() => setInput(false)}
                             />
                         )}
+                        {innerComments?.data && <InnerCommentList innerComments={innerComments.data}/>}
                     </Content>
                 </Wrapper>
-                {innerComments?.data && <InnerCommentList innerComments={innerComments.data}/>}
+                
             </Container>
         </>
     )
 }
 
 const Delete = styled.div`
-  object-fit: none;
-  display: none;
-  font-size: 20px;
+  display: flex;
   cursor: pointer;
   color: #722929;
-  transform: rotate(45deg);
-
+  align-items: center;
 `
 
 const Container = styled.div`
@@ -94,21 +97,24 @@ const Wrapper = styled.div`
 
   &:hover {
     ${Delete} {
-      display: block;
+      display: flex;
     }
   }
 `
 
 const Content = styled.div`
-  margin-left: 5px;
+  margin-left: 12px;
   width: 100%;
 `
 
 const Name = styled.div`
+  display: flex;
+  flex-basis: 0;
   font-size: 16px;
   margin-right: 14px;
   margin-bottom: 4px;
   font-weight: 600;
+  color: #000000;
 `
 
 const Date = styled.div`
@@ -126,9 +132,10 @@ const Text = styled.div`
 
 const Footer = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin-top: 4px;
+  margin-bottom: 16px;
   align-items: center;
-  height: 20px;
+  height: 24px;
 `
 
 const ResponseBtn = styled.div`

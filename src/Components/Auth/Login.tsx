@@ -23,7 +23,7 @@ const Login: React.FC<Props> = ({setMode, close}) => {
         setError('')
 
         if (identifier.length === 0 || password.length === 0) {
-            return setError('Все поля должны быть заполненны')
+            return setError('Все поля должны быть заполнены')
         }
 
         const reqBody = {identifier, password}
@@ -93,6 +93,8 @@ const Wrapper = styled.div`
   }
 
   .form {
+    max-width: 300px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -100,6 +102,10 @@ const Wrapper = styled.div`
   }
 
   .change-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     font-weight: 700;
     font-size: 18px;
     line-height: 27px;

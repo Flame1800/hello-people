@@ -18,7 +18,7 @@ const CommentsBlock = ({id, model}) => {
     return (
         <Wrapper id='comments'>
             <Block>
-                <Title>Комментарии • {comments.length}</Title>
+                <Title>Комментарии <CommentsLength>{comments.length}</CommentsLength></Title>
                 <CommentsInput/>
                 <CommentList comments={comments}/>
                 {comments.length > 15 && <CommentsInput/>}
@@ -42,9 +42,17 @@ const Block = styled.div`
 `
 
 const Title = styled.div`
-  font-size: 22px;
-  font-weight: 500;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0px auto 16px;
+`
+
+const CommentsLength = styled.div`
+  font-size: 16px;
+  color: #FF5538;
+  margin-left: 12px;
 `
 
 export default observer(CommentsBlock)

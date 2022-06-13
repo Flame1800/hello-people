@@ -26,14 +26,13 @@ const Wrapper = styled.div`
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 97.9%;
   text-align: center;
   cursor: pointer;
 
   img {
     margin-right: 4px;
-    width: 33px;
-    height: 33px;
+    width: 32px;
+    height: 32px;
   }
 `
 

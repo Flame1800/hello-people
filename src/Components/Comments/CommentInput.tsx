@@ -75,8 +75,12 @@ const TextareaStyle = styled.textarea`
   margin-bottom: 10px;
   resize: none;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 16px;
   white-space: normal;
+
+  &::placeholder {
+    font-size: 16px;
+  }
 `
 
 const Buttons = styled.div`
@@ -104,7 +108,7 @@ const SendButton = styled.div`
   background: ${theme.color.orange};
   display: block;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 
   div {
@@ -119,7 +123,7 @@ const CommentEditor = styled.div`
   border-radius: 10px;
   padding: 8px;
   background: #fff;
-  border: 1px solid #adadad;
+  border: 0.1px solid #f1f1f1;
   margin-bottom: 10px;
 
   img {
