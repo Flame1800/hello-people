@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   max-width: 1000px;
   margin: 20px auto;
   background: #fff;
-  border-radius: 40px;
+  border-radius: 32px;
   padding: 30px;
   min-height: 57.5vh;
 

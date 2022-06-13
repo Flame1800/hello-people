@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   max-width: 1000px;
   margin: auto;
   padding: 40px 5%;
-  border-radius: 40px;
+  border-radius: 32px;
   background: #fff;
 
   .info {

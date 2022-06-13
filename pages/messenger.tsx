@@ -1,10 +1,10 @@
 import React from 'react';
-import Chat from "../src/modules/chat";
+import FullChat from './FullChat';
 
 const Messenger = () => {
     return (
         <div>
-            <Chat />
+            <FullChat/>
         </div>
     );
 };

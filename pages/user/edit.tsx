@@ -141,7 +141,7 @@ const Wrapper = styled.div`
       align-items: center;
       justify-content: center;
       padding: 48px;
-      border-radius: 40px;
+      border-radius: 32px;
       background: #fff;
       width: 100%;
   }
