@@ -5,6 +5,9 @@ import Like from "../../Common/Like";
 import Comment from "../../Common/Comment";
 import CardPlaceCarousel from "./CardPlaceCarousel";
 import Link from "next/link";
+import LikePlace from "./LikePlace";
+import {observer} from "mobx-react-lite";
+import UserStore from "../../../Stores/UserStore";
 
 
 type Props = {
@@ -26,10 +29,12 @@ const PlaceCard: React.FC<Props> = ({card}) => {
                 </Link>
                 <div className="meta">
                     <Rating size="small" disable={false} place={{}}/>
-                    <div className="user-meta">
-                        <Like value={0} onClick={() => console.log("event like")} active={false}/>
-                        <Comment value={attributes.comments.data.length} onClick={() => console.log("event comment")}/>
-                    </div>
+                    {UserStore.user &&
+                        <div className="user-meta">
+                            <LikePlace likes={attributes.likes} id={card.id} />
+                            <Comment value={attributes.comments.data.length} onClick={() => console.log("event comment")}/>
+                        </div>
+                    }
                 </div>
             </div>
         </Wrapper>
@@ -85,5 +90,5 @@ const Wrapper = styled.div`
   }
 `
 
-export default PlaceCard;
+export default observer(PlaceCard);
 

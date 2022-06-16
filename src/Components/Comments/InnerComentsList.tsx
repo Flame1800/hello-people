@@ -20,9 +20,11 @@ const InnerCommentsList: React.FC<PropTypes> = ({innerComments}) => {
             <Tooltip title="Свернуть ответы" placement="left">
               <Branch onClick={() => setShow(false)}/>
             </Tooltip>
-            {innerComments.map((comment: any) => (
-                <CommentCard key={comment.id} comment={comment}/>
-            ))}
+            <List>
+                {innerComments.map((comment: any) => (
+                    <CommentCard key={comment.id} comment={comment}/>
+                ))}
+            </List>
         </Wrapper>
     );
 };
@@ -32,6 +34,11 @@ const Wrapper = styled.div`
   position: relative;
 `
 
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const Branch = styled.div`
   width: 32px;
   margin-right: 16px;
@@ -39,7 +46,7 @@ const Branch = styled.div`
   border-radius: 4px;
   cursor: pointer;
   top: 0;
-  bottom: 0;
+  bottom: 0; 
   transition: .1s ease-in-out;
 
   &:hover {

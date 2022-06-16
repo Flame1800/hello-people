@@ -7,6 +7,9 @@ import BackButton from "../Common/BackButton";
 import {ButtonStyle} from "../../../styles/commonStyles";
 import TwoGisButton from "../Common/Services/TwoGisButton";
 import makeBeautyDate from "../../Libs/makeBeautyDate";
+import UserStore from "../../Stores/UserStore";
+import LikePlace from "./Card/LikePlace";
+import Comment from "../Common/Comment";
 
 const Map = dynamic(() => import('../Common/Map/MapBlock'), {ssr: false})
 
@@ -16,21 +19,29 @@ type Props = {
 }
 
 const PlaceContent: React.FC<Props> = ({place}) => {
+    const {attributes} = place
+    console.log(attributes)
     return (
         <Wrapper>
             <div className="inner-container">
                 <div className="buttons">
                     <ButtonStyle outline onClick={() => console.log('go event')}>Перейти в чат</ButtonStyle>
-                    <TwoGisButton link2gis={place.maplink}/>
+                    <TwoGisButton link2gis={attributes.maplink}/>
                 </div>
+                {UserStore.user &&
+                    <div className="user-meta">
+                        <LikePlace likes={attributes.likes} id={place.id} />
+                        <Comment value={attributes.comments.data.length} onClick={() => console.log("event comment")}/>
+                    </div>
+                }
                 <InfoListServices
-                    address={place.location}
-                    link={place.site}
-                    phone={place.tel}
-                    link2gis={place.maplink}
+                    address={attributes.location}
+                    link={attributes.site}
+                    phone={attributes.tel}
+                    link2gis={attributes.maplink}
                 />
-                <div className='title'>{place.title}</div>
-                <Description data={place.description}/>
+                <div className='title'>{attributes.title}</div>
+                <Description data={attributes.description}/>
             </div>
         </Wrapper>
     );
@@ -47,6 +58,15 @@ const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: -10px;
+  
+  .user-meta {
+    display: flex;
+    margin-top: 20px;
+    
+    > div {
+      margin-right: 10px;
+    }
+  }
 
   .inner-container {
     margin: 30px auto;

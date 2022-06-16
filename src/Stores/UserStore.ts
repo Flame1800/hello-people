@@ -22,6 +22,10 @@ class UserStore {
         this.user = currUserPopulate.data
     }
 
+    updateUser = (user: Object) => {
+        this.user = user
+    }
+
 
     logout = () => {
         destroyCookie(null, 'jwt')

@@ -6,6 +6,8 @@ import mockCategories from "../../src/Mocks/mockCategories";
 import CatalogCards from "../../src/Components/Place/CatalogCards";
 import API from "../../src/Libs/API";
 import {NextPage} from "next";
+import {observe} from "mobx";
+import {observer} from "mobx-react-lite";
 
 type Props = {
     places: any
@@ -28,4 +30,4 @@ Places.getInitialProps = async () => {
     return {places: placesRequest.data}
 }
 
-export default Places;
+export default observer(Places);

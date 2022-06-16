@@ -22,7 +22,7 @@ const PlacePage: NextPage<Props> = ({place}) => {
                 <Name place={attributes}/>
             </div>
             <PageCarousel pictures={attributes.pictures}/>
-            <PlaceContent place={attributes}/>
+            <PlaceContent place={place}/>
             <CommentsBlock id={place.id} model={'place'}/>
         </Wrapper>
     );

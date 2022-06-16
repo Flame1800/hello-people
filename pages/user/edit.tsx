@@ -115,8 +115,7 @@ const EditProfile: NextPage<Props> = ({user}) => {
                     onChange={formik.handleChange}
                     placeholder='О себе'
                 />
-                    <div className='btn-save' type='submit'>Сохранить</div>
-                {/* <ButtonStyle type='submit'>Сохранить</ButtonStyle> */}
+                 <ButtonStyle type='submit'>Сохранить</ButtonStyle>
             </form>
             <div className="logout" onClick={() => logout()}>
                 <img width={24} height={24} src="/img/logout.svg" alt="logout"/>
