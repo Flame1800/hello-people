@@ -26,12 +26,12 @@ const CatalogCardsEvents: React.FC<Props> = ({events}) => {
 
     return (
         <Wrapper>
-            {Object.keys(sortedEvents).map(date => {
+            {Object.keys(sortedEvents).map((date, id) => {
                 return (
-                    <>
+                    <div key={id}>
                         <DateEvents date={sortedEvents[date][0].attributes.dateStart}/>
-                        {sortedEvents[date].map(event => <EventCard event={event}/>)}
-                    </>
+                        {sortedEvents[date].map(event => <EventCard  key={event.id} event={event}/>)}
+                    </div>
                 )
             })}
         </Wrapper>

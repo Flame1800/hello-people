@@ -5,6 +5,7 @@ import Link from "next/link";
 import Logo from './Logo';
 import InfoHeader from './InfoHeader';
 import UserUX from './UserUX';
+import {observer} from "mobx-react-lite";
 
 const Header = () => {
     return (
@@ -50,4 +51,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default Header
+export default observer(Header)

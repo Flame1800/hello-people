@@ -12,7 +12,7 @@ const UserBadge: React.FC<UserProps> = ({user, size = 'sm'}) => {
     const badge = (
         <div className="caption">
             <div className="name">Молодой Аанг</div>
-            <div className="status">Макароны</div>
+            <div className="status">онлайн</div>
         </div>
     )
 
@@ -41,18 +41,18 @@ const Wrapper = styled.div`
   align-items: center;
 
   .caption {
-    margin-left: 15px;
+    margin-left: 10px;
 
     .name {
       font-style: normal;
       font-weight: 600;
-      font-size: 20px;
+      font-size: 15px;
     }
 
     .status {
       margin-top: -2px;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 14px;
       color: #949494;
     }
   }
@@ -61,14 +61,6 @@ const Wrapper = styled.div`
 const MediumWrapper = styled(Wrapper)`
   .caption {
     margin-left: 4px !important;
-  }
-
-  .name {
-    font-size: 15px !important;
-  }
-
-  .status {
-    font-size: 14px !important;
   }
 `
 

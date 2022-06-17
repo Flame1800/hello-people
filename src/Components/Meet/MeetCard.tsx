@@ -10,7 +10,7 @@ const MeetCard = () => {
         <Wrapper>
             <div className="content">
                 <div className="head">
-                    <UserBadge size='md'/>
+                    <UserBadge size='sm'/>
                     <TypeMeet type='group'/>
                 </div>
                 <div className="text">

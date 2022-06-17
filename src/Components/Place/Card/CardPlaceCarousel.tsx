@@ -31,7 +31,7 @@ const CardPlaceCarousel = ({pictures, cover}) => {
             <CarouselStyle loop widgets={[IndicatorDots, Buttons]}>
                 {pictures.data
                 && allPictures.map((picture: Object) => {
-                    return <img src={process.env.SERVER_URL_PROD + picture.attributes.url} alt='фото места'/>
+                    return <img key={picture.id} src={process.env.SERVER_URL_PROD + picture.attributes.url} alt='фото места'/>
                 })}
             </CarouselStyle>
         </Wrapper>

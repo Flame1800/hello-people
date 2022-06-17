@@ -21,7 +21,7 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 1024px) {
     position: absolute;
     height: 100vh;
   }

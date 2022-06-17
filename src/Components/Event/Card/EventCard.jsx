@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import Like from "../../Common/Like";
 import PinnedPlace from "../PinnedPlace";
 import Comment from "../../Common/Comment";
 import NameService from "../../Common/Services/NameService";
@@ -9,8 +8,8 @@ import {theme} from "../../../../styles/theme";
 import makeBeautyDate from "../../../Libs/makeBeautyDate";
 import Link from 'next/link'
 import LikeEvent from "../LikeEvent";
-import {toJS} from "mobx";
 import UserStore from "../../../Stores/UserStore";
+import {observer} from "mobx-react-lite";
 
 const EventCard = ({event}) => {
 
@@ -21,7 +20,7 @@ const EventCard = ({event}) => {
             <div className="card">
                 <div className="event">
                     <Link href={`/events/${event.id}`}>
-                        <a>
+                        <a className='cover'>
                             {attributes.cover.data
                                 ? <img className="gallery" src={API.url + attributes.cover.data.attributes.url}
                                        alt="обложка"/>
@@ -78,6 +77,15 @@ const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+  }
+
+  .cover {
+    width: 100%;
+
+    img {
+      object-fit: contain;
+      background: #eaeaea;
+    }
   }
 
   @media (min-width: 870px) {
@@ -170,4 +178,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default EventCard;
+export default observer(EventCard);

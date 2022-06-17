@@ -19,7 +19,6 @@ const CommentInput = ({reset, isResponse, replyId}) => {
     }
 
     const sendCommentHandler = async () => {
-        console.log(textValue)
         if (user === null || textValue.length < 1 || textValue.charAt(0) === " ") {
             return null
         }

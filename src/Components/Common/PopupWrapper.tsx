@@ -39,18 +39,15 @@ const Wrapper = styled.div`
   left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
   z-index: 1500;
   background: rgba(0, 0, 0, 0.4);
-  height: 100vh;
-  width: 100%;
+  inset: 0;
   transition: 0.3s;
   opacity: ${({active}) => active ? 1 : 0};
   pointer-events: ${({active}) => active ? 'all' : 'none'};
+  overflow: auto;
+  
 
-  @media (max-width: 1000px) {
-    background: #fff;
-  }
 
   .content {
     background: #fff;
@@ -59,15 +56,26 @@ const Wrapper = styled.div`
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    padding: 40px;
-    position: absolute;
-    min-height: 350px;
+    justify-content: center;
+    padding: 20px;
+    height: max-content;
+    position: relative;
+    margin-top: 150px;
 
     .close-btn {
       position: absolute;
       top: 34px;
       right: 24px;
       z-index: 12;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    background: #fff;
+    overflow: auto;
+    
+    .content {
+      margin: 0
     }
   }
 `

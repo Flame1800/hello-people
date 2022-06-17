@@ -6,12 +6,17 @@ import Header from "../Components/Navigation/Header/Header";
 import Chat from "../modules/chat/Chat";
 import AuthModal from "../Components/Auth/Auth";
 import UsersListModal from "../Components/User/UsersList/UsersListModal";
+import {useRouter} from "next/router";
 
 type Layout = {
     children: any
 }
 
 const MainLayout: React.FC<Layout> = ({children}) => {
+
+    const router = useRouter()
+    const isMessengerRoute = router.asPath === '/messenger'
+
     return (
         <Wrapper>
             <Header/>
@@ -21,9 +26,12 @@ const MainLayout: React.FC<Layout> = ({children}) => {
                 <div className="inner-content">
                     {children}
                 </div>
-                <div className="desktop-chat-wrap">
-                    <Chat/>
-                </div>
+                {!isMessengerRoute &&
+                    <div className="desktop-chat-wrap">
+                        <Chat/>
+                    </div>
+                }
+
             </div>
             <AuthModal/>
             <UsersListModal/>
@@ -78,7 +86,7 @@ const Wrapper = styled.div`
     overflow-y: hidden;
     display: none;
     box-shadow: 0 0 10px -6px;
-
+  
     @media (min-width: 1424px) {
       display: block;
     }

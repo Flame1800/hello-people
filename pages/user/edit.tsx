@@ -115,8 +115,7 @@ const EditProfile: NextPage<Props> = ({user}) => {
                     onChange={formik.handleChange}
                     placeholder='О себе'
                 />
-                    <div className='btn-save' type='submit'>Сохранить</div>
-                {/* <ButtonStyle type='submit'>Сохранить</ButtonStyle> */}
+                 <ButtonStyle type='submit'>Сохранить</ButtonStyle>
             </form>
             <div className="logout" onClick={() => logout()}>
                 <img width={24} height={24} src="/img/logout.svg" alt="logout"/>
@@ -133,7 +132,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-bottom: 40px;
   padding: 0 20px;
-
+  
   .content {
       display: flex;
       flex-grow: 1;
@@ -144,6 +143,14 @@ const Wrapper = styled.div`
       border-radius: 32px;
       background: #fff;
       width: 100%;
+  }
+
+  @media (max-width: 700px) {
+    padding: 0;
+
+    .content {
+      border-radius: 0;
+    }
   }
 
   .avatar-input {
