@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from "styled-components";
 import Link from "next/link";
-import InfoHeader from './InfoHeader';
-import UserUX from './UserUX';
+
 
 const Logo = () => {
     return (
-        <Wrapper href='/'>
-            <img src="/img/logo.svg" alt="logo"/>
-        </Wrapper>
+        <Link href='/'>
+            <Wrapper>
+                <img src="/img/logo.svg" alt="logo"/>
+            </Wrapper>
+        </Link>
+
     );
 };
 
@@ -19,6 +21,7 @@ const Wrapper = styled.a`
   display: none;
   position: relative;
   width: 130px;
+  cursor: pointer;
 
   @media (min-width: 1424px) {
     display: flex;

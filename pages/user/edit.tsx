@@ -132,7 +132,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-bottom: 40px;
   padding: 0 20px;
-
+  
   .content {
       display: flex;
       flex-grow: 1;
@@ -143,6 +143,14 @@ const Wrapper = styled.div`
       border-radius: 40px;
       background: #fff;
       width: 100%;
+  }
+
+  @media (max-width: 700px) {
+    padding: 0;
+
+    .content {
+      border-radius: 0;
+    }
   }
 
   .avatar-input {

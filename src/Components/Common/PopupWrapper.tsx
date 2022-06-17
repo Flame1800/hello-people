@@ -42,14 +42,16 @@ const Wrapper = styled.div`
   align-items: center;
   z-index: 1500;
   background: rgba(0, 0, 0, 0.4);
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   transition: 0.3s;
   opacity: ${({active}) => active ? 1 : 0};
   pointer-events: ${({active}) => active ? 'all' : 'none'};
-
+  overflow: auto;
+  
   @media (max-width: 1000px) {
     background: #fff;
+    overflow: auto;
   }
 
   .content {
@@ -61,13 +63,12 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 20px;
-    position: absolute;
 
     .close-btn {
-      position: absolute;
       top: 10px;
       right: 10px;
       z-index: 12;
+      position: relative;
     }
   }
 `

@@ -14,6 +14,15 @@ const MessageFeed: React.FC<MessageFeedProps> = (props) => {
     const messagesRef = useRef<HTMLDivElement>(null);
     const MessageFeedStyle = getMessageFeedStyle(getIsDesktop());
 
+    React.useEffect(() => {
+        document.body.style.overflow = 'hidden'
+
+        return () => {
+            return document.body.style.overflow = 'auto'
+
+        }
+    })
+
     return (
         <MessageFeedStyle>
             <ArrowToBottom messagesRef={messagesRef}/>

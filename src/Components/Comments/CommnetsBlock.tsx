@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   max-width: 840px;
   background: #fff;
   border-radius: 20px;
-  margin: 40px auto;
+  margin: 40px auto 60px;
 `
 
 const Block = styled.div`

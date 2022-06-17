@@ -51,14 +51,14 @@ const Wrapper = styled.div`
   }
 
   .btn-more {
-    padding: 20px 40px;
+    padding: 10px 40px;
     border-radius: 10px;
     background: #fff;
-    margin: 0 auto 150px;
+    margin: -40px auto 120px;
     width: fit-content;
     cursor: pointer;
     font-weight: 800;
-    font-size: 20px;
+    font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.18);
     color: ${theme.color.orange};
   }

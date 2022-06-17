@@ -26,10 +26,11 @@ const Wrapper = styled.div`
   align-items: center;
   margin-bottom: 25px;
   padding: 0 20px;
+  margin-top: 25px;
 
   .title {
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 36px;
     line-height: 49px;
     text-align: center;
@@ -41,7 +42,7 @@ const Wrapper = styled.div`
     margin: 25px auto;
 
     .add-btn {
-      display: none;
+      margin-left: 20px;
     }
   }
 `

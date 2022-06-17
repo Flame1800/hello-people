@@ -40,7 +40,7 @@ const PlaceContent: React.FC<Props> = ({place}) => {
                     phone={attributes.tel}
                     link2gis={attributes.maplink}
                 />
-                <div className='title'>{attributes.title}</div>
+                <div className='place-title'>{attributes.title}</div>
                 <Description data={attributes.description}/>
             </div>
         </Wrapper>
@@ -70,7 +70,8 @@ const Wrapper = styled.div`
 
   .inner-container {
     margin: 30px auto;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
   }
 
   .place-title {
@@ -91,6 +92,12 @@ const Wrapper = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    
+    @media (max-width: 500px) {
+      flex-wrap: wrap;
+      height: 100px;
+      align-items: baseline;
+    }
 
     > div {
       margin-right: 20px;
