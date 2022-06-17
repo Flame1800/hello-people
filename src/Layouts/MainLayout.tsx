@@ -70,7 +70,7 @@ const Wrapper = styled.div`
     @media (min-width: 1424px) {
       margin-left: 20px;
       margin-right: 20px;
-      border-radius: 40px;
+      border-radius: 32px;
       overflow-y: hidden;
     }
   }

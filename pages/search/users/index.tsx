@@ -61,8 +61,9 @@ const Users: NextPage<Props> = ({users}) => {
 const Wrapper = styled.div`
   min-height: 80vh;
   padding: 40px 20px;
+  margin: 0 20px;
   background: #fff;
-  border-radius: 40px;
+  border-radius: 32px;
 
   .users {
     width: 600px;

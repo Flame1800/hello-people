@@ -26,5 +26,4 @@ const Wrapper = styled.div`
   }
 `
 
-
 export default observer(Profile);

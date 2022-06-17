@@ -12,7 +12,7 @@ const InnerCommentsList: React.FC<PropTypes> = ({innerComments}) => {
     const [show, setShow] = React.useState(true)
 
     if (!show) {
-        return <OpenBtn onClick={() => setShow(true)}>Посмотреть ответы ({innerComments.length})</OpenBtn>
+        return <OpenBtn onClick={() => setShow(true)}>Посмотреть все ответы ({innerComments.length})</OpenBtn>
     }
 
     return (
@@ -42,16 +42,25 @@ const List = styled.div`
 const Branch = styled.div`
   width: 32px;
   margin-right: 16px;
-  background-color: #ff7c7c1a;
+  /* background-color: #ff7c7c1a; */
+  background-image: url("/img/up.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 0;
   border-radius: 4px;
   cursor: pointer;
   top: 0;
   bottom: 0; 
   transition: .1s ease-in-out;
 
+  & img {
+    filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(157deg) brightness(91%) contrast(84%);
+  }
+
   &:hover {
     transition: .2s ease-in-out;
-    background-color: #ff7c7c56;
+    background-color: #ff7c7c1a;
+    background-size: 32px;
   }
 `
 

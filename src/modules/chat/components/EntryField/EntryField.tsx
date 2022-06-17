@@ -67,7 +67,9 @@ const Wrapper = styled.div`
   background: #FFFFFF;
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.07);
   border-radius: 20px 20px 0 0;
-  height: 72px;
+  min-height: 72px;
+  height: fit-content;
+  max-height: 200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,7 +81,7 @@ const Wrapper = styled.div`
     width: 100%;
     border: none;
     padding: 6px 10px;
-    border-radius: 15px;
+    border-radius: 16px;
     height: fit-content;
     margin-left: 5px;
     margin-right: 15px;

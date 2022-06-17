@@ -64,8 +64,8 @@ const Wrapper = styled.div`
 
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 34px;
+      right: 24px;
       z-index: 12;
     }
   }

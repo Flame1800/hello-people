@@ -86,7 +86,7 @@ const Wrapper = styled.div`
   }
 
   #demo-positioned-menu {
-    border-radius: 40px;
+    border-radius: 32px;
   }
 `
 
