@@ -30,7 +30,7 @@ API.getEvents = () => server(`/parties?${queryGetEvents}`)
 API.getEvent = (id: number) => server(`/parties/${id}?${queryGetEvents}`)
 
 // Places
-API.getPlaces = (length = 0) => server(`/places?populate=*&pagination[start]=${length}&pagination[limit]=25`)
+API.getPlaces = (length = 0) => server(`/places?populate=*&pagination[start]=${length}&pagination[limit]=15`)
 API.getPlace = (id: number) => server(`/places/${id}?populate=*`)
 
 // User

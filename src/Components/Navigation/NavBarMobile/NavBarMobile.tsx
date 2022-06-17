@@ -58,12 +58,12 @@ const Wrapper = styled.div`
     background: #fff;
     width: 100%;
     max-width: 1000px;
-    height: 80px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    box-shadow: 0 0 18px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
     border-radius: 20px 20px 0 0;
   }
 

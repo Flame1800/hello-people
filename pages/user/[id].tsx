@@ -14,7 +14,6 @@ interface Props {
 
 
 const Profile: NextPage<Props> = ({user}) => {
-    console.log(user)
     return (
         <Wrapper>
             <ProfileHead user={user}/>
@@ -35,7 +34,6 @@ const Wrapper = styled.div`
 
 
 Profile.getInitialProps = async (ctx) => {
-    // const userReq = await axios(`http://185.185.69.74:1337/api/users/${ctx.query.id}?populate=*`)
     const userReq = await API.getUser(ctx.query.id)
 
     return {user: userReq.data}

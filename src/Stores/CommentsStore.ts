@@ -40,9 +40,13 @@ class CommentsStore {
         const newCommentResponse = await API.addComment(comment, cookie.jwt)
 
         if (comment.replyToComment) {
+            console.log('reply', comment.replyToComment)
             this.comments = this.comments.map(item => {
-                if (comment.replyToComment === item.id) {
-                    const attributes = {...item.attributes, "innerComments": newCommentResponse.data.data}
+                if (Number(comment.replyToComment) === Number(item.id)) {
+                    const attributes = {
+                        ...item.attributes,
+                        "innerComments": [...item.innerComments, newCommentResponse.data.data]
+                    }
                     return {id: item.id, ...attributes}
                 }
             })

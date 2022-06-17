@@ -52,13 +52,17 @@ const CommentCard = ({comment, info}) => {
                                 </ResponseBtn>
                             )}
                             <Date>{makeBeautyDate(comment.attributes.createdAt)}</Date>
-                            {UserStore?.user?.id === user.id &&
+
+                            {/*Функция удаления заблокирована и добавлена в дальнейший этап*/}
+                            {UserStore?.user?.id === user.id && false &&
                             <Delete onClick={() => removeHandle(comment.id)}>
                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.46409 15.5355L15.5352 8.46448" stroke="#5f5f5f" stroke-width="1.5" stroke-linecap="round"/>
                                 <path d="M8.46409 8.46445L15.5352 15.5355" stroke="#5f5f5f" stroke-width="1.5" stroke-linecap="round"/>
                               </svg>
                             </Delete>}
+                            {/*// Функция удаления заблокирована и добавлена в дальнейший этап*/}
+
                         </Footer>
                         {input && (
                             <CommentInput

@@ -6,17 +6,12 @@ const baseUrl =
         : "https://surgut.expert"
 
 const nextConfig = {
-    reactStrictMode: true,
     env: {
         SERVER_URL_PROD: 'http://185.185.69.74:1337',
     },
     async redirects() {
         return [
-            {
-                source: '/',
-                destination: '/events',
-                permanent: true,
-            }
+
         ]
     },
     typescript: {
