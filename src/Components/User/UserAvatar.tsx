@@ -18,12 +18,16 @@ const UserAvatar: React.FC<IconProps> = ({url, size = 'sm'}) => {
         </>
     )
 
+    if (size === 'xs') {
+      return (<ExtraSmallSize>{content}</ExtraSmallSize>)
+    }
+
     if (size === 'md') {
-        return (<MediumSize>{content}</MediumSize>)
+      return (<MediumSize>{content}</MediumSize>)
     }
 
     if (size === 'lg') {
-        return (<LargeSize>{content}</LargeSize>)
+      return (<LargeSize>{content}</LargeSize>)
     }
 
     return (<Wrapper>{content}</Wrapper>);
@@ -40,11 +44,15 @@ const Wrapper = styled.div`
   cursor: pointer;
 `
 
+const ExtraSmallSize = styled(Wrapper)`
+  width: 24px;
+  height: 24px;
+`
+
 const MediumSize = styled(Wrapper)`
   width: 64px;
   height: 64px;
 `
-
 
 const LargeSize = styled(Wrapper)`
   width: 128px;
@@ -58,6 +66,5 @@ const ImageStyle = styled.img`
   overflow: hidden;
   object-fit: cover;
 `
-
 
 export default UserAvatar;
