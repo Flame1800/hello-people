@@ -36,7 +36,7 @@ export const DialogWrapper = styled.div`
       }
 
       .date {
-        font-weight: 300;
+        font-weight: 400;
         font-size: 12px;
         line-height: 14px;
         color: #B2B2B2;
@@ -48,7 +48,7 @@ export const DialogWrapper = styled.div`
       justify-content: space-between;
 
       .last-message {
-        max-width: 280px;
+        max-width: 180px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

@@ -33,7 +33,8 @@ const NavBar = () => {
                 {!UserStore.user
                     ? <NavLinkStyle
                         onClick={() => UiStateStore.toggleAuthModal(true)}
-                        active={route.asPath === "/user"}>
+                        active={route.asPath === "/user"}
+                    >
                         <ProfileIcon/>
                     </NavLinkStyle>
                     : <Link href={`/user/${UserStore?.user.id}`}>

@@ -34,6 +34,17 @@ const Wrapper = styled.div`
     font-size: 20px;
     color: #676767;
   }
+
+  @media (max-width: 700px) {
+    .place-title {
+      font-size: 24px;
+    }
+
+    .place-category {
+      font-size: 18px;
+    }
+  }
+
 `
 
 export default Name

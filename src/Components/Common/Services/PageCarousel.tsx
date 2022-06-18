@@ -85,6 +85,15 @@ const Wrapper = styled.div`
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
+
+    @media (max-width: 726px) {
+      border-radius: 20px 20px 0 0;
+      margin-top: 10px;
+      height: 100%;
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 `
 

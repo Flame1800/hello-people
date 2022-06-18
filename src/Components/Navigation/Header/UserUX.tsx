@@ -17,7 +17,7 @@ const UserUX = () => {
 
     return (
         <Wrapper>
-            <MessengerButton/>
+            <img src="/img/chat.svg" alt="chat"/>
             <AddButton/>
             <Link href={`/user/${UserStore?.user?.id}`}>
                 <a>
@@ -32,6 +32,10 @@ const Wrapper = styled.div`
   display: flex;
   width: 130px;
   align-items: center;
+  
+  img {
+    cursor: pointer;
+  }
 `
 
 const ButttonLogin = styled.div`
