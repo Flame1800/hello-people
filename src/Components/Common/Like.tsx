@@ -2,6 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import {tSFunctionType} from "@babel/types";
 import {theme} from "../../../styles/theme";
+import UserStore from "../../Stores/UserStore";
+import UiStateStore from "../../Stores/UiStateStore";
 
 type PropTypes = {
     value: number,
@@ -9,8 +11,17 @@ type PropTypes = {
 }
 
 const Like: React.FC<PropTypes> = ({value, active}) => {
+    const {user} = UserStore
+
+    const likeClick = () => {
+        if (!user) {
+            return UiStateStore.toggleAuthModal()
+        }
+        return null;
+    }
+
     return (
-        <Wrapper>
+        <Wrapper onClick={() => likeClick()}>
             {<img src={active ? "/img/like-active.svg" : "/img/like-none-active.svg"} alt="like"/>}
             <div className="value">
                 {value}
@@ -28,9 +39,11 @@ const Wrapper = styled.div`
   font-size: 14px;
   text-align: center;
   cursor: pointer;
-
+  margin-right: 10px;
+  color: #585858;
+  
   img {
-    margin-right: 4px;
+    margin-right: 0px;
     width: 32px;
     height: 32px;
   }

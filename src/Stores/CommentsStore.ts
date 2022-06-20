@@ -26,7 +26,7 @@ class CommentsStore {
         }
 
         await API.removeComment(id, cookie.jwt)
-        this.comments = this.comments.filter(item => id !== item.id)
+        this.setComments(this.idEntity, this.model)
     }
 
     addComment = async (comment: Array<any>) => {
@@ -40,7 +40,6 @@ class CommentsStore {
         const newCommentResponse = await API.addComment(comment, cookie.jwt)
 
         if (comment.replyToComment) {
-            console.log('reply', comment.replyToComment)
             this.comments = this.comments.map(item => {
                 if (Number(comment.replyToComment) === Number(item.id)) {
                     const attributes = {
@@ -54,6 +53,9 @@ class CommentsStore {
         }
 
         this.comments = [...this.comments, newCommentResponse.data.data]
+
+        this.setComments(this.idEntity, this.model)
+
     }
 
     setComments = async (id: number, model: string) => {

@@ -10,6 +10,7 @@ import makeBeautyDate from "../../Libs/makeBeautyDate";
 import UserStore from "../../Stores/UserStore";
 import LikePlace from "./Card/LikePlace";
 import Comment from "../Common/Comment";
+import MetaActionsPlace from "./MetaActionsPlace";
 
 const Map = dynamic(() => import('../Common/Map/MapBlock'), {ssr: false})
 
@@ -24,16 +25,11 @@ const PlaceContent: React.FC<Props> = ({place}) => {
     return (
         <Wrapper>
             <div className="inner-container">
+                <MetaActionsPlace place={place} />
                 <div className="buttons">
                     <ButtonStyle outline onClick={() => console.log('go event')}>Перейти в чат</ButtonStyle>
                     <TwoGisButton link2gis={attributes.maplink}/>
                 </div>
-                {UserStore.user &&
-                    <div className="user-meta">
-                        <LikePlace likes={attributes.likes} id={place.id} />
-                        <Comment value={attributes.comments.data.length} onClick={() => console.log("event comment")}/>
-                    </div>
-                }
                 <InfoListServices
                     address={attributes.location}
                     link={attributes.site}
@@ -89,6 +85,7 @@ const Wrapper = styled.div`
   }
 
   .buttons {
+    margin-top: 30px;
     display: flex;
     width: 100%;
     justify-content: space-between;

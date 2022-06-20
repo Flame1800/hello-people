@@ -9,13 +9,14 @@ import Register from "./Register";
 const Auth = () => {
     const {toggleAuthModal, authModal} = UiStateStore
     const [mode, setMode] = React.useState('log')
+    console.log(mode)
 
     return (
         <PopupWrapper setShow={toggleAuthModal} show={authModal} width={450}>
             <AuthWrapper>
                 <img src="/img/logo-big.svg" alt="логотип HelloPeople"/>
                 <AuthTitle
-                    className="title">{mode === 'log' ? "Войти в HelloPeople" : "Регистрация"}</AuthTitle>
+                    className="title">{mode === 'login' ? "Войти в HelloPeople" : "Регистрация"}</AuthTitle>
                 {mode === 'reg'
                     ? <Register setMode={setMode} close={toggleAuthModal}/>
                     : <Login setMode={setMode} close={toggleAuthModal}/>}
@@ -42,6 +43,7 @@ export const AuthTitle = styled.div`
   font-size: 32px;
   line-height: 49px;
   margin-top: 25px;
+  text-align: center;
 `
 
 export default observer(Auth);

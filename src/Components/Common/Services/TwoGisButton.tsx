@@ -35,10 +35,10 @@ const Wrapper = styled.a`
 
   .two-gis {
     width: 54px !important;
-    height: 22px;
+    height: 26px;
     margin-left: 6px;
     padding: 2px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
 `
 

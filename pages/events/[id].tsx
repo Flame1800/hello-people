@@ -16,7 +16,7 @@ const EventPage: NextPage<EventProps> = ({event}) => {
             <div className="card">
                 <EventCard event={event}/>
             </div>
-            <EventContent event={event.attributes}/>
+            <EventContent event={event}/>
             <CommentsBlock id={event.id} model={'party'}/>
         </Wrapper>
     );

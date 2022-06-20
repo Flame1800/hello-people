@@ -7,6 +7,7 @@ import {theme} from "../../../styles/theme";
 import makeBeautyDate from "../../Libs/makeBeautyDate";
 import TwoGisButton from "../Common/Services/TwoGisButton";
 import BackButton from "../Common/BackButton";
+import MetaActionsEvent from "./MetaActionsEvent";
 
 
 type Props = {
@@ -14,26 +15,27 @@ type Props = {
 }
 
 const EventContent: React.FC<Props> = ({event}) => {
+    const {attributes} = event
     return (
         <Wrapper>
             <div className="inner-container">
                 <div className="back">
                     <BackButton/>
-                    <div className="cap">Назад</div>
+                    <MetaActionsEvent event={event} />
                 </div>
                 <div className="buttons">
                     <ButtonStyle outline onClick={() => console.log('go event')}>Перейти в чат</ButtonStyle>
-                    <TwoGisButton link2gis={event.maplink}/>
+                    <TwoGisButton link2gis={attributes.maplink}/>
                 </div>
                 <InfoListServices
-                    date={makeBeautyDate(event.dateStart)}
-                    address={event.place.data ? event.place.data.attributes.location : null}
-                    link={event.site}
-                    phone={event.tel}
-                    link2gis={event.maplink}
+                    date={makeBeautyDate(attributes.dateStart)}
+                    address={attributes.place.data ? attributes.place.data.attributes.location : null}
+                    link={attributes.site}
+                    phone={attributes.tel}
+                    link2gis={attributes.maplink}
                 />
-                <div className='title'>{event.title}</div>
-                <Description data={event.description}/>
+                <div className='title'>{attributes.title}</div>
+                <Description data={attributes.description}/>
             </div>
         </Wrapper>
     );
@@ -57,6 +59,7 @@ const Wrapper = styled.div`
   .back {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
     cursor: pointer;
