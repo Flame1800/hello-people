@@ -74,7 +74,6 @@ const ChatWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 48px 24px;
-    
     width: 100%;
 
     @media (max-width: 1424px) {
@@ -89,11 +88,15 @@ const ChatWrapper = styled.div`
     }
 
     .dialogs {
+        display: flex;
+        flex-direction: column;
         width: 100%;
     }
 `
 
 const LeftSide = styled.div`
+    display: flex;
+    flex-direction: column;
     max-width: 332px;
 `
 

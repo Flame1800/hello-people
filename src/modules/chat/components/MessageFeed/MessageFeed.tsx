@@ -15,6 +15,7 @@ const MessageFeed: React.FC<MessageFeedProps> = (props) => {
     const MessageFeedStyle = getMessageFeedStyle(getIsDesktop());
 
     React.useEffect(() => {
+        if (document.documentElement.clientWidth < 750)
         document.body.style.overflow = 'hidden'
 
         return () => {

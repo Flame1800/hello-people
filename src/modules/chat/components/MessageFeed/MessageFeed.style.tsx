@@ -5,7 +5,6 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  position: absolute;
   top: 0;
   right: 0;
   left: 0;

@@ -46,12 +46,13 @@ const Branch = styled.div`
   background-image: url("/img/up.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 0;
   border-radius: 4px;
   cursor: pointer;
   top: 0;
   bottom: 0; 
   transition: .1s ease-in-out;
+  background-color: #ff7c7c1a;
+  background-size: 12px;
 
   & img {
     filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(157deg) brightness(91%) contrast(84%);
@@ -59,8 +60,6 @@ const Branch = styled.div`
 
   &:hover {
     transition: .2s ease-in-out;
-    background-color: #ff7c7c1a;
-    background-size: 32px;
   }
 `
 
