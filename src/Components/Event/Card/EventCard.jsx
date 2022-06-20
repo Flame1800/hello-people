@@ -10,6 +10,8 @@ import Link from 'next/link'
 import LikeEvent from "../LikeEvent";
 import UserStore from "../../../Stores/UserStore";
 import {observer} from "mobx-react-lite";
+import Like from "../../Common/Like";
+import MetaActionsEvent from "../MetaActionsEvent";
 
 const EventCard = ({event}) => {
 
@@ -44,16 +46,7 @@ const EventCard = ({event}) => {
                                     </div>
                                 </a>
                             </Link>
-                            {UserStore.user &&
-                            <div className="user-meta">
-                                <LikeEvent likes={attributes.likes} id={event.id}/>
-                                <Link href={`/events/${event.id}#comments`}>
-                                    <a>
-                                        <Comment value={0}/>
-                                    </a>
-                                </Link>
-                            </div>}
-
+                            <MetaActionsEvent event={event} />
                         </div>
                     </div>
 
@@ -145,13 +138,6 @@ const Wrapper = styled.div`
     }
   }
 
-  .user-meta {
-    display: flex;
-
-    > div {
-      margin-right: 10px;
-    }
-  }
 
   .date {
     font-weight: 700;

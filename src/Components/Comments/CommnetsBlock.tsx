@@ -4,15 +4,29 @@ import CommentsInput from './CommentInput'
 import CommentsStore from '../../Stores/CommentsStore'
 import {observer} from "mobx-react-lite";
 import CommentList from "./CommentList";
+import UserStore from "../../Stores/UserStore";
 
 const CommentsBlock = ({id, model}) => {
     const {comments} = CommentsStore
+    const {user} = UserStore
 
     React.useEffect(() => {
         // установка коментов и модели
         CommentsStore.setComments(id, model)
         CommentsStore.setModel(model)
     }, [])
+
+
+    if (!user) {
+        return (
+            <Wrapper id='comments'>
+                <Block>
+                    <Title>Войдите в HelloPeople чтобы писать коммментарии</Title>
+                    <CommentList comments={comments}/>
+                </Block>
+            </Wrapper>
+        )
+    }
 
 
     return (

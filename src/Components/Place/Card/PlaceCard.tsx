@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
 import Rating from "../Rating";
-import Like from "../../Common/Like";
 import Comment from "../../Common/Comment";
 import CardPlaceCarousel from "./CardPlaceCarousel";
 import Link from "next/link";
 import LikePlace from "./LikePlace";
 import {observer} from "mobx-react-lite";
 import UserStore from "../../../Stores/UserStore";
+import LikeEvent from "../../Event/LikeEvent";
+import Like from "../../Common/Like";
+import MetaActionsPlace from "../MetaActionsPlace";
 
 
 type Props = {
@@ -27,15 +29,7 @@ const PlaceCard: React.FC<Props> = ({card}) => {
                         <div className="location">{attributes.location}</div>
                     </a>
                 </Link>
-                <div className="meta">
-                    <Rating size="small" disable={false} place={{}}/>
-                    {UserStore.user &&
-                        <div className="user-meta">
-                            <LikePlace likes={attributes.likes} id={card.id} />
-                            <Comment value={attributes.comments.data.length} onClick={() => console.log("event comment")}/>
-                        </div>
-                    }
-                </div>
+                <MetaActionsPlace place={card} />
             </div>
         </Wrapper>
     );
@@ -71,21 +65,6 @@ const Wrapper = styled.div`
       font-weight: 500;
       font-size: 14px;
       color: #676767;
-    }
-
-    .meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 5px;
-    }
-
-    .user-meta {
-      display: flex;
-
-      > div {
-        margin-left: 10px;
-      }
     }
   }
 `
