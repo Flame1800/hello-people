@@ -38,7 +38,7 @@ const List = styled.div`
 `
 
 const Branch = styled.div`
-  width: 22px;
+  width: 32px;
   margin-right: 16px;
   /* background-color: #ff7c7c1a; */
   background-image: url("/img/up.svg");
