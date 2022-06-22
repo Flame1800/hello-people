@@ -34,7 +34,7 @@ export const ButtonStyle = styled.button`
 export const InputStyle = styled.input`
   background: #fff;
   max-width: 350px;
-  border-radius: 16px;
+  border-radius: 12px;
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;

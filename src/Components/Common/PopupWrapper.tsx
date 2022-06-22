@@ -39,6 +39,7 @@ const Wrapper = styled.div`
   left: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   z-index: 1500;
   background: rgba(0, 0, 0, 0.4);
   inset: 0;
@@ -60,7 +61,6 @@ const Wrapper = styled.div`
     padding: 20px;
     height: max-content;
     position: relative;
-    margin-top: 150px;
 
     .close-btn {
       position: absolute;

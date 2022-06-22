@@ -74,7 +74,7 @@ const ChatWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 48px 24px;
-    width: 100%;
+    min-width: 100%;
 
     @media (max-width: 1424px) {
         height: 100vh;
@@ -102,5 +102,11 @@ const LeftSide = styled.div`
 
 const DialogContent = styled.div`
     background-color: #454545;
+`
+
+const MessengerContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 `
 export default observer(Chat);

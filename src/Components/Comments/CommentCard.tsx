@@ -130,6 +130,7 @@ const Text = styled.div`
   font-size: 16px;
   color: #2b2b2b;
   font-weight: 500;
+  white-space: pre-line;
 `
 
 const Footer = styled.div`
