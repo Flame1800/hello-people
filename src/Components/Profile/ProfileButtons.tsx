@@ -44,15 +44,11 @@ const ProfileButtons = ({me, user}) => {
                             <ButtonStyle>Редактировать</ButtonStyle>
                         </a>
                     </Link>}
-<<<<<<< HEAD
-            <div className="btn-gray">
-                <img src="/img/chat.svg" alt="иконка"/>
-            </div>
-=======
-                    <div className="btn-gray">
-                        <img src="/img/chat.svg" alt="иконка"/>
-                    </div>
->>>>>>> 4f253e820030789fe203328ab8615e653774f440
+                    <a href="/messenger">
+                        <div className="btn-gray">
+                            <img src="/img/chat.svg" alt="иконка"/>
+                        </div>
+                    </a>
         </Wrapper>
     );
 };

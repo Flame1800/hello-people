@@ -13,13 +13,13 @@ const CommentInput = ({reset, isResponse, replyId}) => {
     const {user} = UserStore
 
     const SendOnKey = (e: any) => {
-        if (e.code === 'Enter') {
+        if (e.code === 'Enter' && !e.shiftKey) {
             sendCommentHandler()
         }
     }
 
     const sendCommentHandler = async () => {
-        if (user === null || textValue.length < 1 || textValue.charAt(0) === " ") {
+        if (user === null || textValue.length < 1 || textValue.charAt(0) === " " || textValue.charAt(0) === "\n") {
             return null
         }
 

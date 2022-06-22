@@ -17,7 +17,11 @@ const UserUX = () => {
 
     return (
         <Wrapper>
-            <img src="/img/chat.svg" alt="chat"/>
+            <a href="/messenger">
+                <div className="btn-gray">
+                    <img src="/img/chat.svg" alt="chat"/>
+                </div>
+            </a>
             <AddButton/>
             <Link href={`/user/${UserStore?.user?.id}`}>
                 <a>
@@ -34,6 +38,16 @@ const Wrapper = styled.div`
   align-items: center;
   
   img {
+    cursor: pointer;
+  }
+
+  .btn-gray {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: #000000;
     cursor: pointer;
   }
 `

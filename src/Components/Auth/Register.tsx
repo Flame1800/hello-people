@@ -133,7 +133,7 @@ const Wrapper = styled.div`
     transition: .2s;
 
     &:hover {
-      background: #f1f1f1;
+      background: #f9f9f9;
     }
   }
 `
@@ -158,7 +158,7 @@ const RegButton = styled.a`
   transition: .3s;
 
   &:hover {
-    background: #f1f1f1;
+    background: #f9f9f9;
   }
 
   img {

@@ -5,6 +5,7 @@ import CommentsStore from '../../Stores/CommentsStore'
 import {observer} from "mobx-react-lite";
 import CommentList from "./CommentList";
 import UserStore from "../../Stores/UserStore";
+import UiStateStore from '../../Stores/UiStateStore';
 
 const CommentsBlock = ({id, model}) => {
     const {comments} = CommentsStore
@@ -21,7 +22,12 @@ const CommentsBlock = ({id, model}) => {
         return (
             <Wrapper id='comments'>
                 <Block>
-                    <Title>Войдите в HelloPeople чтобы писать коммментарии</Title>
+                    <ReqAuth>
+                        <AuthButtonStyle onClick={() => UiStateStore.toggleAuthModal(true)}>
+                            Авторизуйтесь
+                        </AuthButtonStyle>
+                        , чтобы писать комментарии
+                    </ReqAuth>
                     <CommentList comments={comments}/>
                 </Block>
             </Wrapper>
@@ -69,4 +75,20 @@ const CommentsLength = styled.div`
   margin-left: 12px;
 `
 
+const ReqAuth = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 48px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 8px -6px;
+`
+
+const AuthButtonStyle = styled.a`
+    color: #FF5538;
+    cursor: pointer;
+`
 export default observer(CommentsBlock)
