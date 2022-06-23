@@ -3,15 +3,14 @@ import styled from "styled-components";
 export const MessageWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  margin-left: 20px;
   position: relative;
 `
 
 
 export const MessageAvatar = styled.img`
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   margin-bottom: 20px;
   margin-right: 10px;
   object-fit: contain;
@@ -23,7 +22,6 @@ export const MessageStyle = styled.div`
   border-radius: 10px;
   background: #F0F0F0;
   margin-bottom: 15px;
-  margin-right: 20px;
   max-width: 60%;
 
   .user-name {
@@ -42,7 +40,6 @@ export const MessageStyle = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 22px;
   }
 `
 
@@ -52,7 +49,6 @@ export const MeMessageWrapper = styled(MessageWrapper)`
 
   ${MessageStyle} {
     background: #D9F1FF;
-    margin-right: 10px;
   }
 `
 

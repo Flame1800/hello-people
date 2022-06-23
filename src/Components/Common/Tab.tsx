@@ -14,7 +14,7 @@ const Tab: React.FC<TabProps> = ({children, active}) => {
 
 const Wrapper = styled.div<{ active: boolean }>`
   width: max-content;
-  border-radius: 22px;
+  border-radius: 16px;
   padding: 8px 22px;
   font-style: normal;
   font-weight: 700;

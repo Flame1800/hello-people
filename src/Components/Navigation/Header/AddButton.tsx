@@ -20,7 +20,7 @@ const AddButton = () => {
 
 const Wrapper = styled.div`
   margin-left: auto;
-  margin-right: 32px;
+  margin-right: auto;
   box-sizing: border-box;
   font-style: normal;
   font-weight: 400;

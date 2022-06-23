@@ -35,7 +35,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const createTab = (category: CategoryType, name: string) => {
         return (
-            <div onClick={() => switchCategory(category)}>
+            <div className='tabContent' onClick={() => switchCategory(category)}>
                 <Tab active={content === category}>{name}</Tab>
             </div>
         );

@@ -25,11 +25,15 @@ const Wrapper = styled.div`
   border-bottom: 1px solid #B9BABD;
 
   .tab {
+    display: flex;
+    flex: 1 0 12.5%;
+    justify-content: center;
     text-align: center;
     font-size: 15px;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    cursor: pointer;
   }
 
   .tab-active {

@@ -25,7 +25,7 @@ const SideBar = () => {
                         <a>
                             <NavLinkStyle active={route.asPath === "/events"}>
                                 <EventButton/>
-                                Афиша
+                                <div className='navLinkTitle'>Афиша</div>
                             </NavLinkStyle>
                         </a>
                     </Link>
@@ -33,7 +33,7 @@ const SideBar = () => {
                         <a>
                             <NavLinkStyle active={route.asPath === "/places"}>
                                 <PlaceButton/>
-                                Места
+                                <div className='navLinkTitle'>Места</div>
                             </NavLinkStyle>
                         </a>
                     </Link>
@@ -41,7 +41,7 @@ const SideBar = () => {
                         <a>
                             <NavLinkStyle active={route.asPath === "/meets"}>
                                 <MeetsButton/>
-                                Встречи
+                                <div className='navLinkTitle'>Встречи</div>
                             </NavLinkStyle>
                         </a>
                     </Link>
@@ -49,7 +49,7 @@ const SideBar = () => {
                         <a>
                             <NavLinkStyle active={route.asPath === "/search/users"}>
                                 <ProfileButtonIcon/>
-                                Люди
+                                <div className='navLinkTitle'>Люди</div>
                             </NavLinkStyle>
                         </a>
                     </Link>
@@ -67,6 +67,10 @@ const Wrapper = styled.div`
   display: none;
   flex-direction: column;
 
+  @media (min-width: 1424px) {
+    display: flex;
+  }
+
   .nav-links {
     border-radius: 32px;
     padding: 32px 48px;
@@ -80,11 +84,6 @@ const Wrapper = styled.div`
   .profile {
     margin-bottom: 60px;
   }
-
-  @media (min-width: 1424px) {
-    display: flex;
-  }
-
 `
 
 export const NavLinkStyle = styled.div`
@@ -123,6 +122,5 @@ export const AvatarWrapper = styled(NavLinkStyle)`
     margin-left: 10px;
   }
 `
-
 
 export default observer(SideBar);
