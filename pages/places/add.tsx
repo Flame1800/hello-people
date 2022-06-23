@@ -18,7 +18,7 @@ const AddEvent = () => {
                 <InputStyle type='tel' placeholder='Номер телефона*' onInput={() => console.log('input')}/>
                 <InputStyle type='tel' placeholder='Веб-сайт или паблик' onInput={() => console.log('input')}/>
                 <Label>
-                    Ниже напишите где находится ваше место и опишите его.
+                    Добавьте описание вашего места и его адрес.
                 </Label>
                 <TextareaStyle rows={5} placeholder='Описание'/>
                 <div className="input-title">Фото</div>
@@ -32,10 +32,12 @@ const AddEvent = () => {
 };
 
 const Wrapper = styled.div`
+  margin: 0 20px 64px 20px;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 16px;
 
   @media (min-width: 600px) {
     background: #fff;
@@ -49,7 +51,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 400px;
+    max-width: 350px;
     margin: 40px 0;
   }
 
@@ -62,6 +64,7 @@ const Wrapper = styled.div`
     .title {
       margin: 10px 0;
       font-size: 24px;
+      font-weight: 700;
     }
 
     .sub-title {

@@ -19,17 +19,19 @@ const Add = () => {
                 <div className="input-title">
                     Тусовка или для двоих?*
                 </div>
+                <ButtonStyle>Отправить анкету</ButtonStyle>
             </div>
-            <ButtonStyle>Отправить анкету</ButtonStyle>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
+  margin: 0 20px 64px 20px;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 16px;
 
   @media (min-width: 600px) {
     background: #fff;
@@ -57,6 +59,7 @@ const Wrapper = styled.div`
     .title {
       margin: 10px 0;
       font-size: 24px;
+      font-weight: 700;
     }
 
     .sub-title {
