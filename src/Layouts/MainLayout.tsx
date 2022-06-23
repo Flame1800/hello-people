@@ -6,6 +6,7 @@ import Header from "../Components/Navigation/Header/Header";
 import Chat from "../modules/chat/Chat";
 import AuthModal from "../Components/Auth/Auth";
 import UsersListModal from "../Components/User/UsersList/UsersListModal";
+import CreateEventListModal from '../Components/Navigation/Header/CreateEventListModal';
 import {useRouter} from "next/router";
 
 type Layout = {
@@ -35,6 +36,7 @@ const MainLayout: React.FC<Layout> = ({children}) => {
             </div>
             <AuthModal/>
             <UsersListModal/>
+            <CreateEventListModal/>
         </Wrapper>
     );
 };

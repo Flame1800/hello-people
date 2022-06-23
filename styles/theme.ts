@@ -8,6 +8,10 @@ export const theme = {
         fontGray: '#7F7F7F',
     },
 
+    boxShadow: {
+        mainComponent: '0 0 10px -6px',
+    },
+
     media: {
         extraLarge: '(max-width: 1320px)',
         large: '(max-width: 960px)',
