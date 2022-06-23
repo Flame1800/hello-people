@@ -56,6 +56,7 @@ const Wrapper = styled.div`
     padding-right: 10px;
     cursor: pointer;
     border-bottom: 3px solid #fff;
+    transition: .1s ease-in-out;
 
     &_active {
       border-bottom: 3px solid ${theme.color.orange};

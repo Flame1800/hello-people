@@ -71,5 +71,4 @@ const ListWrapper = styled.div`
   }
 `
 
-
 export default observer(UsersListModal);

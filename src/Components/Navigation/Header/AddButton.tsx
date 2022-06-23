@@ -1,51 +1,19 @@
 import React from 'react';
 import styled from "styled-components";
-import {theme} from "../../../../styles/theme";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import UiStateStore from '../../../Stores/UiStateStore';
 import Link from "next/link";
 
 const AddButton = () => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const openCreateEventListModal = () => {
+        UiStateStore.toggleCreateEventListModal()
+    }
 
     return (
         <Wrapper>
-            <div className='btn' onClick={handleClick}>
+            <div className='btn' onClick={() => openCreateEventListModal()}>
                 <img src="/img/add-icon.svg" alt="add"/>
                 {/*<img className='dropdown' src="/img/caret-down.svg" alt="down"/>*/}
             </div>
-            <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                }}
-            >
-                <Link href='/events/add'>
-                    <a><MenuItem onClick={handleClose}>Добавить событие</MenuItem></a>
-                </Link>
-                <Link href='/places/add'>
-                    <a><MenuItem onClick={handleClose}>Добавить место</MenuItem></a>
-                </Link>
-                <Link href='/meets/add'>
-                    <a><MenuItem onClick={handleClose}>Добавить встречу</MenuItem></a>
-                </Link>
-            </Menu>
         </Wrapper>
     );
 };

@@ -4,6 +4,7 @@ import {makeAutoObservable} from "mobx";
 class UiStateStore {
     authModal: Boolean = false
     usersListModal: Boolean = false
+    createEventListModal: Boolean = false
 
     constructor() {
         makeAutoObservable(this)
@@ -15,6 +16,10 @@ class UiStateStore {
 
     toggleUsersListModal = () => {
         this.usersListModal = !this.usersListModal
+    }
+
+    toggleCreateEventListModal = () => {
+        this.createEventListModal = !this.createEventListModal
     }
 }
 

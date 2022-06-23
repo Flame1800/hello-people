@@ -33,8 +33,6 @@ export const AuthWrapper = styled.div`
   background: #fff;
   margin: 50px 0;
   width: 100%;
-
-
 `
 
 export const AuthTitle = styled.div`
