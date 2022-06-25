@@ -44,11 +44,9 @@ const ProfileButtons = ({me, user}) => {
                             <ButtonStyle>Редактировать</ButtonStyle>
                         </a>
                     </Link>}
-                    <a href="/messenger">
-                        <div className="btn-gray">
-                            <img src="/img/chat.svg" alt="иконка"/>
-                        </div>
-                    </a>
+                    <div className="btn-gray">
+                        <img src="/img/chat.svg" alt="иконка"/>
+                    </div>
         </Wrapper>
     );
 };

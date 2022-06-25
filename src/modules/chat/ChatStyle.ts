@@ -6,6 +6,7 @@ export const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 48px 24px;
+  height: inherit;
 
   @media (max-width: 1424px) {
     height: 100vh;

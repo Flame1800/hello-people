@@ -26,7 +26,7 @@ class CommentsStore {
         }
 
         await API.removeComment(id, cookie.jwt)
-        this.setComments(this.idEntity, this.model)
+        this.comments = this.comments.filter(comment => comment.id !== id)
     }
 
     addComment = async (comment: Array<any>) => {
@@ -38,24 +38,7 @@ class CommentsStore {
         }
 
         const newCommentResponse = await API.addComment(comment, cookie.jwt)
-
-        if (comment.replyToComment) {
-            this.comments = this.comments.map(item => {
-                if (Number(comment.replyToComment) === Number(item.id)) {
-                    const attributes = {
-                        ...item.attributes,
-                        "innerComments": [...item.innerComments, newCommentResponse.data.data]
-                    }
-                    return {id: item.id, ...attributes}
-                }
-            })
-            return this.comments;
-        }
-
         this.comments = [...this.comments, newCommentResponse.data.data]
-
-        this.setComments(this.idEntity, this.model)
-
     }
 
     setComments = async (id: number, model: string) => {

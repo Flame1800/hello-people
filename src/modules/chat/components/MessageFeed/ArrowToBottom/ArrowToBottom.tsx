@@ -16,12 +16,17 @@ const ArrowToBottom: React.FC<ArrowToBottomProps> = (props) => {
     }, [messageFeedStore.onScrollToggle])
 
     useEffect(() => {
+        console.log('go bottom')
         messagesRef.current?.scrollTo(0, messagesRef.current?.scrollHeight);
     }, [messageFeedStore.goBottomToggle]);
 
     const onClickHandler = (ref: React.RefObject<HTMLDivElement>) => {
         ref.current?.scrollTo(0, ref.current?.scrollHeight);
     };
+
+    if (scroll) {
+        console.log(scroll.scrollTop + scroll.clientHeight + 100 < scroll.scrollHeight )
+    }
 
     return (
         <>

@@ -1,18 +1,21 @@
 import React from 'react';
 import eventsStore from "../../Stores/eventsStore";
 import HeaderServicesPage from "../Common/HeaderServicesPage";
-import Categories from "../Common/SmartComponets/Categories";
+import Categories from "../Common/Categories";
 import mockCategories from "../../Mocks/mockCategories";
 import Switch from "./Switch";
 import CatalogCardsEvents from "./CatalogCardsEvents";
 import {observer} from "mobx-react-lite";
+import CategoriesStore from "../../Stores/CategoriesStore";
 
 type PropsType = {
     events: any
+    categories: any
 }
 
-const EventsPage: React.FC<PropsType> = ({events}) => {
-    const {mode, pastEvents, newEvents, setPastEvents, setNewEvents} = eventsStore
+const EventsPage: React.FC<PropsType> = ({events, categories}) => {
+    const {mode, pastEvents, newEvents, setPastEvents, setNewEvents, filterEventsByCategories} = eventsStore
+    const {selectedCategories} = CategoriesStore
     const currEvents = mode === 'new' ? newEvents : pastEvents
 
     React.useEffect(() => {
@@ -20,10 +23,20 @@ const EventsPage: React.FC<PropsType> = ({events}) => {
         setNewEvents(events)
     }, [])
 
+    React.useEffect(() => {
+        if (selectedCategories.length === 0) {
+            setPastEvents(events)
+            setNewEvents(events)
+            return
+        }
+
+        filterEventsByCategories(selectedCategories)
+    }, [selectedCategories])
+
     return (
         <>
             <HeaderServicesPage link='/events/add'>АФИША</HeaderServicesPage>
-            <Categories categories={mockCategories}/>
+            <Categories categories={categories}/>
             <Switch/>
             <CatalogCardsEvents events={currEvents}/>
         </>

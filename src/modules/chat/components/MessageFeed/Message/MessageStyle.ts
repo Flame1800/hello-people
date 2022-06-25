@@ -24,7 +24,7 @@ export const MessageStyle = styled.div`
   background: #F0F0F0;
   margin-bottom: 15px;
   margin-right: 20px;
-  max-width: 60%;
+  max-width: 70%;
 
   .user-name {
     font-weight: 600;
@@ -43,6 +43,7 @@ export const MessageStyle = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
+    white-space: pre-wrap;
   }
 `
 
@@ -52,7 +53,7 @@ export const MeMessageWrapper = styled(MessageWrapper)`
 
   ${MessageStyle} {
     background: #D9F1FF;
-    margin-right: 10px;
+    margin-right: 3px;
   }
 `
 

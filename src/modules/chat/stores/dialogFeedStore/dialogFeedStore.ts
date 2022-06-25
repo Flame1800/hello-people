@@ -3,6 +3,8 @@ import { DialogProps } from '../../components/DialogFeed/Dialog/Dialog';
 import { dialogsMock } from '../../mocks/dialogs';
 import { MessageType } from '../../models/Message';
 import { CategoryType } from '../../models/CategoryType';
+import ChatStore from "../chatStore";
+import UserStore from "../../../../Stores/UserStore";
 
 
 class dialogFeedStore {
@@ -50,6 +52,35 @@ class dialogFeedStore {
     setDialog = (id: string, newDialog: DialogProps) => {
         this.getDialogs().filter(dialog => dialog.id === id)[0] = newDialog;
     };
+
+    addDialog = (id: string, type: string, category: string) => {
+        const {socket} = ChatStore
+
+        const newDialog = {
+            objectIdStrapi: id,
+            type,
+            category: 'place',
+            name: "new dialog",
+            members: [UserStore.user],
+            messages: [
+                {
+                    id: '1',
+                    author: UserStore.user,
+                    text: 'Тут еще нет сообщений',
+                    date: '19.03.2022 18:01',
+                    isRead: true,
+                },
+            ]
+        }
+
+        if (socket) {
+            socket.emit('addChatToFavorite',
+                newDialog
+            )
+
+            this.dialogs = [...this.getDialogs(), newDialog]
+        }
+    }
 
     addMessageToDialog = (id: string, message: MessageType) => {
         const dialog = this.getDialog(id);

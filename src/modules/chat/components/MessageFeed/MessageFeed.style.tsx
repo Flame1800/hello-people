@@ -13,11 +13,17 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
 
   .messages {
     padding-top: 30px;
-    padding-bottom: 80px;
     overflow: hidden scroll;
+    margin-bottom: 80px;
 
     &::-webkit-scrollbar {
-      width: 0;
+      width: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(218, 218, 218, 0.8);
+      border-radius: 8px;
+      border: 5px solid #fff;
     }
   }
 

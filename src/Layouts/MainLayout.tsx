@@ -6,8 +6,8 @@ import Header from "../Components/Navigation/Header/Header";
 import Chat from "../modules/chat/Chat";
 import AuthModal from "../Components/Auth/Auth";
 import UsersListModal from "../Components/User/UsersList/UsersListModal";
-import CreateEventListModal from '../Components/Navigation/Header/CreateEventListModal';
 import {useRouter} from "next/router";
+import CreateEventListModal from "../Components/Navigation/Header/CreateEventListModal";
 
 type Layout = {
     children: any
@@ -17,6 +17,14 @@ const MainLayout: React.FC<Layout> = ({children}) => {
 
     const router = useRouter()
     const isMessengerRoute = router.asPath === '/messenger'
+
+    const modals = (
+        <>
+            <AuthModal/>
+            <UsersListModal/>
+            <CreateEventListModal />
+        </>
+    )
 
     return (
         <Wrapper>
@@ -32,11 +40,8 @@ const MainLayout: React.FC<Layout> = ({children}) => {
                         <Chat/>
                     </div>
                 }
-
+                {modals}
             </div>
-            <AuthModal/>
-            <UsersListModal/>
-            <CreateEventListModal/>
         </Wrapper>
     );
 };

@@ -9,7 +9,6 @@ import Register from "./Register";
 const Auth = () => {
     const {toggleAuthModal, authModal} = UiStateStore
     const [mode, setMode] = React.useState('log')
-    console.log(mode)
 
     return (
         <PopupWrapper setShow={toggleAuthModal} show={authModal} width={450}>

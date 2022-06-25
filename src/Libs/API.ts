@@ -26,6 +26,11 @@ const queryGetEvents = qs.stringify({
     sort: ['dateStart:desc']
 });
 
+// Categories
+API.getEventCategories = () => server(`/categories?filters[type][$eq]=party`)
+API.getPlaceCategories = () => server(`/categories?filters[type][$eq]=service`)
+
+// Events
 API.getEvents = () => server(`/parties?${queryGetEvents}`)
 API.getEvent = (id: number) => server(`/parties/${id}?${queryGetEvents}`)
 

@@ -23,10 +23,21 @@ const CatalogCardsEvents: React.FC<Props> = ({events}) => {
 
 
     const sortedEvents = _.groupBy(eventsWithDayField, (item) => item.dateString)
+    const SortedEventsParse = Object.keys(sortedEvents)
+
+    if (SortedEventsParse.length === 0) {
+        return (
+            <Wrapper>
+                <div className="empty">
+                    Ничего не нашлось...
+                </div>
+            </Wrapper>
+        )
+    }
 
     return (
         <Wrapper>
-            {Object.keys(sortedEvents).map((date, id) => {
+            {SortedEventsParse.map((date, id) => {
                 return (
                     <div key={id}>
                         <DateEvents date={sortedEvents[date][0].attributes.dateStart}/>
@@ -42,6 +53,13 @@ const Wrapper = styled.div`
   padding: 0 20px;
   max-width: 900px;
   margin: 5px auto;
+  
+  .empty {
+    margin-top: 80px;
+    font-weight: 700;
+    font-size: 26px;
+    text-align: center;
+  }
 
   .meta {
     display: flex;
