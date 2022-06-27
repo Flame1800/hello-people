@@ -1,34 +1,22 @@
 import {makeAutoObservable} from "mobx";
+import {filterServicesByCategory} from "../Libs/filterEventsByCategory";
 
 class PlacesStore {
     places: any = []
-    stablePlaces = []
+    stablePlaces: any = []
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    filterPlacesByCategories = (activeCategories) => {
-        const filterOneEvent = (categories: any) => {
-            const neededCategories = categories.filter(category => {
-                return activeCategories.map(({id}) => id).includes(category.id)
-            })
-
-            return neededCategories.length !== 0
-        }
-
-        const filterEvents = events => {
-            return events.filter(event => filterOneEvent(event.attributes.categories.data))
-        }
-
-        // тут должны быть основные ивенты, самые начальные
-        this.places = filterEvents(this.stablePlaces)
+    filterPlacesByCategories = (activeCategories: any) => {
+        filterServicesByCategory(this.stablePlaces, activeCategories)
     }
 
     setPlaces = (places: Array<any>) => {
         this.places = places
+        this.stablePlaces = places
     }
-
 }
 
-export default new CategoriesStore()
+export default new PlacesStore()

@@ -3,31 +3,37 @@ import styled from "styled-components";
 import InfoListServices from "../Common/Services/InfoListServices";
 import dynamic from "next/dynamic";
 import Description from "../Common/Services/Description";
-import BackButton from "../Common/BackButton";
 import {ButtonStyle} from "../../../styles/commonStyles";
 import TwoGisButton from "../Common/Services/TwoGisButton";
-import makeBeautyDate from "../../Libs/makeBeautyDate";
-import UserStore from "../../Stores/UserStore";
-import LikePlace from "./Card/LikePlace";
-import Comment from "../Common/Comment";
 import MetaActionsPlace from "./MetaActionsPlace";
-
-const Map = dynamic(() => import('../Common/Map/MapBlock'), {ssr: false})
-
+import UiStateStore from "../../Stores/UiStateStore";
+import UserStore from "../../Stores/UserStore";
+import dialogFeedStore from "../../modules/chat/stores/dialogFeedStore";
 
 type Props = {
     place: any
 }
 
 const PlaceContent: React.FC<Props> = ({place}) => {
+    const {user} = UserStore
+    const {addDialog} = dialogFeedStore
+
+    const goEventChat = () => {
+        if (!user) {
+            return UiStateStore.toggleAuthModal()
+        }
+
+        addDialog(place.id, 'conversation', 'place')
+    }
+
+
     const {attributes} = place
-    console.log(attributes)
     return (
         <Wrapper>
             <div className="inner-container">
                 <MetaActionsPlace place={place} />
                 <div className="buttons">
-                    <ButtonStyle outline onClick={() => console.log('go event')}>Перейти в чат</ButtonStyle>
+                    <ButtonStyle outline onClick={() => goEventChat()}>Перейти в чат</ButtonStyle>
                     <TwoGisButton link2gis={attributes.maplink}/>
                 </div>
                 <InfoListServices

@@ -1,13 +1,10 @@
 import {makeAutoObservable, toJS} from "mobx";
 import * as _ from 'lodash'
+import {filterServicesByCategory} from "../Libs/filterEventsByCategory";
 
 class EventsStore {
-    pastEvents: Array<any> = []
-    newEvents: Array<any> = []
-
-    stablePastEvents: Array<any> = []
-    stableNewEvents: Array<any> = []
-
+    events: Array<any> = []
+    stableEvents: Array<any> = []
     mode: string = 'new'
 
     constructor() {
@@ -19,39 +16,25 @@ class EventsStore {
     }
 
     filterEventsByCategories = (activeCategories) => {
-        const filterOneEvent = (categories: any) => {
-            const neededCategories = categories.filter(category => {
-                return activeCategories.map(({id}) => id).includes(category.id)
-            })
-
-            return neededCategories.length !== 0
-        }
-
-        const filterEvents = events => {
-            return events.filter(event => filterOneEvent(event.attributes.categories.data))
-        }
-
-        // тут должны быть основные ивенты, самые начальные
-        this.newEvents = filterEvents(this.stableNewEvents)
-        this.pastEvents = filterEvents(this.stablePastEvents)
+        this.events = filterServicesByCategory(this.stableEvents, activeCategories)
     }
 
-    setPastEvents = (events: Array<any>) => {
-        const entries =  _.reverse(events.filter((event) => {
+
+    setEvents = (events: any) => {
+        this.events = events
+        this.stableEvents = events
+    }
+
+    getPastEvents = () => {
+        return  _.reverse(this.events.filter((event) => {
             return new Date().getTime() > new Date(event.attributes.dateStart).getTime()
         }))
-
-        this.pastEvents = entries
-        this.stablePastEvents = entries
     }
 
-    setNewEvents = (events: Array<any>) => {
-        const entries =  _.reverse(events.filter((event) => {
+    getNewEvents = () => {
+        return  _.reverse(this.events.filter((event) => {
             return new Date().getTime() < new Date(event.attributes.dateStart).getTime()
         }))
-
-        this.newEvents = entries
-        this.stableNewEvents= entries
     }
 }
 

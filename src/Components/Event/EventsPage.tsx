@@ -14,21 +14,16 @@ type PropsType = {
 }
 
 const EventsPage: React.FC<PropsType> = ({events, categories}) => {
-    const {mode, pastEvents, newEvents, setPastEvents, setNewEvents, filterEventsByCategories} = eventsStore
+    const {mode, setEvents, getNewEvents, getPastEvents, filterEventsByCategories} = eventsStore
     const {selectedCategories} = CategoriesStore
-    const currEvents = mode === 'new' ? newEvents : pastEvents
+    const currEvents = mode === 'new' ? getNewEvents() : getPastEvents()
 
     React.useEffect(() => {
-        setPastEvents(events)
-        setNewEvents(events)
+        setEvents(events)
     }, [])
 
     React.useEffect(() => {
-        if (selectedCategories.length === 0) {
-            setPastEvents(events)
-            setNewEvents(events)
-            return
-        }
+        if (selectedCategories.length === 0) return setEvents(events)
 
         filterEventsByCategories(selectedCategories)
     }, [selectedCategories])

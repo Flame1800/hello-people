@@ -5,6 +5,8 @@ import CatalogCards from "../../src/Components/Place/CatalogCards";
 import API from "../../src/Libs/API";
 import {NextPage} from "next";
 import {observer} from "mobx-react-lite";
+import placesStore from "../../src/Stores/PlacesStore";
+import CategoriesStore from "../../src/Stores/CategoriesStore";
 
 type Props = {
     places: any,
@@ -12,6 +14,20 @@ type Props = {
 }
 
 const Places: NextPage<Props> = ({places, categories}) => {
+    const {setPlaces, filterPlacesByCategories} = placesStore
+    const {selectedCategories} = CategoriesStore
+
+    React.useEffect(() => {
+        setPlaces(places.data)
+    }, [])
+
+    React.useEffect(() => {
+        if (selectedCategories.length === 0) return setPlaces(places.data)
+
+        filterPlacesByCategories(selectedCategories)
+    }, [selectedCategories])
+
+
     return (
         <>
             <HeaderServicesPage link='/places/add'>МЕСТА</HeaderServicesPage>

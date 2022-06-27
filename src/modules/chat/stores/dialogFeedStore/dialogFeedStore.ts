@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import {makeAutoObservable, toJS} from 'mobx';
 import { DialogProps } from '../../components/DialogFeed/Dialog/Dialog';
 import { dialogsMock } from '../../mocks/dialogs';
 import { MessageType } from '../../models/Message';
@@ -59,7 +59,7 @@ class dialogFeedStore {
         const newDialog = {
             objectIdStrapi: id,
             type,
-            category: 'place',
+            category,
             name: "new dialog",
             members: [UserStore.user],
             messages: [
@@ -74,11 +74,9 @@ class dialogFeedStore {
         }
 
         if (socket) {
-            socket.emit('addChatToFavorite',
-                newDialog
-            )
+            socket.emit('addChatToFavorite', newDialog)
 
-            this.dialogs = [...this.getDialogs(), newDialog]
+            this.dialogs = [...this.dialogs, newDialog]
         }
     }
 

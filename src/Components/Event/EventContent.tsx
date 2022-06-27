@@ -10,6 +10,7 @@ import MetaActionsEvent from "./MetaActionsEvent";
 import UserStore from "../../Stores/UserStore";
 import DialogFeedStore from "../../modules/chat/stores/dialogFeedStore";
 import UiStateStore from "../../Stores/UiStateStore";
+import {observer} from "mobx-react-lite";
 
 
 type Props = {
@@ -19,15 +20,14 @@ type Props = {
 const EventContent: React.FC<Props> = ({event}) => {
     const {attributes} = event
     const {user} = UserStore
-    const {addDialog} = DialogFeedStore
+
 
     const goEventChat = () => {
+        console.log(user)
         if (!user) {
             return UiStateStore.toggleAuthModal()
         }
-
-
-        addDialog(event.id, 'conversation', 'party')
+        console.log("Add Event Chat")
     }
 
     return (
@@ -103,4 +103,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default EventContent;
+export default observer(EventContent);
