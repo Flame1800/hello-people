@@ -3,11 +3,14 @@ import styled from "styled-components";
 import {ButtonStyle} from "../../../styles/commonStyles";
 import InfoListServices from "../Common/Services/InfoListServices";
 import Description from "../Common/Services/Description";
-import {theme} from "../../../styles/theme";
 import makeBeautyDate from "../../Libs/makeBeautyDate";
 import TwoGisButton from "../Common/Services/TwoGisButton";
 import BackButton from "../Common/BackButton";
 import MetaActionsEvent from "./MetaActionsEvent";
+import UserStore from "../../Stores/UserStore";
+import DialogFeedStore from "../../modules/chat/stores/dialogFeedStore";
+import UiStateStore from "../../Stores/UiStateStore";
+import {observer} from "mobx-react-lite";
 
 
 type Props = {
@@ -16,6 +19,17 @@ type Props = {
 
 const EventContent: React.FC<Props> = ({event}) => {
     const {attributes} = event
+    const {user} = UserStore
+
+
+    const goEventChat = () => {
+        console.log(user)
+        if (!user) {
+            return UiStateStore.toggleAuthModal()
+        }
+        console.log("Add Event Chat")
+    }
+
     return (
         <Wrapper>
             <div className="inner-container">
@@ -24,7 +38,7 @@ const EventContent: React.FC<Props> = ({event}) => {
                     <MetaActionsEvent event={event} />
                 </div>
                 <div className="buttons">
-                    <ButtonStyle outline onClick={() => console.log('go event')}>Перейти в чат</ButtonStyle>
+                    <ButtonStyle outline onClick={() => goEventChat()}>Перейти в чат</ButtonStyle>
                     <TwoGisButton link2gis={attributes.maplink}/>
                 </div>
                 <InfoListServices
@@ -89,4 +103,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default EventContent;
+export default observer(EventContent);

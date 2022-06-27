@@ -1,70 +1,53 @@
-import React, { useEffect, useState } from 'react';
-
-import DialogFeed from './components/DialogFeed';
-import chatStore from './stores/chatStore';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { io } from 'socket.io-client';
-import MessageFeed from './components/MessageFeed';
-import dialogFeedStore from './stores/dialogFeedStore';
 import { ChatWrapper } from './ChatStyle';
-import Tab from './components/common/Tab';
-import ComponentName from './components/Header/ComponentName';
-import Search from './components/Header/Search';
-import { CategoryType } from './models/CategoryType';
-import { DialogProps } from './components/DialogFeed/Dialog/Dialog';
+import UserStore from "../../Stores/UserStore";
+import ChatContent from "./components/ChatContent";
+import styled from "styled-components";
+import {ButtonStyle} from "../../../styles/commonStyles";
+import UiStateStore from "../../Stores/UiStateStore";
 
 type ChatProps = {
     api?: string;
 };
 
 const Chat: React.FC<ChatProps> = (props) => {
-    const { setCurrentDialogId, getCurrentDialogId, setSocket } = chatStore;
-    const { getDialog } = dialogFeedStore;
-    const dialog = getDialog(getCurrentDialogId());
+    const {user} = UserStore
 
-    const [ content, setContent ] = useState<CategoryType>('chat');
-
-    useEffect(() => {
-        // setSocket(io());
-    }, []);
-
-    const switchCategory = (category: CategoryType) => {
-        setCurrentDialogId('');
-        setContent(category);
-    };
-
-    const createTab = (category: CategoryType, name: string) => {
+    if (!user) {
         return (
-            <div className='tabContent' onClick={() => switchCategory(category)}>
-                <Tab active={content === category}>{name}</Tab>
-            </div>
-        );
-    };
-
-    const getDialogContent = (category: CategoryType, dialog: DialogProps | undefined) => {
-        return (
-            <>
-                <DialogFeed category={category}/>
-                {dialog && <MessageFeed/>}
-            </>
-        );
-    };
+            <ChatWrapper>
+                <Plug>
+                    <div className="caption">Войдите в HelloPeople что бы пользоваться мессенджером</div>
+                    <ButtonStyle outline onClick={() => UiStateStore.toggleAuthModal()}>Войти</ButtonStyle>
+                </Plug>
+            </ChatWrapper>
+        )
+    }
 
     return (
         <ChatWrapper>
-            <ComponentName/>
-            <Search/>
-            <div className="tabs">
-                {createTab('chat', 'Чаты')}
-                {createTab('place', 'Места')}
-                {createTab('meeting', 'Встречи')}
-            </div>
-
-            <div className="dialogs">
-                {getDialogContent(content, dialog)}
-            </div>
+            <ChatContent />
         </ChatWrapper>
     );
 };
+
+const Plug = styled.div`
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  max-width: 90%;
+  margin: 0 auto;
+
+  .caption {
+    font-weight: 600;
+    font-size: 18px;
+    color: #2f2f2f;
+    margin-bottom: 20px;
+  }
+`
 
 export default observer(Chat);

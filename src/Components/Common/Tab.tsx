@@ -14,6 +14,7 @@ const Tab: React.FC<TabProps> = ({children, active}) => {
 
 const Wrapper = styled.div<{ active: boolean }>`
   width: max-content;
+  cursor: pointer;
   border-radius: 16px;
   padding: 8px 22px;
   font-style: normal;
@@ -22,7 +23,7 @@ const Wrapper = styled.div<{ active: boolean }>`
   display: inline-block;
   margin-right: 7px;
   color: ${({active}) => active ? 'white' : 'black'};
-  background: ${({active}) => active ? 'linear-gradient(266.34deg, #FC5130 16.27%, #FF4CA2 94.58%)' : '#fff'};
+  background: ${({active}) => active ? 'linear-gradient(200deg, #FC5130 16.27%, #ff4083 94.58%)' : '#fff'};
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `
 

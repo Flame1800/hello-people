@@ -22,7 +22,8 @@ export const MessageStyle = styled.div`
   border-radius: 10px;
   background: #F0F0F0;
   margin-bottom: 15px;
-  max-width: 60%;
+  margin-right: 20px;
+  max-width: 70%;
 
   .user-name {
     font-weight: 600;
@@ -40,6 +41,11 @@ export const MessageStyle = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
+<<<<<<< HEAD
+=======
+    line-height: 22px;
+    white-space: pre-wrap;
+>>>>>>> 52bca06277a420171c5a68ff38aa62dc8d1a6387
   }
 `
 
@@ -49,6 +55,10 @@ export const MeMessageWrapper = styled(MessageWrapper)`
 
   ${MessageStyle} {
     background: #D9F1FF;
+<<<<<<< HEAD
+=======
+    margin-right: 3px;
+>>>>>>> 52bca06277a420171c5a68ff38aa62dc8d1a6387
   }
 `
 

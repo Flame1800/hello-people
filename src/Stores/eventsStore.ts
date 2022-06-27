@@ -1,9 +1,10 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, toJS} from "mobx";
 import * as _ from 'lodash'
+import {filterServicesByCategory} from "../Libs/filterEventsByCategory";
 
 class EventsStore {
-    pastEvents: Array<any> = []
-    newEvents: Array<any> = []
+    events: Array<any> = []
+    stableEvents: Array<any> = []
     mode: string = 'new'
 
     constructor() {
@@ -14,14 +15,24 @@ class EventsStore {
         this.mode = mode
     }
 
-    setPastEvents = (events: Array<any>) => {
-        this.pastEvents = events.filter((event) => {
-            return new Date().getTime() > new Date(event.attributes.dateStart).getTime()
-        })
+    filterEventsByCategories = (activeCategories) => {
+        this.events = filterServicesByCategory(this.stableEvents, activeCategories)
     }
 
-    setNewEvents = (events: Array<any>) => {
-        this.newEvents = _.reverse(events.filter((event) => {
+
+    setEvents = (events: any) => {
+        this.events = events
+        this.stableEvents = events
+    }
+
+    getPastEvents = () => {
+        return  _.reverse(this.events.filter((event) => {
+            return new Date().getTime() > new Date(event.attributes.dateStart).getTime()
+        }))
+    }
+
+    getNewEvents = () => {
+        return  _.reverse(this.events.filter((event) => {
             return new Date().getTime() < new Date(event.attributes.dateStart).getTime()
         }))
     }

@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import UiStateStore from '../../../Stores/UiStateStore';
 import PopupWrapper from '../../Common/PopupWrapper';
-import { theme } from '../../../../styles/theme';
 import {observer} from "mobx-react-lite";
-import Link from 'next/link'
+import {theme} from "../../../../styles/theme";
+import Link from "next/link";
 
 const CreateEventListModal = () => {
     const {toggleCreateEventListModal, createEventListModal} = UiStateStore
@@ -56,7 +56,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     background: #fff;
-    padding: 32px;
     width: 100%;
 
   .title {
@@ -71,6 +70,12 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 
   .listItemTitle {
@@ -88,8 +93,8 @@ const Wrapper = styled.div`
     position: absolute;
 
     & img {
-        width: 56px;
-        height: 56px;
+      width: 56px;
+      height: 56px;
     }
   }
 `

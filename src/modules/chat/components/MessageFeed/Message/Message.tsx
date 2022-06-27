@@ -18,6 +18,9 @@ const Message: React.FC<MessageProps> = (props) => {
     const {id, text, date, isRead, author, type} = props;
     const {getUser} = chatStore;
     const currentUser = getUser();
+    const parser = new DOMParser();
+    const htmlText = parser.parseFromString(text, 'text/html').querySelector('body').innerHTML
+
 
     const content = (<>
         {type !== 'private' && <MessageAvatar alt='avatar' src={author.avatar}/>}

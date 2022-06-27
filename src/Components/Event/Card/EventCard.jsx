@@ -12,10 +12,12 @@ import UserStore from "../../../Stores/UserStore";
 import {observer} from "mobx-react-lite";
 import Like from "../../Common/Like";
 import MetaActionsEvent from "../MetaActionsEvent";
+import {toJS} from "mobx";
 
 const EventCard = ({event}) => {
 
     const {attributes} = event
+    const categoriesString = attributes.categories.data.map(({attributes}) => attributes.title).join(', ')
 
     return (
         <Wrapper id={event.id}>
@@ -33,7 +35,7 @@ const EventCard = ({event}) => {
                         <Link href={`/events/${event.id}`}>
                             <a>
                                 <div className="name-wrap">
-                                    <NameService name={attributes.abbTitle} category='Вечеринки'/>
+                                    <NameService name={attributes.abbTitle} category={categoriesString} />
                                 </div>
                             </a>
                         </Link>

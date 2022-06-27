@@ -15,7 +15,7 @@ export type DialogProps = {
     id: string,
     type: DialogType,
     category: CategoryType,
-    messages: MessageType[],
+    messages?: MessageType[],
     members: UserType[],
     avatar?: string,
     name?: string,
