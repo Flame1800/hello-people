@@ -1,4 +1,4 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, toJS} from "mobx";
 import {filterServicesByCategory} from "../Libs/filterEventsByCategory";
 
 class PlacesStore {
@@ -9,9 +9,7 @@ class PlacesStore {
         makeAutoObservable(this)
     }
 
-    filterPlacesByCategories = (activeCategories: any) => {
-        filterServicesByCategory(this.stablePlaces, activeCategories)
-    }
+
 
     setPlaces = (places: Array<any>) => {
         this.places = places
