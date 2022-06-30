@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import DialogFeed from '../src/modules/chat/components/DialogFeed';
 import chatStore from '../src/modules/chat/stores/chatStore';
 import { observer } from 'mobx-react-lite';
@@ -35,7 +34,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const createTab = (category: CategoryType, name: string) => {
         return (
-            <div onClick={() => switchCategory(category)}>
+            <div className='tabContent' onClick={() => switchCategory(category)}>
                 <Tab active={content === category}>{name}</Tab>
             </div>
         );
@@ -64,6 +63,10 @@ const Chat: React.FC<ChatProps> = (props) => {
                 <div className="dialogs">
                     {getDialogContent(content, dialog)}
                 </div>
+                <div className='messageFeedContent'>
+                    
+                </div>
+
             </LeftSide>
         </ChatWrapper>
     );
@@ -76,7 +79,12 @@ const ChatWrapper = styled.div`
     padding: 48px 24px;
     min-width: 100%;
 
-    @media (max-width: 1424px) {
+    .messageFeedContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (max-width: 1420px) {
         height: 100vh;
     }
 
@@ -85,6 +93,21 @@ const ChatWrapper = styled.div`
         justify-content: space-between;
         margin-top: 24px;
         margin-bottom: 24px;
+        width: 100%;
+
+        & .tabContent {
+            display: flex;
+            flex: 1 0 12.5%;
+            justify-content: center;
+            align-items: center;
+            margin: 0 4px;
+
+            @media (max-width: 870px) {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 16px;
+            }
+        }
     }
 
     .dialogs {
@@ -98,6 +121,11 @@ const LeftSide = styled.div`
     display: flex;
     flex-direction: column;
     max-width: 332px;
+
+    @media (max-width: 870px) {
+        max-width: 100%;
+        width: 100%;
+    }
 `
 
 const DialogContent = styled.div`

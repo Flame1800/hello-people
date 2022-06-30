@@ -4,7 +4,7 @@ export const MessageFeedHeaderStyle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
+  padding: 12px 32px;
   border-bottom: 1px solid #f6f6f6;
 
   @media (min-width: 1420px) {
@@ -47,8 +47,8 @@ export const MessageFeedHeaderStyle = styled.div`
     }
   }
   .btn-info {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       cursor: pointer;
     }
 `

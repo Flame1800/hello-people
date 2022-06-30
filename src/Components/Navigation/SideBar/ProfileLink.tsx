@@ -26,9 +26,7 @@ const ProfileLink = () => {
     return (
         <Link href={`/user/${UserStore.user.id}`}>
             <a>
-                <AvatarWrapper
-                    active={route.asPath === `/user/${UserStore.user.id}`}
-                >
+                <AvatarWrapper active={route.asPath === `/user/${UserStore.user.id}`}>
                     <UserAvatar url={UserStore.user.avatar} size='sm'/>
                     <div className="username">
                         {UserStore.user.username}
@@ -38,6 +36,5 @@ const ProfileLink = () => {
         </Link>
     );
 };
-
 
 export default observer(ProfileLink);

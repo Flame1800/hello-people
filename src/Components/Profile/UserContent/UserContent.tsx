@@ -4,14 +4,16 @@ import UserContentTabs from "./UserContentTabs";
 import Photos from "./UserPhotos/Photos";
 
 const UserContent = () => {
-    const isReady = false
+    const isReady = true
 
     if (!isReady) {
         return (
             <Wrapper>
-                <img src="/img/Saly-2.png" alt="" height={300}/>
-                <div className='caption'>
-                    Скоро здесь будет много интересного. Надо просто немного подождать...
+                <div className='noneContent'>
+                    <img className='noneContentImg' src="/img/Saly-2.png" alt="" height={300}/>
+                    <div className='caption'>
+                        Скоро здесь будет много интересного. Надо просто немного подождать...
+                    </div>
                 </div>
             </Wrapper>
         );
@@ -29,7 +31,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   max-width: 1000px;
   margin: 20px auto;
@@ -38,12 +39,22 @@ const Wrapper = styled.div`
   padding: 30px;
   min-height: 57.5vh;
 
+    .noneContent {
+        display: flex;
+        justify-content: center;
+    }
+
+  .noneContentImg {
+    user-select: none;
+  }
+
   .caption {
     font-size: 18px;
     text-align: center;
     font-weight: 400;
     color: #7e7e7e;
     max-width: 370px;
+    user-select: none;
   }
 
   @media (max-width: 1424px) {

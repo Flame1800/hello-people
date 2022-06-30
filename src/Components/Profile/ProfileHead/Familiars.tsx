@@ -26,7 +26,7 @@ const Familiars = ({user}) => {
                 <div className="value">
                     {user.subscribers.length}
                 </div>
-                {user.subscribers.length === 1 ? 'подписан' : 'подписаны'}
+                {user.subscribers.length === 1 ? 'подписчик' : 'подписчиков'}
             </div>
         </Wrapper>
 

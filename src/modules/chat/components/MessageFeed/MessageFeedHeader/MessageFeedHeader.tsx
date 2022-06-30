@@ -41,12 +41,7 @@ const MessageFeedHeader: React.FC<MessageFeedProps> = (props) => {
                     </div>
                 </div>
             </div>
-            {/* <img src='/img/info-icon.svg' alt='back' className='btn-info' onClick={() => setModalActive(true)}/> */}
-            <svg width="16" height="4" viewBox="0 0 24 4" fill="none" className='btn-info' xmlns="http://www.w3.org/2000/svg" onClick={() => setModalActive(true)}>
-                <path d="M2 0.5C1.17157 0.5 0.5 1.17157 0.5 2C0.5 2.82843 1.17157 3.5 2 3.5C2.82843 3.5 3.5 2.82843 3.5 2C3.5 1.17157 2.82843 0.5 2 0.5Z" fill="black"/>
-                <path d="M6.5 2C6.5 1.17157 7.17157 0.5 8 0.5C8.82843 0.5 9.5 1.17157 9.5 2C9.5 2.82843 8.82843 3.5 8 3.5C7.17157 3.5 6.5 2.82843 6.5 2Z" fill="black"/>
-                <path d="M12.5 2C12.5 1.17157 13.1716 0.5 14 0.5C14.8284 0.5 15.5 1.17157 15.5 2C15.5 2.82843 14.8284 3.5 14 3.5C13.1716 3.5 12.5 2.82843 12.5 2Z" fill="black"/>
-            </svg>
+            <img src='/img/additional-icon.svg' alt='back' className='btn-info' onClick={() => setModalActive(true)}/>
 
             <Modal active={modalActive} setActive={setModalActive}
                    content={<Settings settingsList={getSettingsChat()}/>}/>

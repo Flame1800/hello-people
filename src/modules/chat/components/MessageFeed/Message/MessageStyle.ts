@@ -3,15 +3,14 @@ import styled from "styled-components";
 export const MessageWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  margin-left: 20px;
   position: relative;
 `
 
 
 export const MessageAvatar = styled.img`
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   margin-bottom: 20px;
   margin-right: 10px;
   object-fit: contain;
@@ -42,8 +41,11 @@ export const MessageStyle = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
+<<<<<<< HEAD
+=======
     line-height: 22px;
     white-space: pre-wrap;
+>>>>>>> 52bca06277a420171c5a68ff38aa62dc8d1a6387
   }
 `
 
@@ -53,7 +55,10 @@ export const MeMessageWrapper = styled(MessageWrapper)`
 
   ${MessageStyle} {
     background: #D9F1FF;
+<<<<<<< HEAD
+=======
     margin-right: 3px;
+>>>>>>> 52bca06277a420171c5a68ff38aa62dc8d1a6387
   }
 `
 
