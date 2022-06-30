@@ -15,7 +15,7 @@ class EventsStore {
         this.mode = mode
     }
 
-    filterEventsByCategories = (activeCategories) => {
+    filterEventsByCategories = (activeCategories: any) => {
         this.events = filterServicesByCategory(this.stableEvents, activeCategories)
     }
 

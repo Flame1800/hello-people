@@ -1,7 +1,10 @@
+import {toJS} from "mobx";
+
 const filterOneEvent = (categories: any, filters: any) => {
     const neededCategories = categories.reduce((acc, cur) => {
         const isExist = filters.map(({id}) => id).includes(cur.id)
-        return isExist ? acc.push(cur) : acc
+
+        return isExist ? [...acc, cur] : acc
     }, [])
 
     return neededCategories.length !== 0
