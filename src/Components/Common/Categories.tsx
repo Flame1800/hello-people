@@ -1,35 +1,43 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import Tab from "./Tab";
 import CategoriesStore from "../../Stores/CategoriesStore";
-import categoriesStore from "../../Stores/CategoriesStore";
-import {toJS} from "mobx";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 
+type CategoryType = {
+  categories: Array<Category>;
+};
 
-// @ts-ignore
-const Categories = ({categories}) => {
-    const {setCategories, toggleSelectedCategory, selectedCategories} = CategoriesStore
+const Categories = (props: CategoryType) => {
+  const {
+    setCategories,
+    toggleSelectedCategory,
+    selectedCategories,
+    categories,
+  } = CategoriesStore;
 
-    React.useEffect(() => {
-        setCategories(categories)
-    }, [])
+  React.useEffect(() => {
+    setCategories(categories);
+  }, []);
 
+  return (
+    <Wrapper>
+      {props.categories.map((category: Category) => {
+        const isSelectedCategory = selectedCategories.find(
+          ({ id }) => id === category.id
+        );
 
-    return (
-        <Wrapper>
-            {categoriesStore.categories.map((category: any) => {
-                const {attributes} = category
-                const isSelectedCategory = selectedCategories.find(({id}) => id === category.id)
-
-                return (
-                    <div key={category.id} onClick={() => toggleSelectedCategory(category)}>
-                        <Tab active={isSelectedCategory}>{attributes.title}</Tab>
-                    </div>
-                )
-            })}
-        </Wrapper>
-    );
+        return (
+          <div
+            key={category.id}
+            onClick={() => toggleSelectedCategory(category)}
+          >
+            <Tab active={isSelectedCategory}>{category.attributes.title}</Tab>
+          </div>
+        );
+      })}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -38,7 +46,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-bottom: 30px;
   padding-bottom: 8px;
-  
+
   > div {
     margin: 10px 0;
   }
@@ -46,7 +54,6 @@ const Wrapper = styled.div`
   &::-webkit-scrollbar {
     width: 0;
   }
-
 
   @media (min-width: 768px) {
     width: 900px;
@@ -56,6 +63,6 @@ const Wrapper = styled.div`
     align-items: baseline;
     margin: 0 auto;
   }
-`
+`;
 
 export default observer(Categories);

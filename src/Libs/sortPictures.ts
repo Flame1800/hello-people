@@ -1,9 +1,10 @@
-const sortPictures = (model: Object) => {
-    const cover = model.cover?.id || null
-    const isCover = pic => pic.id === cover
-    return model.pictures.sort((x, y) =>
-        isCover(x) === isCover(y) ? 0 : isCover(x) ? -1 : 1
-    )
-}
+const sortPictures = (model: any) => {
+  const cover = model.cover?.id || null;
+  const isCover = (pic: Image) => pic.id === cover;
 
-export default sortPictures
+  return model.pictures.sort((x: Image, y: Image) =>
+    isCover(x) === isCover(y) ? 0 : isCover(x) ? -1 : 1
+  );
+};
+
+export default sortPictures;

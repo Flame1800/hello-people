@@ -1,29 +1,38 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import eventsStore from "../../Stores/eventsStore";
-import {theme} from "../../../styles/theme";
+import eventsStore from "../../Stores/EventsStore";
+import { theme } from "../../../styles/theme";
+import { observer } from "mobx-react-lite";
 
-interface PropsButton {
-    active: Boolean
-}
+type PropsButton = {
+  active: Boolean;
+};
 
 const Switch = () => {
-    const {mode, changeMode} = eventsStore
+  const { mode, changeMode } = eventsStore;
 
-    const switchHandler = (mode: string) => {
-        changeMode(mode)
-    }
+  const switchHandler = (mode: string) => {
+    changeMode(mode);
+  };
 
-    return (
-        <Wrapper>
-            <Button onClick={() => switchHandler('new')} className="button" active={mode === 'new'}>
-                Предстоящие
-            </Button>
-            <Button onClick={() => switchHandler('past')} className="button" active={mode === 'past'}>
-                Прошедшие
-            </Button>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Button
+        onClick={() => switchHandler("new")}
+        className="button"
+        active={mode === "new"}
+      >
+        Предстоящие
+      </Button>
+      <Button
+        onClick={() => switchHandler("past")}
+        className="button"
+        active={mode === "past"}
+      >
+        Прошедшие
+      </Button>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -44,13 +53,12 @@ const Wrapper = styled.div`
     max-width: 360px;
     height: 40px;
   }
-`
+`;
 
 const Button = styled.div`
   cursor: pointer;
-  background: ${(props: PropsButton) => props.active ?
-          "#484747" : 'none'};
-  color: ${(props: PropsButton) => props.active ? `#fff` : '#626262'};
+  background: ${(props: PropsButton) => (props.active ? "#484747" : "none")};
+  color: ${(props: PropsButton) => (props.active ? `#fff` : "#626262")};
   border: 6px solid #fff;
   border-radius: 64px;
   padding: 16px 8px;
@@ -59,6 +67,6 @@ const Button = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
-`
+`;
 
-export default Switch;
+export default observer(Switch);

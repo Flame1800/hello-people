@@ -1,52 +1,53 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import InfoListServices from "../Common/Services/InfoListServices";
 import dynamic from "next/dynamic";
 import Description from "../Common/Services/Description";
-import {ButtonStyle} from "../../../styles/commonStyles";
+import { ButtonStyle } from "../../../styles/commonStyles";
 import TwoGisButton from "../Common/Services/TwoGisButton";
 import MetaActionsPlace from "./MetaActionsPlace";
 import UiStateStore from "../../Stores/UiStateStore";
 import UserStore from "../../Stores/UserStore";
 import dialogFeedStore from "../../modules/chat/stores/dialogFeedStore";
 
-type Props = {
-    place: any
-}
+type PlaceContentType = {
+  place: PlaceType;
+};
 
-const PlaceContent: React.FC<Props> = ({place}) => {
-    const {user} = UserStore
-    const {addDialog} = dialogFeedStore
+const PlaceContent = ({ place }: PlaceContentType) => {
+  const { user } = UserStore;
+  const { addDialog } = dialogFeedStore;
 
-    const goEventChat = () => {
-        if (!user) {
-            return UiStateStore.toggleAuthModal()
-        }
-
-        addDialog(place.id, 'conversation', 'place')
+  const goEventChat = () => {
+    if (!user) {
+      return UiStateStore.toggleAuthModal();
     }
 
+    addDialog(place.id, "conversation", "place");
+  };
 
-    const {attributes} = place
-    return (
-        <Wrapper>
-            <div className="inner-container">
-                <MetaActionsPlace place={place} />
-                <div className="buttons">
-                    <ButtonStyle outline onClick={() => goEventChat()}>Перейти в чат</ButtonStyle>
-                    <TwoGisButton link2gis={attributes.maplink}/>
-                </div>
-                <InfoListServices
-                    address={attributes.location}
-                    link={attributes.site}
-                    phone={attributes.tel}
-                    link2gis={attributes.maplink}
-                />
-                <div className='place-title'>{attributes.title}</div>
-                <Description data={attributes.description}/>
-            </div>
-        </Wrapper>
-    );
+  const { attributes } = place;
+  return (
+    <Wrapper>
+      <div className="inner-container">
+        <MetaActionsPlace place={place} />
+        <div className="buttons">
+          <ButtonStyle outline onClick={() => goEventChat()}>
+            Перейти в чат
+          </ButtonStyle>
+          <TwoGisButton link2gis={attributes.maplink} />
+        </div>
+        <InfoListServices
+          address={attributes.location}
+          link={attributes.site}
+          phone={attributes.tel}
+          link2gis={attributes.maplink}
+        />
+        <div className="place-title">{attributes.title}</div>
+        <Description data={attributes.description} />
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -60,11 +61,11 @@ const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: -10px;
-  
+
   .user-meta {
     display: flex;
     margin-top: 20px;
-    
+
     > div {
       margin-right: 10px;
     }
@@ -80,7 +81,7 @@ const Wrapper = styled.div`
     font-size: 26px;
     font-weight: 700;
     margin-bottom: 5px;
-    transition: .2s;
+    transition: 0.2s;
   }
 
   .place-category {
@@ -95,7 +96,7 @@ const Wrapper = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
-    
+
     @media (max-width: 500px) {
       flex-wrap: wrap;
       height: 100px;
@@ -106,6 +107,6 @@ const Wrapper = styled.div`
       margin-right: 20px;
     }
   }
-`
+`;
 
 export default PlaceContent;

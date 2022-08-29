@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
 type ServiceProps = {
-    children: string
-    link: string
-}
+  children: string | Component;
+  link: string;
+};
 
-const HeaderServicesPage: React.FC<ServiceProps> = ({children, link}) => {
-    return (
-        <Wrapper>
-            <div className="title">{children}</div>
-            <Link href={link}>
-                <a className='add-btn'>
-                    <img src="/img/add-icon.svg" alt="Добавить"/>
-                </a>
-            </Link>
-        </Wrapper>
-    );
+const HeaderServicesPage = ({ children, link }: ServiceProps) => {
+  return (
+    <Wrapper>
+      <div className="title">{children}</div>
+      <Link href={link}>
+        <a className="add-btn">
+          <img src="/img/add-icon.svg" alt="Добавить" />
+        </a>
+      </Link>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -46,6 +46,6 @@ const Wrapper = styled.div`
       display: none;
     }
   }
-`
+`;
 
 export default HeaderServicesPage;

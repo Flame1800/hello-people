@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Link from "next/link";
 
 import Logo from './Logo';
-import InfoHeader from './InfoHeader';
 import UserUX from './UserUX';
 import {observer} from "mobx-react-lite";
 
@@ -11,7 +10,6 @@ const Header = () => {
     return (
         <Wrapper>
             <Logo/>
-            <InfoHeader/>
             <UserUX/>
         </Wrapper>
     );
