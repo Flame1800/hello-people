@@ -33,10 +33,20 @@ const ProfileHead = ({user}) => {
             {user.description &&
             <div className="description">
                 <div className="title-desc">Обо мне:</div>
-                {user.description}
+                <div className='text-desc'>
+                  {user.description}
+                </div>
             </div>
             }
 
+            {!user.description &&
+            <div className="description">
+                <div className="title-desc">Обо мне:</div>
+                <div className='text-desc'>
+                  Здесь пока пусто...
+                </div>
+            </div>
+            }
         </Wrapper>
     );
 };
@@ -50,14 +60,12 @@ const Wrapper = styled.div`
   border-radius: 32px;
   background: #fff;
 
-  .info {
-    margin-left: 15px;
+  @media (max-width: 1424px) {
+    padding: 40px 5%;
   }
 
-
-  @media (max-width: 1424px) {
-    background: #fff;
-    padding: 20px 0;
+  .info {
+    margin-left: 15px;
   }
 
   .head {
@@ -88,11 +96,24 @@ const Wrapper = styled.div`
   }
 
   .description {
+    display: flex;
+    flex-direction: column;
+    white-space: pre-line;
+
     .title-desc {
       font-weight: 800;
       font-size: 15px;
       color: #000000;
       margin-bottom: 5px;
+    }
+
+    .text-desc {
+      display: flex;
+      word-wrap: break-word;
+
+      & {
+        display: inline-block;
+      }
     }
 
     max-width: 330px;

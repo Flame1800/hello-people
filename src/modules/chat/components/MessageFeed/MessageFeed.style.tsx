@@ -10,6 +10,7 @@ export const getMessageFeedStyle = (isDesktop: boolean) => styled.div`
   left: 0;
   height: 80vh;
   position: absolute;
+  border-radius: 32px;
 
   .messages {
     padding-top: 30px;

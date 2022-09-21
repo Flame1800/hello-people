@@ -3,7 +3,7 @@ import styled from "styled-components";
 import UserAvatar from '../../User/UserAvatar';
 import AddButton from './AddButton';
 import UserStore from "../../../Stores/UserStore";
-import MessengerButton from '../NavButtonsSvg/MessengerButton';
+import MessengerButton from './MessengerButton';
 import {observer} from "mobx-react-lite";
 import Link from "next/link"
 import UiStateStore from "../../../Stores/UiStateStore";
@@ -17,11 +17,9 @@ const UserUX = () => {
 
     return (
         <Wrapper>
-            <a href="/messenger">
-                <div className="btn-gray">
-                    <img src="/img/chat.svg" alt="chat"/>
-                </div>
-            </a>
+            <Link href="/messenger">
+                <MessengerButton/>
+            </Link>
             <AddButton/>
             <Link href={`/user/${UserStore?.user?.id}`}>
                 <a>
@@ -38,16 +36,6 @@ const Wrapper = styled.div`
   align-items: center;
   
   img {
-    cursor: pointer;
-  }
-
-  .btn-gray {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 14px;
-    color: #000000;
     cursor: pointer;
   }
 `
