@@ -2,7 +2,7 @@ import React from "react";
 import HeaderServicesPage from "../../src/Components/Common/HeaderServicesPage";
 import Categories from "../../src/Components/Common/Categories";
 import CatalogCards from "../../src/Components/Place/CatalogCards";
-import API from "../../src/Libs/API";
+import API from "../../src/Helpers/API";
 import { NextPage } from "next";
 import { observer } from "mobx-react-lite";
 import axios from "axios";
@@ -18,8 +18,6 @@ type Props = {
 const Places: NextPage<Props> = ({ entries, categories }) => {
   const [places, setPlaces] = React.useState(entries);
   const [loader, setLoader] = React.useState(false);
-
-  console.log(places);
 
   const { selectedCategories } = CategoriesStore;
 

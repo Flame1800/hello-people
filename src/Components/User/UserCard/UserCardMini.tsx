@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import Link from "next/link";
 import UserAvatar from "../UserAvatar";
 import styled from "styled-components";
 
-const UserCardMini = ({user}) => {
-    return (
-        <Link href={`/user/${user.id}`}>
-            <WrapperCard className='user'>
-                <UserAvatar url={user.avatar}/>
-                <div className="username">{user.username}</div>
-            </WrapperCard>
-        </Link>
-    );
+const UserCardMini = ({ user }: { user: UserAttributes }) => {
+  return (
+    <Link href={`/user/${user.id}`}>
+      <WrapperCard className="user">
+        <UserAvatar url={user.avatar} />
+        <div className="username">{user.username}</div>
+      </WrapperCard>
+    </Link>
+  );
 };
 
 const WrapperCard = styled.a`
@@ -31,6 +31,6 @@ const WrapperCard = styled.a`
   &:hover {
     background: #f5f5f5;
   }
-`
+`;
 
 export default UserCardMini;

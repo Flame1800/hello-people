@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import {Tooltip} from "@mui/material";
-import {theme} from "../../../../styles/theme";
+import { Tooltip } from "@mui/material";
+import { theme } from "../../../../styles/theme";
 
-const NameService = ({name, category}) => {
-    return (
-        <Wrapper>
-            <Tooltip title={name}>
-                <div className="name">{name}</div>
-            </Tooltip>
-            {category && <div className="category">{category}</div>}
-        </Wrapper>
-    );
+const NameService = ({ name, category }) => {
+  return (
+    <Wrapper>
+      <div className="name">{name}</div>
+      {category && <div className="category">{category}</div>}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -20,7 +18,7 @@ const Wrapper = styled.div`
     font-weight: 700;
     margin-bottom: 5px;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 
     &:hover {
       color: ${theme.color.orange};
@@ -42,6 +40,6 @@ const Wrapper = styled.div`
     color: #949494;
     margin-bottom: 30px;
   }
-`
+`;
 
 export default NameService;

@@ -1,26 +1,28 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import Carousel from "../Common/Carousel/Carousel";
 import Link from "next/link";
-import API from "../../Libs/API";
+import API from "../../Helpers/API";
 
 type PropsType = {
-    place: any
-}
+  place: any;
+};
 
-const PinnedPlace: React.FC<PropsType> = ({place}) => {
-
-    return (
-        <Wrapper>
-            <div className="title">Место</div>
-            <div className="place">
-                <Link href={`/places/${place.id}`}>
-                    <a className="name">{place.attributes.abbTitle}</a>
-                </Link>
-                <Carousel pictures={place?.attributes.pictures.data} cover={place?.attributes.cover.data}/>
-            </div>
-        </Wrapper>
-    );
+const PinnedPlace: React.FC<PropsType> = ({ place }) => {
+  return (
+    <Wrapper>
+      <div className="title">Место</div>
+      <div className="place">
+        <Link href={`/places/${place.id}`}>
+          <a className="name">{place.attributes.abbTitle}</a>
+        </Link>
+        <Carousel
+          pictures={place?.attributes.pictures.data}
+          cover={place?.attributes.cover.data}
+        />
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -59,10 +61,10 @@ const Wrapper = styled.div`
       width: 100%;
     }
 
-    img, div {
+    img,
+    div {
       border-radius: 15px;
     }
-
 
     @media (min-width: 870px) {
       height: 205px;
@@ -77,7 +79,7 @@ const Wrapper = styled.div`
     right: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     border-radius: 0 0 15px 15px;
-    background: #FFFFFF;
+    background: #ffffff;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -92,7 +94,6 @@ const Wrapper = styled.div`
       background: #000;
       color: #fff;
     }
-
   }
 
   @media (min-width: 870px) {
@@ -102,8 +103,7 @@ const Wrapper = styled.div`
     padding: 0;
     margin-top: 0;
     margin-bottom: 0;
-
   }
-`
+`;
 
 export default PinnedPlace;

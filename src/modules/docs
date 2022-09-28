@@ -1,0 +1,51 @@
+// Чаты
+//Категории чатов
+'place'
+'event'
+'meet'
+'private'
+'chat'
+
+//Получение чатов на которые подписан
+socket.on('getFavoriteChats', data => {
+    data = [{chatId, id, abbTitle, cover}] //id объекта в страпи, ковер как в страпи
+})
+
+//Подписаться и отписаться на чат
+socket.emit('addChatToFavorite', { objectIdStrapi, category })
+socket.emit('removeChatFromFavorite', {chatId})
+
+//Получить id чата сразу же после подписки
+socket.on('chatInfo', (data) => {
+    data = {chatId, chatInfo, category}
+    chatInfo = {chatId, id, abbTitle, cover}
+})
+
+//Вход в чат
+socket.emit('joinChat', {chat: {objectIdStrapi, category}, readOnly}) //отправляешь факт входа в чат
+socket.on('userJoinChat', (data) =>  { //получаешь всю инфу по чату, в который зашел
+    data = {users, msgs, chat}
+    users = [{id, username, avatar}]
+    msgs = [ {chatId,  author, to, text, date, isRead } ]// author и to = {id, username, avatar}
+    chatInfo = {chatId, id, abbTitle, cover}
+})
+
+//Отправить сообщение в чат
+socket.emit('sendMsg', {chatId,  author, to, text, date, isRead })
+
+//В чат пришло новое сообщение
+socket.on('newMsg', (data) => {
+    data = {chatId,  author, to, text, date, isRead }
+})
+
+//Какой-то пользователь зашел в чат или вышел
+socket.on('newUser', (data) => {
+    data = {userId } //id пользователи из страпи
+})
+
+socket.emit('leaveChat', {}) //id пользователи из страпи
+
+socket.on('leaveUser', (data) => {
+    data = {userId } //id пользователи из страпи
+})
+

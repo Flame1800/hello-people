@@ -1,29 +1,33 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import UserBadge from "../User/UserBadge";
 import TypeMeet from "./TypeMeet";
 import Buttons from "./Buttons";
 import PlaceMeet from "./PlaceMeet";
+import { theme } from "../../../styles/theme";
 
-const MeetCard = () => {
-    return (
-        <Wrapper>
-            <div className="content">
-                <div className="head">
-                    <UserBadge size='sm'/>
-                    <TypeMeet type='group'/>
-                </div>
-                <div className="text">
-                    Го в дарк 12:00, сегодня там есть
-                    движ
-                </div>
-            </div>
-            <div className="meta">
-                <Buttons/>
-                <PlaceMeet/>
-            </div>
-        </Wrapper>
-    );
+type Props = {
+  meet: MeetType | null;
+};
+
+const MeetCard = ({ meet }: Props) => {
+  if (!meet) return null;
+
+  return (
+    <Wrapper>
+      <div className="content">
+        <div className="head">
+          <UserBadge user={meet.attributes.author.data} size="sm" />
+          <TypeMeet type="group" />
+        </div>
+        <div className="text">{meet.attributes.description}</div>
+      </div>
+      <div className="meta">
+        <Buttons />
+        <PlaceMeet place={meet.attributes.place} />
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -31,9 +35,9 @@ const Wrapper = styled.div`
   min-height: 180px;
   margin-bottom: 15px;
   padding: 16px;
-  background: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0 4px 34px rgba(0, 0, 0, 0.04);
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  box-shadow: ${theme.boxShadow.mainComponent};
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -62,8 +66,8 @@ const Wrapper = styled.div`
 
   .meta {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
   }
-`
+`;
 
 export default MeetCard;

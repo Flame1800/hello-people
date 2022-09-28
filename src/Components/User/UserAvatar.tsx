@@ -1,36 +1,36 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import API from "../../Libs/API";
+import API from "../../Helpers/API";
 
 type IconProps = {
-    url?: string,
-    size?: string
+  url?: string;
+  size?: string;
 };
 
-const UserAvatar: React.FC<IconProps> = ({url, size = 'sm'}) => {
+const UserAvatar: React.FC<IconProps> = ({ url, size = "sm" }) => {
+  const content = (
+    <>
+      {url ? (
+        <ImageStyle src={API.url + url} alt="avatar" />
+      ) : (
+        <ImageStyle src="/img/avatar.svg" alt="avatar" />
+      )}
+    </>
+  );
 
-    const content = (
-        <>
-            {url
-                ? <ImageStyle src={API.url + url} alt="avatar"/>
-                : <ImageStyle src="/img/avatar.svg" alt="avatar"/>
-            }
-        </>
-    )
+  if (size === "xs") {
+    return <ExtraSmallSize>{content}</ExtraSmallSize>;
+  }
 
-    if (size === 'xs') {
-      return (<ExtraSmallSize>{content}</ExtraSmallSize>)
-    }
+  if (size === "md") {
+    return <MediumSize>{content}</MediumSize>;
+  }
 
-    if (size === 'md') {
-      return (<MediumSize>{content}</MediumSize>)
-    }
+  if (size === "lg") {
+    return <LargeSize>{content}</LargeSize>;
+  }
 
-    if (size === 'lg') {
-      return (<LargeSize>{content}</LargeSize>)
-    }
-
-    return (<Wrapper>{content}</Wrapper>);
+  return <Wrapper>{content}</Wrapper>;
 };
 
 const Wrapper = styled.div`
@@ -42,22 +42,22 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-`
+`;
 
 const ExtraSmallSize = styled(Wrapper)`
   width: 24px;
   height: 24px;
-`
+`;
 
 const MediumSize = styled(Wrapper)`
   width: 64px;
   height: 64px;
-`
+`;
 
 const LargeSize = styled(Wrapper)`
   width: 128px;
   height: 128px;
-`
+`;
 
 const ImageStyle = styled.img`
   width: 100%;
@@ -65,6 +65,6 @@ const ImageStyle = styled.img`
   border-radius: 50%;
   overflow: hidden;
   object-fit: cover;
-`
+`;
 
 export default UserAvatar;

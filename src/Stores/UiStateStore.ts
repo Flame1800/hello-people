@@ -1,26 +1,25 @@
-import {makeAutoObservable} from "mobx";
-
+import { makeAutoObservable } from "mobx";
 
 class UiStateStore {
-    authModal: Boolean = false
-    usersListModal: Boolean = false
-    createEventListModal: Boolean = false
+  authModal: boolean = false;
+  usersListModal: boolean = false;
+  createEventListModal: boolean = false;
 
-    constructor() {
-        makeAutoObservable(this)
-    }
+  constructor() {
+    makeAutoObservable(this);
+  }
 
-    toggleAuthModal = () => {
-        this.authModal = !this.authModal
-    }
+  toggleAuthModal = () => {
+    this.authModal = !this.authModal;
+  };
 
-    toggleUsersListModal = () => {
-        this.usersListModal = !this.usersListModal
-    }
+  toggleUsersListModal = () => {
+    this.usersListModal = !this.usersListModal;
+  };
 
-    toggleCreateEventListModal = () => {
-        this.createEventListModal = !this.createEventListModal
-    }
+  toggleCreateEventListModal = () => {
+    this.createEventListModal = !this.createEventListModal;
+  };
 }
 
-export default new UiStateStore()
+export default new UiStateStore();

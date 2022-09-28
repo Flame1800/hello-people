@@ -1,27 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Image from "next/image";
-import {theme} from "../../../../../styles/theme";
-import {observer} from 'mobx-react-lite';
-import entryFieldStore from '../../stores/entryFieldStore';
-import chatStore from "../../stores/chatStore/chatStore";
+import { observer } from "mobx-react-lite";
+import dialogsStore from "../../stores/dialogsStore";
 
 const Search = () => {
-    const {getSearchText, setSearchText} = entryFieldStore;
+  const [searchText, setSearchText] = useState("");
 
-    return (
-        <Wrapper>
-            {/* Тут будет ModeSwitcher */}
-            <input
-                placeholder="Поиск..."
-                type="text"
-                className="search"
-                value={getSearchText()}
-                onChange={(event => setSearchText(event.currentTarget.value))}
-            />
-            <img src='/img/add-dialog.svg' alt='add-dialog'/>
-        </Wrapper>
-    );
+  useEffect(() => {
+    dialogsStore.getSearchDialogs(searchText);
+  }, [searchText]);
+
+  return (
+    <Wrapper>
+      <input
+        placeholder="Поиск..."
+        type="text"
+        className="search"
+        value={searchText}
+        onChange={(event) => setSearchText(event.currentTarget.value)}
+      />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -43,7 +42,7 @@ const Wrapper = styled.div`
   }
 
   .search {
-    background: #FFF;
+    background: #fff;
     width: 100%;
     border-radius: 16px;
     font-style: normal;
@@ -60,6 +59,6 @@ const Wrapper = styled.div`
       font-size: 14px;
     }
   }
-`
+`;
 
 export default observer(Search);

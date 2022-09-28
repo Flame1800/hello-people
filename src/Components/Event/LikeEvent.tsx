@@ -1,7 +1,7 @@
 import React from "react";
 import Like from "../Common/Like";
 import UserStore from "../../Stores/UserStore";
-import API from "../../Libs/API";
+import API from "../../Helpers/API";
 
 type LikeEventType = {
   likes: { data: Array<LikeType> } | null | undefined;

@@ -1,38 +1,34 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import Rating from "../Rating";
-import Comment from "../../Common/Comment";
 import CardPlaceCarousel from "./CardPlaceCarousel";
 import Link from "next/link";
-import LikePlace from "./LikePlace";
-import {observer} from "mobx-react-lite";
-import UserStore from "../../../Stores/UserStore";
-import LikeEvent from "../../Event/LikeEvent";
-import Like from "../../Common/Like";
+import { observer } from "mobx-react-lite";
 import MetaActionsPlace from "../MetaActionsPlace";
 
-
 type Props = {
-    card: any
-}
+  card: any;
+};
 
-const PlaceCard: React.FC<Props> = ({card}) => {
-    const {attributes} = card
+const PlaceCard: React.FC<Props> = ({ card }) => {
+  const { attributes } = card;
 
-    return (
-        <Wrapper>
-            <CardPlaceCarousel pictures={attributes.pictures} cover={attributes.cover}/>
-            <div className="content">
-                <Link href={`/places/${card.id}`}>
-                    <a>
-                        <div className="name">{attributes.title}</div>
-                        <div className="location">{attributes.location}</div>
-                    </a>
-                </Link>
-                <MetaActionsPlace place={card} />
-            </div>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <CardPlaceCarousel
+        pictures={attributes.pictures}
+        cover={attributes.cover}
+      />
+      <div className="content">
+        <Link href={`/places/${card.id}`}>
+          <a>
+            <div className="name">{attributes.title}</div>
+            <div className="location">{attributes.location}</div>
+          </a>
+        </Link>
+        <MetaActionsPlace place={card} />
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -40,7 +36,7 @@ const Wrapper = styled.div`
   margin: 20px auto;
   height: 300px;
   width: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0 8px 17px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 
@@ -67,7 +63,6 @@ const Wrapper = styled.div`
       color: #676767;
     }
   }
-`
+`;
 
 export default observer(PlaceCard);
-

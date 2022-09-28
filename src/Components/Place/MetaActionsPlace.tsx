@@ -6,6 +6,7 @@ import LikePlace from "./Card/LikePlace";
 import Like from "../Common/Like";
 import Link from "next/link";
 import Comment from "../Common/Comment";
+import { observer } from "mobx-react-lite";
 
 type MetaActionsType = {
   place: PlaceType;
@@ -49,4 +50,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default MetaActionsPlace;
+export default observer(MetaActionsPlace);

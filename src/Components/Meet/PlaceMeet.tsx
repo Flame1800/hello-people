@@ -1,20 +1,19 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-const PlaceMeet = () => {
-    return (
-        <Wrapper>
-            <div className="name">
-                Hotdogger
-            </div>
-            <div className="category">
-                кафе
-            </div>
-        </Wrapper>
-    );
+const PlaceMeet = ({ place }: { place: string }) => {
+  return (
+    <Wrapper>
+      <div className="category">Место</div>
+      <div className="name">{place}</div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
+  margin-right: 10px;
+  margin-left: 20px;
+
   .name {
     font-weight: 400;
     font-size: 14px;
@@ -25,6 +24,6 @@ const Wrapper = styled.div`
     font-size: 14px;
     color: #666666;
   }
-`
+`;
 
 export default PlaceMeet;

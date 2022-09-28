@@ -1,40 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import InfoListServices from "../Common/Services/InfoListServices";
-import dynamic from "next/dynamic";
 import Description from "../Common/Services/Description";
-import { ButtonStyle } from "../../../styles/commonStyles";
 import TwoGisButton from "../Common/Services/TwoGisButton";
 import MetaActionsPlace from "./MetaActionsPlace";
-import UiStateStore from "../../Stores/UiStateStore";
-import UserStore from "../../Stores/UserStore";
-import dialogFeedStore from "../../modules/chat/stores/dialogFeedStore";
+import { observer } from "mobx-react-lite";
+import OpenChatButton from "../OpenChatButton/OpenChatButton";
 
 type PlaceContentType = {
   place: PlaceType;
 };
 
 const PlaceContent = ({ place }: PlaceContentType) => {
-  const { user } = UserStore;
-  const { addDialog } = dialogFeedStore;
-
-  const goEventChat = () => {
-    if (!user) {
-      return UiStateStore.toggleAuthModal();
-    }
-
-    addDialog(place.id, "conversation", "place");
-  };
-
   const { attributes } = place;
   return (
     <Wrapper>
       <div className="inner-container">
         <MetaActionsPlace place={place} />
         <div className="buttons">
-          <ButtonStyle outline onClick={() => goEventChat()}>
-            Перейти в чат
-          </ButtonStyle>
+          <OpenChatButton entityId={place.id} category={"place"} />
           <TwoGisButton link2gis={attributes.maplink} />
         </div>
         <InfoListServices
@@ -109,4 +93,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default PlaceContent;
+export default observer(PlaceContent);

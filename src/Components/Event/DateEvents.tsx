@@ -1,36 +1,37 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import {DateTime} from "luxon";
-import {theme} from "../../../styles/theme";
+import { DateTime } from "luxon";
+import { theme } from "../../../styles/theme";
 
-const DateEvents = ({date}) => {
-    const today = DateTime.now()
-    const dt = DateTime.fromISO(date)
-    const day = dt.toLocaleString({
-        day: 'numeric',
-    })
-    const dayMonth = dt.toLocaleString({
-        month: 'long',
-        day: 'numeric',
-    })
+const DateEvents = ({ date }: { date: string }) => {
+  const today = DateTime.now();
+  const dt = DateTime.fromISO(date);
+  const day = dt.toLocaleString({
+    day: "numeric",
+  });
+  const dayMonth = dt.setLocale("ru").toLocaleString({
+    month: "long",
+    day: "numeric",
+  });
 
-    const todayDayMont = today.toLocaleString({
-        month: 'long',
-        day: 'numeric',
-    })
+  const todayDayMont = today.toLocaleString({
+    month: "long",
+    day: "numeric",
+  });
 
-
-    return (
-        <Wrapper>
-            <div className="date">
-                <div className="num">{day}</div>
-                &nbsp; {dayMonth.replace(/[0-9]/g, '')}
-            </div>
-            {todayDayMont === dayMonth && <div className="today">
-                <p>Сегодня</p>
-            </div>}
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <div className="date">
+        <div className="num">{day}</div>
+        &nbsp; {dayMonth.replace(/[0-9]/g, "")}
+      </div>
+      {todayDayMont === dayMonth && (
+        <div className="today">
+          <p>Сегодня</p>
+        </div>
+      )}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -48,7 +49,7 @@ const Wrapper = styled.div`
     font-weight: 400;
     font-size: 18px;
     line-height: 97.9%;
-    color: #FC5130;
+    color: #fc5130;
     box-shadow: 0 4px 0 rgba(105, 105, 105, 0.13);
 
     .num {
@@ -74,6 +75,6 @@ const Wrapper = styled.div`
       margin-bottom: 15px;
     }
   }
-`
+`;
 
 export default DateEvents;

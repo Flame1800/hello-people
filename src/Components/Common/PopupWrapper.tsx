@@ -1,39 +1,43 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import styled from "styled-components";
 import CloseButton from "./CloseButton";
 
 type PropTypes = {
-    show: boolean,
-    setShow: Function,
-    width?: number,
-    children: any
-}
-
-const PopupWrapper: React.FC<PropTypes> = ({show, setShow, width = 450, children}) => {
-
-    React.useEffect(() => {
-        if (show) {
-            document.body.style.overflow = 'hidden'
-        }
-
-        if (!show) {
-            document.body.style.overflow = 'auto'
-        }
-    }, [show])
-
-    return (
-        <Wrapper active={show} width={width}>
-            <div className='content'>
-                <div onClick={() => setShow()} className='close-btn'>
-                    <CloseButton/>
-                </div>
-                {children}
-            </div>
-        </Wrapper>
-    );
+  show: boolean;
+  setShow: Function;
+  width?: number;
+  children: any;
 };
 
-const Wrapper = styled.div`
+const PopupWrapper: React.FC<PropTypes> = ({
+  show,
+  setShow,
+  width = 450,
+  children,
+}) => {
+  React.useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    }
+
+    if (!show) {
+      document.body.style.overflow = "auto";
+    }
+  }, [show]);
+
+  return (
+    <Wrapper active={show} width={width} onClick={() => setShow()}>
+      <div onClick={(e) => e.stopPropagation()} className="content">
+        <div onClick={() => setShow()} className="close-btn">
+          <CloseButton />
+        </div>
+        {children}
+      </div>
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.div<{ active: boolean; width: number }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -44,15 +48,13 @@ const Wrapper = styled.div`
   background: rgba(0, 0, 0, 0.4);
   inset: 0;
   transition: 0.3s;
-  opacity: ${({active}) => active ? 1 : 0};
-  pointer-events: ${({active}) => active ? 'all' : 'none'};
+  opacity: ${({ active }) => (active ? 1 : 0)};
+  pointer-events: ${({ active }) => (active ? "all" : "none")};
   overflow: auto;
-  
-
 
   .content {
     background: #fff;
-    max-width: ${({width}) => width}px;
+    max-width: ${({ width }) => width}px;
     width: 100%;
     border-radius: 20px;
     display: flex;
@@ -64,7 +66,7 @@ const Wrapper = styled.div`
 
     .close-btn {
       position: absolute;
-      top: 34px;
+      top: 16px;
       right: 24px;
       z-index: 12;
     }
@@ -73,12 +75,12 @@ const Wrapper = styled.div`
   @media (max-width: 1000px) {
     background: #fff;
     overflow: auto;
-    
+    align-items: flex-start;
+
     .content {
-      margin: 0
+      margin-top: 10px;
     }
   }
-`
-
+`;
 
 export default PopupWrapper;

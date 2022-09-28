@@ -1,68 +1,84 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import PinnedPlace from "../PinnedPlace";
 import Comment from "../../Common/Comment";
 import NameService from "../../Common/Services/NameService";
-import API from "../../../Libs/API";
-import {theme} from "../../../../styles/theme";
-import makeBeautyDate from "../../../Libs/makeBeautyDate";
-import Link from 'next/link'
+import API from "../../../Helpers/API";
+import { theme } from "../../../../styles/theme";
+import makeBeautyDate from "../../../Helpers/makeBeautyDate";
+import Link from "next/link";
 import LikeEvent from "../LikeEvent";
 import UserStore from "../../../Stores/UserStore";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import Like from "../../Common/Like";
 import MetaActionsEvent from "../MetaActionsEvent";
-import {toJS} from "mobx";
+import { toJS } from "mobx";
 
-const EventCard = ({event}) => {
+const EventCard = ({ event }) => {
+  const { attributes } = event;
+  const categoriesString = attributes.categories.data
+    .map(({ attributes }) => attributes.title)
+    .join(", ");
 
-    const {attributes} = event
-    const categoriesString = attributes.categories.data.map(({attributes}) => attributes.title).join(', ')
-
-    return (
-        <Wrapper id={event.id}>
-            <div className="card">
-                <div className="event">
-                    <Link href={`/events/${event.id}`}>
-                        <a className='cover'>
-                            {attributes.cover.data
-                                ? <img className="gallery" src={API.url + attributes.cover.data.attributes.url}
-                                       alt="обложка"/>
-                                : <img className='gallery' src='/img/mock-avatar.svg' alt='моковая обложка'/>}
-                        </a>
-                    </Link>
-                    <div className="info">
-                        <Link href={`/events/${event.id}`}>
-                            <a>
-                                <div className="name-wrap">
-                                    <NameService name={attributes.abbTitle} category={categoriesString} />
-                                </div>
-                            </a>
-                        </Link>
-                        <div className="event-meta">
-                            <Link href={`/events/${event.id}`}>
-                                <a>
-                                    <div className="date">{makeBeautyDate(attributes.dateStart)}</div>
-                                    <div className="address">
-                                        {attributes.place.data ? attributes.place.data.attributes.location : 'не найдено'}
-                                    </div>
-                                </a>
-                            </Link>
-                            <MetaActionsEvent event={event} />
-                        </div>
-                    </div>
-
+  return (
+    <Wrapper id={event.id}>
+      <div className="card">
+        <div className="event">
+          <Link href={`/events/${event.id}`}>
+            <a className="cover">
+              {attributes.cover.data ? (
+                <img
+                  className="gallery"
+                  src={API.url + attributes.cover.data.attributes.url}
+                  alt="обложка"
+                />
+              ) : (
+                <img
+                  className="gallery"
+                  src="/img/mock-avatar.svg"
+                  alt="моковая обложка"
+                />
+              )}
+            </a>
+          </Link>
+          <div className="info">
+            <Link href={`/events/${event.id}`}>
+              <a>
+                <div className="name-wrap">
+                  <NameService
+                    name={attributes.abbTitle}
+                    category={categoriesString}
+                  />
                 </div>
-                {attributes.place.data && <PinnedPlace place={attributes.place.data}/>}
+              </a>
+            </Link>
+            <div className="event-meta">
+              <Link href={`/events/${event.id}`}>
+                <a>
+                  <div className="date">
+                    {makeBeautyDate(attributes.dateStart)}
+                  </div>
+                  <div className="address">
+                    {attributes.place.data
+                      ? attributes.place.data.attributes.location
+                      : "не найдено"}
+                  </div>
+                </a>
+              </Link>
+              <MetaActionsEvent event={event} />
             </div>
-        </Wrapper>
-    );
+          </div>
+        </div>
+        {attributes.place.data && <PinnedPlace place={attributes.place.data} />}
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
   max-width: 860px;
   align-items: center;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 30px;
@@ -96,7 +112,8 @@ const Wrapper = styled.div`
     object-fit: cover;
     cursor: pointer;
 
-    img, div {
+    img,
+    div {
       border-radius: 15px;
     }
 
@@ -128,7 +145,6 @@ const Wrapper = styled.div`
     }
   }
 
-
   .event-meta {
     display: flex;
     flex-wrap: wrap;
@@ -140,12 +156,11 @@ const Wrapper = styled.div`
     }
   }
 
-
   .date {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 97.9%;
-    color: #949494;
+    color: #5e4c4c;
     margin-bottom: 5px;
   }
 
@@ -164,6 +179,6 @@ const Wrapper = styled.div`
     border-radius: 0 0 15px 15px;
     cursor: pointer;
   }
-`
+`;
 
 export default observer(EventCard);

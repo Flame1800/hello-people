@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import GlobalStyles from "../styles/global";
-import MainLayout from "../src/Layouts/MainLayout";
+import Layout from "../src/Components/Layout/Layout";
 import NextNProgress from "nextjs-progressbar";
 import { theme } from "../styles/theme";
 import { parseCookies } from "nookies";
@@ -13,9 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     const cookie = parseCookies();
 
-    if (cookie.jwt) {
-      UserStore.setUserByToken(cookie.jwt);
-    }
+    UserStore.setUserByToken(cookie.jwt);
   }, []);
 
   return (
@@ -27,9 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         height={3}
       />
       <GlobalStyles />
-      <MainLayout>
+      <Layout>
         <Component {...pageProps} />
-      </MainLayout>
+      </Layout>
     </>
   );
 }

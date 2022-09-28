@@ -6,7 +6,6 @@ import { observer } from "mobx-react-lite";
 import CommentList from "./CommentList";
 import UserStore from "../../Stores/UserStore";
 import UiStateStore from "../../Stores/UiStateStore";
-import { toJS } from "mobx";
 
 type CommentsBlockType = {
   id: number;
@@ -14,42 +13,39 @@ type CommentsBlockType = {
 };
 
 const CommentsBlock = ({ id, model }: CommentsBlockType) => {
-  const { comments } = CommentsStore;
+  const { comments, setComments, setModel } = CommentsStore;
   const { user } = UserStore;
 
   React.useEffect(() => {
     // установка коментов и модели
-    CommentsStore.setComments(id, model);
-    CommentsStore.setModel(model);
+    setComments(id, model);
+    setModel(model);
   }, []);
 
-  console.log(toJS(comments));
+  const commentsHeaderBlock = (
+    <>
+      <Title>
+        Комментарии <CommentsLength>{comments.length}</CommentsLength>
+      </Title>
+      <CommentsInput />
+    </>
+  );
 
-  if (!user) {
-    return (
-      <Wrapper id="comments">
-        <Block>
-          <ReqAuth>
-            <AuthButtonStyle onClick={() => UiStateStore.toggleAuthModal()}>
-              Авторизуйтесь
-            </AuthButtonStyle>
-            , чтобы писать комментарии
-          </ReqAuth>
-          <CommentList comments={comments} />
-        </Block>
-      </Wrapper>
-    );
-  }
+  const reqAuth = (
+    <ReqAuth>
+      <AuthButtonStyle onClick={() => UiStateStore.toggleAuthModal()}>
+        Авторизуйтесь
+      </AuthButtonStyle>
+      , чтобы писать комментарии
+    </ReqAuth>
+  );
 
   return (
     <Wrapper id="comments">
       <Block>
-        <Title>
-          Комментарии <CommentsLength>{comments.length}</CommentsLength>
-        </Title>
-        <CommentsInput />
+        {user ? commentsHeaderBlock : reqAuth}
         <CommentList comments={comments} />
-        {comments.length > 15 && <CommentsInput />}
+        {comments.length > 15 && !user && <CommentsInput />}
       </Block>
     </Wrapper>
   );

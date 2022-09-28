@@ -1,30 +1,30 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import EventContent from "../../src/Components/Event/EventContent";
-import API from "../../src/Libs/API";
-import {NextPage} from "next";
+import API from "../../src/Helpers/API";
+import { NextPage } from "next";
 import EventCard from "../../src/Components/Event/Card/EventCard";
 import CommentsBlock from "../../src/Components/Comments/CommnetsBlock";
 
 type EventProps = {
-    event: any
-}
+  event: any;
+};
 
-const EventPage: NextPage<EventProps> = ({event}) => {
-    return (
-        <Wrapper>
-            <div className="card">
-                <EventCard event={event}/>
-            </div>
-            <EventContent event={event}/>
-            <CommentsBlock id={event.id} model={'party'}/>
-        </Wrapper>
-    );
+const EventPage: NextPage<EventProps> = ({ event }) => {
+  return (
+    <Wrapper>
+      <div className="card">
+        <EventCard event={event} />
+      </div>
+      <EventContent event={event} />
+      <CommentsBlock id={event.id} model={"party"} />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
   min-height: 80vh;
-  padding: 0px;
+  padding: 0;
 
   .card {
     display: flex;
@@ -53,12 +53,12 @@ const Wrapper = styled.div`
       margin-bottom: 5px;
     }
   }
-`
+`;
 
 EventPage.getInitialProps = async (ctx) => {
-    const eventRequest = await API.getEvent(ctx.query.id)
+  const eventRequest = await API.getEvent(ctx.query.id);
 
-    return {event: eventRequest.data.data}
-}
+  return { event: eventRequest.data.data };
+};
 
 export default EventPage;

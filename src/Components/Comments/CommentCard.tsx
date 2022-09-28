@@ -5,7 +5,7 @@ import CommentInput from "./CommentInput";
 import { observer } from "mobx-react-lite";
 import UserAvatar from "../User/UserAvatar";
 import UserStore from "../../Stores/UserStore";
-import makeBeautyDate from "../../Libs/makeBeautyDate";
+import makeBeautyDate from "../../Helpers/makeBeautyDate";
 import InnerCommentList from "./InnerComentsList";
 
 type CommentCardType = {

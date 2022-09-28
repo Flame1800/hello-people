@@ -1,54 +1,38 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import Familiars from "./Familiars";
 import ProfileButtons from "../ProfileButtons";
 import UserStore from "../../../Stores/UserStore";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import UserAvatar from "../../User/UserAvatar";
 
-const ProfileHead = ({user}) => {
-    const me = UserStore.user
-    const isMe = user.id === me?.id
+const ProfileHead = ({ user }: { user: UserAttributes }) => {
+  const me = UserStore.user;
+  const isMe = user.id === me?.id;
 
-
-    return (
-        <Wrapper>
-            <div className="head">
-                <UserAvatar size='lg' url={user.avatar}/>
-                <div className="info">
-                    <div className="wrap-name">
-                        <div className="name">
-                            {user.username}
-                        </div>
-                    </div>
-                    <div className="first-name">
-                        {user.name}
-                    </div>
-                    {me && <ProfileButtons user={user} me={me}/>}
-                    <div>
-                        <Familiars user={user} isMe={isMe}/>
-                    </div>
-                </div>
-            </div>
-            {user.description &&
-            <div className="description">
-                <div className="title-desc">Обо мне:</div>
-                <div className='text-desc'>
-                  {user.description}
-                </div>
-            </div>
-            }
-
-            {!user.description &&
-            <div className="description">
-                <div className="title-desc">Обо мне:</div>
-                <div className='text-desc'>
-                  Здесь пока пусто...
-                </div>
-            </div>
-            }
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <div className="head">
+        <UserAvatar size="lg" url={user.avatar} />
+        <div className="info">
+          <div className="wrap-name">
+            <div className="name">{user.username}</div>
+          </div>
+          <div className="first-name">{user.name}</div>
+          {me && <ProfileButtons user={user} me={me} />}
+          <div>
+            <Familiars user={user} />
+          </div>
+        </div>
+      </div>
+      {user.description && (
+        <div className="description">
+          <div className="title-desc">Обо мне:</div>
+          {user.description}
+        </div>
+      )}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -66,6 +50,11 @@ const Wrapper = styled.div`
 
   .info {
     margin-left: 15px;
+  }
+
+  @media (max-width: 1424px) {
+    background: #fff;
+    padding: 20px 0;
   }
 
   .head {

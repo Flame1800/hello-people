@@ -1,77 +1,48 @@
-import React, { useEffect, useState } from 'react';
-
-import DialogFeed from '../components/DialogFeed';
-import chatStore from '../stores/chatStore';
-import { observer } from 'mobx-react-lite';
-import { io } from 'socket.io-client';
-import MessageFeed from '../components/MessageFeed';
-import dialogFeedStore from '../stores/dialogFeedStore';
-import Tab from '../components/common/Tab';
-import ComponentName from '../components/Header/ComponentName';
-import Search from '../components/Header/Search';
-import { CategoryType } from '../models/CategoryType';
-import { DialogProps } from './DialogFeed/Dialog/Dialog';
-import UserStore from "../../../Stores/UserStore";
+import React, { useState } from "react";
+import RoomList from "./RoomList/RoomList";
+import { observer } from "mobx-react-lite";
+import MessageRoom from "./MessageRoom";
+import { CategoryType } from "../models/CategoryType";
+import styled from "styled-components";
+import { UserType } from "../models/UserType";
+import dialogsStore from "../stores/dialogsStore";
+import useChat from "../hooks/useChat";
 
 type ChatProps = {
-    api?: string;
+  apiUrl: string;
+  user: UserType;
+  isWidget?: boolean;
 };
 
-const Chat: React.FC<ChatProps> = (props) => {
-    const { setCurrentDialogId, getCurrentDialogId, setSocket, socket } = chatStore;
-    const { getDialog } = dialogFeedStore;
-    const dialog = getDialog(getCurrentDialogId());
-    const {user} = UserStore
-    const [ content, setContent ] = useState<CategoryType>('chat');
+const ChatContent = ({ apiUrl, isWidget }: ChatProps) => {
+  const { currentDialog } = dialogsStore;
+  const [currentCategory, setCurrentCategory] = useState<CategoryType>("all");
 
-    useEffect(() => {
-        // подключкение к сокетам
-        const socket = io('http://localhost:1337', {query: {userId: user.id}})
+  useChat(apiUrl);
 
-        socket.on('user-chat-list', (data) => {
-            console.log(data)
-        })
-        setSocket(socket);
+  const roomList = (
+    <RoomList
+      category={currentCategory}
+      currentCategory={currentCategory}
+      setCurrentCategory={setCurrentCategory}
+    />
+  );
 
-    }, []);
+  const contentFull = (
+    <>
+      {roomList}
+      <MessageRoom />
+    </>
+  );
 
-    const switchCategory = (category: CategoryType) => {
-        setCurrentDialogId('');
-        setContent(category);
-    };
+  const contentWidget = currentDialog ? <MessageRoom /> : roomList;
 
-    const createTab = (category: CategoryType, name: string) => {
-        return (
-            <div onClick={() => switchCategory(category)}>
-                <Tab active={content === category}>{name}</Tab>
-            </div>
-        );
-    };
-
-    const getDialogContent = (category: CategoryType, dialog: DialogProps | undefined) => {
-        return (
-            <>
-                <DialogFeed category={category}/>
-                {dialog && <MessageFeed/>}
-            </>
-        );
-    };
-
-    return (
-        <>
-            <ComponentName/>
-            <Search/>
-            <div className="tabs">
-                {createTab('chat', 'Чаты')}
-                {createTab('place', 'Места')}
-                {createTab('meeting', 'Встречи')}
-            </div>
-
-            <div className="dialogs">
-                {getDialogContent(content, dialog)}
-            </div>
-        </>
-    );
+  return <ChatStyle>{isWidget ? contentWidget : contentFull}</ChatStyle>;
 };
 
-export default observer(Chat);
+const ChatStyle = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+export default observer(ChatContent);

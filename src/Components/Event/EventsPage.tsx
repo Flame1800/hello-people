@@ -8,8 +8,8 @@ import { observer } from "mobx-react-lite";
 import CategoriesStore from "../../Stores/CategoriesStore";
 
 type EventPageProps = {
-  events: Array<EventEntity>;
-  categories: Array<Category>;
+  events: EventType[];
+  categories: Category[];
 };
 
 const EventsPage = ({ events, categories }: EventPageProps) => {

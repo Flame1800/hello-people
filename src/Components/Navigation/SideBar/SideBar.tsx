@@ -1,62 +1,62 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import {theme} from "../../../../styles/theme";
+import { theme } from "../../../../styles/theme";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import EventButton from "../NavButtonsSvg/EventButton";
 import PlaceButton from "../NavButtonsSvg/PlaceButton";
-import {useRouter} from "next/router";
 import MeetsButton from "../NavButtonsSvg/MeetsButton";
-import ProfileButtonChanger from "../NavButtonsSvg/ProfileButtonChanger";
-import AddButton from "../Header/AddButton";
-import UiStateStore from "../../../Stores/UiStateStore";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import ProfileButton from "./ProfileLink";
-import ProfileButtonIcon from "../NavButtonsSvg/ProfileButtonChanger";
+import MessengerButton from "../NavButtonsSvg/MessengerButton";
 
 const SideBar = () => {
-    const route = useRouter()
+  const route = useRouter();
 
-    return (
-        <>
-            <Wrapper>
-                <div className='nav-links'>
-                    <ProfileButton/>
-                    <Link href='/events'>
-                        <a>
-                            <NavLinkStyle active={route.asPath === "/events"}>
-                                <EventButton/>
-                                <div className='navLinkTitle'>Афиша</div>
-                            </NavLinkStyle>
-                        </a>
-                    </Link>
-                    <Link href='/places'>
-                        <a>
-                            <NavLinkStyle active={route.asPath === "/places"}>
-                                <PlaceButton/>
-                                <div className='navLinkTitle'>Места</div>
-                            </NavLinkStyle>
-                        </a>
-                    </Link>
-                    <Link href='/meets'>
-                        <a>
-                            <NavLinkStyle active={route.asPath === "/meets"}>
-                                <MeetsButton/>
-                                <div className='navLinkTitle'>Встречи</div>
-                            </NavLinkStyle>
-                        </a>
-                    </Link>
-                    <Link href='/search/users'>
-                        <a>
-                            <NavLinkStyle active={route.asPath === "/search/users"}>
-                                <ProfileButtonIcon/>
-                                <div className='navLinkTitle'>Люди</div>
-                            </NavLinkStyle>
-                        </a>
-                    </Link>
-                </div>
-            </Wrapper>
-        </>
-    );
+  const links = [
+    {
+      title: "Aфиша",
+      route: "/events",
+      icon: <EventButton />,
+    },
+    {
+      title: "Места",
+      route: "/places",
+      icon: <PlaceButton />,
+    },
+    {
+      title: "Встречи",
+      route: "/meets",
+      icon: <MeetsButton />,
+    },
+    {
+      title: "Мессенджер",
+      route: "/messenger",
+      icon: <MessengerButton />,
+    },
+  ];
+
+  return (
+    <>
+      <Wrapper>
+        <div className="nav-links">
+          <ProfileButton />
+          {links.map((link) => {
+            return (
+              <Link href={link.route} key={link.route}>
+                <a>
+                  <NavLinkStyle active={route.asPath === link.route}>
+                    {link.icon}
+                    <div className="navLinkTitle">{link.title}</div>
+                  </NavLinkStyle>
+                </a>
+              </Link>
+            );
+          })}
+        </div>
+      </Wrapper>
+    </>
+  );
 };
 
 const Wrapper = styled.div`
@@ -84,30 +84,30 @@ const Wrapper = styled.div`
   .profile {
     margin-bottom: 60px;
   }
-`
+`;
 
-export const NavLinkStyle = styled.div`
+export const NavLinkStyle = styled.div<{ active: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
   padding: 16px 24px;
   font-weight: 700;
   font-size: 14px;
-  background: ${({active}) => active ? '#FFE2DC' : 'none'};
+  background: ${({ active }) => (active ? "#FFE2DC" : "none")};
   border-radius: 16px;
   cursor: pointer;
 
   &:hover {
-    background: ${({active}) => active ? '#FFE2DC' : '#FAFAFA'};
+    background: ${({ active }) => (active ? "#FFE2DC" : "#FAFAFA")};
   }
 
   svg {
-    fill: ${({active}) => active ? theme.color.orange : '#000'} !important;
+    fill: ${({ active }) => (active ? theme.color.orange : "#000")} !important;
     margin-right: 24px;
     width: 24px;
     height: 24px;
   }
-`
+`;
 
 export const AvatarWrapper = styled(NavLinkStyle)`
   display: flex;
@@ -121,6 +121,6 @@ export const AvatarWrapper = styled(NavLinkStyle)`
     font-weight: 700;
     margin-left: 10px;
   }
-`
+`;
 
 export default observer(SideBar);

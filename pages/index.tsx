@@ -1,15 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { NextPage } from "next";
-import API from "../src/Libs/API";
+import API from "../src/Helpers/API";
 import EventsPage from "../src/Components/Event/EventsPage";
 
 type PropsTypeIndex = {
-  events: Array<EventEntity>;
+  events: Array<EventType>;
   categories: Array<Category>;
 };
 
-const Events: NextPage<PropsTypeIndex> = ({ events, categories }) => {
+const Events = ({ events, categories }: PropsTypeIndex) => {
   return <EventsPage events={events} categories={categories} />;
 };
 

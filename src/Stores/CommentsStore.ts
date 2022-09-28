@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import API from "../Libs/API";
+import API from "../Helpers/API";
 import UserStore from "./UserStore";
 import { parseCookies } from "nookies";
 import innerComentsList from "../Components/Comments/InnerComentsList";

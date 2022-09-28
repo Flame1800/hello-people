@@ -1,1 +1,7 @@
-export type CategoryType = 'chat' | 'place' | 'event' | 'meeting';
+export type CategoryType =
+  | "all"
+  | "meet"
+  | "place"
+  | "event"
+  | "private"
+  | "chat";

@@ -1,58 +1,56 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import {ButtonStyle} from "../../../styles/commonStyles";
+import { ButtonStyle } from "../../../styles/commonStyles";
 import InfoListServices from "../Common/Services/InfoListServices";
 import Description from "../Common/Services/Description";
-import makeBeautyDate from "../../Libs/makeBeautyDate";
+import makeBeautyDate from "../../Helpers/makeBeautyDate";
 import TwoGisButton from "../Common/Services/TwoGisButton";
 import BackButton from "../Common/BackButton";
 import MetaActionsEvent from "./MetaActionsEvent";
 import UserStore from "../../Stores/UserStore";
-import DialogFeedStore from "../../modules/chat/stores/dialogFeedStore";
 import UiStateStore from "../../Stores/UiStateStore";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
+import OpenChatButton from "../OpenChatButton/OpenChatButton";
 
+type PropsType = {
+  event: EventType;
+};
 
-type Props = {
-    event: any
-}
+const EventContent = ({ event }: PropsType) => {
+  const { attributes } = event;
+  const { user } = UserStore;
 
-const EventContent: React.FC<Props> = ({event}) => {
-    const {attributes} = event
-    const {user} = UserStore
+  const head = (
+    <div className="back">
+      <BackButton />
+      <MetaActionsEvent event={event} />
+    </div>
+  );
 
-
-    const goEventChat = () => {
-        console.log(user)
-        if (!user) {
-            return UiStateStore.toggleAuthModal()
-        }
-        console.log("Add Event Chat")
-    }
-
-    return (
-        <Wrapper>
-            <div className="inner-container">
-                <div className="back">
-                    <BackButton/>
-                    <MetaActionsEvent event={event} />
-                </div>
-                <div className="buttons">
-                    <ButtonStyle outline onClick={() => goEventChat()}>Перейти в чат</ButtonStyle>
-                    <TwoGisButton link2gis={attributes.maplink}/>
-                </div>
-                <InfoListServices
-                    date={makeBeautyDate(attributes.dateStart)}
-                    address={attributes.place.data ? attributes.place.data.attributes.location : null}
-                    link={attributes.site}
-                    phone={attributes.tel}
-                    link2gis={attributes.maplink}
-                />
-                <div className='title'>{attributes.title}</div>
-                <Description data={attributes.description}/>
-            </div>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <div className="inner-container">
+        {head}
+        <div className="buttons">
+          <OpenChatButton entityId={event.id} category={"event"} />
+          <TwoGisButton link2gis={attributes.maplink} />
+        </div>
+        <InfoListServices
+          date={makeBeautyDate(attributes.dateStart)}
+          address={
+            attributes.place?.data
+              ? attributes.place.data.attributes.location
+              : undefined
+          }
+          link={attributes.site}
+          phone={attributes.tel}
+          link2gis={attributes.maplink}
+        />
+        <div className="title">{attributes.title}</div>
+        <Description data={attributes.description} />
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -101,6 +99,6 @@ const Wrapper = styled.div`
       margin-right: 20px;
     }
   }
-`
+`;
 
 export default observer(EventContent);

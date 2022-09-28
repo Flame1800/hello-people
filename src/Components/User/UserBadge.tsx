@@ -1,39 +1,36 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import UserAvatar from "./UserAvatar";
 
-type UserProps = {
-    user?: Object,
-    size?: string
+type Props = {
+  user: User;
+  size?: string;
 };
 
-const UserBadge: React.FC<UserProps> = ({user, size = 'sm'}) => {
+const UserBadge = ({ user, size = "sm" }: Props) => {
+  console.log(user);
+  const badge = (
+    <div className="caption">
+      <div className="name">{user?.attributes?.username}</div>
+      {/*<div className="status">онлайн</div>*/}
+    </div>
+  );
 
-    const badge = (
-        <div className="caption">
-            <div className="name">Молодой Аанг</div>
-            <div className="status">онлайн</div>
-        </div>
-    )
-
-
-    if (size === 'md') {
-        return (
-            <MediumWrapper>
-                <UserAvatar size={size}/>
-                {badge}
-            </MediumWrapper>
-        )
-    }
-
+  if (size === "md") {
     return (
-        <Wrapper>
-            <UserAvatar size={size}/>
-            {badge}
-        </Wrapper>
+      <MediumWrapper>
+        <UserAvatar size={size} url={user.attributes.avatar} />
+        {badge}
+      </MediumWrapper>
     );
+  }
 
-
+  return (
+    <Wrapper>
+      <UserAvatar url={user.attributes.avatar} size={size} />
+      {badge}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -56,12 +53,12 @@ const Wrapper = styled.div`
       color: #949494;
     }
   }
-`
+`;
 
 const MediumWrapper = styled(Wrapper)`
   .caption {
     margin-left: 4px !important;
   }
-`
+`;
 
 export default UserBadge;

@@ -1,18 +1,17 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import UserStore from "../../../Stores/UserStore";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import UiStateStore from "../../../Stores/UiStateStore";
 
-const Familiars = ({user}) => {
-
-    const openUsersList = (title: string) => {
-        UserStore.setUserSubscribers({
-            title,
-            users: title === 'Подписчики' ? user.subscribers : user.friends
-        })
-        UiStateStore.toggleUsersListModal()
-    }
+const Familiars = ({ user }: { user: UserAttributes }) => {
+  const openUsersList = (title: string) => {
+    UserStore.setUserSubscribers({
+      title,
+      users: title === "Подписчики" ? user.subscribers : user.friends,
+    });
+    UiStateStore.toggleUsersListModal();
+  };
 
     return (
         <Wrapper>
@@ -64,9 +63,9 @@ const Wrapper = styled.div`
   }
 
   .subscribers {
-    color: #FF7373;
-    border: 1px dashed #FF7373;
+    color: #ff7373;
+    border: 1px dashed #ff7373;
   }
-`
+`;
 
 export default observer(Familiars);

@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import {theme} from "./theme";
+import { theme } from "./theme";
 
-
-export const ButtonStyle = styled.button`
+export const ButtonStyle = styled.button<{ outline?: boolean }>`
   height: 40px;
   border-radius: 16px;
-  background: ${({outline}) => outline ? 'none' : theme.color.orange};
-  border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
-  color: ${({outline}) => !outline ? '#FFFFFF' : theme.color.orange};
+  background: ${({ outline }) => (outline ? "none" : theme.color.orange)};
+  border: ${({ outline }) =>
+    !outline ? "none" : `2px solid ${theme.color.orange}`};
+  color: ${({ outline }) => (!outline ? "#FFFFFF" : theme.color.orange)};
   font-weight: 600;
   text-align: center;
   display: flex;
@@ -16,12 +16,13 @@ export const ButtonStyle = styled.button`
   cursor: pointer;
   width: 100%;
   margin: 0;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 
   &:hover {
-    background: ${({outline}) => outline ? '#ffe6e0' : '#f33004'};
-    border: ${({outline}) => !outline ? 'none' : `2px solid ${theme.color.orange}`};
-    color: ${({outline}) => !outline ? '#FFFFFF' : theme.color.orange};
+    background: ${({ outline }) => (outline ? "#ffe6e0" : "#f33004")};
+    border: ${({ outline }) =>
+      !outline ? "none" : `2px solid ${theme.color.orange}`};
+    color: ${({ outline }) => (!outline ? "#FFFFFF" : theme.color.orange)};
   }
 
   @media (min-width: 426px) {
@@ -29,7 +30,7 @@ export const ButtonStyle = styled.button`
     font-size: 16px;
     border-radius: 10px;
   }
-`
+`;
 
 export const InputStyle = styled.input`
   background: #fff;
@@ -49,7 +50,7 @@ export const InputStyle = styled.input`
     font-weight: 500;
     font-size: 14px;
   }
-`
+`;
 
 export const TextareaStyle = styled.textarea`
   background: #fff;
@@ -70,7 +71,7 @@ export const TextareaStyle = styled.textarea`
     font-weight: 500;
     font-size: 14px;
   }
-`
+`;
 
 export const Label = styled.div`
   font-style: normal;
@@ -81,4 +82,4 @@ export const Label = styled.div`
   margin-bottom: 15px;
   margin-top: 15px;
   max-width: 350px;
-`
+`;
