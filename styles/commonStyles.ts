@@ -18,6 +18,10 @@ export const ButtonStyle = styled.button<{ outline?: boolean }>`
   margin: 0;
   transition: 0.3s ease-in-out;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   &:hover {
     background: ${({ outline }) => (outline ? "#ffe6e0" : "#f33004")};
     border: ${({ outline }) =>

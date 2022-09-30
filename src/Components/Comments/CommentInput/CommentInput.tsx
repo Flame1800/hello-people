@@ -1,14 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import UserStore from "../../Stores/UserStore";
-import { theme } from "../../../styles/theme";
-import CommentsStore from "../../Stores/CommentsStore";
+import UserStore from "../../../Stores/UserStore";
+import { theme } from "../../../../styles/theme";
+import CommentsStore from "../../../Stores/CommentsStore";
 import { observer } from "mobx-react-lite";
 
 type CommentInputType = {
   reset?: Function;
   replyId?: number;
   isResponse?: boolean;
+};
+
+export type newCommentType = {
+  content: string;
+  user: number;
+  replyToComment?: number;
 };
 
 const CommentInput = ({ reset, replyId, isResponse }: CommentInputType) => {
@@ -39,7 +45,7 @@ const CommentInput = ({ reset, replyId, isResponse }: CommentInputType) => {
       [model]: [idEntity],
     };
 
-    const newComment: CommentAttributes = isResponse
+    const newComment: newCommentType = isResponse
       ? { replyToComment: replyId, ...comment }
       : comment;
 
@@ -47,7 +53,7 @@ const CommentInput = ({ reset, replyId, isResponse }: CommentInputType) => {
     setTextValue("");
 
     if (isResponse) {
-      return reset();
+      return reset ? reset() : null;
     }
   };
 
@@ -63,7 +69,10 @@ const CommentInput = ({ reset, replyId, isResponse }: CommentInputType) => {
       </CommentEditor>
       <Buttons>
         {isResponse && (
-          <div className="response-btn" onClick={reset}>
+          <div
+            className="response-btn"
+            onClick={() => (reset ? reset() : null)}
+          >
             Отмена
           </div>
         )}

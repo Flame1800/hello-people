@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import CommentsInput from "./CommentInput";
+import CommentsInput from "./CommentInput/CommentInput";
 import CommentsStore from "../../Stores/CommentsStore";
 import { observer } from "mobx-react-lite";
-import CommentList from "./CommentList";
+import CommentList from "./CommentList/CommentList";
 import UserStore from "../../Stores/UserStore";
 import UiStateStore from "../../Stores/UiStateStore";
+import { toJS } from "mobx";
 
 type CommentsBlockType = {
   id: number;
@@ -13,13 +14,14 @@ type CommentsBlockType = {
 };
 
 const CommentsBlock = ({ id, model }: CommentsBlockType) => {
-  const { comments, setComments, setModel } = CommentsStore;
+  const { comments, setComments } = CommentsStore;
   const { user } = UserStore;
+
+  console.log(toJS(comments));
 
   React.useEffect(() => {
     // установка коментов и модели
     setComments(id, model);
-    setModel(model);
   }, []);
 
   const commentsHeaderBlock = (
@@ -44,8 +46,8 @@ const CommentsBlock = ({ id, model }: CommentsBlockType) => {
     <Wrapper id="comments">
       <Block>
         {user ? commentsHeaderBlock : reqAuth}
-        <CommentList comments={comments} />
-        {comments.length > 15 && !user && <CommentsInput />}
+        <CommentList />
+        {comments.length > 15 && user && <CommentsInput />}
       </Block>
     </Wrapper>
   );

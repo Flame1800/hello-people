@@ -1,11 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import API from "../Helpers/API";
-import UserStore from "./UserStore";
 import { parseCookies } from "nookies";
-import innerComentsList from "../Components/Comments/InnerComentsList";
+import { newCommentType } from "../Components/Comments/CommentInput/CommentInput";
 
 class CommentsStore {
-  comments: Array<any> = [];
+  comments: CommentEntity[] = [];
+  replies: CommentEntity[] = [];
 
   // party - для ивентов
   // place - для мест
@@ -19,7 +19,7 @@ class CommentsStore {
     makeAutoObservable(this);
   }
 
-  addComment = async (comment: CommentAttributes) => {
+  addComment = async (comment: newCommentType) => {
     const cookie = parseCookies();
 
     if (!cookie.jwt) {
@@ -30,16 +30,56 @@ class CommentsStore {
       { data: comment },
       cookie.jwt
     );
-    this.comments = [...this.comments, newCommentResponse.data.data];
+    const newComment = newCommentResponse.data.data;
+
+    if (comment.replyToComment) {
+      this.replies = [newComment, ...this.replies];
+      return;
+    }
+
+    this.comments = [newComment, ...this.comments];
+  };
+
+  removeComment = async (comment: CommentEntity) => {
+    const cookie = parseCookies();
+
+    if (!cookie.jwt) {
+      return null;
+    }
+
+    await API.removeComment(comment.id, cookie.jwt);
+
+    const isReply = comment.attributes.replyToComment.data;
+
+    if (isReply) {
+      this.replies = this.replies.filter((c) => c.id !== comment.id);
+      return;
+    }
+
+    this.replies = this.replies.filter(async (reply: CommentEntity) => {
+      if (reply.attributes.replyToComment.data?.id === comment.id) {
+        await API.removeComment(reply.id, cookie.jwt);
+        return;
+      }
+
+      return reply;
+    });
+
+    this.comments = this.comments.filter((c) => c.id !== comment.id);
   };
 
   setComments = async (id: number, model: string) => {
     const dataComments = await API.getComments(id, model);
-    this.comments = dataComments.data.data;
-    this.idEntity = id;
-  };
 
-  setModel = (model: string) => {
+    this.comments = dataComments.data.data.filter(
+      (comment: CommentEntity) => !comment.attributes.replyToComment?.data
+    );
+
+    this.replies = dataComments.data.data.filter(
+      (comment: CommentEntity) => comment.attributes.replyToComment?.data
+    );
+
+    this.idEntity = id;
     this.model = model;
   };
 }

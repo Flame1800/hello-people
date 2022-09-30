@@ -59,6 +59,6 @@ const Wrapper = styled.div`
   #demo-positioned-menu {
     border-radius: 32px;
   }
-`
+`;
 
 export default AddButton;
