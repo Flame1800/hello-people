@@ -1,21 +1,20 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import UiStateStore from '../../../Stores/UiStateStore';
+import UiStateStore from "../../../Stores/UiStateStore";
 import Link from "next/link";
 
 const AddButton = () => {
-    const openCreateEventListModal = () => {
-        UiStateStore.toggleCreateEventListModal()
-    }
+  const openCreateEventListModal = () => {
+    UiStateStore.toggleCreateEventListModal();
+  };
 
-    return (
-        <Wrapper>
-            <div className='btn' onClick={() => openCreateEventListModal()}>
-                <img src="/img/add-icon.svg" alt="add"/>
-                {/*<img className='dropdown' src="/img/caret-down.svg" alt="down"/>*/}
-            </div>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <div className="btn" onClick={() => openCreateEventListModal()}>
+        <img src="/img/add-icon.svg" alt="add" />
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -56,6 +55,6 @@ const Wrapper = styled.div`
   #demo-positioned-menu {
     border-radius: 32px;
   }
-`
+`;
 
 export default AddButton;

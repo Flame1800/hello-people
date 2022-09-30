@@ -19,9 +19,6 @@ const UserUX = () => {
 
   return (
     <Wrapper>
-      <Link href={"/messenger"}>
-        <MessengerButton />
-      </Link>
       <AddButton />
       <Link href={`/user/${UserStore?.user?.id}`}>
         <a>

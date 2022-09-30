@@ -1,11 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 
 const MessengerButton = () => {
   return (
     <svg
-      width="19"
-      height="16"
-      viewBox="0 0 19 16"
+      width="10"
+      height="8"
+      viewBox="0 0 21 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

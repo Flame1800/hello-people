@@ -77,7 +77,7 @@ const queryGetComments = qs.stringify({
 
 API.getComments = (id: number, model: string) =>
   server(
-    `/comments?${queryGetComments}&filters[${model}][id][$eq]=${id}&populate=*`
+    `/comments?${queryGetComments}&filters[${model}][id][$eq]=${id}&populate=*&sort[0]=createdAt:desc`
   );
 
 API.addComment = (data: CommentEntity, token: string) =>
