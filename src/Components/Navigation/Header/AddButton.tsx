@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from 'react';
 import styled from "styled-components";
-import UiStateStore from "../../../Stores/UiStateStore";
+import DropdownMenu from './DropdownMenu';
+import UiStateStore from '../../../Stores/UiStateStore';
+import { theme } from '../../../../styles/theme';
 import Link from "next/link";
 
 const AddButton = () => {
-  const openCreateEventListModal = () => {
-    UiStateStore.toggleCreateEventListModal();
-  };
+    const [showDropdownMenu, setShowDropdownMenu] = useState(false)
 
-  return (
-    <Wrapper>
-      <div className="btn" onClick={() => openCreateEventListModal()}>
-        <img src="/img/add-icon.svg" alt="add" />
-      </div>
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <div className='btn' onClick={() => setShowDropdownMenu(!showDropdownMenu)}>
+                <img src="/img/add-icon.svg" alt="add"/>
+                {/*<img className='dropdown' src="/img/caret-down.svg" alt="down"/>*/}
+            </div>
+            {showDropdownMenu && (
+              <DropdownMenu/>
+            )}
+        </Wrapper>
+    );
 };
 
 const Wrapper = styled.div`
