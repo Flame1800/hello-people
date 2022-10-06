@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
-import DropdownMenu from './DropdownMenu';
-import UiStateStore from '../../../Stores/UiStateStore';
-import { theme } from '../../../../styles/theme';
-import Link from "next/link";
+import DropdownMenu from "./DropdownMenu";
 
 const AddButton = () => {
-    const [showDropdownMenu, setShowDropdownMenu] = useState(false)
+  const [showDropdownMenu, setShowDropdownMenu] = useState(false);
 
-    return (
-        <Wrapper>
-            <div className='btn' onClick={() => setShowDropdownMenu(!showDropdownMenu)}>
-                <img src="/img/add-icon.svg" alt="add"/>
-                {/*<img className='dropdown' src="/img/caret-down.svg" alt="down"/>*/}
-            </div>
-            {showDropdownMenu && (
-              <DropdownMenu/>
-            )}
-        </Wrapper>
-    );
+  return (
+    <Wrapper onClick={(e) => e.stopPropagation()}>
+      <div
+        className="btn"
+        onClick={() => setShowDropdownMenu(!showDropdownMenu)}
+      >
+        <img src="/img/add-icon.svg" alt="add" />
+      </div>
+      <DropdownMenu isShow={showDropdownMenu} setShow={setShowDropdownMenu} />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -34,6 +31,7 @@ const Wrapper = styled.div`
   cursor: pointer;
   transition: 0.2s;
   padding: 3px 0;
+  position: relative;
 
   .btn {
     display: flex;
