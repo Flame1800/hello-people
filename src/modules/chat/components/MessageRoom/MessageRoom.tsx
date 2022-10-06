@@ -11,10 +11,10 @@ import chatStore from "../../stores/chatStore";
 
 const MessageRoom = () => {
   const messagesRef = useRef<HTMLDivElement>(null);
-  const { dialogs, currentDialog } = dialogsStore;
+  const { fetchedDialogs, currentDialog } = dialogsStore;
   const { isWidget } = chatStore;
 
-  const isMyChat = dialogs.filter((d) => d.id === currentDialog?.id)[0];
+  const isMyChat = fetchedDialogs.filter((d) => d.id === currentDialog?.id)[0];
 
   if (!currentDialog) {
     return (

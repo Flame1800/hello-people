@@ -25,7 +25,7 @@ const EditProfile: NextPage<Props> = ({ user }) => {
 
   const logout = () => {
     UserStore.logout();
-    router.push("/events");
+    router.push(`/events`);
   };
 
   const updateUser = async (values: any) => {
@@ -37,7 +37,7 @@ const EditProfile: NextPage<Props> = ({ user }) => {
     }
   };
 
-  const updateAvatar = async (e: Event) => {
+  const updateAvatar = async (e: InputEvent) => {
     try {
       const formData = new FormData();
       formData.append("files", e.target.files[0], "myfile.jpg");

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, EventHandler, useState } from "react";
+import React, { useState } from "react";
 import {
   ButtonStyle,
   InputStyle,
@@ -11,12 +11,13 @@ import MeetCard from "../../../Meet/MeetCard";
 import UserStore from "../../../../Stores/UserStore";
 import UiStateStore from "../../../../Stores/UiStateStore";
 import Link from "next/link";
+import { BeatLoader } from "react-spinners";
 
 const AddMeet = () => {
   const [desc, setDesc] = useState("");
   const [place, setPlace] = useState("");
   const [err, setErr] = useState("");
-  const [meet, setMeet] = useState({});
+  const [meet, setMeet] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const { user } = UserStore;
@@ -41,7 +42,7 @@ const AddMeet = () => {
         author: user.id,
       };
       setLoading(true);
-      const newMeet: { data: { data: MeetType } } = await API.addMeet({ data });
+      const newMeet = await API.addMeet({ data });
       setMeet(newMeet.data.data);
     } catch (e) {
       console.error(e);
@@ -74,7 +75,7 @@ const AddMeet = () => {
           onInput={() => console.log("input")}
         />
         <ButtonStyle>
-          {loading ? "Загрзука..." : "Отправить анкету"}
+          {loading ? <BeatLoader color="#fff" size={7} /> : "Отправить анкету"}
         </ButtonStyle>
         {err && <div className="err">{err}</div>}
       </form>
@@ -99,7 +100,7 @@ const AddMeet = () => {
     </>
   );
 
-  return <Wrapper>{!Object.keys(meet).length ? form : resultForm}</Wrapper>;
+  return <Wrapper>{!meet ? form : resultForm}</Wrapper>;
 };
 
 const Wrapper = styled.div`
@@ -108,9 +109,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 16px;
+  border-radius: ${theme.borderRadius.main};
   min-height: 80vh;
-  box-shadow: ${theme.boxShadow.mainComponent};
 
   @media (min-width: 600px) {
     background: #fff;
@@ -129,6 +129,7 @@ const Wrapper = styled.div`
   }
 
   .banner {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;

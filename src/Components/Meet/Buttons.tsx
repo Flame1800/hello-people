@@ -1,10 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import { Tooltip } from "@mui/material";
+import UserStore from "../../Stores/UserStore";
+import chatStore from "../../modules/chat/stores/chatStore";
+import dialogsStore from "../../modules/chat/stores/dialogsStore";
+import UiStateStore from "../../Stores/UiStateStore";
 
-const Buttons = () => {
+type Props = {
+  meetId: number;
+};
+
+const Buttons = ({ meetId }: Props) => {
+  const { user } = UserStore;
+  const { openChat, leaveChat } = chatStore;
+  const { currentDialog } = dialogsStore;
+
+  const thisChatIsOpen = currentDialog?.id === meetId;
+
+  const openChatHandle = () => {
+    if (!user) {
+      return UiStateStore.toggleAuthModal();
+    }
+
+    if (thisChatIsOpen) {
+      return leaveChat();
+    }
+
+    openChat(meetId, "meet");
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={openChatHandle}>
       <div className="btn btn-messenger">
         чат
         <img src="/img/message-blue-icon.svg" alt="smile" />

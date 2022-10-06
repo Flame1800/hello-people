@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Familiars from "./Familiars";
 import ProfileButtons from "../ProfileButtons";
 import UserStore from "../../../Stores/UserStore";
 import { observer } from "mobx-react-lite";
 import UserAvatar from "../../User/UserAvatar";
+import SimpleMenu from "../../Common/SimpleMenu/SimpleMenu";
+import MenuItem from "../../Common/SimpleMenu/MenuItem";
+import { theme } from "../../../../styles/theme";
+import { useRouter } from "next/router";
 
 const ProfileHead = ({ user }: { user: UserAttributes }) => {
+  const [isShowMenu, setIsShowMenu] = useState(false);
+
   const me = UserStore.user;
   const isMe = user.id === me?.id;
+
+  const router = useRouter();
+
+  const logout = () => {
+    UserStore.logout();
+    router.push(`/events`);
+    setIsShowMenu(false);
+  };
+
+  const dropdownMenu = (
+    <SimpleMenu isShow={isShowMenu} setIsShow={setIsShowMenu}>
+      <MenuItem onClick={logout} title="Выйти" color={theme.color.orange} />
+    </SimpleMenu>
+  );
 
   return (
     <Wrapper>
@@ -17,6 +37,7 @@ const ProfileHead = ({ user }: { user: UserAttributes }) => {
         <div className="info">
           <div className="wrap-name">
             <div className="name">{user.username}</div>
+            {isMe && dropdownMenu}
           </div>
           <div className="first-name">{user.name}</div>
           {me && <ProfileButtons user={user} me={me} />}
@@ -67,7 +88,8 @@ const Wrapper = styled.div`
   .wrap-name {
     display: flex;
     flex-wrap: wrap;
-    x
+    align-items: center;
+    justify-content: space-between;
   }
 
   .avatar {
@@ -115,7 +137,6 @@ const Wrapper = styled.div`
       margin-left: 60px;
     }
   }
-`
-
+`;
 
 export default observer(ProfileHead);

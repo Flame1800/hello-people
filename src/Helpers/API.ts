@@ -28,6 +28,7 @@ const queryGetEvents = qs.stringify({
 // Meets
 API.getMeets = () => server(`/meets?populate=*&sort[0]=createdAt:desc`);
 API.addMeet = (meet: MeetType) => server.post(`/meets?populate=*`, meet);
+API.deleteMeet = (id: number) => server.delete(`/meets/${id}`);
 
 // Categories
 API.getEventCategories = () => server(`/categories?filters[type][$eq]=party`);

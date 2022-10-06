@@ -2,13 +2,8 @@ import { makeAutoObservable } from "mobx";
 import { CategoryType } from "../models/CategoryType";
 import { DialogProps } from "../models/DialogProps";
 
-type NewDialog = {
-  category: CategoryType;
-  objectIdStrapi: number;
-};
-
 class dialogsStore {
-  mainData: DialogProps[] = [];
+  fetchedDialogs: DialogProps[] = [];
   dialogs: DialogProps[] = [];
   currentDialog: DialogProps | null = null;
 
@@ -26,16 +21,16 @@ class dialogsStore {
 
   setDialogs = (dialogs: DialogProps[]) => {
     this.dialogs = dialogs;
-    this.mainData = dialogs;
+    this.fetchedDialogs = dialogs;
   };
 
   filterDialogs = (category: CategoryType) => {
     if (category === "all") {
-      this.dialogs = this.mainData;
+      this.dialogs = this.fetchedDialogs;
       return;
     }
 
-    this.dialogs = this.mainData.filter((d) => d.category === category);
+    this.dialogs = this.fetchedDialogs.filter((d) => d.category === category);
   };
 
   getSearchDialogs = (category: string, search?: string) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import UserAvatar from "./UserAvatar";
+import Link from "next/link";
 
 type Props = {
   user: User;
@@ -9,33 +10,31 @@ type Props = {
 
 const UserBadge = ({ user, size = "sm" }: Props) => {
   console.log(user);
+
   const badge = (
-    <div className="caption">
-      <div className="name">{user?.attributes?.username}</div>
-      {/*<div className="status">онлайн</div>*/}
-    </div>
+    <Link href={`/user/${user.id}`}>
+      <a>
+        <UserAvatar size={size} url={user.attributes.avatar} />
+        <div className="caption">
+          <div className="name">{user?.attributes?.username}</div>
+          {/*<div className="status">онлайн</div>*/}
+        </div>
+      </a>
+    </Link>
   );
 
   if (size === "md") {
-    return (
-      <MediumWrapper>
-        <UserAvatar size={size} url={user.attributes.avatar} />
-        {badge}
-      </MediumWrapper>
-    );
+    return <MediumWrapper>{badge}</MediumWrapper>;
   }
 
-  return (
-    <Wrapper>
-      <UserAvatar url={user.attributes.avatar} size={size} />
-      {badge}
-    </Wrapper>
-  );
+  return <Wrapper>{badge}</Wrapper>;
 };
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+  a {
+    display: flex;
+    align-items: center;
+  }
 
   .caption {
     margin-left: 10px;

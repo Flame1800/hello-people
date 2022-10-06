@@ -7,7 +7,9 @@ export const theme = {
     black: "#000",
     fontGray: "#7F7F7F",
   },
-
+  borderRadius: {
+    main: "32px",
+  },
   boxShadow: {
     mainComponent: "0 0 10px -6px #000",
   },

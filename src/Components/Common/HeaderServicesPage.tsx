@@ -43,7 +43,6 @@ const Wrapper = styled.div`
 
     .add-btn {
       margin-left: 20px;
-      display: none;
     }
   }
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import UserAvatar from "../../User/UserAvatar";
 import AddButton from "./AddButton";
 import UserStore from "../../../Stores/UserStore";
-import MessengerButton from "../NavButtonsSvg/MessengerButton";
+import MessengerButton from "../../SideBar/NavButtonsSvg/MessengerButton";
 import { observer } from "mobx-react-lite";
 import Link from "next/link";
 import UiStateStore from "../../../Stores/UiStateStore";

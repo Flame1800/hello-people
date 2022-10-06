@@ -15,7 +15,7 @@ type Props = {
 const Chat = ({ isWidget }: Props) => {
   const { user } = UserStore;
   const { setScreenMode } = chatStore;
-  const socketUrl = "http://192.168.210.10:1337";
+  const socketUrl = "https://hellopeople.online"; // http://192.168.210.10:1337
 
   useEffect(() => {
     setScreenMode(isWidget ?? true);

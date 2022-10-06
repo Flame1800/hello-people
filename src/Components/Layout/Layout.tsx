@@ -1,7 +1,7 @@
 import React, { ReactChildren } from "react";
 import NavBarMobile from "../Navigation/NavBarMobile/NavBarMobile";
 import styled from "styled-components";
-import SideBar from "../Navigation/SideBar/SideBar";
+import SideBar from "../SideBar/SideBar";
 import Header from "../Navigation/Header/Header";
 import Chat from "../../modules/chat/Chat";
 import AuthModal from "../Auth/Auth";
@@ -82,7 +82,6 @@ const Wrapper = styled.div`
       margin-left: 20px;
       margin-right: 20px;
       border-radius: 32px;
-      overflow-y: hidden;
     }
   }
 

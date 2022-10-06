@@ -14,7 +14,7 @@ type CommentsBlockType = {
 };
 
 const CommentsBlock = ({ id, model }: CommentsBlockType) => {
-  const { comments, setComments } = CommentsStore;
+  const { comments, replies, setComments } = CommentsStore;
   const { user } = UserStore;
 
   console.log(toJS(comments));
@@ -27,7 +27,8 @@ const CommentsBlock = ({ id, model }: CommentsBlockType) => {
   const commentsHeaderBlock = (
     <>
       <Title>
-        Комментарии <CommentsLength>{comments.length}</CommentsLength>
+        Комментарии{" "}
+        <CommentsLength>{comments.length + replies.length}</CommentsLength>
       </Title>
       <CommentsInput />
     </>

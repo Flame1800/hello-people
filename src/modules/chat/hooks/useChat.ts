@@ -34,6 +34,8 @@ export default (apiUrl: string) => {
     setSocket(coreSocket);
     setUser(user);
 
+    console.log(coreSocket);
+
     coreSocket?.on("getFavoriteChats", (data: DialogProps[]) => {
       console.log("getFavoriteChats", data);
       dialogsStore.setDialogs(data);

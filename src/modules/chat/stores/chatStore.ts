@@ -72,9 +72,9 @@ class ChatStore {
   };
 
   openChat = (id: number, category: CategoryType) => {
-    const { dialogs } = dialogsStore;
+    const { fetchedDialogs } = dialogsStore;
 
-    const isMyChat = dialogs.filter((d) => d.id === id).length > 0;
+    const isMyChat = fetchedDialogs.filter((d) => d.id === id).length > 0;
     console.log("is my Chat?", isMyChat);
 
     const chat: NewDialog = {

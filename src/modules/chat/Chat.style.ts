@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../../styles/theme";
 
 export const ChatWrapper = styled.div`
   background: #fff;
@@ -6,6 +7,8 @@ export const ChatWrapper = styled.div`
   flex-direction: column;
   padding: 30px 20px;
   height: inherit;
+  border-radius: 30px;
+  box-shadow: ${theme.boxShadow.mainComponent};
 
   @media (max-width: 1424px) {
     height: 100vh;

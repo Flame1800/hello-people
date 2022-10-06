@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import EventButton from "../NavButtonsSvg/EventButton";
-import PlaceButton from "../NavButtonsSvg/PlaceButton";
-import MessengerButton from "../NavButtonsSvg/MessengerButton";
-import MeetsButton from "../NavButtonsSvg/MeetsButton";
-import ProfileIcon from "../NavButtonsSvg/ProfileIcon";
+import EventButton from "../../SideBar/NavButtonsSvg/EventButton";
+import PlaceButton from "../../SideBar/NavButtonsSvg/PlaceButton";
+import MessengerButton from "../../SideBar/NavButtonsSvg/MessengerButton";
+import MeetsButton from "../../SideBar/NavButtonsSvg/MeetsButton";
+import ProfileIcon from "../../SideBar/NavButtonsSvg/ProfileIcon";
 import { theme } from "../../../../styles/theme";
 import { useRouter } from "next/router";
 import UiStateStore from "../../../Stores/UiStateStore";

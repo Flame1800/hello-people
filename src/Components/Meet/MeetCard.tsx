@@ -1,29 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import UserBadge from "../User/UserBadge";
 import TypeMeet from "./TypeMeet";
 import Buttons from "./Buttons";
 import PlaceMeet from "./PlaceMeet";
 import { theme } from "../../../styles/theme";
+import SimpleMenu from "../Common/SimpleMenu/SimpleMenu";
+import MenuItem from "../Common/SimpleMenu/MenuItem";
+import UserStore from "../../Stores/UserStore";
+import API from "../../Helpers/API";
 
 type Props = {
   meet: MeetType | null;
 };
 
 const MeetCard = ({ meet }: Props) => {
+  const { user } = UserStore;
+  const author = meet?.attributes.author.data;
+  const [isShowMenu, setIsShowMenu] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
+
+  const deleteMeet = () => {
+    setIsShowMenu(false);
+    setIsDeleted(true);
+    API.deleteMeet(meet?.id);
+  };
+
+  const dropdown = (
+    <SimpleMenu isShow={isShowMenu} setIsShow={setIsShowMenu}>
+      <MenuItem
+        onClick={deleteMeet}
+        color={theme.color.orange}
+        title="Удалить"
+      />
+    </SimpleMenu>
+  );
+
   if (!meet) return null;
+
+  if (isDeleted) {
+    return <Deleted>Эта встреча удаленна</Deleted>;
+  }
 
   return (
     <Wrapper>
       <div className="content">
         <div className="head">
           <UserBadge user={meet.attributes.author.data} size="sm" />
-          <TypeMeet type="group" />
+          {user?.id === author?.id && dropdown}
         </div>
         <div className="text">{meet.attributes.description}</div>
       </div>
       <div className="meta">
-        <Buttons />
+        <Buttons meetId={meet.id} />
         <PlaceMeet place={meet.attributes.place} />
       </div>
     </Wrapper>
@@ -68,6 +97,13 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
   }
+`;
+
+const Deleted = styled(Wrapper)`
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  color: #919191;
 `;
 
 export default MeetCard;

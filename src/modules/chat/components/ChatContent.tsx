@@ -43,6 +43,7 @@ const ChatContent = ({ apiUrl, isWidget }: ChatProps) => {
 const ChatStyle = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
 `;
 
 export default observer(ChatContent);

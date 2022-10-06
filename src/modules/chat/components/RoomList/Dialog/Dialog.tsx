@@ -36,6 +36,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
 
   const userName = <UserNameStyle>{abbTitle}</UserNameStyle>;
   const dialogDate = <DialogDateStyle>0</DialogDateStyle>;
+
   const lastMessageComponent = (
     <LastMessage>{categoryTitles[dialog.category]}</LastMessage>
   );

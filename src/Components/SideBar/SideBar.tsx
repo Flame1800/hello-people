@@ -1,14 +1,14 @@
 import React from "react";
-import styled from "styled-components";
-import { theme } from "../../../../styles/theme";
+import styled, { css } from "styled-components";
+import { theme } from "../../../styles/theme";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import EventButton from "../NavButtonsSvg/EventButton";
-import PlaceButton from "../NavButtonsSvg/PlaceButton";
-import MeetsButton from "../NavButtonsSvg/MeetsButton";
+import EventButton from "./NavButtonsSvg/EventButton";
+import PlaceButton from "./NavButtonsSvg/PlaceButton";
+import MeetsButton from "./NavButtonsSvg/MeetsButton";
 import { observer } from "mobx-react-lite";
 import ProfileButton from "./ProfileLink";
-import MessengerButton from "../NavButtonsSvg/MessengerButton";
+import MessengerButton from "./NavButtonsSvg/MessengerButton";
 
 const SideBar = () => {
   const route = useRouter();
@@ -86,7 +86,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export const NavLinkStyle = styled.div<{ active: boolean }>`
+export const NavLinkStyle = styled.div<{ active?: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
@@ -109,13 +109,24 @@ export const NavLinkStyle = styled.div<{ active: boolean }>`
   }
 `;
 
-export const AvatarWrapper = styled(NavLinkStyle)`
+export const AvatarWrapper = styled(NavLinkStyle)<{ active?: boolean }>`
   display: flex;
   align-items: center;
-  box-shadow: 0 0 6px 1px #0000001f;
+  box-shadow: 0 2px 6px 1px #0000001f;
   width: 100%;
   padding: 10px 20px;
   margin-bottom: 20px;
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  ${(props) =>
+    props.active &&
+    css`
+      box-shadow: none;
+    `}
 
   .username {
     font-weight: 700;
