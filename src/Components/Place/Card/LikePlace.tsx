@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserStore from "../../../Stores/UserStore";
 import API from "../../../Helpers/API";
 import Like from "../../Common/Like";
@@ -11,13 +11,19 @@ type Props = {
 
 const LikePlace = ({ likes, id }: Props) => {
   const { user, updateUser } = UserStore;
-  const isLikeMe =
-    user.placeLikes.filter((event: EventType) => {
-      return event.id === id;
-    }).length === 1;
 
-  const [liked, setLike] = React.useState(isLikeMe);
-  const [count, setCount] = React.useState(likes?.data.length);
+  const [liked, setLike] = React.useState(false);
+  const [count, setCount] = React.useState(0);
+
+  useEffect(() => {
+    const isLikeMe =
+      user.placeLikes.filter((event: EventType) => {
+        return event.id === id;
+      }).length === 1;
+
+    setLike(isLikeMe);
+    setCount(likes?.data.length);
+  }, []);
 
   const like = () => {
     if (!liked) {

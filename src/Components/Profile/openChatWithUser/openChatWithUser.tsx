@@ -17,7 +17,9 @@ const OpenChatWithUser = ({ currUser }: Props) => {
       return UiStateStore.toggleAuthModal();
     }
 
-    openChat(currUser.id, "private");
+    const chatId = [currUser.id, user.id].sort().join("_");
+
+    openChat(chatId, "private");
   };
 
   return (

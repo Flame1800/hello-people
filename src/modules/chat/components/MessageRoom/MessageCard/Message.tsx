@@ -7,6 +7,7 @@ import {
   MessageInfo,
   MessageAvatar,
   MeMessageWrapper,
+  MessageUserName,
 } from "./MessageStyle";
 import { MessageType } from "../../../models/Message";
 import dialogsStore from "../../../stores/dialogsStore";
@@ -27,7 +28,7 @@ const Message = (props: MessageType) => {
   );
 
   const userNameInMessage = currentUser?.id !== user.id && (
-    <>{currentUser?.username}</>
+    <MessageUserName>{currentUser?.username}</MessageUserName>
   );
 
   const messageInfo = (
@@ -42,10 +43,10 @@ const Message = (props: MessageType) => {
       {avatar}
       <MessageStyle>
         {userNameInMessage}
-        <>
+        <div>
           {text}
           {messageInfo}
-        </>
+        </div>
       </MessageStyle>
     </>
   );

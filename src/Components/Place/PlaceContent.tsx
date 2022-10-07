@@ -6,6 +6,8 @@ import TwoGisButton from "../Common/Services/TwoGisButton";
 import MetaActionsPlace from "./MetaActionsPlace";
 import { observer } from "mobx-react-lite";
 import OpenChatButton from "../OpenChatButton/OpenChatButton";
+import BackButton from "../Common/BackButton/BackButton";
+import MetaActionsEvent from "../Event/MetaActionsEvent";
 
 type PlaceContentType = {
   place: PlaceType;
@@ -13,10 +15,18 @@ type PlaceContentType = {
 
 const PlaceContent = ({ place }: PlaceContentType) => {
   const { attributes } = place;
+
+  const head = (
+    <div className="head">
+      <BackButton link="/places" />
+      <MetaActionsPlace place={place} />
+    </div>
+  );
+
   return (
     <Wrapper>
       <div className="inner-container">
-        <MetaActionsPlace place={place} />
+        {head}
         <div className="buttons">
           <OpenChatButton entityId={place.id} category={"place"} />
           <TwoGisButton link2gis={attributes.maplink} />
@@ -45,6 +55,12 @@ const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: -10px;
+
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   .user-meta {
     display: flex;

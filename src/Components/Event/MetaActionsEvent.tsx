@@ -7,7 +7,7 @@ import Comment from "../Common/Comment";
 import LikeEvent from "./LikeEvent";
 
 type MetaActionsType = {
-  event: EventEntity;
+  event: EventType;
 };
 
 const MetaActionsEvent = ({ event }: MetaActionsType) => {

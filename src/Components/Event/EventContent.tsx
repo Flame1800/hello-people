@@ -5,7 +5,7 @@ import InfoListServices from "../Common/Services/InfoListServices";
 import Description from "../Common/Services/Description";
 import makeBeautyDate from "../../Helpers/makeBeautyDate";
 import TwoGisButton from "../Common/Services/TwoGisButton";
-import BackButton from "../Common/BackButton";
+import BackButton from "../Common/BackButton/BackButton";
 import MetaActionsEvent from "./MetaActionsEvent";
 import UserStore from "../../Stores/UserStore";
 import UiStateStore from "../../Stores/UiStateStore";
@@ -22,7 +22,7 @@ const EventContent = ({ event }: PropsType) => {
 
   const head = (
     <div className="back">
-      <BackButton />
+      <BackButton link="/events" />
       <MetaActionsEvent event={event} />
     </div>
   );

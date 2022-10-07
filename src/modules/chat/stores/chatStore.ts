@@ -8,7 +8,7 @@ import dialogsStore from "./dialogsStore";
 
 type NewDialog = {
   category: CategoryType;
-  objectIdStrapi: number;
+  objectIdStrapi: number | string;
 };
 
 class ChatStore {
@@ -71,7 +71,7 @@ class ChatStore {
     }
   };
 
-  openChat = (id: number, category: CategoryType) => {
+  openChat = (id: number | string, category: CategoryType) => {
     const { fetchedDialogs } = dialogsStore;
 
     const isMyChat = fetchedDialogs.filter((d) => d.id === id).length > 0;

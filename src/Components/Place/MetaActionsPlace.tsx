@@ -17,20 +17,17 @@ const MetaActionsPlace = ({ place }: MetaActionsType) => {
 
   return (
     <Wrapper>
-      <Rating size="small" disable={false} place={{}} />
-      <div className="user-meta">
-        {UserStore.user ? (
-          <LikePlace likes={attributes.likes} id={place.id} />
-        ) : (
-          <Like value={attributes?.likes?.data.length || 0} active={false} />
-        )}
+      {UserStore.user ? (
+        <LikePlace likes={attributes.likes} id={place.id} />
+      ) : (
+        <Like value={attributes?.likes?.data.length || 0} active={false} />
+      )}
 
-        <Link href={`/places/${place.id}#comments`}>
-          <a>
-            <Comment value={attributes.comments.data.length} />
-          </a>
-        </Link>
-      </div>
+      <Link href={`/places/${place.id}#comments`}>
+        <a>
+          <Comment value={attributes.comments.data.length} />
+        </a>
+      </Link>
     </Wrapper>
   );
 };
@@ -40,14 +37,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 5px;
-
-  .user-meta {
-    display: flex;
-
-    > div {
-      margin-left: 10px;
-    }
-  }
 `;
 
 export default observer(MetaActionsPlace);

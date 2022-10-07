@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import BackButton from "../../src/Components/Common/BackButton";
 import Name from "../../src/Components/Common/Services/Name";
-import PageCarousel from "../../src/Components/Common/Services/PageCarousel";
+import PageCarousel from "../../src/Components/Place/PageCarousel";
 import PlaceContent from "../../src/Components/Place/PlaceContent";
 import API from "../../src/Helpers/API";
 import { NextPage } from "next";
@@ -18,7 +17,6 @@ const PlacePage: NextPage<Props> = ({ place }) => {
   return (
     <Wrapper>
       <div className="head">
-        <BackButton />
         <Name place={attributes} />
       </div>
       <PageCarousel pictures={attributes.pictures} />

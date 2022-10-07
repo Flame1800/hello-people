@@ -23,6 +23,6 @@ type PlaceAttributes = {
   categories?: { data: Array<Category> };
   pictures?: { data: Array<Image> };
   parties?: { data: Object<any> };
-  likes?: { data: Array<LikeType> };
+  likes: { data: Array<LikeType> };
   tags?: any;
 };

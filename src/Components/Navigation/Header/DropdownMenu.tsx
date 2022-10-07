@@ -10,7 +10,6 @@ type Props = {
 };
 
 const DropdownMenu = ({ isShow, setShow }: Props) => {
-  console.log(isShow);
   const links = [
     {
       title: "Мероприятие",

@@ -23,7 +23,14 @@ const Login = ({ setMode, close }: Props) => {
 
   const focusRef = useFocus();
 
-  const login = async (e: FormEvent) => {
+  const clickForgotPasswordHandle = async () => {
+    await axios.post(`${API.url}/auth/forgot-password`, {
+      email: "r.shaficoff@gmail.com",
+      link: "https://hellopeople.online",
+    });
+  };
+
+  const clickLoginHandle = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
 
@@ -53,13 +60,14 @@ const Login = ({ setMode, close }: Props) => {
       setLoading(false);
     }
   };
+
   return (
     <Wrapper>
       <RegButton>
         <VkLogo />
       </RegButton>
       <div className="or">или</div>
-      <form onSubmit={login} className="form">
+      <form onSubmit={clickLoginHandle} className="form">
         <InputStyle
           ref={focusRef}
           placeholder="Email или Логин"
@@ -84,8 +92,9 @@ const Login = ({ setMode, close }: Props) => {
         </ButtonStyle>
         {error && <div className="error-msg">{error}</div>}
 
-        <div className="change-btn" onClick={() => setMode("reg")}>
-          Регистрация
+        <div className="change-btn">
+          <div onClick={clickForgotPasswordHandle}>Забыли пароль?</div>
+          <div onClick={() => setMode("reg")}>Регистрация</div>
         </div>
       </form>
     </Wrapper>
@@ -122,22 +131,17 @@ const Wrapper = styled.div`
 
   .change-btn {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 27px;
     color: ${theme.color.orange};
     margin-top: 40px;
-    padding: 10px 40px;
     cursor: pointer;
     border-radius: 10px;
     transition: 0.2s;
-
-    &:hover {
-      background: #f9f9f9;
-    }
   }
 `;
 

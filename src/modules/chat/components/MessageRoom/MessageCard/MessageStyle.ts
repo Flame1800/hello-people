@@ -4,8 +4,18 @@ export const MessageWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   position: relative;
-`
+  margin-left: 10px;
+`;
 
+export const MessageUserName = styled.div`
+  color: #424242;
+  font-weight: 500;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+`;
 
 export const MessageAvatar = styled.img`
   border-radius: 50%;
@@ -14,13 +24,13 @@ export const MessageAvatar = styled.img`
   margin-bottom: 20px;
   margin-right: 10px;
   object-fit: contain;
-`
+`;
 
 export const MessageStyle = styled.div`
   width: fit-content;
   padding: 10px;
   border-radius: 10px;
-  background: #F0F0F0;
+  background: #f0f0f0;
   margin-bottom: 15px;
   margin-right: 20px;
   max-width: 70%;
@@ -44,8 +54,7 @@ export const MessageStyle = styled.div`
     line-height: 22px;
     white-space: pre-wrap;
   }
-`
-
+`;
 
 export const MeMessageWrapper = styled(MessageWrapper)`
   flex-direction: row-reverse;
@@ -54,7 +63,7 @@ export const MeMessageWrapper = styled(MessageWrapper)`
     background: #d9f1ff;
     margin-right: 3px;
   }
-`
+`;
 
 export const MessageInfo = styled.div`
   display: flex;
@@ -62,7 +71,7 @@ export const MessageInfo = styled.div`
   margin-left: 14px;
   float: right;
   position: relative;
-  top: 5px;
+  top: 13px;
 
   .date {
     font-weight: 400;

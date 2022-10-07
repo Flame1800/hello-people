@@ -5,9 +5,6 @@ import API from "../../Helpers/API";
 import { observer } from "mobx-react-lite";
 import { theme } from "../../../styles/theme";
 import Loader from "../Common/Loader";
-import CategoriesStore from "../../Stores/CategoriesStore";
-import axios from "axios";
-import qs from "qs";
 
 type Props = {
   count: number;
