@@ -14,6 +14,7 @@ import {
 import { DialogProps } from "../../../models/DialogProps";
 import chatStore from "../../../stores/chatStore";
 import dialogsStore from "../../../stores/dialogsStore";
+import roomStore from "../../../stores/roomStore";
 
 const categoryTitles: { [key: string]: string } = {
   place: "Место",
@@ -27,11 +28,18 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   const { cover, abbTitle } = dialog;
   const { openChat } = chatStore;
   const { currentDialog } = dialogsStore;
+  const { setMessages } = roomStore;
   const newMessagesCount = 0;
 
   const selectDialogHandler = () => {
     if (currentDialog?.abbTitle === dialog.abbTitle) return;
-    openChat(dialog.id, dialog.category);
+
+    if (currentDialog) {
+      chatStore.leaveChat();
+    }
+
+    setMessages([]);
+    openChat(dialog.id, dialog.category, dialog);
   };
 
   const userName = <UserNameStyle>{abbTitle}</UserNameStyle>;

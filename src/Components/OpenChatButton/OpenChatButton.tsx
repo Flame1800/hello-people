@@ -6,6 +6,10 @@ import UiStateStore from "../../Stores/UiStateStore";
 import { CategoryType } from "../../modules/chat/models/CategoryType";
 import dialogsStore from "../../modules/chat/stores/dialogsStore";
 import { observer } from "mobx-react-lite";
+import { BeatLoader } from "react-spinners";
+import { theme } from "../../../styles/theme";
+import { isMobile } from "react-device-detect";
+import { useRouter } from "next/router";
 
 type Props = {
   entityId: number;
@@ -13,8 +17,9 @@ type Props = {
 };
 
 const OpenChatButton = ({ entityId, category }: Props) => {
+  const router = useRouter();
   const { user } = UserStore;
-  const { openChat, leaveChat } = chatStore;
+  const { openChat, leaveChat, loading } = chatStore;
   const { currentDialog } = dialogsStore;
 
   const thisChatIsOpen = currentDialog?.id === entityId;
@@ -28,12 +33,19 @@ const OpenChatButton = ({ entityId, category }: Props) => {
       return leaveChat();
     }
 
-    openChat(entityId, category);
+    if (isMobile) {
+      openChat(entityId, category);
+      return router.push("/messenger");
+    }
+
+    return openChat(entityId, category);
   };
+
+  const text = thisChatIsOpen ? "Закрыть чат" : "Открыть чат";
 
   return (
     <ButtonStyle outline onClick={() => openChatHandle()}>
-      {thisChatIsOpen ? "Закрыть" : "Открыть"} чат
+      {loading ? <BeatLoader color={theme.color.orange} size={7} /> : text}
     </ButtonStyle>
   );
 };

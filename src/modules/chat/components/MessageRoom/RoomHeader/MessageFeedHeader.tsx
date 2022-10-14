@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Avatar from "../../common/Avatar";
 import RoomInfo from "../../RoomInfo";
-import Settings from "../../common/Settings/Settings";
 import chatStore from "../../../stores/chatStore";
 import {
   MenuSvg,
@@ -23,7 +22,6 @@ const MessageFeedHeader = () => {
   const { onlineUsers } = roomStore;
 
   const route = useRouter();
-  console.log(route);
 
   const [modalActive, setModalActive] = useState(false);
   const link = `${route.basePath}/${currentDialog?.category}s/${currentDialog?.id}`;

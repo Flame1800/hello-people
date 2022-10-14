@@ -17,6 +17,14 @@ export const MessageUserName = styled.div`
   max-width: 100%;
 `;
 
+export const MessageTextStyle = styled.div`
+  word-break: break-word;
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 20px;
+  color: #000;
+`;
+
 export const MessageAvatar = styled.img`
   border-radius: 50%;
   width: 32px;
@@ -71,7 +79,7 @@ export const MessageInfo = styled.div`
   margin-left: 14px;
   float: right;
   position: relative;
-  top: 13px;
+  top: 8px;
 
   .date {
     font-weight: 400;

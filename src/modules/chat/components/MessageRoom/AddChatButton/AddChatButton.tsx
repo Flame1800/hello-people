@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { theme } from "../../../../../../styles/theme";
 import chatStore from "../../../stores/chatStore";
 import dialogsStore from "../../../stores/dialogsStore";
+import { observer } from "mobx-react-lite";
 
 const AddChatButton = () => {
   const { addChat, isWidget } = chatStore;
@@ -57,4 +58,4 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
   }
 `;
 
-export default AddChatButton;
+export default observer(AddChatButton);

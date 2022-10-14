@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Dialog from "./Dialog";
 import { CategoryType } from "../../models/CategoryType";
 import dialogsStore from "../../stores/dialogsStore";
@@ -62,9 +62,11 @@ const RoomList = ({
   );
 
   const empty = <Empty>Тут пока нет чатов :(</Empty>;
-  const dialogsList = dialogs.map((dialog) => (
-    <Dialog key={dialog.abbTitle} dialog={dialog} />
-  ));
+  const dialogsList = useMemo(
+    () =>
+      dialogs.map((dialog) => <Dialog key={dialog.abbTitle} dialog={dialog} />),
+    [dialogs]
+  );
 
   return (
     <Content>

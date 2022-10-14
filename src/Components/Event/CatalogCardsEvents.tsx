@@ -69,7 +69,9 @@ const CatalogCardsEvents = () => {
 const Wrapper = styled.div`
   padding: 0 20px;
   max-width: 900px;
-  margin: 5px auto;
+  margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
 
   .empty {
     margin-top: 80px;

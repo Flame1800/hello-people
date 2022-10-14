@@ -30,6 +30,14 @@ API.getMeets = () => server(`/meets?populate=*&sort[0]=createdAt:desc`);
 API.addMeet = (meet: MeetType) => server.post(`/meets?populate=*`, meet);
 API.deleteMeet = (id: number) => server.delete(`/meets/${id}`);
 
+// Posts
+
+API.getPosts = () => server("/posts?populate=*");
+API.getPost = (slug: string) =>
+  server(`/posts/?filters[slug][$eq]=${slug}&populate=*`);
+API.addPost = () => server.post(`/posts?populate=*`);
+API.deletePost = (id: number) => server.delete(`/posts/${id}`);
+
 // Categories
 API.getEventCategories = () => server(`/categories?filters[type][$eq]=party`);
 API.getPlaceCategories = () => server(`/categories?filters[type][$eq]=service`);
@@ -68,9 +76,6 @@ const queryGetComments = qs.stringify({
     "place",
     "post",
     "innerComments.user",
-    "innerComments.innerComments.user",
-    "innerComments.innerComments.innerComments.user",
-    "innerComments.innerComments.innerComments.innerComments.user",
     "replyToComment",
     "user",
   ],

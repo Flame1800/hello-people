@@ -1,13 +1,12 @@
 import React from "react";
-import UiStateStore from "../../Stores/UiStateStore";
-import { AvatarWrapper, NavLinkStyle } from "./SideBar";
+import UiStateStore from "../../../Stores/UiStateStore";
 import ProfileButtonIcon from "./NavButtonsSvg/ProfileButtonChanger";
-import UserStore from "../../Stores/UserStore";
+import UserStore from "../../../Stores/UserStore";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
-import UserAvatar from "../User/UserAvatar";
-import styled from "styled-components";
+import UserAvatar from "../../User/UserAvatar";
+import { AvatarWrapper, NavLinkStyle } from "../SideBar.style";
 
 const ProfileLink = () => {
   const route = useRouter();

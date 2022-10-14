@@ -5,14 +5,12 @@ import styled, { css } from "styled-components";
 import { NewMessageType } from "../../../models/Message";
 import dialogsStore from "../../../stores/dialogsStore";
 
-const defaultHeightInput = 32;
-
 const EntryField = () => {
   const [textMessage, setTextMessage] = useState("");
   const { socket, user, isWidget } = chatStore;
   const { currentDialog } = dialogsStore;
 
-  const [heightInput, setHeightInput] = React.useState(defaultHeightInput);
+  const [textareaRows, setTextareaRows] = useState(1);
 
   const inputOnChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setTextMessage(event.currentTarget.value);
@@ -30,7 +28,7 @@ const EntryField = () => {
     const newMessage: NewMessageType = {
       chatId: currentDialog.chatId,
       author: user,
-      text: textMessage,
+      text: textMessage.trim(),
       date: new Date(),
       isRead: false,
     };
@@ -40,7 +38,7 @@ const EntryField = () => {
     }
 
     setTextMessage("");
-    setHeightInput(defaultHeightInput);
+    setTextareaRows(1);
   };
 
   const enterHandler = (e: any) => {
@@ -49,25 +47,21 @@ const EntryField = () => {
       sendOnClickHandler();
     }
 
-    if (e.key === "Enter" && e.shiftKey && heightInput < 100) {
-      setHeightInput(heightInput + 20);
+    if (e.key === "Enter" && e.shiftKey && textareaRows < 10) {
+      setTextareaRows(textareaRows + 1);
     }
 
-    if (e.key === "Backspace" && heightInput > defaultHeightInput) {
-      const msg = textMessage;
-
-      if (msg[msg.length - 1] === "\n") {
-        setHeightInput(heightInput - 20);
-      }
+    if (e.key === "Backspace" && textareaRows > 1) {
+      setTextareaRows(textareaRows - 1);
     }
   };
 
   return (
-    <Wrapper isWidget={isWidget} heightInput={heightInput}>
+    <Wrapper isWidget={isWidget}>
       <textarea
         autoFocus
         className="message-input"
-        rows={1}
+        rows={textareaRows}
         onChange={inputOnChangeHandler}
         value={textMessage}
         placeholder="Сообщение..."
@@ -77,7 +71,7 @@ const EntryField = () => {
   );
 };
 
-const Wrapper = styled.div<{ heightInput: number; isWidget: boolean }>`
+const Wrapper = styled.div<{ isWidget: boolean }>`
   height: fit-content;
   position: absolute;
   bottom: 0;
@@ -103,7 +97,6 @@ const Wrapper = styled.div<{ heightInput: number; isWidget: boolean }>`
     border: none;
     padding: 6px 10px;
     border-radius: 16px;
-    height: ${({ heightInput }) => `${heightInput}px`};
     margin: 22px 15px 22px 5px;
     font-weight: 400;
     font-size: 16px;

@@ -5,6 +5,7 @@ import { theme } from "../../../../../styles/theme";
 import chatStore from "../../stores/chatStore";
 import Profile from "./Profile/Profile";
 import Members from "./Members/Members";
+import { observer } from "mobx-react-lite";
 
 type ModalProps = {
   active: boolean;
@@ -26,7 +27,9 @@ const RoomInfo: React.FC<ModalProps> = (props) => {
   return (
     <Wrapper>
       <div className="head">
-        <BackSvg onClick={() => setActive(false)} />
+        <div className="back">
+          <BackSvg onClick={() => setActive(false)} />
+        </div>
         <div className="title">Информация</div>
       </div>
       <Profile />
@@ -69,7 +72,13 @@ const Wrapper = styled.div`
   z-index: 600;
 
   .head {
+    .back {
+      position: absolute;
+      left: 25px;
+      top: 22px;
+    }
     display: flex;
+    justify-content: center;
     margin-bottom: 40px;
 
     .title {
@@ -78,7 +87,6 @@ const Wrapper = styled.div`
       font-size: 18px;
       line-height: 33px;
       text-align: center;
-      margin-left: 20%;
     }
   }
 
@@ -88,4 +96,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default RoomInfo;
+export default observer(RoomInfo);

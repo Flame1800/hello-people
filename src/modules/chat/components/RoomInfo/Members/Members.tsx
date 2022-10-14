@@ -3,6 +3,7 @@ import styled from "styled-components";
 import roomStore from "../../../stores/roomStore";
 import { theme } from "../../../../../../styles/theme";
 import UserCard from "../../UserCard/UserCard";
+import { observer } from "mobx-react-lite";
 
 const Members = () => {
   const { chatUsers } = roomStore;
@@ -47,4 +48,4 @@ const List = styled.div`
   overflow: auto;
 `;
 
-export default Members;
+export default observer(Members);

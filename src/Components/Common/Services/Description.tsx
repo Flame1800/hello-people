@@ -1,21 +1,23 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 
-const OutputEditorData = dynamic(() => import("../OutputEditorData"), {ssr: false})
+const Editor = dynamic(() => import("../../Editor/Editor"), {
+  ssr: false,
+});
 
 type PropsTypes = {
-    data: Object
-}
+  data: string;
+};
 
-const Description: React.FC<PropsTypes> = ({data}) => {
-    return (
-        <Wrapper>
-            <div className="description">
-                <OutputEditorData data={data}/>
-            </div>
-        </Wrapper>
-    );
+const Description = ({ data }: PropsTypes) => {
+  return (
+    <Wrapper>
+      <div className="description">
+        <Editor data={data} />
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -37,6 +39,6 @@ const Wrapper = styled.div`
     line-height: 159.5%;
     color: #454545;
   }
-`
+`;
 
 export default Description;

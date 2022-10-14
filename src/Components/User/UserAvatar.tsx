@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import API from "../../Helpers/API";
 
@@ -67,4 +67,4 @@ const ImageStyle = styled.img`
   object-fit: cover;
 `;
 
-export default UserAvatar;
+export default memo(UserAvatar);

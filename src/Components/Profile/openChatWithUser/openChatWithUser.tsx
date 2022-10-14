@@ -3,12 +3,15 @@ import styled from "styled-components";
 import UserStore from "../../../Stores/UserStore";
 import chatStore from "../../../modules/chat/stores/chatStore";
 import UiStateStore from "../../../Stores/UiStateStore";
+import { isMobile } from "react-device-detect";
+import { useRouter } from "next/router";
 
 type Props = {
   currUser: UserAttributes;
 };
 
 const OpenChatWithUser = ({ currUser }: Props) => {
+  const router = useRouter();
   const { user } = UserStore;
   const { openChat } = chatStore;
 
@@ -18,8 +21,11 @@ const OpenChatWithUser = ({ currUser }: Props) => {
     }
 
     const chatId = [currUser.id, user.id].sort().join("_");
-
     openChat(chatId, "private");
+
+    if (isMobile) {
+      return router.push("/messenger");
+    }
   };
 
   return (

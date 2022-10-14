@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import UserContentTabs from "./UserContentTabs";
 import Photos from "./UserPhotos/Photos";
+import { theme } from "../../../../styles/theme";
 
 const UserContent = () => {
   const isReady = false;
@@ -41,6 +42,10 @@ const Wrapper = styled.div`
   background: #fff;
   border-radius: 32px;
   min-height: 57.5vh;
+
+  @media (min-width: 1424px) {
+    box-shadow: ${theme.boxShadow.mainComponent};
+  }
 
   .noneContent {
     display: flex;

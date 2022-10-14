@@ -90,7 +90,7 @@ const Wrapper = styled.div`
     width: 100%;
     height: 80vh;
     background: #fff;
-    top: 100px;
+    top: 112px;
     position: sticky;
     border-radius: 32px;
     overflow-y: hidden;

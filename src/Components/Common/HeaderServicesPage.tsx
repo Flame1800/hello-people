@@ -4,18 +4,20 @@ import Link from "next/link";
 
 type ServiceProps = {
   children: string | Component;
-  link: string;
+  link?: string;
 };
 
 const HeaderServicesPage = ({ children, link }: ServiceProps) => {
   return (
     <Wrapper>
       <div className="title">{children}</div>
-      <Link href={link}>
-        <a className="add-btn">
-          <img src="/img/add-icon.svg" alt="Добавить" />
-        </a>
-      </Link>
+      {link && (
+        <Link href={link}>
+          <a className="add-btn">
+            <img src="/img/add-icon.svg" alt="Добавить" />
+          </a>
+        </Link>
+      )}
     </Wrapper>
   );
 };

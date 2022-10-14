@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { UserType } from "../../models/UserType";
@@ -8,7 +8,7 @@ type Props = {
   user: UserType;
 };
 
-const UserCard = ({ user }: Props) => {
+const UserCard = memo(({ user }: Props) => {
   return (
     <Link href={`/user/${user.id}`}>
       <WrapperCard className="user">
@@ -17,7 +17,7 @@ const UserCard = ({ user }: Props) => {
       </WrapperCard>
     </Link>
   );
-};
+});
 
 const WrapperCard = styled.a`
   padding: 10px 20px;

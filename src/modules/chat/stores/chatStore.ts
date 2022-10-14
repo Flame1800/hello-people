@@ -14,11 +14,13 @@ type NewDialog = {
 class ChatStore {
   api: string = "http://localhost:3000";
 
-  user: UserType = userPetr;
+  user: UserType | {} = {};
 
   socket: Socket | undefined;
 
   isWidget: boolean = true;
+
+  loading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -34,6 +36,10 @@ class ChatStore {
 
   setSocket = (socket: Socket) => {
     this.socket = socket;
+  };
+
+  setLoading = (isLoad: boolean) => {
+    this.loading = isLoad;
   };
 
   leaveChat = () => {
@@ -71,8 +77,12 @@ class ChatStore {
     }
   };
 
-  openChat = (id: number | string, category: CategoryType) => {
-    const { fetchedDialogs } = dialogsStore;
+  openChat = (
+    id: number | string,
+    category: CategoryType,
+    dialog?: DialogProps
+  ) => {
+    const { fetchedDialogs, setCurrentDialog } = dialogsStore;
 
     const isMyChat = fetchedDialogs.filter((d) => d.id === id).length > 0;
     console.log("is my Chat?", isMyChat);
@@ -83,6 +93,10 @@ class ChatStore {
     };
 
     if (this.socket) {
+      if (dialog) {
+        setCurrentDialog(dialog);
+      }
+      this.loading = true;
       this.socket.emit("joinChat", { chat, readOnly: !isMyChat });
     }
   };

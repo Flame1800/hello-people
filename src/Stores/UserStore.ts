@@ -61,7 +61,7 @@ class UserStore {
     return this.setUserById(this.user.id);
   };
 
-  setUserSubscribers = (users: User[]) => {
+  setUserSubscribers = (users: any) => {
     this.users = users;
   };
 }

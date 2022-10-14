@@ -20,9 +20,9 @@ const UsersListModal = () => {
         <div className="title">{title}</div>
         <div className="list">
           {users &&
-            users?.map((user: User) => {
+            users?.map((user: UserAttributes) => {
               return (
-                <div onClick={toggleUsersListModal}>
+                <div key={user.id} onClick={toggleUsersListModal}>
                   <UserCardMini user={user} />
                 </div>
               );

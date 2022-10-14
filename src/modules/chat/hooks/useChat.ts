@@ -15,9 +15,10 @@ type ChatInfoTypes = {
   chat: DialogProps;
 };
 
-export default (apiUrl: string) => {
-  const { setUser, setSocket } = chatStore;
-  const { setCurrentDialog } = dialogsStore;
+export default (apiUrl: string | undefined) => {
+  if (!apiUrl) return;
+
+  const { setUser, setSocket, setLoading } = chatStore;
   const {
     setMessages,
     setChatUsers,
@@ -27,14 +28,14 @@ export default (apiUrl: string) => {
     addOnlineUser,
   } = roomStore;
   const { user } = UserStore;
+  const { setCurrentDialog, currentDialog } = dialogsStore;
 
   useEffect(() => {
     //  подключкение к сокетам и установка юзера
-    const coreSocket = io(apiUrl, { query: { userId: user.id } });
+    const coreSocket = io(apiUrl, { query: { userId: user?.id } });
     setSocket(coreSocket);
     setUser(user);
-
-    console.log(coreSocket);
+    console.log("socket info", coreSocket);
 
     coreSocket?.on("getFavoriteChats", (data: DialogProps[]) => {
       console.log("getFavoriteChats", data);
@@ -48,8 +49,13 @@ export default (apiUrl: string) => {
     coreSocket?.on("chatInfo", (data: ChatInfoTypes) => {
       console.log("chatInfo", data);
 
+      setLoading(false);
+
+      if (!currentDialog) {
+        setCurrentDialog(data.chat);
+      }
+
       setOnlineUsers(data.onlineUsers);
-      setCurrentDialog(data.chat);
       setChatUsers(data.members);
       setMessages(data.msgs);
     });
@@ -68,5 +74,10 @@ export default (apiUrl: string) => {
       console.log("newOnlineUser", data);
       addOnlineUser(data);
     });
-  }, []);
+
+    return () => {
+      chatStore.leaveChat();
+      setCurrentDialog(null);
+    };
+  }, [user]);
 };

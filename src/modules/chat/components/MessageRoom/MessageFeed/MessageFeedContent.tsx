@@ -6,9 +6,12 @@ import styled from "styled-components";
 import { theme } from "../../../../../../styles/theme";
 import messagesStore from "../../../stores/roomStore";
 import dialogsStore from "../../../stores/dialogsStore";
+import { BeatLoader } from "react-spinners";
+import chatStore from "../../../stores/chatStore";
 
 const MessageFeedContent = () => {
   const { currentMessages } = messagesStore;
+  const { isWidget, loading } = chatStore;
 
   const onScrollHandler = _.throttle(() => {}, 50);
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -25,17 +28,29 @@ const MessageFeedContent = () => {
     <Empty>Тут пока нету сообщений, но вы можете это исправить</Empty>
   );
 
+  if (loading) {
+    return (
+      <Loading>
+        <BeatLoader color={theme.color.orange} size={8} />
+      </Loading>
+    );
+  }
+
   return (
-    <MessagesWrapper ref={messagesRef} onScroll={onScrollHandler}>
+    <MessagesWrapper
+      isWidget={isWidget}
+      ref={messagesRef}
+      onScroll={onScrollHandler}
+    >
       {currentMessages?.length ? messageComponents : empty}
     </MessagesWrapper>
   );
 };
 
-const MessagesWrapper = styled.div`
+const MessagesWrapper = styled.div<{ isWidget: boolean }>`
   padding-top: 30px;
   overflow: hidden scroll;
-  margin-bottom: 80px;
+  margin-bottom: ${(props) => (props.isWidget ? "80px" : "50px")};
 
   &::-webkit-scrollbar {
     width: 16px;
@@ -54,6 +69,14 @@ const Empty = styled.div`
   padding: 0 20px;
   font-weight: 700;
   color: ${theme.color.gray};
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export default observer(MessageFeedContent);

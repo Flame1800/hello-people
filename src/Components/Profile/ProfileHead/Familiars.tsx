@@ -13,23 +13,25 @@ const Familiars = ({ user }: { user: UserAttributes }) => {
     UiStateStore.toggleUsersListModal();
   };
 
-    return (
-        <Wrapper>
-            <div className="caption" onClick={() => openUsersList("Подписки")}>
-                <div className="value">
-                    {user.friends.length}
-                </div>
-                {user.friends.length === 1 ? 'подписка' : 'подписки'}
-            </div>
-            <div className="subscribers caption" onClick={() => openUsersList("Подписчики")}>
-                <div className="value">
-                    {user.subscribers.length}
-                </div>
-                {user.subscribers.length === 1 ? 'подписчик' : 'подписчиков'}
-            </div>
-        </Wrapper>
-
-    );
+  return (
+    <Wrapper>
+      <div className="caption" onClick={() => openUsersList("Подписки")}>
+        <div className="value">
+          подписки
+          <b>{" " + user.friends.length}</b>
+        </div>
+      </div>
+      <div
+        className="subscribers caption"
+        onClick={() => openUsersList("Подписчики")}
+      >
+        <div className="value">
+          подписчики
+          <b>{" " + user.subscribers.length}</b>
+        </div>
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -39,22 +41,16 @@ const Wrapper = styled.div`
   margin-top: 10px;
 
   .caption {
-    width: 48%;
+    width: 100%;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 14.5px;
     color: #373737;
     white-space: nowrap;
     display: flex;
     flex-direction: column;
-    align-items: center;
     cursor: pointer;
     border-radius: 10px;
-    border: 1px dashed #a2a2a2;
-    padding: 3px 10px;
-
-    .value {
-      font-weight: 900;
-    }
+    padding: 8px 0;
   }
 
   .main-stat {
@@ -64,7 +60,6 @@ const Wrapper = styled.div`
 
   .subscribers {
     color: #ff7373;
-    border: 1px dashed #ff7373;
   }
 `;
 

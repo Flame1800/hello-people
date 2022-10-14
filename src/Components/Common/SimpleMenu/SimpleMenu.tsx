@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../styles/theme";
 
@@ -30,7 +30,7 @@ const SimpleMenu = ({ children, isShow, setIsShow }: Props) => {
 };
 
 const Wrapper = styled.div`
-  display: flex;
+  display: inline-block;
   position: relative;
   margin: 0 10px;
 
@@ -50,6 +50,8 @@ const Menu = styled.div`
   position: absolute;
   overflow: hidden;
   top: 30px;
+  right: 0;
+  z-index: ${theme.order.modal};
 `;
 
 export default SimpleMenu;

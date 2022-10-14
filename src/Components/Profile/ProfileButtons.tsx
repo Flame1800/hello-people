@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import { ButtonStyle } from "../../../styles/commonStyles";
 import Link from "next/link";
@@ -61,6 +61,4 @@ const Wrapper = styled.div`
   margin-top: 10px;
 `;
 
-const ButtonMessage = styled.div``;
-
-export default ProfileButtons;
+export default memo(ProfileButtons);

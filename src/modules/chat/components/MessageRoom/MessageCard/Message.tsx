@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import chatStore from "../../../stores/chatStore";
 import CheckMarkICon from "./CheckMarkICon";
 import {
@@ -8,12 +8,14 @@ import {
   MessageAvatar,
   MeMessageWrapper,
   MessageUserName,
+  MessageTextStyle,
 } from "./MessageStyle";
 import { MessageType } from "../../../models/Message";
 import dialogsStore from "../../../stores/dialogsStore";
 import makeMsgDate from "../../../utils/makeMsgDate";
 import roomStore from "../../../stores/roomStore";
 import { API_URL } from "../../../../../Constants/api";
+import { observer } from "mobx-react-lite";
 
 const Message = (props: MessageType) => {
   const { text, date, isRead, authorId } = props;
@@ -43,10 +45,10 @@ const Message = (props: MessageType) => {
       {avatar}
       <MessageStyle>
         {userNameInMessage}
-        <div>
+        <MessageTextStyle>
           {text}
           {messageInfo}
-        </div>
+        </MessageTextStyle>
       </MessageStyle>
     </>
   );
@@ -58,4 +60,4 @@ const Message = (props: MessageType) => {
   return <MessageWrapper>{content}</MessageWrapper>;
 };
 
-export default Message;
+export default observer(Message);

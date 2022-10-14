@@ -26,7 +26,6 @@ const MessageRoom = () => {
 
   return (
     <MessageRoomStyle isWidget={isWidget}>
-      <ArrowToBottom messagesRef={messagesRef} />
       <MessageFeedHeader />
       <MessageFeedContent />
       {isMyChat ? <EntryField /> : <AddChatButton />}

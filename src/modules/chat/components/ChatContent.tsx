@@ -9,16 +9,14 @@ import dialogsStore from "../stores/dialogsStore";
 import useChat from "../hooks/useChat";
 
 type ChatProps = {
-  apiUrl: string;
+  apiUrl?: string;
   user: UserType;
   isWidget?: boolean;
 };
 
-const ChatContent = ({ apiUrl, isWidget }: ChatProps) => {
+const ChatContent = ({ isWidget }: ChatProps) => {
   const { currentDialog } = dialogsStore;
   const [currentCategory, setCurrentCategory] = useState<CategoryType>("all");
-
-  useChat(apiUrl);
 
   const roomList = (
     <RoomList

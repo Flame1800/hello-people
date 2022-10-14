@@ -24,11 +24,11 @@ export const theme = {
   size: {
     extraLarge: "1320px",
     large: "960px",
-    medium: "720px",
+    medium: "780px",
     small: "540px",
   },
 
-  // z-index
+  // z-nav.tsx
   order: {
     hidden: -100,
     tab: 10,

@@ -15,17 +15,9 @@ type Props = {
 const Chat = ({ isWidget }: Props) => {
   const { user } = UserStore;
   const { setScreenMode } = chatStore;
-  const socketUrl = "https://hellopeople.online"; // http://192.168.210.10:1337
 
   useEffect(() => {
     setScreenMode(isWidget ?? true);
-    if (document.documentElement.clientWidth < 750) {
-      document.body.style.overflow = "hidden";
-    }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
   }, []);
 
   const regDialog = (
@@ -41,11 +33,7 @@ const Chat = ({ isWidget }: Props) => {
 
   return (
     <ChatWrapper>
-      {!user ? (
-        regDialog
-      ) : (
-        <ChatContent isWidget={isWidget} apiUrl={socketUrl} user={user} />
-      )}
+      {!user ? regDialog : <ChatContent isWidget={isWidget} user={user} />}
     </ChatWrapper>
   );
 };
