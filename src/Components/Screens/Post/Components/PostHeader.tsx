@@ -53,7 +53,6 @@ const Name = styled.div`
 const DateHolder = styled.div`
   font-size: 15px;
   color: #525252;
-  margin-right: 20px;
 `;
 
 export default PostHeader;

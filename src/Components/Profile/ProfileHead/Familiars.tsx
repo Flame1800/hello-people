@@ -4,7 +4,7 @@ import UserStore from "../../../Stores/UserStore";
 import { observer } from "mobx-react-lite";
 import UiStateStore from "../../../Stores/UiStateStore";
 
-const Familiars = ({ user }: { user: UserAttributes }) => {
+const Familiars = ({ user }: { user: User }) => {
   const openUsersList = (title: string) => {
     UserStore.setUserSubscribers({
       title,
@@ -17,8 +17,8 @@ const Familiars = ({ user }: { user: UserAttributes }) => {
     <Wrapper>
       <div className="caption" onClick={() => openUsersList("Подписки")}>
         <div className="value">
-          подписки
-          <b>{" " + user.friends.length}</b>
+          подписки &nbsp;
+          <b>{user?.friends?.length || 0}</b>
         </div>
       </div>
       <div
@@ -26,8 +26,8 @@ const Familiars = ({ user }: { user: UserAttributes }) => {
         onClick={() => openUsersList("Подписчики")}
       >
         <div className="value">
-          подписчики
-          <b>{" " + user.subscribers.length}</b>
+          подписчики &nbsp;
+          <b>{user?.subscribers?.length || 0}</b>
         </div>
       </div>
     </Wrapper>

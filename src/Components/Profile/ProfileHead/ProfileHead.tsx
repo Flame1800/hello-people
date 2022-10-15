@@ -16,7 +16,7 @@ import {
   Info,
 } from "./ProfileHead.style";
 
-const ProfileHead = ({ user }: { user: UserAttributes }) => {
+const ProfileHead = ({ user }: { user: User }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
 
   const me = UserStore.user;
@@ -40,7 +40,7 @@ const ProfileHead = ({ user }: { user: UserAttributes }) => {
         <UserAvatar size="lg" url={user.avatar} />
         <Info>
           <Name>
-            {user.username} {me && dropdownMenu}
+            {user.username ?? "Пользователь не найден"} {me && dropdownMenu}
           </Name>
           <div className="first-name">{user.name}</div>
           <Description>{user.description}</Description>

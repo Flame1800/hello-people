@@ -109,8 +109,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: ${theme.borderRadius.main};
   min-height: 80vh;
+  border-radius: ${theme.borderRadius.main};
+  box-shadow: ${theme.boxShadow.mainComponent} !important;
+
+  @media screen and (max-width: 600px) {
+    box-shadow: none !important;
+  }
 
   @media (min-width: 600px) {
     background: #fff;

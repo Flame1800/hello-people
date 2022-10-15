@@ -6,6 +6,7 @@ import Document, {
   NextScript,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { CITY } from "../src/Constants/city";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -38,20 +39,24 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="ru">
         <Head>
-          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta charSet="UTF-8" />
+          <link rel="manifest" href="/manifest.json" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
           <meta name="apple-mobile-web-app-title" content="City Expert" />
           <meta name="theme-color" content="#FC5130" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link rel="manifest" href="/manifest.json" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
           <link rel="apple-touch-icon" href="/icon-192x192.png" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
           />
+          <title>
+            HelloPeople - {CITY} Сервис мероприятий, знакомств и встреч
+          </title>
         </Head>
         <body>
           <Main />

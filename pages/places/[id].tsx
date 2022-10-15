@@ -6,6 +6,8 @@ import PlaceContent from "../../src/Components/Place/PlaceContent";
 import API from "../../src/Helpers/API";
 import { NextPage } from "next";
 import CommentsBlock from "../../src/Components/Comments/CommnetsBlock";
+import SeoHead from "../../src/Components/Layouts/SeoHead";
+import { CITY } from "../../src/Constants/city";
 
 interface Props {
   place: any;
@@ -16,6 +18,13 @@ const PlacePage: NextPage<Props> = ({ place }) => {
 
   return (
     <Wrapper>
+      <SeoHead
+        title={`${place.attributes.title} ${CITY} HelloPeople`}
+        description={place.attributes.description}
+        keywords={place.attributes.categories?.data
+          .map((cat: Category) => cat.attributes.title)
+          .join(", ")}
+      />
       <div className="head">
         <Name place={attributes} />
       </div>

@@ -33,6 +33,8 @@ API.deleteMeet = (id: number) => server.delete(`/meets/${id}`);
 // Posts
 
 API.getPosts = () => server("/posts?populate=*");
+API.getActualPosts = () =>
+  server("/posts?populate=*&filters[actual][$eq]=true");
 API.getPost = (slug: string) =>
   server(`/posts/?filters[slug][$eq]=${slug}&populate=*`);
 API.addPost = () => server.post(`/posts?populate=*`);

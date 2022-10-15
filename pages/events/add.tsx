@@ -1,34 +1,71 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import {InputStyle, TextareaStyle, ButtonStyle, Label} from "../../styles/commonStyles";
+import {
+  InputStyle,
+  TextareaStyle,
+  ButtonStyle,
+  Label,
+} from "../../styles/commonStyles";
+import SeoHead from "../../src/Components/Layouts/SeoHead";
+import { CITY } from "../../src/Constants/city";
+import { theme } from "../../styles/theme";
 
 const AddEvent = () => {
-    return (
-        <Wrapper>
-            <div className="banner">
-                <img src="/img/calendar.svg" alt="календарь"/>
-                <div className="title">Добавить мероприятие</div>
-                <div className="sub-title">
-                    Напишите интересное описание и добавьте фотографии или обложку.
-                </div>
-            </div>
-            <div className="form">
-                <InputStyle placeholder='Название*' onInput={() => console.log('input')}/>
-                <InputStyle type='date' placeholder='Дата начала' onInput={() => console.log('input')}/>
-                <InputStyle type='tel' placeholder='Номер телефона*' onInput={() => console.log('input')}/>
-                <InputStyle type='tel' placeholder='Веб-сайт или паблик' onInput={() => console.log('input')}/>
-                <Label>
-                    Добавьте описание для Вашего мероприятия и его адрес.
-                </Label>
-                <TextareaStyle rows={5} placeholder='Описание'/>
-                <div className="input-title">Фото</div>
-                <Label>
-                    Фотографии должны быть качественными. Анкета будет проверяться модераторами.
-                </Label>
-                <ButtonStyle>Отправить анкету</ButtonStyle>
-            </div>
-        </Wrapper>
-    );
+  const form = (
+    <div className="form">
+      <InputStyle
+        placeholder="Название*"
+        onInput={() => console.log("input")}
+      />
+      <InputStyle
+        type="date"
+        placeholder="Дата начала"
+        onInput={() => console.log("input")}
+      />
+      <InputStyle
+        type="tel"
+        placeholder="Номер телефона*"
+        onInput={() => console.log("input")}
+      />
+      <InputStyle
+        type="tel"
+        placeholder="Веб-сайт или паблик"
+        onInput={() => console.log("input")}
+      />
+      <Label>Добавьте описание для Вашего мероприятия и его адрес.</Label>
+      <TextareaStyle rows={5} placeholder="Описание" />
+      <div className="input-title">Фото</div>
+      <Label>
+        Фотографии должны быть качественными. Анкета будет проверяться
+        модераторами.
+      </Label>
+      <ButtonStyle>Отправить анкету</ButtonStyle>
+    </div>
+  );
+
+  return (
+    <Wrapper>
+      <SeoHead
+        title={`Предложить мероприятие - HelloPeople`}
+        description={`Предлагайте свои мероприятия в HelloPeople ${CITY}`}
+      />
+      <div className="banner">
+        <img src="/img/calendar.svg" alt="календарь" />
+        <div className="title">Добавить мероприятие</div>
+        <div className="sub-title">
+          Отправьте анкету на добавление события и после модерации вы сможете
+          найти ее в афише HelloPeople
+        </div>
+      </div>
+      <br />
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdPx5iXdOPS2-JVnZyR2J4q_J1HgdrwlzQBofVVpbnz1YcSqA/viewform?usp=sharing"
+        target="_blank"
+      >
+        <ButtonStyle>Отправить анкету</ButtonStyle>
+      </a>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -37,13 +74,18 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 16px;
+  border-radius: ${theme.borderRadius.main};
+  box-shadow: ${theme.boxShadow.mainComponent} !important;
 
   @media (min-width: 600px) {
     background: #fff;
     padding-top: 50px;
     padding-bottom: 30px;
     margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    box-shadow: none !important;
   }
 
   .form {
@@ -82,6 +124,6 @@ const Wrapper = styled.div`
     text-align: left;
     width: 100%;
   }
-`
+`;
 
 export default AddEvent;

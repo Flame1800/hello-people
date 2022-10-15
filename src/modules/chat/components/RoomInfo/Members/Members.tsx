@@ -25,7 +25,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
+  padding: 0 20px;
 `;
 
 const Header = styled.div`
@@ -44,7 +45,7 @@ const Header = styled.div`
 const List = styled.div`
   background: rgba(243, 243, 243, 0.52);
   border-radius: 10px;
-  height: 600px;
+  height: 400px;
   overflow: auto;
 `;
 

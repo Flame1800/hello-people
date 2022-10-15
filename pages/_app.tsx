@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import GlobalStyles from "../styles/global";
-import Layout from "../src/Components/Layout/Layout";
+import Layout from "../src/Components/Layouts/Layout";
 import NextNProgress from "nextjs-progressbar";
 import { theme } from "../styles/theme";
 import { parseCookies } from "nookies";

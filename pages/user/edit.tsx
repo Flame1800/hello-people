@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { NextPage } from "next";
 import { observer } from "mobx-react-lite";
 import {
   ButtonStyle,
@@ -14,13 +13,13 @@ import { theme } from "../../styles/theme";
 import { useRouter } from "next/router";
 import UserStore from "../../src/Stores/UserStore";
 import UserAvatar from "../../src/Components/User/UserAvatar";
-import axios from "axios";
+import SeoHead from "../../src/Components/Layouts/SeoHead";
 
 interface Props {
-  user: any;
+  user: User;
 }
 
-const EditProfile: NextPage<Props> = ({ user }) => {
+const EditProfile = ({ user }: Props) => {
   const router = useRouter();
 
   const logout = () => {
@@ -67,14 +66,16 @@ const EditProfile: NextPage<Props> = ({ user }) => {
 
   return (
     <Wrapper>
+      <SeoHead
+        title={`Редактировать профиль ${user?.username}`}
+        description={`Редактировать профиль`}
+      />
       <div className="content">
         <div className="title">Редактировать профиль</div>
         <div className="form">
           <UserAvatar url={user.avatar} size="lg" />
           <label htmlFor="avatar" className="input__file-button">
-            <div className="btn-upload" type="submit">
-              Изменить аватар
-            </div>
+            <div className="btn-upload">Изменить аватар</div>
           </label>
           <input
             placeholder="Аватар"

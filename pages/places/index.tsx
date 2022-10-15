@@ -9,6 +9,8 @@ import axios from "axios";
 import CategoriesStore from "../../src/Stores/CategoriesStore";
 import Loader from "../../src/Components/Common/Loader";
 import qs from "qs";
+import SeoHead from "../../src/Components/Layouts/SeoHead";
+import { CITY } from "../../src/Constants/city";
 
 type Props = {
   entries: any;
@@ -68,6 +70,13 @@ const Places: NextPage<Props> = ({ entries, categories }) => {
 
   return (
     <>
+      <SeoHead
+        title={`Интересные места в ${CITY}е - HelloPeople`}
+        description={`Куда сходить в ${CITY}е, инетересные места, вечеринки, клубы, бары, театры. кафе, кофейни`}
+        keywords={categories
+          .map((cat: Category) => cat.attributes.title)
+          .join(", ")}
+      />
       <HeaderServicesPage link="/places/add">МЕСТА</HeaderServicesPage>
       <Categories categories={categories} />
       {loader ? (

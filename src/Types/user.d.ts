@@ -1,9 +1,4 @@
 type User = {
-  id: number;
-  attributes: UserAttributes;
-};
-
-type UserAttributes = {
   avatar: string;
   blocked: Boolean;
   confirmed: Boolean;

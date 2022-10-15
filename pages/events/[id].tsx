@@ -5,14 +5,23 @@ import API from "../../src/Helpers/API";
 import { NextPage } from "next";
 import EventCard from "../../src/Components/Event/Card/EventCard";
 import CommentsBlock from "../../src/Components/Comments/CommnetsBlock";
+import SeoHead from "../../src/Components/Layouts/SeoHead";
+import { CITY } from "../../src/Constants/city";
 
 type EventProps = {
-  event: any;
+  event: EventType;
 };
 
 const EventPage: NextPage<EventProps> = ({ event }) => {
   return (
     <Wrapper>
+      <SeoHead
+        title={`${event.attributes.title} ${CITY} HelloPeople`}
+        description={event.attributes.description}
+        keywords={event.attributes.categories?.data
+          .map((cat) => cat.attributes.title)
+          .join(", ")}
+      />
       <div className="card">
         <EventCard event={event} />
       </div>
