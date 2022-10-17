@@ -15,6 +15,7 @@ import { DialogProps } from "../../../models/DialogProps";
 import chatStore from "../../../stores/chatStore";
 import dialogsStore from "../../../stores/dialogsStore";
 import roomStore from "../../../stores/roomStore";
+import DialogAvatar from "./DialogAvatar";
 
 const categoryTitles: { [key: string]: string } = {
   place: "Место",
@@ -31,8 +32,10 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   const { setMessages } = roomStore;
   const newMessagesCount = 0;
 
+  const idStr = String(dialog.chatId);
+
   const selectDialogHandler = () => {
-    if (currentDialog?.abbTitle === dialog.abbTitle) return;
+    if (currentDialog?.chatId === dialog.chatId) return;
 
     if (currentDialog) {
       chatStore.leaveChat();
@@ -43,7 +46,9 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   };
 
   const userName = <UserNameStyle>{abbTitle}</UserNameStyle>;
-  const dialogDate = <DialogDateStyle>0</DialogDateStyle>;
+  const dialogDate = (
+    <DialogDateStyle>{idStr.substr(idStr.length - 2)}</DialogDateStyle>
+  );
 
   const lastMessageComponent = (
     <LastMessage>{categoryTitles[dialog.category]}</LastMessage>
@@ -51,16 +56,16 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
 
   const notification = newMessagesCount !== 0 && (
     <Notifocation>
-      <p>0</p>
+      <p>{0}</p>
     </Notifocation>
   );
 
   return (
     <DialogWrapper
-      active={currentDialog?.abbTitle === dialog.abbTitle}
+      active={currentDialog?.chatId === dialog.chatId}
       onClick={selectDialogHandler}
     >
-      <Avatar url={cover} />
+      <DialogAvatar type={dialog.category} url={cover} />
       <DialogContentStyle>
         <DialogHeadStyle>
           {userName}

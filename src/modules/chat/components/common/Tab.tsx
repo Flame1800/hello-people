@@ -11,19 +11,27 @@ const Tab: React.FC<TabProps> = ({ children, active }) => {
 };
 
 const Wrapper = styled.div<{ active: boolean }>`
-  border: 1px solid #e1e1e1;
+  border: ${({ active }) =>
+    active ? "1px solid #FAFAFA" : "1px solid #c5c5c5"};
   border-radius: 16px;
-  padding: 8px 12px;
+  padding: 4px 12px;
+  height: 32px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   display: inline-block;
-  color: ${({ active }) => (active ? "white" : "black")};
+  color: ${({ active }) => (active ? "white" : "#696969")};
   background: ${({ active }) => (active ? theme.color.gray : "none")};
   cursor: pointer;
 
   &:hover {
     background: ${({ active }) => (active ? theme.color.gray : "#FAFAFA")};
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: ${({ active }) => (active ? "white" : "#949494")};
   }
 `;
 

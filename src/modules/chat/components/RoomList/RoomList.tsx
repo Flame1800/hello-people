@@ -7,6 +7,11 @@ import { observer } from "mobx-react-lite";
 import ComponentName from "../Header/ComponentName";
 import Search from "../Header/Search";
 import Tab from "../common/Tab";
+import PlacesSvg from "./TabSvgIcons/PlacesSvg";
+import EventSvg from "./TabSvgIcons/EventSvg";
+import MeetsSvg from "./TabSvgIcons/MeetsSvg";
+import PersonSvg from "./TabSvgIcons/PersonSvg";
+import { toJS } from "mobx";
 
 type DialogFeedProps = {
   setCurrentCategory: Function;
@@ -17,6 +22,7 @@ type DialogFeedProps = {
 type TabsType = {
   category: CategoryType;
   title: string;
+  icon?: React.ReactChild;
 };
 
 const tabs: TabsType[] = [
@@ -27,14 +33,22 @@ const tabs: TabsType[] = [
   {
     category: "place",
     title: "Места",
+    icon: <PlacesSvg />,
   },
   {
     category: "event",
     title: "События",
+    icon: <EventSvg />,
+  },
+  {
+    category: "meet",
+    title: "Встречи",
+    icon: <MeetsSvg />,
   },
   {
     category: "private",
     title: "Личные",
+    icon: <PersonSvg />,
   },
 ];
 
@@ -44,6 +58,7 @@ const RoomList = ({
   currentCategory,
 }: DialogFeedProps) => {
   const { dialogs, filterDialogs } = dialogsStore;
+  console.log(toJS(dialogs));
 
   useEffect(() => {
     filterDialogs(category);
@@ -51,10 +66,12 @@ const RoomList = ({
 
   const tabComponents = (
     <TabsStyle>
-      {tabs.map(({ category, title }) => {
+      {tabs.map(({ category, title, icon }) => {
         return (
           <div key={category} onClick={() => setCurrentCategory(category)}>
-            <Tab active={currentCategory === category}>{title}</Tab>
+            <Tab active={currentCategory === category}>
+              {title === "Все" ? title : icon}
+            </Tab>
           </div>
         );
       })}

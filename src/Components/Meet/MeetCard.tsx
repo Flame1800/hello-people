@@ -49,6 +49,7 @@ const MeetCard = ({ meet }: Props) => {
           <UserBadge user={meet.attributes.author.data} size="sm" />
           {user?.id === author?.id && dropdown}
         </div>
+        <div className="title">{meet.attributes.title}</div>
         <div className="text">{meet.attributes.description}</div>
       </div>
       <div className="meta">
@@ -84,8 +85,20 @@ const Wrapper = styled.div`
     align-items: center;
   }
 
-  .text {
+  .title {
     margin-top: 15px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 19px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .text {
+    margin-top: 5px;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;

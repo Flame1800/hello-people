@@ -9,8 +9,6 @@ type Props = {
 };
 
 const UserBadge = ({ user, size = "sm" }: Props) => {
-  console.log(user);
-
   const badge = (
     <Link href={`/user/${user.id}`}>
       <a>

@@ -41,7 +41,7 @@ const Wrapper = styled.div`
   margin: 20px auto;
   background: #fff;
   border-radius: 32px;
-  min-height: 57.5vh;
+  min-height: 61.5vh;
 
   @media (min-width: 1424px) {
     box-shadow: ${theme.boxShadow.mainComponent};

@@ -14,6 +14,7 @@ import Link from "next/link";
 import { BeatLoader } from "react-spinners";
 
 const AddMeet = () => {
+  const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [place, setPlace] = useState("");
   const [err, setErr] = useState("");
@@ -37,6 +38,7 @@ const AddMeet = () => {
 
     try {
       const data = {
+        title,
         description: desc,
         place,
         author: user.id,
@@ -61,6 +63,13 @@ const AddMeet = () => {
         </div>
       </div>
       <form onSubmit={submitFormHandle} className="form">
+        <InputStyle
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          type="text"
+          maxLength={30}
+          placeholder="Название"
+        />
         <TextareaStyle
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
@@ -72,7 +81,6 @@ const AddMeet = () => {
           onChange={(e) => setPlace(e.target.value)}
           type="text"
           placeholder="Место"
-          onInput={() => console.log("input")}
         />
         <ButtonStyle>
           {loading ? <BeatLoader color="#fff" size={7} /> : "Отправить анкету"}

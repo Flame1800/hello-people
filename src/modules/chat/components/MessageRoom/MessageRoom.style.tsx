@@ -17,6 +17,7 @@ export const MessageRoomStyle = styled.div<{ isWidget: boolean }>`
       position: relative !important;
       border-left: 1px solid #f6f6f6;
       margin-left: 10px;
+      height: 75vh;
     `};
 
   @media (max-width: 1024px) {

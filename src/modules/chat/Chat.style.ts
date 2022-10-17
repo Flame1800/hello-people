@@ -6,7 +6,7 @@ export const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px 20px;
-  height: inherit;
+  height: 80vh;
   border-radius: 30px;
   box-shadow: ${theme.boxShadow.mainComponent};
 
