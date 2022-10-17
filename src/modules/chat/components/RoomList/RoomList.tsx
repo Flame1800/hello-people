@@ -12,6 +12,7 @@ import EventSvg from "./TabSvgIcons/EventSvg";
 import MeetsSvg from "./TabSvgIcons/MeetsSvg";
 import PersonSvg from "./TabSvgIcons/PersonSvg";
 import { toJS } from "mobx";
+import ReactTooltip from "react-tooltip";
 
 type DialogFeedProps = {
   setCurrentCategory: Function;
@@ -68,11 +69,19 @@ const RoomList = ({
     <TabsStyle>
       {tabs.map(({ category, title, icon }) => {
         return (
-          <div key={category} onClick={() => setCurrentCategory(category)}>
+          <a
+            data-tip
+            data-for={category}
+            key={category}
+            onClick={() => setCurrentCategory(category)}
+          >
             <Tab active={currentCategory === category}>
               {title === "Все" ? title : icon}
             </Tab>
-          </div>
+            <ReactTooltip id={category} effect="solid">
+              <p>{title}</p>
+            </ReactTooltip>
+          </a>
         );
       })}
     </TabsStyle>
