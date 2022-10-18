@@ -69,7 +69,8 @@ API.getUserSubscribers = () => server(`/users?filter[subsribers][$eq]=`);
 // User Auth
 
 // Other
-API.uploadFile = (data: any) => server.post(`/upload`, data);
+API.uploadFile = (data: FormData) => server.post(`/upload`, data);
+API.deleteFile = (id: number) => server.delete(`/upload/files/${id}`);
 
 // Comments
 const queryGetComments = qs.stringify({

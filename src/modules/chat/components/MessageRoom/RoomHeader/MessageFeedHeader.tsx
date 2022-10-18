@@ -16,6 +16,7 @@ import roomStore from "../../../stores/roomStore";
 import { observer } from "mobx-react-lite";
 import LinkWrapper from "../../common/LinkWrapper";
 import { useRouter } from "next/router";
+import DialogAvatar from "../../RoomList/Dialog/DialogAvatar";
 
 const MessageFeedHeader = () => {
   const { currentDialog } = dialogsStore;
@@ -47,7 +48,11 @@ const MessageFeedHeader = () => {
       <UserContainer>
         <BackSvg onClick={goBackHandle} />
         <LinkWrapper href={link}>
-          <Avatar url={currentDialog?.cover} />
+          <DialogAvatar
+            theme={currentDialog?.theme}
+            type={currentDialog?.category}
+            url={currentDialog?.cover}
+          />
         </LinkWrapper>
         {userInfoComponent}
       </UserContainer>

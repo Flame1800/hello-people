@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import UserAvatar from "../../User/UserAvatar";
+import UserAvatar from "../User/UserAvatar";
 import AddButton from "./AddButton";
-import UserStore from "../../../Stores/UserStore";
-import MessengerButton from "../../SideBar/Nav/NavButtonsSvg/MessengerButton";
+import UserStore from "../../Stores/UserStore";
+import MessengerButton from "../SideBar/Nav/NavButtonsSvg/MessengerButton";
 import { observer } from "mobx-react-lite";
 import Link from "next/link";
-import UiStateStore from "../../../Stores/UiStateStore";
+import UiStateStore from "../../Stores/UiStateStore";
 
 const UserUX = () => {
   if (!UserStore.user) {
@@ -22,7 +22,7 @@ const UserUX = () => {
       <AddButton />
       <Link href={`/user/${UserStore?.user?.id}`}>
         <a>
-          <UserAvatar url={UserStore?.user?.avatar} />
+          <UserAvatar url={UserStore?.user.cover?.url} />
         </a>
       </Link>
     </Wrapper>

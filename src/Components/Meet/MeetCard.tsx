@@ -9,6 +9,7 @@ import SimpleMenu from "../Common/SimpleMenu/SimpleMenu";
 import MenuItem from "../Common/SimpleMenu/MenuItem";
 import UserStore from "../../Stores/UserStore";
 import API from "../../Helpers/API";
+import DateMeet from "./DateMeet";
 
 type Props = {
   meet: MeetType | null;
@@ -51,6 +52,7 @@ const MeetCard = ({ meet }: Props) => {
         </div>
         <div className="title">{meet.attributes.title}</div>
         <div className="text">{meet.attributes.description}</div>
+        <DateMeet date={meet.attributes.date} />
       </div>
       <div className="meta">
         <Buttons meetId={meet.id} />
@@ -107,6 +109,7 @@ const Wrapper = styled.div`
   }
 
   .meta {
+    margin-left: -2px;
     display: flex;
     align-items: center;
   }

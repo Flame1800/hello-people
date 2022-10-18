@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-
 const Logo = () => {
-    return (
-        <Link href='/'>
-            <Wrapper>
-                <img src="/img/logo.svg" alt="logo"/>
-            </Wrapper>
-        </Link>
-
-    );
+  return (
+    <Link href="/pages">
+      <Wrapper>
+        <img src="/img/logo.svg" alt="logo" />
+      </Wrapper>
+    </Link>
+  );
 };
 
 const Wrapper = styled.a`
@@ -35,6 +33,6 @@ const Wrapper = styled.a`
     display: flex;
     align-items: center;
   }
-`
+`;
 
 export default Logo;

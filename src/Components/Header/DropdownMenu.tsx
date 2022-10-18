@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { theme } from "../../../../styles/theme";
+import { theme } from "../../../styles/theme";
 import Link from "next/link";
 
 type Props = {

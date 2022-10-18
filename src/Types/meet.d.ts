@@ -1,6 +1,7 @@
 type MeetType = {
   id: number;
   attributes: {
+    date: string;
     title: string;
     place: string;
     description: string;

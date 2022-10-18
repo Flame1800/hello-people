@@ -3,11 +3,13 @@ const style: Object = {
     fontFamily: "Nunito",
     fontSize: "24px",
     marginBottom: "10px",
+    wordBreak: "break-word",
   },
   paragraph: {
     fontSize: "18px",
     fontFamily: "Nunito",
     lineHeight: "1.6em",
+    wordBreak: "break-word",
   },
   list: {
     container: {
@@ -25,6 +27,11 @@ const style: Object = {
     },
     svg: {},
     path: {},
+  },
+  personality: {
+    link: {
+      wordBreak: "break-word",
+    },
   },
 };
 

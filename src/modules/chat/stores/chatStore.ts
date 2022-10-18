@@ -97,6 +97,7 @@ class ChatStore {
         setCurrentDialog(dialog);
       }
       this.loading = true;
+      console.log("joinChat", { chat, readOnly: !isMyChat });
       this.socket.emit("joinChat", { chat, readOnly: !isMyChat });
     }
   };

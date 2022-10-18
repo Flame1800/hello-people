@@ -13,6 +13,7 @@ export const MessageFeedHeaderStyle = styled.div`
 `;
 
 export const UserContainer = styled.div`
+  width: 80%;
   display: flex;
   align-items: center;
 `;

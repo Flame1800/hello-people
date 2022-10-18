@@ -6,4 +6,5 @@ export type DialogProps = {
   category: CategoryType;
   cover?: string;
   abbTitle?: string;
+  theme?: string;
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
 import {
@@ -8,19 +8,16 @@ import {
 } from "../../styles/commonStyles";
 import { useFormik } from "formik";
 import API from "../../src/Helpers/API";
-import { parseCookies } from "nookies";
 import { theme } from "../../styles/theme";
 import { useRouter } from "next/router";
 import UserStore from "../../src/Stores/UserStore";
 import UserAvatar from "../../src/Components/User/UserAvatar";
 import SeoHead from "../../src/Components/Layouts/SeoHead";
+import userStore from "../../src/Stores/UserStore";
 
-interface Props {
-  user: User;
-}
-
-const EditProfile = ({ user }: Props) => {
+const EditProfile = () => {
   const router = useRouter();
+  const { user, setUserById } = userStore;
 
   const logout = () => {
     UserStore.logout();
@@ -28,6 +25,8 @@ const EditProfile = ({ user }: Props) => {
   };
 
   const updateUser = async (values: any) => {
+    if (!user) return;
+
     try {
       await API.updateUser(user.id, values);
       return router.push(`/user/${user.id}`);
@@ -36,26 +35,42 @@ const EditProfile = ({ user }: Props) => {
     }
   };
 
-  const updateAvatar = async (e: InputEvent) => {
+  const deleteAvatar = async () => {
+    if (!user?.cover?.url) return;
+
+    try {
+      await API.deleteFile(user.cover.id);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const updateAvatar = async (e: any) => {
+    if (!user) return;
+
+    deleteAvatar();
     try {
       const formData = new FormData();
-      formData.append("files", e.target.files[0], "myfile.jpg");
+      formData.append("files", e.target.files[0]);
+      formData.append("ref", "plugin::users-permissions.user");
+      formData.append("refId", String(user.id));
+      formData.append("field", "cover");
+
       const res = await API.uploadFile(formData);
       const avatar = res.data[0].url;
-
       await API.updateUser(user.id, { avatar });
-      return router.push(`/user/${user.id}`);
     } catch (e) {
-      console.warn(e);
+      console.error(e);
     }
+    setUserById(user.id);
   };
 
   const formik = useFormik({
     initialValues: {
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      description: user.description,
+      name: user?.name,
+      username: user?.username,
+      email: user?.email,
+      description: user?.description,
     },
     onSubmit: updateUser,
   });
@@ -73,7 +88,7 @@ const EditProfile = ({ user }: Props) => {
       <div className="content">
         <div className="title">Редактировать профиль</div>
         <div className="form">
-          <UserAvatar url={user.avatar} size="lg" />
+          <UserAvatar url={user.cover?.url} size="lg" />
           <label htmlFor="avatar" className="input__file-button">
             <div className="btn-upload">Изменить аватар</div>
           </label>
@@ -83,7 +98,7 @@ const EditProfile = ({ user }: Props) => {
             id="avatar"
             name="avatar"
             className="avatar-input"
-            onInput={(e) => updateAvatar(e)}
+            onInput={updateAvatar}
           />
         </div>
         <form className="form" onSubmit={formik.handleSubmit}>
@@ -234,12 +249,5 @@ const Wrapper = styled.div`
     width: 100%;
   }
 `;
-
-EditProfile.getInitialProps = async (ctx) => {
-  const token = parseCookies(ctx).jwt;
-  const userReq = await API.getUserMe(token);
-
-  return { user: userReq.data };
-};
 
 export default observer(EditProfile);

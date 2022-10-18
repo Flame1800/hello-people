@@ -4,8 +4,8 @@ import API from "../Helpers/API";
 import { UserType } from "../modules/chat/models/UserType";
 
 class UserStore {
-  user: any = null;
-  users: any = {};
+  user: User | null = null;
+  users: User[] | [] = [];
   loading: boolean = true;
 
   constructor() {
@@ -32,7 +32,7 @@ class UserStore {
     this.user = currUserPopulate.data;
   };
 
-  updateUser = (user: Object) => {
+  updateUser = (user: User) => {
     this.user = user;
   };
 
@@ -42,7 +42,9 @@ class UserStore {
   };
 
   subscribe = async (id: number) => {
-    await API.updateUser(this.user.id, {
+    if (!this.user) return;
+
+    await API.updateUser(this.user?.id, {
       friends: [...this.user.friends, id],
     });
 
@@ -50,6 +52,8 @@ class UserStore {
   };
 
   unsubscribe = async (id: number) => {
+    if (!this.user) return;
+
     const newFriendList = this.user.friends.filter(
       (user: User) => user.id !== id
     );

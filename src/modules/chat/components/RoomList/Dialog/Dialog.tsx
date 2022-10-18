@@ -65,7 +65,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
       active={currentDialog?.chatId === dialog.chatId}
       onClick={selectDialogHandler}
     >
-      <DialogAvatar type={dialog.category} url={cover} />
+      <DialogAvatar type={dialog.category} url={cover} theme={dialog?.theme} />
       <DialogContentStyle>
         <DialogHeadStyle>
           {userName}

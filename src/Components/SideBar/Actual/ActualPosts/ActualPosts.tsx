@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import API from "../../../../Helpers/API";
-import PostHeader from "../../../Screens/Post/Components/PostHeader";
-import UserAvatar from "../../../User/UserAvatar";
 import makeBeautyDate from "../../../../Helpers/makeBeautyDate";
 import Link from "next/link";
 import Comment from "../../../Common/Comment";
@@ -27,16 +25,10 @@ const ActualPosts = () => {
   return (
     <Wrapper>
       {posts.map((post: PostType) => {
-        const user = post.attributes.user.data;
-
         return (
           <Link key={post.id} href={`/posts/${post.id}`}>
             <a href={`/posts/${post.id}`}>
               <Post>
-                <PostHeaderStyle>
-                  <UserAvatar url={user.attributes.avatar} />
-                  <Name>{user.attributes.username}</Name>
-                </PostHeaderStyle>
                 <Title>{post.attributes.title}</Title>
                 <Under>
                   <Date>{makeBeautyDate(post.attributes.createdAt)}</Date>
@@ -54,28 +46,13 @@ const ActualPosts = () => {
 const Post = styled.div`
   border: 1px solid #c2c2c2;
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px 15px;
   margin-bottom: 20px;
-  min-height: 100px;
   cursor: pointer;
 
   &:hover {
     background: rgba(239, 239, 239, 0.45);
   }
-`;
-
-const PostHeaderStyle = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Name = styled.div`
-  margin-left: 10px;
-  font-weight: 600;
-  color: #4b4b4b;
-  max-width: 90%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const Date = styled.div`

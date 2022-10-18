@@ -1,27 +1,24 @@
 import React from "react";
 
 import style from "./Icon.module.css";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { API_URL } from "../../../../Constants/api";
 
 type IconProps = {
   url?: string;
+  size?: "large" | "medium" | "small";
 };
 
 const Avatar: React.FC<IconProps> = (props) => {
-  const { url } = props;
+  const { url, size } = props;
   return (
-    <Wrapper>
-      {url ? (
-        <ImageStyle src={API_URL + url} alt="avatar" />
-      ) : (
-        <ImageStyle src="/img/avatar.svg" alt="avatar" />
-      )}
+    <Wrapper size={size || "small"}>
+      <ImageStyle src={url ? API_URL + url : "/img/avatar.svg"} alt="avatar" />
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ size: "large" | "medium" | "small" }>`
   background: #fff;
   width: 42px;
   height: 42px;
@@ -29,11 +26,18 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${(props) =>
+    props.size === "large" &&
+    css`
+      width: 82px;
+      height: 82px;
+    `}
 `;
 
 const ImageStyle = styled.img`
-  width: 42px;
-  height: 42px;
+  width: inherit;
+  height: inherit;
   border-radius: 50%;
   overflow: hidden;
   object-fit: cover;

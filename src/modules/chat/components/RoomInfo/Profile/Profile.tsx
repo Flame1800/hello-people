@@ -4,6 +4,7 @@ import styled from "styled-components";
 import dialogsStore from "../../../stores/dialogsStore";
 import { useRouter } from "next/router";
 import LinkWrapper from "../../common/LinkWrapper";
+import DialogAvatar from "../../RoomList/Dialog/DialogAvatar";
 
 const Profile = () => {
   const { currentDialog } = dialogsStore;
@@ -14,7 +15,12 @@ const Profile = () => {
   return (
     <Wrapper>
       <LinkWrapper href={link}>
-        <ProfileAvatar src={API_URL + avatar} alt="avatar" />
+        <DialogAvatar
+          type={currentDialog?.category}
+          theme={currentDialog?.theme}
+          url={API_URL + avatar}
+          size="large"
+        />
       </LinkWrapper>
       <LinkWrapper href={link}>
         <Name>{currentDialog?.abbTitle}</Name>
@@ -35,6 +41,7 @@ const Wrapper = styled.div`
 `;
 
 const Name = styled.div`
+  margin-top: 10px;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
@@ -44,15 +51,6 @@ const Name = styled.div`
 const SubTitle = styled.div`
   font-size: 14px;
   color: #737373;
-`;
-
-const ProfileAvatar = styled.img`
-  width: 75px;
-  height: 75px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid #dedede;
-  margin-bottom: 10px;
 `;
 
 export default Profile;

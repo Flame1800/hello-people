@@ -91,7 +91,7 @@ const CommentCard = ({ comment }: CommentCardType) => {
       <Wrapper>
         <WrapLink>
           {currUser.attributes.avatar && (
-            <UserAvatar url={currUser.attributes.avatar} />
+            <UserAvatar url={currUser?.attributes.avatar} />
           )}
         </WrapLink>
         <Content>

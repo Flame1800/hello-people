@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  margin-top: 35px;
+  margin-top: 20px;
   width: 100%;
   text-align: center;
   font-weight: 700;

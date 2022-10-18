@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import UiStateStore from "../../../Stores/UiStateStore";
-import PopupWrapper from "../../Common/PopupWrapper";
+import UiStateStore from "../../Stores/UiStateStore";
+import PopupWrapper from "../Common/PopupWrapper";
 import { observer } from "mobx-react-lite";
-import { theme } from "../../../../styles/theme";
+import { theme } from "../../../styles/theme";
 import Link from "next/link";
 
 const CreateEventListModal = () => {
