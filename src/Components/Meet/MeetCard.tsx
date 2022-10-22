@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import UserBadge from "../User/UserBadge";
 import TypeMeet from "./TypeMeet";
-import Buttons from "./Buttons";
+import ChatButtons from "./ChatButtons";
 import PlaceMeet from "./PlaceMeet";
 import { theme } from "../../../styles/theme";
 import SimpleMenu from "../Common/SimpleMenu/SimpleMenu";
@@ -55,7 +55,7 @@ const MeetCard = ({ meet }: Props) => {
         <DateMeet date={meet.attributes.date} />
       </div>
       <div className="meta">
-        <Buttons meetId={meet.id} />
+        <ChatButtons meetId={meet.id} />
         <PlaceMeet place={meet.attributes.place} />
       </div>
     </Wrapper>

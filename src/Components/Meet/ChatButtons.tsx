@@ -11,7 +11,7 @@ type Props = {
   meetId: number;
 };
 
-const Buttons = ({ meetId }: Props) => {
+const ChatButtons = ({ meetId }: Props) => {
   const router = useRouter();
   const { user } = UserStore;
   const { openChat, leaveChat } = chatStore;
@@ -73,4 +73,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default Buttons;
+export default ChatButtons;

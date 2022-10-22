@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { DialogProps } from "../models/DialogProps";
 import dialogsStore from "../stores/dialogsStore";
@@ -17,6 +17,8 @@ type ChatInfoTypes = {
 };
 
 export default (apiUrl: string | undefined) => {
+  const [isReady, setIsReady] = useState(false);
+
   if (!apiUrl) return;
 
   const { setUser, setSocket, setLoading } = chatStore;
@@ -32,8 +34,10 @@ export default (apiUrl: string | undefined) => {
   const { setCurrentDialog, currentDialog } = dialogsStore;
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || isReady) return;
     //  подключкение к сокетам и установка юзера
+    setIsReady(true);
+
     const coreSocket = io(apiUrl, { query: { userId: user?.id } });
     setSocket(coreSocket);
 
@@ -85,9 +89,9 @@ export default (apiUrl: string | undefined) => {
       }
     });
 
-    return () => {
-      chatStore.leaveChat();
-      setCurrentDialog(null);
-    };
+    // return () => {
+    //   chatStore.leaveChat();
+    //   setCurrentDialog(null);
+    // };
   }, [user]);
 };
