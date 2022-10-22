@@ -5,9 +5,6 @@ const nextConfig = {
     SERVER_URL_PROD: "http://185.185.69.74:1337",
     SOCKET_URL: "https://hellopeople.online",
   },
-  async redirects() {
-    return [];
-  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

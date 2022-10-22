@@ -31,10 +31,11 @@ export const MessageAvatar = styled.img`
   height: 32px;
   margin-bottom: 20px;
   margin-right: 10px;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const MessageStyle = styled.div`
+  position: relative;
   width: fit-content;
   padding: 10px;
   border-radius: 10px;
@@ -90,4 +91,14 @@ export const MessageInfo = styled.div`
     width: max-content;
     white-space: nowrap;
   }
+`;
+
+export const UnreadMark = styled.div`
+  width: 7px;
+  height: 7px;
+  background: rgba(255, 175, 159, 0.85);
+  position: absolute;
+  right: -15px;
+  border-radius: 50%;
+  top: 45%;
 `;

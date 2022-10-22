@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { useRef } from "react";
 import chatStore from "../../../stores/chatStore";
 import CheckMarkICon from "./CheckMarkICon";
 import {
@@ -9,35 +9,38 @@ import {
   MeMessageWrapper,
   MessageUserName,
   MessageTextStyle,
+  UnreadMark,
 } from "./MessageStyle";
 import { MessageType } from "../../../models/Message";
 import dialogsStore from "../../../stores/dialogsStore";
 import makeMsgDate from "../../../utils/makeMsgDate";
-import roomStore from "../../../stores/roomStore";
 import { API_URL } from "../../../../../Constants/api";
 import { observer } from "mobx-react-lite";
+import useOnScreen from "../../../hooks/useOnScreen";
 
 const Message = (props: MessageType) => {
-  const { text, date, isRead, authorId } = props;
+  const elementRef = useRef<HTMLDivElement>(null);
+  const isOnScreen = useOnScreen(elementRef);
+
+  const { text, date, isNew, author } = props;
   const { user } = chatStore;
   const { currentDialog } = dialogsStore;
-  const { chatUsers } = roomStore;
+  const currentUser = author;
 
-  const currentUser = chatUsers.filter((u) => u.id === Number(authorId))[0];
+  const isMe = currentUser?.id === user?.id;
 
-  const avatar = currentDialog?.category !== "private" && (
+  const avatar = currentDialog?.category !== "private" && !isMe && (
     <MessageAvatar alt="avatar" src={API_URL + currentUser?.avatar} />
   );
 
-  const userNameInMessage = currentUser?.id !== user?.id &&
-    currentDialog?.category !== "private" && (
-      <MessageUserName>{currentUser?.username}</MessageUserName>
-    );
+  const userNameInMessage = !isMe && currentDialog?.category !== "private" && (
+    <MessageUserName>{currentUser?.username}</MessageUserName>
+  );
 
   const messageInfo = (
     <MessageInfo>
       <p className="date">{makeMsgDate(date)}</p>
-      {currentUser?.id === user?.id && <CheckMarkICon active={isRead} />}
+      {!isMe && <CheckMarkICon active={isNew} />}
     </MessageInfo>
   );
 
@@ -50,14 +53,15 @@ const Message = (props: MessageType) => {
           {text}
           {messageInfo}
         </MessageTextStyle>
+        {!isMe && isNew && <UnreadMark />}
       </MessageStyle>
     </>
   );
 
   if (currentUser?.id === user?.id) {
-    return <MeMessageWrapper>{content}</MeMessageWrapper>;
+    return <MeMessageWrapper ref={elementRef}>{content}</MeMessageWrapper>;
   }
-  return <MessageWrapper>{content}</MessageWrapper>;
+  return <MessageWrapper ref={elementRef}>{content}</MessageWrapper>;
 };
 
 export default observer(Message);

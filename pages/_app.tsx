@@ -29,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <GlobalStyles />
       <Layout>
+        {/*@ts-ignore*/}
         <Component {...pageProps} />
       </Layout>
     </>

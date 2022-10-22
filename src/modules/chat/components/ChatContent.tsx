@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RoomList from "./RoomList/RoomList";
+import RoomList from "./RoomList/Dialogs";
 import { observer } from "mobx-react-lite";
 import MessageRoom from "./MessageRoom";
 import { CategoryType } from "../models/CategoryType";

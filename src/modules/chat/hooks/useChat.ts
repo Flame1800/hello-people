@@ -83,8 +83,6 @@ export default (apiUrl: string | undefined) => {
       console.log("newOnlineUser", data);
 
       if (data.id !== user.id) {
-        console.log("User not me", data.id !== user.id);
-        console.log(toJS(roomStore.onlineUsers));
         addOnlineUser(data);
       }
     });

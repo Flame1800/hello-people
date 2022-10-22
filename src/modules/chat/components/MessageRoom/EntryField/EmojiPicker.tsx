@@ -50,7 +50,7 @@ const WrapperEmodji = styled.div`
   border-radius: 10px;
   position: absolute;
   bottom: 40px;
-  right: 0;
+  right: -40px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.38);
 `;
 

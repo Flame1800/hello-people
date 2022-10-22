@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { CategoryType } from "../models/CategoryType";
 import { DialogProps } from "../models/DialogProps";
+import dialog from "../components/RoomList/Dialog";
 
 class dialogsStore {
   fetchedDialogs: DialogProps[] = [];
@@ -10,6 +11,15 @@ class dialogsStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+  deleteDialog = (dialogId: number | string) => {
+    const newList = this.fetchedDialogs.filter(
+      (dialog: DialogProps) => dialog.id !== dialogId
+    );
+
+    this.fetchedDialogs = newList;
+    this.dialogs = newList;
+  };
 
   setCurrentDialog = (dialog: DialogProps | null) => {
     this.currentDialog = dialog;
@@ -33,11 +43,14 @@ class dialogsStore {
     this.dialogs = this.fetchedDialogs.filter((d) => d.category === category);
   };
 
-  getSearchDialogs = (category: string, search?: string) => {
-    if (!search) return;
+  getSearchDialogs = (search: string) => {
+    if (search.length === 0) {
+      this.dialogs = this.fetchedDialogs;
+      return;
+    }
     const mappedSearch = search.toLowerCase();
 
-    return this.dialogs.filter((dialog) =>
+    this.dialogs = this.fetchedDialogs.filter((dialog) =>
       dialog.abbTitle?.toLowerCase().includes(mappedSearch)
     );
   };

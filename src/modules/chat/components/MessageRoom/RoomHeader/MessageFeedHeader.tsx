@@ -34,7 +34,7 @@ const MessageFeedHeader = () => {
   const userInfoComponent = (
     <UserInfo>
       <LinkWrapper href={link}>
-        <UserName>{currentDialog?.abbTitle}</UserName>
+        <UserName>{currentDialog?.abbTitle ?? "Нет названия"}</UserName>
       </LinkWrapper>
 
       <UserStatus>в сети {onlineUsers?.length} человек</UserStatus>

@@ -5,15 +5,14 @@ import Message from "../MessageCard";
 import styled from "styled-components";
 import { theme } from "../../../../../../styles/theme";
 import messagesStore from "../../../stores/roomStore";
-import dialogsStore from "../../../stores/dialogsStore";
 import { BeatLoader } from "react-spinners";
 import chatStore from "../../../stores/chatStore";
-import { toJS } from "mobx";
 import { DateTime } from "luxon";
+import { MessageType } from "../../../models/Message";
 
 const MessageFeedContent = () => {
   const { currentMessages } = messagesStore;
-  const { isWidget, loading } = chatStore;
+  const { isWidget, loading, readMessages } = chatStore;
 
   const onScrollHandler = _.throttle(() => {}, 50);
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -21,6 +20,16 @@ const MessageFeedContent = () => {
   useEffect(() => {
     messagesRef.current?.scrollTo(0, messagesRef.current.scrollHeight);
   }, [currentMessages]);
+
+  useEffect(() => {
+    const unreadMessagesIds = currentMessages
+      .filter((message: MessageType) => {
+        return message.isNew;
+      })
+      .map((m: MessageType) => m?.entityId);
+
+    readMessages(unreadMessagesIds);
+  }, []);
 
   const MessagesWithDayField = currentMessages.map((item: any) => {
     const dt = DateTime.fromISO(item.date);
@@ -107,6 +116,7 @@ const Loading = styled.div`
 `;
 
 const Date = styled.div`
+  margin-left: 20px;
   margin-bottom: 20px;
   font-size: 14px;
   display: flex;

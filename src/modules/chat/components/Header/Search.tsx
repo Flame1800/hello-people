@@ -19,6 +19,13 @@ const Search = () => {
         value={searchText}
         onChange={(event) => setSearchText(event.currentTarget.value)}
       />
+      {searchText.length > 0 && (
+        <img
+          onClick={() => setSearchText("")}
+          src="/img/close.svg"
+          alt="закрыть"
+        />
+      )}
     </Wrapper>
   );
 };
@@ -35,10 +42,16 @@ const Wrapper = styled.div`
     }
   }
 
-  & img {
+  img {
+    position: absolute;
+    right: 40px;
     width: 32px;
     height: 32px;
     cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 
   .search {

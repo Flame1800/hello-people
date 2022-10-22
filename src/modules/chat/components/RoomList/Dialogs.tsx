@@ -53,7 +53,7 @@ const tabs: TabsType[] = [
   },
 ];
 
-const RoomList = ({
+const Dialogs = ({
   category,
   setCurrentCategory,
   currentCategory,
@@ -152,4 +152,4 @@ const Empty = styled.div`
   margin-top: 40px;
 `;
 
-export default observer(RoomList);
+export default observer(Dialogs);

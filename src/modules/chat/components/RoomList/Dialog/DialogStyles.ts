@@ -70,15 +70,17 @@ export const LastMessage = styled.p`
   color: #7f7f7f;
 `;
 
-export const Notifocation = styled.span`
+export const Notification = styled.span`
   background: #fc5130;
-  width: 18px;
-  height: 18px;
+  min-width: 18px;
+  height: 19px;
   display: flex;
   justify-content: center;
+  line-height: 19px;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 10px;
+  padding: 0 4px;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 11px;
   color: #ffffff;
 `;

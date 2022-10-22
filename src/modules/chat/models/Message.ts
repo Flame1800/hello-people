@@ -7,7 +7,12 @@ export type MessageType = {
   text: string;
   date: string;
   to?: UserType;
-  isRead: boolean;
+  isNew: boolean;
+  author: {
+    avatar: string;
+    id: number;
+    username: string;
+  };
 };
 
 export type NewMessageType = {

@@ -8,7 +8,7 @@
 
 //Получение чатов на которые подписан
 socket.on('getFavoriteChats', data => {
-    data = [{chatId, id, abbTitle, cover}] //id объекта в страпи, ковер как в страпи
+    data = [{chatId, id, abbTitle, cover, newMsgsCount}] //id объекта в страпи, ковер как в страпи
 })
 
 //Подписаться и отписаться на чат
@@ -48,4 +48,7 @@ socket.emit('leaveChat', {}) //id пользователи из страпи
 socket.on('leaveUser', (data) => {
     data = {userId } //id пользователи из страпи
 })
+
+// Прочитывание сообщения
+socket.emit('readMessage', {userId, msgIds[]})
 

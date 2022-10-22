@@ -27,6 +27,7 @@ const Wrapper = styled.div<{
   theme: string;
   size: "large" | "medium" | "small";
 }>`
+  background: #505050;
   background: ${(props) => (props.theme ? props.theme : "#505050")};
   max-width: 42px;
   width: 100%;

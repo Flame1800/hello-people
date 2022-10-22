@@ -5,7 +5,7 @@ import qs from "qs";
 import axios from "axios";
 
 class EventsStore {
-  events: Array<EventEntity> = [];
+  events: Array<EventType> = [];
   mode: string = "new";
   loading: boolean = false;
 
@@ -61,18 +61,16 @@ class EventsStore {
     }
   };
 
-  setEvents = (events: Array<EventEntity>) => {
+  setEvents = (events: Array<EventType>) => {
     this.events = events;
   };
 
   getPastEvents = () => {
-    return _.reverse(
-      this.events.filter((event) => {
-        return (
-          new Date().getTime() > new Date(event.attributes.dateStart).getTime()
-        );
-      })
-    );
+    return this.events.filter((event) => {
+      return (
+        new Date().getTime() > new Date(event.attributes.dateStart).getTime()
+      );
+    });
   };
 
   getNewEvents = () => {

@@ -5,6 +5,7 @@ import { userPetr } from "../mocks/users";
 import { CategoryType } from "../models/CategoryType";
 import { DialogProps } from "../models/DialogProps";
 import dialogsStore from "./dialogsStore";
+import { MessageType } from "../models/Message";
 
 type NewDialog = {
   category: CategoryType;
@@ -42,6 +43,15 @@ class ChatStore {
     this.loading = isLoad;
   };
 
+  readMessages = (messages: string[]) => {
+    if (!this.user) return;
+
+    this.socket?.emit("readMessage", {
+      userId: this.user.id,
+      msgIds: messages,
+    });
+  };
+
   leaveChat = () => {
     this.socket?.emit("leaveChat", {});
     dialogsStore.clearCurrentDialog();
@@ -51,13 +61,14 @@ class ChatStore {
     dialogs.filter((d) => d.id !== id).length > 0;
 
   deleteChat = () => {
-    const { currentDialog, setCurrentDialog } = dialogsStore;
+    const { currentDialog, deleteDialog } = dialogsStore;
 
     if (this.socket && currentDialog) {
       this.socket.emit("removeChatFromFavorite", {
         chatId: currentDialog.chatId,
       });
-      setCurrentDialog(null);
+      this.leaveChat();
+      deleteDialog(currentDialog.id);
     }
   };
 

@@ -55,6 +55,7 @@ const EntryField = () => {
         className="message-input"
         onChange={inputOnChangeHandler}
         aria-label="Message"
+        placeholder="Введите сообщение..."
         onKeyDown={enterHandler}
         value={textMessage}
       />

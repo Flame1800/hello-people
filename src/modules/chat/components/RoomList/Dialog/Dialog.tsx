@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { observer } from "mobx-react-lite";
-import Avatar from "../../common/Avatar";
 import {
   DialogContentStyle,
   DialogDateStyle,
@@ -8,7 +7,7 @@ import {
   DialogInfo,
   DialogWrapper,
   LastMessage,
-  Notifocation,
+  Notification,
   UserNameStyle,
 } from "./DialogStyles";
 import { DialogProps } from "../../../models/DialogProps";
@@ -30,7 +29,8 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   const { openChat } = chatStore;
   const { currentDialog } = dialogsStore;
   const { setMessages } = roomStore;
-  const newMessagesCount = 0;
+
+  const newMessagesCount: number = 1;
 
   const idStr = String(dialog.chatId);
 
@@ -45,7 +45,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
     openChat(dialog.id, dialog.category, dialog);
   };
 
-  const userName = <UserNameStyle>{abbTitle}</UserNameStyle>;
+  const title = <UserNameStyle>{abbTitle ?? "Нет названия"}</UserNameStyle>;
   const dialogDate = (
     <DialogDateStyle>{idStr.substr(idStr.length - 2)}</DialogDateStyle>
   );
@@ -54,10 +54,10 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
     <LastMessage>{categoryTitles[dialog.category]}</LastMessage>
   );
 
-  const notification = newMessagesCount !== 0 && (
-    <Notifocation>
-      <p>{0}</p>
-    </Notifocation>
+  const notification = (
+    <Notification>
+      <p>{newMessagesCount}</p>
+    </Notification>
   );
 
   return (
@@ -68,12 +68,12 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
       <DialogAvatar type={dialog.category} url={cover} theme={dialog?.theme} />
       <DialogContentStyle>
         <DialogHeadStyle>
-          {userName}
-          {dialogDate}
+          {title}
+          {notification}
         </DialogHeadStyle>
         <DialogInfo>
           {lastMessageComponent}
-          {notification}
+          {dialogDate}
         </DialogInfo>
       </DialogContentStyle>
     </DialogWrapper>
