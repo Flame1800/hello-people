@@ -5,6 +5,7 @@ import Link from "next/link";
 import UserStore from "../../Stores/UserStore";
 import OpenChatWithUser from "./openChatWithUser/openChatWithUser";
 import { toJS } from "mobx";
+import { observer } from "mobx-react-lite";
 
 type Props = {
   user: UserAttributes;
@@ -61,4 +62,4 @@ const Wrapper = styled.div`
   margin-top: 10px;
 `;
 
-export default memo(ProfileButtons);
+export default observer(ProfileButtons);

@@ -4,13 +4,9 @@ import { observer } from "mobx-react-lite";
 import MessageRoom from "./MessageRoom";
 import { CategoryType } from "../models/CategoryType";
 import styled from "styled-components";
-import { UserType } from "../models/UserType";
 import dialogsStore from "../stores/dialogsStore";
-import useChat from "../hooks/useChat";
 
 type ChatProps = {
-  apiUrl?: string;
-  user: UserType;
   isWidget?: boolean;
 };
 

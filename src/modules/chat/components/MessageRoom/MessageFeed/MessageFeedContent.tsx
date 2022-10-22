@@ -8,6 +8,8 @@ import messagesStore from "../../../stores/roomStore";
 import dialogsStore from "../../../stores/dialogsStore";
 import { BeatLoader } from "react-spinners";
 import chatStore from "../../../stores/chatStore";
+import { toJS } from "mobx";
+import { DateTime } from "luxon";
 
 const MessageFeedContent = () => {
   const { currentMessages } = messagesStore;
@@ -20,9 +22,34 @@ const MessageFeedContent = () => {
     messagesRef.current?.scrollTo(0, messagesRef.current.scrollHeight);
   }, [currentMessages]);
 
-  const messageComponents = currentMessages?.map((message) => (
-    <Message key={message.entityId} {...message} />
-  ));
+  const MessagesWithDayField = currentMessages.map((item: any) => {
+    const dt = DateTime.fromISO(item.date);
+    const dateString = dt.setLocale("ru").toLocaleString({
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+
+    return { ...item, dateString };
+  });
+
+  const sortedMessages = _.groupBy(
+    MessagesWithDayField,
+    (item) => item.dateString
+  );
+
+  const messgaesDayBlocks = Object.entries(sortedMessages).map(
+    ([date, messages]) => {
+      return (
+        <>
+          <Date>{date}</Date>
+          {messages.map((message) => (
+            <Message key={message.entityId} {...message} />
+          ))}
+        </>
+      );
+    }
+  );
 
   const empty = (
     <Empty>Тут пока нету сообщений, но вы можете это исправить</Empty>
@@ -42,7 +69,7 @@ const MessageFeedContent = () => {
       ref={messagesRef}
       onScroll={onScrollHandler}
     >
-      {currentMessages?.length ? messageComponents : empty}
+      {currentMessages?.length ? messgaesDayBlocks : empty}
     </MessagesWrapper>
   );
 };
@@ -77,6 +104,15 @@ const Loading = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+`;
+
+const Date = styled.div`
+  margin-bottom: 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  color: #5e5e5e;
 `;
 
 export default observer(MessageFeedContent);

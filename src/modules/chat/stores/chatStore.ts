@@ -14,7 +14,7 @@ type NewDialog = {
 class ChatStore {
   api: string = "http://localhost:3000";
 
-  user: UserType | {} = {};
+  user: UserType | null = null;
 
   socket: Socket | undefined;
 
@@ -47,17 +47,16 @@ class ChatStore {
     dialogsStore.clearCurrentDialog();
   };
 
+  findMyChat = (dialogs: DialogProps[], id: number | string) =>
+    dialogs.filter((d) => d.id !== id).length > 0;
+
   deleteChat = () => {
-    const { setDialogs, dialogs, currentDialog, setCurrentDialog } =
-      dialogsStore;
+    const { currentDialog, setCurrentDialog } = dialogsStore;
 
     if (this.socket && currentDialog) {
       this.socket.emit("removeChatFromFavorite", {
         chatId: currentDialog.chatId,
       });
-      const newDialogs = dialogs.filter((d) => d.id !== currentDialog.id);
-
-      setDialogs(newDialogs);
       setCurrentDialog(null);
     }
   };
@@ -84,8 +83,7 @@ class ChatStore {
   ) => {
     const { fetchedDialogs, setCurrentDialog } = dialogsStore;
 
-    const isMyChat = fetchedDialogs.filter((d) => d.id === id).length > 0;
-    console.log("is my Chat?", isMyChat);
+    const isMyChat = this.findMyChat(fetchedDialogs, id);
 
     const chat: NewDialog = {
       category,
@@ -97,8 +95,11 @@ class ChatStore {
         setCurrentDialog(dialog);
       }
       this.loading = true;
-      console.log("joinChat", { chat, readOnly: !isMyChat });
-      this.socket.emit("joinChat", { chat, readOnly: !isMyChat });
+
+      this.socket.emit("joinChat", {
+        chat,
+        readOnly: !isMyChat,
+      });
     }
   };
 }

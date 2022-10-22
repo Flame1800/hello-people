@@ -5,6 +5,7 @@ import dialogsStore from "../../../stores/dialogsStore";
 import { useRouter } from "next/router";
 import LinkWrapper from "../../common/LinkWrapper";
 import DialogAvatar from "../../RoomList/Dialog/DialogAvatar";
+import { categoryTitles } from "../../RoomList/Dialog/Dialog";
 
 const Profile = () => {
   const { currentDialog } = dialogsStore;
@@ -16,18 +17,16 @@ const Profile = () => {
     <Wrapper>
       <LinkWrapper href={link}>
         <DialogAvatar
-          type={currentDialog?.category}
           theme={currentDialog?.theme}
-          url={API_URL + avatar}
+          type={currentDialog?.category}
+          url={currentDialog?.cover}
           size="large"
         />
       </LinkWrapper>
       <LinkWrapper href={link}>
         <Name>{currentDialog?.abbTitle}</Name>
       </LinkWrapper>
-      <SubTitle>
-        {currentDialog?.category === "place" ? "Место" : "Событие"}
-      </SubTitle>
+      <SubTitle>{categoryTitles[currentDialog?.category ?? ""]}</SubTitle>
     </Wrapper>
   );
 };

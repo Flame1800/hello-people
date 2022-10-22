@@ -16,7 +16,6 @@ import makeMsgDate from "../../../utils/makeMsgDate";
 import roomStore from "../../../stores/roomStore";
 import { API_URL } from "../../../../../Constants/api";
 import { observer } from "mobx-react-lite";
-import { toJS } from "mobx";
 
 const Message = (props: MessageType) => {
   const { text, date, isRead, authorId } = props;
@@ -25,15 +24,15 @@ const Message = (props: MessageType) => {
   const { chatUsers } = roomStore;
 
   const currentUser = chatUsers.filter((u) => u.id === Number(authorId))[0];
-  console.log(toJS(currentUser));
 
   const avatar = currentDialog?.category !== "private" && (
     <MessageAvatar alt="avatar" src={API_URL + currentUser?.avatar} />
   );
 
-  const userNameInMessage = currentUser?.id !== user.id && (
-    <MessageUserName>{currentUser?.username}</MessageUserName>
-  );
+  const userNameInMessage = currentUser?.id !== user?.id &&
+    currentDialog?.category !== "private" && (
+      <MessageUserName>{currentUser?.username}</MessageUserName>
+    );
 
   const messageInfo = (
     <MessageInfo>
@@ -55,10 +54,9 @@ const Message = (props: MessageType) => {
     </>
   );
 
-  if (currentUser?.id === user.id) {
+  if (currentUser?.id === user?.id) {
     return <MeMessageWrapper>{content}</MeMessageWrapper>;
   }
-
   return <MessageWrapper>{content}</MessageWrapper>;
 };
 

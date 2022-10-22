@@ -1,22 +1,24 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import chatStore from "../../../stores/chatStore";
 import styled, { css } from "styled-components";
 import { NewMessageType } from "../../../models/Message";
 import dialogsStore from "../../../stores/dialogsStore";
+import EmodjiPicker from "./EmojiPicker";
+import { TextareaAutosize } from "@mui/material";
 
 const EntryField = () => {
   const [textMessage, setTextMessage] = useState("");
   const { socket, user, isWidget } = chatStore;
   const { currentDialog } = dialogsStore;
 
-  const [textareaRows, setTextareaRows] = useState(1);
-
   const inputOnChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextMessage(event.currentTarget.value);
+    setTextMessage(event.target.value);
   };
 
-  const sendOnClickHandler = () => {
+  const handleSendMessage = () => {
+    if (!user) return;
+
     if (
       textMessage.length < 1 ||
       textMessage.replace(/\s/g, "").length < 1 ||
@@ -36,36 +38,32 @@ const EntryField = () => {
     if (socket) {
       socket.emit("sendMsg", newMessage);
     }
-
     setTextMessage("");
-    setTextareaRows(1);
   };
 
   const enterHandler = (e: any) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      sendOnClickHandler();
-    }
-
-    if (e.key === "Enter" && e.shiftKey && textareaRows < 10) {
-      setTextareaRows(textareaRows + 1);
-    }
-
-    if (e.key === "Backspace" && textareaRows > 1) {
-      setTextareaRows(textareaRows - 1);
+      handleSendMessage();
     }
   };
 
   return (
     <Wrapper isWidget={isWidget}>
-      <textarea
+      <TextareaAutosize
         autoFocus
         className="message-input"
-        rows={textareaRows}
         onChange={inputOnChangeHandler}
-        value={textMessage}
-        placeholder="Сообщение..."
+        aria-label="Message"
         onKeyDown={enterHandler}
+        value={textMessage}
+      />
+      <EmodjiPicker setTextMessage={setTextMessage} />
+      <img
+        onClick={handleSendMessage}
+        className="send-img"
+        src="/img/send.svg"
+        alt="отправить"
       />
     </Wrapper>
   );
@@ -81,9 +79,19 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 20px;
+  align-items: center;
+  padding: 0 10px;
   z-index: 500;
+
+  .emodji-btn {
+    margin-right: 10px;
+    width: 22px;
+    cursor: pointer;
+  }
+
+  .send-img {
+    cursor: pointer;
+  }
 
   ${(props) =>
     !props.isWidget &&

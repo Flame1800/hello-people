@@ -11,6 +11,7 @@ import CreateEventListModal from "../Header/CreateEventListModal";
 import UserStore from "../../Stores/UserStore";
 import { observer } from "mobx-react-lite";
 import MainLoader from "../MainLoader/MainLoader";
+import PWAInstall from "../PWAInstall/PWAInstall";
 
 type LayoutType = {
   children: ReactChildren;
@@ -37,6 +38,7 @@ const Layout = ({ children }: LayoutType) => {
     <Wrapper>
       <Header />
       <NavBarMobile />
+      <PWAInstall />
       <div className="container">
         <SideBar />
         <div className="inner-content">{children}</div>

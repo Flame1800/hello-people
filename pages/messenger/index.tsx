@@ -2,7 +2,6 @@ import React from "react";
 import Chat from "../../src/modules/chat/Chat";
 import { isMobile } from "react-device-detect";
 import SeoHead from "../../src/Components/Layouts/SeoHead";
-import { CITY } from "../../src/Constants/city";
 
 const Messenger = () => {
   return (

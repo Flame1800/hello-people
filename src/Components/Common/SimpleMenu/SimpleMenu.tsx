@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../styles/theme";
+import useOutput from "../../../Hooks/useOutput";
 
 type Props = {
   children: React.ReactNode;
@@ -9,13 +10,7 @@ type Props = {
 };
 
 const SimpleMenu = ({ children, isShow, setIsShow }: Props) => {
-  useEffect(() => {
-    document.addEventListener("click", () => setIsShow(false));
-
-    return () => {
-      document.removeEventListener("click", () => setIsShow(false));
-    };
-  }, []);
+  useOutput(setIsShow);
 
   return (
     <Wrapper onClick={(e) => e.stopPropagation()}>

@@ -59,7 +59,6 @@ const RoomList = ({
   currentCategory,
 }: DialogFeedProps) => {
   const { dialogs, filterDialogs } = dialogsStore;
-  console.log(toJS(dialogs));
 
   useEffect(() => {
     filterDialogs(category);

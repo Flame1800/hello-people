@@ -5,19 +5,28 @@ import chatStore from "../../../modules/chat/stores/chatStore";
 import UiStateStore from "../../../Stores/UiStateStore";
 import { isMobile } from "react-device-detect";
 import { useRouter } from "next/router";
+import { observer } from "mobx-react-lite";
+import dialogsStore from "../../../modules/chat/stores/dialogsStore";
 
 type Props = {
-  currUser: UserAttributes;
+  currUser: User;
 };
 
 const OpenChatWithUser = ({ currUser }: Props) => {
   const router = useRouter();
   const { user } = UserStore;
-  const { openChat } = chatStore;
+  const { openChat, leaveChat } = chatStore;
+  const { currentDialog } = dialogsStore;
+
+  const thisChatIsOpen = currentDialog?.id === currUser.id;
 
   const openChatHandle = () => {
     if (!user) {
       return UiStateStore.toggleAuthModal();
+    }
+
+    if (thisChatIsOpen) {
+      return leaveChat();
     }
 
     const chatId = [currUser.id, user.id].sort().join("_");
@@ -51,4 +60,4 @@ const Wrapper = styled.div`
   cursor: pointer;
 `;
 
-export default OpenChatWithUser;
+export default observer(OpenChatWithUser);

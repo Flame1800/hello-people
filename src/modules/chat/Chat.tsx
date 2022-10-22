@@ -33,7 +33,7 @@ const Chat = ({ isWidget }: Props) => {
 
   return (
     <ChatWrapper>
-      {!user ? regDialog : <ChatContent isWidget={isWidget} user={user} />}
+      {!user ? regDialog : <ChatContent isWidget={isWidget} />}
     </ChatWrapper>
   );
 };

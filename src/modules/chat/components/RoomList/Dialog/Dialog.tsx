@@ -17,7 +17,7 @@ import dialogsStore from "../../../stores/dialogsStore";
 import roomStore from "../../../stores/roomStore";
 import DialogAvatar from "./DialogAvatar";
 
-const categoryTitles: { [key: string]: string } = {
+export const categoryTitles: { [key: string]: string } = {
   place: "Место",
   event: "Событие",
   meet: "Встреча",

@@ -7,6 +7,7 @@ import chatStore from "../stores/chatStore";
 import roomStore from "../stores/roomStore";
 import { UserType } from "../models/UserType";
 import UserStore from "../../../Stores/UserStore";
+import { toJS } from "mobx";
 
 type ChatInfoTypes = {
   members: UserType[];
@@ -31,9 +32,13 @@ export default (apiUrl: string | undefined) => {
   const { setCurrentDialog, currentDialog } = dialogsStore;
 
   useEffect(() => {
+    if (!user) return;
     //  подключкение к сокетам и установка юзера
     const coreSocket = io(apiUrl, { query: { userId: user?.id } });
     setSocket(coreSocket);
+
+    // :TODO реализовать типы "двух" Users
+    // @ts-ignore
     setUser(user);
     console.log("socket info", coreSocket);
 
@@ -72,7 +77,12 @@ export default (apiUrl: string | undefined) => {
 
     coreSocket?.on("newOnlineUser", (data) => {
       console.log("newOnlineUser", data);
-      addOnlineUser(data);
+
+      if (data.id !== user.id) {
+        console.log("User not me", data.id !== user.id);
+        console.log(toJS(roomStore.onlineUsers));
+        addOnlineUser(data);
+      }
     });
 
     return () => {

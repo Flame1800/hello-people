@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import EntryField from "./EntryField";
 import { observer } from "mobx-react-lite";
-import ArrowToBottom from "./ArrowToBottom/ArrowToBottom";
 import { MessageRoomEmptyStyle, MessageRoomStyle } from "./MessageRoom.style";
 import MessageFeedHeader from "./RoomHeader/MessageFeedHeader";
 import MessageFeedContent from "./MessageFeed/MessageFeedContent";
@@ -10,11 +9,15 @@ import AddChatButton from "./AddChatButton/AddChatButton";
 import chatStore from "../../stores/chatStore";
 
 const MessageRoom = () => {
-  const messagesRef = useRef<HTMLDivElement>(null);
   const { fetchedDialogs, currentDialog } = dialogsStore;
-  const { isWidget } = chatStore;
-
+  const { addChat, isWidget } = chatStore;
   const isMyChat = fetchedDialogs.filter((d) => d.id === currentDialog?.id)[0];
+
+  useEffect(() => {
+    if (currentDialog && currentDialog?.category === "private" && !isMyChat) {
+      addChat(currentDialog);
+    }
+  }, []);
 
   if (!currentDialog) {
     return (

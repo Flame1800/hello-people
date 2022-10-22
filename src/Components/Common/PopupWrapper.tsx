@@ -73,12 +73,11 @@ const Wrapper = styled.div<{ active: boolean; width: number }>`
   }
 
   @media (max-width: 1000px) {
-    background: #fff;
     overflow: auto;
     align-items: flex-start;
 
     .content {
-      margin-top: 10px;
+      margin: 20px;
     }
   }
 `;
