@@ -2,9 +2,10 @@ import styled, { css } from "styled-components";
 import { theme } from "../../../styles/theme";
 
 export const Wrapper = styled.div`
-  top: 112px;
+  top: 100px;
   position: sticky;
-  width: 350px;
+  width: 320px;
+  min-width: 320px;
   display: none;
   flex-direction: column;
   height: 80vh;
@@ -16,7 +17,7 @@ export const Wrapper = styled.div`
 
 export const NavLinks = styled.div`
   border-radius: 32px;
-  padding: 32px 48px;
+  padding: 20px;
   flex-direction: column;
   background: #fff;
   display: flex;

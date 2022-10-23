@@ -4,6 +4,7 @@ import CardPlaceCarousel from "./CardPlaceCarousel";
 import Link from "next/link";
 import { observer } from "mobx-react-lite";
 import MetaActionsPlace from "../MetaActionsPlace";
+import { theme } from "../../../../styles/theme";
 
 type Props = {
   card: any;
@@ -32,18 +33,18 @@ const PlaceCard: React.FC<Props> = ({ card }) => {
 };
 
 const Wrapper = styled.div`
-  max-width: 390px;
-  margin: 20px auto;
-  height: 300px;
+  max-width: 340px;
+  margin: 10px;
+  height: 290px;
   width: 100%;
   background: #ffffff;
-  box-shadow: 0 8px 17px rgba(0, 0, 0, 0.1);
+  box-shadow: ${theme.boxShadow.mainComponent};
   border-radius: 20px;
 
   @media (min-width: 1400px) {
-    max-width: 290px;
     margin-right: 10px;
     margin-left: 10px;
+    max-width: 260px;
   }
 
   .content {

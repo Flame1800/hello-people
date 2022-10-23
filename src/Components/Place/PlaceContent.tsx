@@ -8,6 +8,8 @@ import { observer } from "mobx-react-lite";
 import OpenChatButton from "../OpenChatButton/OpenChatButton";
 import BackButton from "../Common/BackButton/BackButton";
 import MetaActionsEvent from "../Event/MetaActionsEvent";
+import Name from "../Common/Services/Name";
+import { theme } from "../../../styles/theme";
 
 type PlaceContentType = {
   place: PlaceType;
@@ -17,8 +19,8 @@ const PlaceContent = ({ place }: PlaceContentType) => {
   const { attributes } = place;
 
   const head = (
-    <div className="head">
-      <BackButton link="/places" />
+    <div className="place-head">
+      <Name place={attributes} />
       <MetaActionsPlace place={place} />
     </div>
   );
@@ -49,14 +51,15 @@ const Wrapper = styled.div`
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 840px;
-  border-radius: 15px;
+  max-width: 100%;
+  border-radius: 32px;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
   margin-top: -10px;
+  box-shadow: ${theme.boxShadow.mainComponent};
 
-  .head {
+  .place-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,8 +75,8 @@ const Wrapper = styled.div`
   }
 
   .inner-container {
-    margin: 30px auto;
-    max-width: 500px;
+    margin: 10px auto;
+    max-width: 600px;
     width: 100%;
   }
 

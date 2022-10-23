@@ -30,11 +30,9 @@ const MetaActionsEvent = ({ event }: MetaActionsType) => {
 };
 
 const Wrapper = styled.div`
+  margin-left: 10px;
+  margin-top: 20px;
   display: flex;
-
-  > div {
-    margin-left: 10px;
-  }
 `;
 
 export default MetaActionsEvent;

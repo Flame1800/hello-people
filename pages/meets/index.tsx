@@ -30,11 +30,10 @@ const Meets = ({ meets }: Props) => {
 
 const Wrapper = styled.div`
   .cards {
-    margin-top: 50px;
     margin-bottom: 100px;
-    padding: 0 20px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
   }
 `;
 

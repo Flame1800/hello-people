@@ -7,6 +7,7 @@ import CommentList from "./CommentList/CommentList";
 import UserStore from "../../Stores/UserStore";
 import UiStateStore from "../../Stores/UiStateStore";
 import { toJS } from "mobx";
+import { theme } from "../../../styles/theme";
 
 type CommentsBlockType = {
   id: number;
@@ -58,7 +59,8 @@ const Wrapper = styled.div`
   max-width: 840px;
   background: #fff;
   border-radius: 20px;
-  margin: 40px auto 60px;
+  margin: 20px auto 60px;
+  box-shadow: ${theme.boxShadow.mainComponent};
 `;
 
 const Block = styled.div`

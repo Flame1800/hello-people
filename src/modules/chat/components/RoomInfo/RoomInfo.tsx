@@ -57,13 +57,13 @@ const ButtonOut = styled.div<{ isWidget: boolean }>`
   position: absolute;
 
   &:hover {
-    background: rgba(252, 81, 48, 0.06);
+    background: rgb(255, 221, 216);
   }
 `;
 
 const Wrapper = styled.div`
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   background-color: #fff;
   position: absolute;
   top: 0;

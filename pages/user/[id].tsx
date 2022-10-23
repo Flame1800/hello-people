@@ -28,11 +28,8 @@ const Profile: NextPage<Props> = ({ user }) => {
 };
 
 const Wrapper = styled.div`
-  margin: 0 20px;
-
   @media (max-width: 1424px) {
     background: #fff;
-    padding: 10px;
     margin: 0;
   }
 `;

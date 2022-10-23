@@ -38,12 +38,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
+  height: 40px;
   margin-bottom: 10px;
 
   .date {
     background: #fff;
     border-radius: 20px;
-    padding: 15px;
+    padding: 10pt 20px;
     display: flex;
     align-items: center;
     font-weight: 400;
@@ -55,14 +56,14 @@ const Wrapper = styled.div`
     .num {
       font-style: normal;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 21px;
     }
   }
 
   .today {
     background: #fff;
     border-radius: 20px 20px 0 0;
-    padding: 20px;
+    padding: 0 20px;
     font-weight: 800;
     font-size: 16px;
     display: flex;
@@ -70,9 +71,10 @@ const Wrapper = styled.div`
     align-items: center;
     color: ${theme.color.orange};
     margin-bottom: -25px;
+    box-shadow: ${theme.boxShadow.mainComponent};
 
     p {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
   }
 `;

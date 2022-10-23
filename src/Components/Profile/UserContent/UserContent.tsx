@@ -5,7 +5,7 @@ import Photos from "./UserPhotos/Photos";
 import { theme } from "../../../../styles/theme";
 
 const UserContent = () => {
-  const isReady = false;
+  const isReady = true;
 
   if (!isReady) {
     return (
@@ -35,7 +35,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 150px;
   width: 100%;
   max-width: 1000px;
   margin: 20px auto;
@@ -45,15 +44,6 @@ const Wrapper = styled.div`
 
   @media (min-width: 1424px) {
     box-shadow: ${theme.boxShadow.mainComponent};
-  }
-
-  .noneContent {
-    display: flex;
-    justify-content: center;
-  }
-
-  .noneContentImg {
-    user-select: none;
   }
 
   .caption {

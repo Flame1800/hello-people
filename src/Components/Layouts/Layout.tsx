@@ -27,6 +27,7 @@ const Layout = ({ children }: LayoutType) => {
       <AuthModal />
       <UsersListModal />
       <CreateEventListModal />
+      <PWAInstall />
     </>
   );
 
@@ -38,7 +39,6 @@ const Layout = ({ children }: LayoutType) => {
     <Wrapper>
       <Header />
       <NavBarMobile />
-      <PWAInstall />
       <div className="container">
         <SideBar />
         <div className="inner-content">{children}</div>
@@ -63,21 +63,21 @@ const Wrapper = styled.div`
   }
 
   .container {
-    max-width: 1730px;
+    max-width: 1520px;
     width: 100%;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
     position: relative;
 
-    @media (min-width: 1424px) {
+    @media (max-width: 1520px) {
       left: 0;
       display: flex;
+      justify-content: center;
     }
   }
 
   .inner-content {
-    max-width: 1000px;
+    max-width: 840px;
     width: 100%;
 
     @media (min-width: 1424px) {
@@ -88,11 +88,11 @@ const Wrapper = styled.div`
   }
 
   .desktop-chat-wrap {
-    max-width: 350px;
+    max-width: 320px;
     width: 100%;
     height: 80vh;
     background: #fff;
-    top: 112px;
+    top: 100px;
     position: sticky;
     border-radius: 32px;
     overflow-y: hidden;

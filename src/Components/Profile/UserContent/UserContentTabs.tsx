@@ -1,18 +1,33 @@
-import React from 'react';
-import Tab from "../../Common/Tab";
+import React from "react";
 import styled from "styled-components";
-import {theme} from "../../../../styles/theme";
+import { theme } from "../../../../styles/theme";
+
+const tabs = ["Места", "Мероприятия", "Встречи"];
 
 const UserContentTabs = () => {
-    return (
-        <Wrapper>
-            <div className='tab tab-active'>Фото</div>
-            <div className='tab'>Места</div>
-            <div className='tab'>Мероприятия</div>
-            <div className='tab'>Встречи</div>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      {tabs.map((tab: any) => {
+        return <Tab active={false}>{tab}</Tab>;
+      })}
+    </Wrapper>
+  );
 };
+
+const Tab = styled.div<{ active: boolean }>`
+  border: ${({ active }) =>
+    active ? "1px solid #FAFAFA" : "1px solid #c5c5c5"};
+  border-radius: 16px;
+  padding: 4px 12px;
+  height: 32px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  display: inline-block;
+  color: ${({ active }) => (active ? "white" : "#696969")};
+  background: ${({ active }) => (active ? theme.color.gray : "none")};
+  cursor: pointer;
+`;
 
 const Wrapper = styled.div`
   width: 100%;
@@ -22,23 +37,6 @@ const Wrapper = styled.div`
   position: relative;
   margin-bottom: 20px;
   margin-top: 20px;
-  border-bottom: 1px solid #B9BABD;
-
-  .tab {
-    display: flex;
-    flex: 1 0 12.5%;
-    justify-content: center;
-    text-align: center;
-    font-size: 15px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    cursor: pointer;
-  }
-
-  .tab-active {
-    border-bottom: 3px solid ${theme.color.orange};
-  }
-`
+`;
 
 export default UserContentTabs;

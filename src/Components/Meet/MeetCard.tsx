@@ -45,18 +45,20 @@ const MeetCard = ({ meet }: Props) => {
 
   return (
     <Wrapper>
-      <div className="content">
-        <div className="head">
-          <UserBadge user={meet.attributes.author.data} size="sm" />
-          {user?.id === author?.id && dropdown}
-        </div>
+      <div className="head">
+        <UserBadge user={meet.attributes.author.data} size="sm" />
+        {user?.id === author?.id && dropdown}
+      </div>
+      <div className="text">
         <div className="title">{meet.attributes.title}</div>
         <div className="text">{meet.attributes.description}</div>
-        <DateMeet date={meet.attributes.date} />
       </div>
       <div className="meta">
         <ChatButtons meetId={meet.id} />
-        <PlaceMeet place={meet.attributes.place} />
+        <div className="info">
+          <PlaceMeet place={meet.attributes.place} />
+          <DateMeet date={meet.attributes.date} />
+        </div>
       </div>
     </Wrapper>
   );
@@ -65,8 +67,7 @@ const MeetCard = ({ meet }: Props) => {
 const Wrapper = styled.div`
   width: 100%;
   min-height: 180px;
-  margin-bottom: 15px;
-  padding: 16px;
+  padding: 20px;
   background: #ffffff;
   border: 1px solid #ffffff;
   box-shadow: ${theme.boxShadow.mainComponent};
@@ -74,11 +75,16 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 10px;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   @media (min-width: 768px) {
-    max-width: 300px;
-    margin-right: 15px;
-    margin-bottom: 15px;
+    max-width: 600px;
   }
 
   .head {
@@ -112,6 +118,11 @@ const Wrapper = styled.div`
     margin-left: -2px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    .info {
+      display: flex;
+    }
   }
 `;
 

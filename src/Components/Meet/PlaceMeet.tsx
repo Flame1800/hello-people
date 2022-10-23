@@ -11,8 +11,7 @@ const PlaceMeet = ({ place }: { place: string }) => {
 };
 
 const Wrapper = styled.div`
-  margin-right: 10px;
-  margin-left: 20px;
+  margin-bottom: 10px;
 
   .name {
     font-weight: 400;

@@ -17,7 +17,6 @@ const Actual = () => {
 export const Wrapper = styled.div`
   margin-top: 20px;
   height: 100%;
-  width: 350px;
   display: none;
   background: #fff;
   box-shadow: 0 0 10px -6px;

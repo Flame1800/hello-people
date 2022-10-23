@@ -1,50 +1,36 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import dynamic from "next/dynamic";
 
 type Props = {
-    place: any
-}
+  place: any;
+};
 
-const Name: React.FC<Props> = ({place}) => {
-    return (
-        <Wrapper>
-            <div className="place-title">{place.title}</div>
-            <div className="place-category">Категория: {place.category}</div>
-        </Wrapper>
-    );
+const Name: React.FC<Props> = ({ place }) => {
+  return (
+    <Wrapper>
+      <Title>{place.title}</Title>
+      <Category>{place.category}</Category>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
 
-  .place-title {
-    font-size: 30px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    transition: .2s;
-  }
+const Title = styled.h1`
+  font-size: 20px;
+  font-weight: 700;
+  transition: 0.2s;
+`;
 
-  .place-category {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    color: #676767;
-  }
+const Category = styled.h3`
+  font-weight: 400;
+  font-size: 16px;
+  color: #676767;
+`;
 
-  @media (max-width: 700px) {
-    .place-title {
-      font-size: 24px;
-    }
-
-    .place-category {
-      font-size: 18px;
-    }
-  }
-
-`
-
-export default Name
+export default Name;

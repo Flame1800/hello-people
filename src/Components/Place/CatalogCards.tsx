@@ -61,11 +61,9 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding-left: 20px;
-    padding-right: 20px;
     padding-bottom: 50px;
     margin: 40px auto;
-    max-width: 1000px;
+    max-width: 980px;
     position: relative;
   }
 

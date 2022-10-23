@@ -6,6 +6,7 @@ import dialogsStore from "../../modules/chat/stores/dialogsStore";
 import UiStateStore from "../../Stores/UiStateStore";
 import { isMobile } from "react-device-detect";
 import { useRouter } from "next/router";
+import { theme } from "../../../styles/theme";
 
 type Props = {
   meetId: number;
@@ -36,40 +37,32 @@ const ChatButtons = ({ meetId }: Props) => {
 
   return (
     <Wrapper onClick={openChatHandle}>
-      <div className="btn btn-messenger">
-        чат
-        <img src="/img/message-blue-icon.svg" alt="smile" />
-      </div>
+      чат
+      <img src="/img/message-blue-icon.svg" alt="smile" />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
+  box-shadow: 0 6px 10px -6px rgba(74, 74, 74, 0.3);
+  transition: 0.2s;
+  background: #d9f1ff;
+  color: #005480;
+  border-radius: 6px;
+  font-size: 18px;
+  width: 100px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
-  .btn {
-    width: 100px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  img {
+    margin-left: 6px;
   }
 
-  .btn-smile {
-    background: #ffcbcb;
-    border-radius: 6px 0 0 6px;
-  }
-
-  .btn-messenger {
-    background: #d9f1ff;
-    color: #005480;
-    border-radius: 6px;
-    font-size: 18px;
-
-    img {
-      margin-left: 6px;
-    }
+  &:hover {
+    box-shadow: none;
   }
 `;
 

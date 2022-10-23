@@ -1,16 +1,13 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import UserPhoto from "./UserPhoto";
 
 const Photos = () => {
-    return (
-        <Wrapper>
-            <UserPhoto/>
-            <UserPhoto/>
-            <UserPhoto/>
-            <UserPhoto/>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <UserPhoto />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -19,6 +16,6 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 840px;
   margin: 15px auto;
-`
+`;
 
 export default Photos;

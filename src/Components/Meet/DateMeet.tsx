@@ -13,18 +13,26 @@ const DateMeet = ({ date }: { date: string }) => {
     minute: "numeric",
   });
 
-  console.log(typeof dateMap);
-
   return (
-    <Wrapper>{dateMap === "Invalid DateTime" ? "Нет даты" : dateMap}</Wrapper>
+    <Wrapper>
+      <div className="category">Время</div>
+      <div className="name">{date ? dateMap : "Неизвестно"}</div>
+    </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  margin-bottom: 10px;
-  color: #666666;
-  font-weight: 400;
-  font-size: 14px;
+  margin-left: 20px;
+  .name {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .category {
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+  }
 `;
 
 export default DateMeet;

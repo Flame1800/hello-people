@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-import Logo from './Logo';
-import UserUX from './UserUX';
-import {observer} from "mobx-react-lite";
+import Logo from "./Logo";
+import UserUX from "./UserUX";
+import { observer } from "mobx-react-lite";
 
 const Header = () => {
-    return (
-        <Wrapper>
-            <Logo/>
-            <UserUX/>
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Logo />
+      <UserUX />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -31,9 +31,8 @@ const Wrapper = styled.div`
   top: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 32px;
-  max-width: 1730px;
-
+  margin-bottom: 20px;
+  max-width: 1520px;
 
   @media (min-width: 1424px) {
     display: flex;
@@ -47,6 +46,6 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
   }
-`
+`;
 
-export default observer(Header)
+export default observer(Header);

@@ -56,7 +56,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 900px;
+    width: 100%;
     flex-wrap: wrap;
     height: auto;
     justify-content: center;

@@ -11,6 +11,7 @@ import UserStore from "../../Stores/UserStore";
 import UiStateStore from "../../Stores/UiStateStore";
 import { observer } from "mobx-react-lite";
 import OpenChatButton from "../OpenChatButton/OpenChatButton";
+import { theme } from "../../../styles/theme";
 
 type PropsType = {
   event: EventType;
@@ -18,19 +19,10 @@ type PropsType = {
 
 const EventContent = ({ event }: PropsType) => {
   const { attributes } = event;
-  const { user } = UserStore;
-
-  const head = (
-    <div className="back">
-      <BackButton link="/events" />
-      <MetaActionsEvent event={event} />
-    </div>
-  );
 
   return (
     <Wrapper>
       <div className="inner-container">
-        {head}
         <div className="buttons">
           <OpenChatButton entityId={event.id} category={"event"} />
           <TwoGisButton link2gis={attributes.maplink} />
@@ -62,10 +54,11 @@ const Wrapper = styled.div`
   border-radius: 15px;
   padding: 20px;
   margin: -10px auto 20px;
+  box-shadow: ${theme.boxShadow.mainComponent};
 
   .inner-container {
     margin: 30px auto;
-    max-width: 500px;
+    max-width: 600px;
   }
 
   .back {

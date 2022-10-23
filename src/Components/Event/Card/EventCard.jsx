@@ -36,7 +36,7 @@ const EventCard = ({ event }) => {
                 <img
                   className="gallery"
                   src="/img/mock-avatar.svg"
-                  alt="моковая обложка"
+                  alt="обложка"
                 />
               )}
             </a>
@@ -76,7 +76,8 @@ const EventCard = ({ event }) => {
 };
 
 const Wrapper = styled.div`
-  max-width: 860px;
+  max-width: 840px;
+  width: 100%;
   align-items: center;
   background: #ffffff;
   border-radius: 15px;
@@ -88,14 +89,22 @@ const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    @media (min-width: 870px) {
+      flex-wrap: nowrap;
+    }
   }
 
   .cover {
-    width: 100%;
+    margin: 0 15px;
 
     img {
       object-fit: contain;
       background: #eaeaea;
+    }
+
+    @media (max-width: 870px) {
+      width: 100%;
+      margin: 0;
     }
   }
 
@@ -120,7 +129,7 @@ const Wrapper = styled.div`
     @media (min-width: 535px) {
       width: 150px;
       height: 150px;
-      margin-right: 20px;
+      margin-right: 10px;
       margin-bottom: 0;
     }
   }
@@ -133,14 +142,14 @@ const Wrapper = styled.div`
 
     @media (min-width: 768px) {
       width: auto;
-      padding: 10px;
+      padding: 5px;
       align-items: center;
-      margin-left: 10px;
+      margin-left: 5px;
       flex-wrap: nowrap;
     }
 
     .info {
-      max-width: 310px;
+      max-width: 300px;
       width: 100%;
     }
   }
@@ -152,7 +161,8 @@ const Wrapper = styled.div`
     align-items: flex-end;
 
     @media (min-width: 768px) {
-      width: 310px;
+      max-width: 300px;
+      width: 100%;
     }
   }
 

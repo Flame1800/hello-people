@@ -25,9 +25,6 @@ const PlacePage: NextPage<Props> = ({ place }) => {
           .map((cat: Category) => cat.attributes.title)
           .join(", ")}
       />
-      <div className="head">
-        <Name place={attributes} />
-      </div>
       <PageCarousel pictures={attributes.pictures} />
       <PlaceContent place={place} />
       <CommentsBlock id={place.id} model={"place"} />
@@ -44,7 +41,6 @@ const Wrapper = styled.div`
   @media (min-width: 768px) {
     box-shadow: none !important;
     background: none !important;
-    padding: 60px;
   }
 
   .head {
