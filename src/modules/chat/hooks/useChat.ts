@@ -87,6 +87,8 @@ export default (apiUrl: string | undefined) => {
       }
     });
 
+    // TODO: сделать newPrivateChat
+
     // return () => {
     //   chatStore.leaveChat();
     //   setCurrentDialog(null);

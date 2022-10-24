@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Link href="/pages">
+    <Link href="/">
       <Wrapper>
         <img src="/img/logo.svg" alt="logo" />
       </Wrapper>

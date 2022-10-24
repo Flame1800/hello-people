@@ -15,6 +15,7 @@ import chatStore from "../../../stores/chatStore";
 import dialogsStore from "../../../stores/dialogsStore";
 import roomStore from "../../../stores/roomStore";
 import DialogAvatar from "./DialogAvatar";
+import { toJS } from "mobx";
 
 export const categoryTitles: { [key: string]: string } = {
   place: "Место",
@@ -25,12 +26,10 @@ export const categoryTitles: { [key: string]: string } = {
 };
 
 const Dialog = ({ dialog }: { dialog: DialogProps }) => {
-  const { cover, abbTitle } = dialog;
+  const { cover, abbTitle, countNewMessages } = dialog;
   const { openChat } = chatStore;
   const { currentDialog } = dialogsStore;
   const { setMessages } = roomStore;
-
-  const newMessagesCount: number = 1;
 
   const idStr = String(dialog.chatId);
 
@@ -56,7 +55,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
 
   const notification = (
     <Notification>
-      <p>{newMessagesCount}</p>
+      <p>{countNewMessages}</p>
     </Notification>
   );
 
@@ -69,7 +68,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
       <DialogContentStyle>
         <DialogHeadStyle>
           {title}
-          {notification}
+          {countNewMessages !== 0 && notification}
         </DialogHeadStyle>
         <DialogInfo>
           {lastMessageComponent}

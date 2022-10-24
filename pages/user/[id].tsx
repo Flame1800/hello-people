@@ -9,10 +9,20 @@ import SeoHead from "../../src/Components/Layouts/SeoHead";
 
 interface Props {
   user: User;
+  userPlaces: PlaceType[];
+  userEvents: EventType[];
+  userMeets: MeetType[];
 }
 
-const Profile: NextPage<Props> = ({ user }) => {
+const Profile: NextPage<Props> = ({
+  user,
+  userPlaces,
+  userEvents,
+  userMeets,
+}) => {
   const userName = user?.username;
+
+  console.log(userMeets);
 
   return (
     <Wrapper>
@@ -22,7 +32,12 @@ const Profile: NextPage<Props> = ({ user }) => {
         keywords={`@${userName}, профиль, персональная страница`}
       />
       <ProfileHead user={user} />
-      <UserContent />
+      <UserContent
+        userMeets={userMeets}
+        userPlaces={userPlaces}
+        userEvents={userEvents}
+        user={user}
+      />
     </Wrapper>
   );
 };
@@ -36,8 +51,16 @@ const Wrapper = styled.div`
 
 Profile.getInitialProps = async (ctx) => {
   const userReq = await API.getUser(ctx.query.id);
+  const userPlacesReq = await API.getUserPlaces(ctx.query.id);
+  const userEventsReq = await API.getUserEvents(ctx.query.id);
+  const userMeetsReq = await API.getUserMeets(ctx.query.id);
 
-  return { user: userReq.data };
+  return {
+    user: userReq.data,
+    userPlaces: userPlacesReq.data.data,
+    userEvents: userEventsReq.data.data,
+    userMeets: userMeetsReq.data.data,
+  };
 };
 
 export default observer(Profile);

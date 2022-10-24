@@ -10,8 +10,8 @@ const server = axios.create({
 
 API.url = process.env.SERVER_URL_PROD;
 
-// Events
-const queryGetEvents = qs.stringify({
+// EventsQuery
+const queryEventsOptions = {
   populate: [
     "categories",
     "comments",
@@ -23,15 +23,18 @@ const queryGetEvents = qs.stringify({
     "likes",
   ],
   sort: ["dateStart:desc"],
-});
+};
+const queryGetEvents = qs.stringify(queryEventsOptions);
 
 // Meets
 API.getMeets = () => server(`/meets?populate=*&sort[0]=createdAt:desc`);
 API.addMeet = (meet: MeetType) => server.post(`/meets?populate=*`, meet);
 API.deleteMeet = (id: number) => server.delete(`/meets/${id}`);
-
+API.getUserMeets = (id: number) =>
+  server(
+    `/meets?populate=*&sort[0]=createdAt:desc&filters[author][id][$eq]=${id}`
+  );
 // Posts
-
 API.getPosts = () => server("/posts?populate=*");
 API.getActualPosts = () =>
   server("/posts?populate=*&filters[actual][$eq]=true");
@@ -47,11 +50,15 @@ API.getPlaceCategories = () => server(`/categories?filters[type][$eq]=service`);
 // Events
 API.getEvents = () => server(`/parties?${queryGetEvents}`);
 API.getEvent = (id: number) => server(`/parties/${id}?${queryGetEvents}`);
+API.getUserEvents = (id: any) =>
+  server(`/parties?${queryGetEvents}&filters[likes][id][$eq]=${id}`);
 
 // Places
 API.getPlaces = (length = 0) =>
   server(`/places?populate=*&pagination[start]=${length}&pagination[limit]=15`);
 API.getPlace = (id: number) => server(`/places/${id}?populate=*`);
+API.getUserPlaces = (id: number) =>
+  server(`/places?populate=*&filters[likes][id][$eq]=${id}`);
 
 // User
 API.getUserMe = (token: string) =>

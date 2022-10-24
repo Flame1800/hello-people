@@ -9,6 +9,7 @@ import { BeatLoader } from "react-spinners";
 import chatStore from "../../../stores/chatStore";
 import { DateTime } from "luxon";
 import { MessageType } from "../../../models/Message";
+import { toJS } from "mobx";
 
 const MessageFeedContent = () => {
   const { currentMessages } = messagesStore;
@@ -22,6 +23,8 @@ const MessageFeedContent = () => {
   }, [currentMessages]);
 
   useEffect(() => {
+    if (currentMessages.length === 0) return;
+
     const unreadMessagesIds = currentMessages
       .filter((message: MessageType) => {
         return message.isNew;
@@ -29,7 +32,7 @@ const MessageFeedContent = () => {
       .map((m: MessageType) => m?.entityId);
 
     readMessages(unreadMessagesIds);
-  }, []);
+  }, [currentMessages]);
 
   const MessagesWithDayField = currentMessages.map((item: any) => {
     const dt = DateTime.fromISO(item.date);
@@ -47,7 +50,7 @@ const MessageFeedContent = () => {
     (item) => item.dateString
   );
 
-  const messgaesDayBlocks = Object.entries(sortedMessages).map(
+  const messagesDayBlocks = Object.entries(sortedMessages).map(
     ([date, messages]) => {
       return (
         <>
@@ -78,7 +81,7 @@ const MessageFeedContent = () => {
       ref={messagesRef}
       onScroll={onScrollHandler}
     >
-      {currentMessages?.length ? messgaesDayBlocks : empty}
+      {currentMessages?.length ? messagesDayBlocks : empty}
     </MessagesWrapper>
   );
 };

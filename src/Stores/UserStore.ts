@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { destroyCookie } from "nookies";
 import API from "../Helpers/API";
 import { UserType } from "../modules/chat/models/UserType";
+import Places from "../../pages/places";
 
 class UserStore {
   user: User | null = null;

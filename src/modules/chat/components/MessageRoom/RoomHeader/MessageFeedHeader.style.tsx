@@ -19,7 +19,7 @@ export const UserContainer = styled.div`
 `;
 
 export const UserInfo = styled.div`
-  margin-left: 15px;
+  margin-left: 10px;
 `;
 
 export const UserName = styled.span`

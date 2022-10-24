@@ -33,10 +33,10 @@ const PlaceCard: React.FC<Props> = ({ card }) => {
 };
 
 const Wrapper = styled.div`
-  max-width: 340px;
+  max-width: 260px;
+  width: 100%;
   margin: 10px;
   height: 290px;
-  width: 100%;
   background: #ffffff;
   box-shadow: ${theme.boxShadow.mainComponent};
   border-radius: 20px;

@@ -4,12 +4,11 @@ import { ButtonStyle } from "../../../styles/commonStyles";
 import Link from "next/link";
 import UserStore from "../../Stores/UserStore";
 import OpenChatWithUser from "./openChatWithUser/openChatWithUser";
-import { toJS } from "mobx";
 import { observer } from "mobx-react-lite";
 
 type Props = {
-  user: UserAttributes;
-  me: UserAttributes;
+  user: User;
+  me: User;
 };
 
 const ProfileButtons = ({ me, user }: Props) => {

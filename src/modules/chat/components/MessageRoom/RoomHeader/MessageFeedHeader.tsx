@@ -45,8 +45,8 @@ const MessageFeedHeader = () => {
 
   return (
     <MessageFeedHeaderStyle>
+      <BackSvg onClick={goBackHandle} />
       <UserContainer>
-        <BackSvg onClick={goBackHandle} />
         <LinkWrapper href={link}>
           <DialogAvatar
             theme={currentDialog?.theme}

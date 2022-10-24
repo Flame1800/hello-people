@@ -1,21 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import PinnedPlace from "../PinnedPlace";
-import Comment from "../../Common/Comment";
 import NameService from "../../Common/Services/NameService";
 import API from "../../../Helpers/API";
 import { theme } from "../../../../styles/theme";
 import makeBeautyDate from "../../../Helpers/makeBeautyDate";
 import Link from "next/link";
-import LikeEvent from "../LikeEvent";
-import UserStore from "../../../Stores/UserStore";
 import { observer } from "mobx-react-lite";
-import Like from "../../Common/Like";
 import MetaActionsEvent from "../MetaActionsEvent";
-import { toJS } from "mobx";
 
 const EventCard = ({ event }) => {
   const { attributes } = event;
+  const { place } = attributes;
   const categoriesString = attributes.categories.data
     .map(({ attributes }) => attributes.title)
     .join(", ");
@@ -59,8 +55,8 @@ const EventCard = ({ event }) => {
                     {makeBeautyDate(attributes.dateStart)}
                   </div>
                   <div className="address">
-                    {attributes.place.data
-                      ? attributes.place.data.attributes.location
+                    {place?.data
+                      ? place?.data.attributes.location
                       : "не найдено"}
                   </div>
                 </a>
@@ -69,7 +65,7 @@ const EventCard = ({ event }) => {
             </div>
           </div>
         </div>
-        {attributes.place.data && <PinnedPlace place={attributes.place.data} />}
+        {place?.data && <PinnedPlace place={attributes.place.data} />}
       </div>
     </Wrapper>
   );
