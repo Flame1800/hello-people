@@ -16,11 +16,9 @@ import dialogsStore from "../../../stores/dialogsStore";
 import makeMsgDate from "../../../utils/makeMsgDate";
 import { API_URL } from "../../../../../Constants/api";
 import { observer } from "mobx-react-lite";
-import useOnScreen from "../../../hooks/useOnScreen";
 
 const Message = (props: MessageType) => {
   const elementRef = useRef<HTMLDivElement>(null);
-  const isOnScreen = useOnScreen(elementRef);
 
   const { text, date, isNew, author } = props;
   const { user } = chatStore;

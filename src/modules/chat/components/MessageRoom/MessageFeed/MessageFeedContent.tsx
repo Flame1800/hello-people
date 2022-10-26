@@ -1,18 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import _ from "lodash";
 import Message from "../MessageCard";
 import styled from "styled-components";
 import { theme } from "../../../../../../styles/theme";
-import messagesStore from "../../../stores/roomStore";
+import roomStore from "../../../stores/roomStore";
 import { BeatLoader } from "react-spinners";
 import chatStore from "../../../stores/chatStore";
-import { DateTime } from "luxon";
 import { MessageType } from "../../../models/Message";
-import { toJS } from "mobx";
+import dialogsStore from "../../../stores/dialogsStore";
+import getSortMessages from "../../../utils/groupMessages";
 
 const MessageFeedContent = () => {
-  const { currentMessages } = messagesStore;
+  const { currentMessages } = roomStore;
   const { isWidget, loading, readMessages } = chatStore;
 
   const onScrollHandler = _.throttle(() => {}, 50);
@@ -23,42 +23,26 @@ const MessageFeedContent = () => {
   }, [currentMessages]);
 
   useEffect(() => {
-    if (currentMessages.length === 0) return;
-
     const unreadMessagesIds = currentMessages
       .filter((message: MessageType) => {
         return message.isNew;
       })
       .map((m: MessageType) => m?.entityId);
 
+    if (unreadMessagesIds.length === 0) return;
+
     readMessages(unreadMessagesIds);
-  }, [currentMessages]);
+  }, []);
 
-  const MessagesWithDayField = currentMessages.map((item: any) => {
-    const dt = DateTime.fromISO(item.date);
-    const dateString = dt.setLocale("ru").toLocaleString({
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-
-    return { ...item, dateString };
-  });
-
-  const sortedMessages = _.groupBy(
-    MessagesWithDayField,
-    (item) => item.dateString
-  );
-
-  const messagesDayBlocks = Object.entries(sortedMessages).map(
+  const messagesDayBlocks = getSortMessages(currentMessages).map(
     ([date, messages]) => {
       return (
-        <>
+        <div key={date}>
           <Date>{date}</Date>
           {messages.map((message) => (
             <Message key={message.entityId} {...message} />
           ))}
-        </>
+        </div>
       );
     }
   );

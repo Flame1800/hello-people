@@ -1,6 +1,16 @@
 import { makeAutoObservable } from "mobx";
 import { MessageType } from "../models/Message";
 import { UserType } from "../models/UserType";
+import { DateTime } from "luxon";
+
+const normalizeDate = (date: string) => {
+  const dt = DateTime.fromISO(date);
+  return dt.setLocale("ru").toLocaleString({
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+};
 
 class RoomStore {
   currentMessages: MessageType[] = [];
@@ -12,11 +22,21 @@ class RoomStore {
   }
 
   setMessages = (messages: MessageType[]) => {
-    this.currentMessages = messages;
+    this.currentMessages = messages
+      .slice()
+      .sort((a: MessageType, b: MessageType) => {
+        // @ts-ignore
+        return new Date(a.date) - new Date(b.date);
+      })
+      .map((message) => ({
+        ...message,
+        dateString: normalizeDate(message.date),
+      }));
   };
 
   addMessage = (message: MessageType) => {
-    this.currentMessages = [...this.currentMessages, message];
+    const newMessage = { ...message, dateString: normalizeDate(message.date) };
+    this.currentMessages = [...this.currentMessages, newMessage];
   };
 
   setChatUsers = (users: UserType[]) => {

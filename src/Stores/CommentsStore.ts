@@ -33,11 +33,11 @@ class CommentsStore {
     const newComment = newCommentResponse.data.data;
 
     if (comment.replyToComment) {
-      this.replies = [newComment, ...this.replies];
+      this.replies = [...this.replies, newComment];
       return;
     }
 
-    this.comments = [newComment, ...this.comments];
+    this.comments = [...this.comments, newComment];
   };
 
   removeComment = async (comment: CommentEntity) => {

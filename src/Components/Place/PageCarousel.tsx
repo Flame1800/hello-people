@@ -92,18 +92,4 @@ const Wrapper = styled.div`
   }
 `;
 
-const CarouselStyle = styled.div`
-  border-radius: 20px 20px 0 0;
-  z-index: 0;
-  width: 100%;
-
-  div {
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-`;
-
 export default PageCarousel;

@@ -14,7 +14,7 @@ const DateEvents = ({ date }: { date: string }) => {
     day: "numeric",
   });
 
-  const todayDayMont = today.toLocaleString({
+  const todayDayMont = today.setLocale("ru").toLocaleString({
     month: "long",
     day: "numeric",
   });

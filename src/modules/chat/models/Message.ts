@@ -7,6 +7,7 @@ export type MessageType = {
   text: string;
   date: string;
   to?: UserType;
+  dateString?: string;
   isNew: boolean;
   author: {
     avatar: string;

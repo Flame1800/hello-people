@@ -31,8 +31,6 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   const { currentDialog } = dialogsStore;
   const { setMessages } = roomStore;
 
-  const idStr = String(dialog.chatId);
-
   const selectDialogHandler = () => {
     if (currentDialog?.chatId === dialog.chatId) return;
 
@@ -45,9 +43,6 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   };
 
   const title = <UserNameStyle>{abbTitle ?? "Нет названия"}</UserNameStyle>;
-  const dialogDate = (
-    <DialogDateStyle>{idStr.substr(idStr.length - 2)}</DialogDateStyle>
-  );
 
   const lastMessageComponent = (
     <LastMessage>{categoryTitles[dialog.category]}</LastMessage>
@@ -70,10 +65,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
           {title}
           {countNewMessages !== 0 && notification}
         </DialogHeadStyle>
-        <DialogInfo>
-          {lastMessageComponent}
-          {dialogDate}
-        </DialogInfo>
+        <DialogInfo>{lastMessageComponent}</DialogInfo>
       </DialogContentStyle>
     </DialogWrapper>
   );
