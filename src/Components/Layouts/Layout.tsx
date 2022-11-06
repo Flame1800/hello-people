@@ -1,5 +1,5 @@
 import React, { ReactChildren } from "react";
-import NavBarMobile from "../Navigation/NavBarMobile/NavBarMobile";
+import NavBarMobile from "../Navigation/NavBarMobile";
 import styled from "styled-components";
 import SideBar from "../SideBar/SideBar";
 import Header from "../Header/Header";
@@ -12,6 +12,7 @@ import UserStore from "../../Stores/UserStore";
 import { observer } from "mobx-react-lite";
 import MainLoader from "../MainLoader/MainLoader";
 import PWAInstall from "../PWAInstall/PWAInstall";
+import MobileMenu from "../Navigation/MobileMenu";
 
 type LayoutType = {
   children: ReactChildren;

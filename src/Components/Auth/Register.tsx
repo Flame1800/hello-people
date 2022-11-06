@@ -11,6 +11,7 @@ import UserStore from "../../Stores/UserStore";
 import VkLogo from "./VkLogo";
 import useFocus from "../../Hooks/useFocus";
 import { BeatLoader, ClipLoader } from "react-spinners";
+import GoogleRegister from "./GoogleRegister";
 
 type Props = {
   setMode: Function;
@@ -61,9 +62,7 @@ const Register: React.FC<Props> = ({ setMode, close }) => {
 
   return (
     <Wrapper>
-      <RegButtonWrapper>
-        <VkLogo />
-      </RegButtonWrapper>
+      <GoogleRegister />
       <div className="or">или</div>
       <form onSubmit={register} className="form">
         <InputStyle
@@ -154,34 +153,6 @@ const Wrapper = styled.div`
     &:hover {
       background: #f9f9f9;
     }
-  }
-`;
-
-const RegButtonWrapper = styled.a`
-  cursor: pointer;
-  background: #fff;
-  width: 100%;
-  max-width: 300px;
-  height: 67px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border-radius: 10px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 27px;
-  margin-bottom: 10px;
-  padding: 15px;
-  transition: 0.3s;
-
-  &:hover {
-    background: #f9f9f9;
-  }
-
-  img {
-    margin-right: 15px;
   }
 `;
 

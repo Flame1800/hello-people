@@ -7,11 +7,10 @@ const Footer = () => {
   return (
     <FooterTag>
       <Offer>
-        Есть идеи и предложения? &nbsp;
+        <div>Есть идеи и предложения?</div>
         <div>
-          Пишите{" "}
+          Пишите
           <a target="_blank" href="https://t.me/hellopeopleme">
-            {" "}
             @hellopeopleme{" "}
           </a>
         </div>
@@ -47,16 +46,26 @@ const FooterTag = styled.footer`
   position: absolute;
   bottom: 0;
   width: 100%;
+
+  @media (max-width: 1424px) {
+    position: relative;
+    bottom: 0;
+    width: auto;
+    margin-top: 100px;
+  }
 `;
 
 const Offer = styled.div`
   font-size: 11px;
   line-height: 15px;
-  display: flex;
   font-weight: 600;
   color: #2e2e2e;
   padding: 0 30px;
   margin-bottom: 17px;
+
+  div {
+    margin-bottom: 10px;
+  }
 
   a {
     color: ${theme.color.orange};

@@ -9,6 +9,7 @@ import UserStore from "../../Stores/UserStore";
 import VkLogo from "./VkLogo";
 import useFocus from "../../Hooks/useFocus";
 import { BeatLoader } from "react-spinners";
+import GoogleRegister from "./GoogleRegister";
 
 type Props = {
   setMode: Function;
@@ -63,9 +64,7 @@ const Login = ({ setMode, close }: Props) => {
 
   return (
     <Wrapper>
-      <RegButton>
-        <VkLogo />
-      </RegButton>
+      <GoogleRegister />
       <div className="or">или</div>
       <form onSubmit={clickLoginHandle} className="form">
         <InputStyle

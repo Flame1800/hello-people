@@ -55,6 +55,7 @@ const ProfileButtons = ({ me, user }: Props) => {
 };
 
 const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   margin-bottom: 2px;
   align-items: center;

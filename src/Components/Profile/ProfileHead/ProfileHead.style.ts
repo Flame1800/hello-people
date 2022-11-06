@@ -70,3 +70,11 @@ export const Description = styled.div`
   line-height: 19px;
   color: #585858;
 `;
+
+export const Meta = styled.div`
+  padding: 0 30px;
+
+  @media screen and (max-width: 425px) {
+    width: 300px;
+  }
+`;

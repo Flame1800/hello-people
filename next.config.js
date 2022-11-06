@@ -1,9 +1,10 @@
-/** @type {import('next').NextConfig} */
+const prodAPI = "http://185.185.69.74:1337";
+const prodSocket = "https://hellopeople.online";
 
 const nextConfig = {
   env: {
-    SERVER_URL_PROD: "http://185.185.69.74:1337",
-    SOCKET_URL: "https://hellopeople.online",
+    SERVER_URL_PROD: "http://localhost:1337",
+    SOCKET_URL: "http://localhost:1337",
   },
   typescript: {
     // !! WARN !!

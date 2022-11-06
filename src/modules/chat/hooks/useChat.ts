@@ -7,7 +7,6 @@ import chatStore from "../stores/chatStore";
 import roomStore from "../stores/roomStore";
 import { UserType } from "../models/UserType";
 import UserStore from "../../../Stores/UserStore";
-import { toJS } from "mobx";
 
 type ChatInfoTypes = {
   members: UserType[];

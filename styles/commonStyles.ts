@@ -3,7 +3,7 @@ import { theme } from "./theme";
 
 export const ButtonStyle = styled.button<{ outline?: boolean }>`
   height: 40px;
-  border-radius: 16px;
+  border-radius: 10px;
   background: ${({ outline }) => (outline ? "none" : theme.color.orange)};
   border: ${({ outline }) =>
     !outline ? "none" : `2px solid ${theme.color.orange}`};
@@ -17,6 +17,8 @@ export const ButtonStyle = styled.button<{ outline?: boolean }>`
   width: 100%;
   margin: 0;
   transition: 0.3s ease-in-out;
+  padding: 10px 20px;
+  font-size: 16px;
 
   &:disabled {
     cursor: not-allowed;
@@ -27,12 +29,6 @@ export const ButtonStyle = styled.button<{ outline?: boolean }>`
     border: ${({ outline }) =>
       !outline ? "none" : `2px solid ${theme.color.orange}`};
     color: ${({ outline }) => (!outline ? "#FFFFFF" : theme.color.orange)};
-  }
-
-  @media (min-width: 426px) {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 10px;
   }
 `;
 

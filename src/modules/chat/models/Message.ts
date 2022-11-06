@@ -1,14 +1,13 @@
 import { UserType } from "./UserType";
 
 export type MessageType = {
-  entityId: string;
-  chatId: string;
-  authorId: string;
+  id: number;
   text: string;
   date: string;
   to?: UserType;
+  updatedAt: string;
   dateString?: string;
-  isNew: boolean;
+  isNew?: boolean;
   author: {
     avatar: string;
     id: number;

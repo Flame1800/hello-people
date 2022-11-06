@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { observer } from "mobx-react-lite";
 import chatStore from "../../../stores/chatStore";
 import styled, { css } from "styled-components";

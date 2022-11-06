@@ -1,11 +1,9 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { UserType } from "../models/UserType";
 import { Socket } from "socket.io-client";
-import { userPetr } from "../mocks/users";
 import { CategoryType } from "../models/CategoryType";
 import { DialogProps } from "../models/DialogProps";
 import dialogsStore from "./dialogsStore";
-import { MessageType } from "../models/Message";
 
 type NewDialog = {
   category: CategoryType;
@@ -95,7 +93,6 @@ class ChatStore {
     const { fetchedDialogs, setCurrentDialog } = dialogsStore;
 
     const isMyChat = this.findMyChat(fetchedDialogs, id);
-
     const chat: NewDialog = {
       category,
       objectIdStrapi: id,

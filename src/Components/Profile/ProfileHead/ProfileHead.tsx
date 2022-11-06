@@ -14,7 +14,9 @@ import {
   Name,
   Description,
   Info,
+  Meta,
 } from "./ProfileHead.style";
+import { isMobile } from "react-device-detect";
 
 const ProfileHead = ({ user }: { user: User }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
@@ -40,20 +42,21 @@ const ProfileHead = ({ user }: { user: User }) => {
         <UserAvatar size="lg" url={user.avatar} />
         <Info>
           <Name>
-            {user.username ?? "Пользователь не найден"} {me && dropdownMenu}
+            {user.username ?? "Пользователь не найден"}{" "}
+            {me && !isMobile && dropdownMenu}
           </Name>
           <div className="first-name">{user.name}</div>
           <Description>{user.description}</Description>
         </Info>
       </Header>
-      <div>
+      <Meta>
         {me && (
           <>
             <ProfileButtons user={user} me={me} />
             <Familiars user={user} />
           </>
         )}
-      </div>
+      </Meta>
     </WrapperHead>
   );
 };

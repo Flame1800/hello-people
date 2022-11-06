@@ -11,7 +11,9 @@ import chatStore from "../../stores/chatStore";
 const MessageRoom = () => {
   const { fetchedDialogs, currentDialog } = dialogsStore;
   const { addChat, isWidget } = chatStore;
-  const isMyChat = fetchedDialogs.filter((d) => d.id === currentDialog?.id)[0];
+  const isMyChat = fetchedDialogs.filter((d) => {
+    return d.id === currentDialog?.id;
+  })[0];
 
   useEffect(() => {
     if (currentDialog && currentDialog?.category === "private" && !isMyChat) {

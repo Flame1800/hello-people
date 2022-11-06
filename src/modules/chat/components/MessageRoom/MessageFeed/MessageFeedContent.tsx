@@ -40,7 +40,7 @@ const MessageFeedContent = () => {
         <div key={date}>
           <Date>{date}</Date>
           {messages.map((message) => (
-            <Message key={message.entityId} {...message} />
+            <Message key={message.id} {...message} />
           ))}
         </div>
       );

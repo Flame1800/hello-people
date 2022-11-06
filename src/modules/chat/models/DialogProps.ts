@@ -8,4 +8,6 @@ export type DialogProps = {
   abbTitle?: string;
   theme?: string;
   countNewMessages: number;
+  cover_partner: string;
+  abbTitle_partner: string;
 };

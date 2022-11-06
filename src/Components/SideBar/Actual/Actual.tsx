@@ -16,15 +16,18 @@ const Actual = () => {
 
 export const Wrapper = styled.div`
   margin-top: 20px;
-  height: 100%;
-  display: none;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   box-shadow: 0 0 10px -6px;
   border-radius: ${theme.borderRadius.main};
+  height: 100%;
 
-  @media (min-width: 1424px) {
-    display: flex;
-    flex-direction: column;
+  @media (max-width: 1424px) {
+    position: relative;
+    border: 1px solid #e8e8e8;
+    border-radius: 21px;
+    box-shadow: none;
   }
 `;
 
