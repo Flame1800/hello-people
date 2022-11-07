@@ -12,6 +12,19 @@ class dialogsStore {
     makeAutoObservable(this);
   }
 
+  updateDialogCountMessages = (countReadMessages: number) => {
+    if (countReadMessages <= 0) return;
+
+    this.fetchedDialogs = this.fetchedDialogs.map((dialog) => {
+      if (dialog.id !== this.currentDialog?.id) {
+        return dialog;
+      }
+
+      dialog.countNewMessages -= countReadMessages;
+      return dialog;
+    });
+  };
+
   deleteDialog = (dialogId: number | string) => {
     const newList = this.fetchedDialogs.filter(
       (dialog: DialogProps) => dialog.id !== dialogId
