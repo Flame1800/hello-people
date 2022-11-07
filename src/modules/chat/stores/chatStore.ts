@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, toJS } from "mobx";
 import { UserType } from "../models/UserType";
 import { Socket } from "socket.io-client";
 import { CategoryType } from "../models/CategoryType";
@@ -41,7 +41,7 @@ class ChatStore {
     this.loading = isLoad;
   };
 
-  readMessages = (messages: string[]) => {
+  readMessages = (messages: number[]) => {
     if (!this.user) return;
 
     this.socket?.emit("readMessage", {
@@ -55,8 +55,13 @@ class ChatStore {
     dialogsStore.clearCurrentDialog();
   };
 
-  findMyChat = (dialogs: DialogProps[], id: number | string) =>
-    dialogs.filter((d) => d.id !== id).length > 0;
+  findMyChat = (dialogs: DialogProps[], id: number | string) => {
+    const arr = dialogs.filter((d) => {
+      return d.id === id;
+    });
+
+    return arr.length > 0;
+  };
 
   deleteChat = () => {
     const { currentDialog, deleteDialog } = dialogsStore;
@@ -73,6 +78,7 @@ class ChatStore {
   addChat = (dialog: DialogProps) => {
     const { setDialogs, dialogs, currentDialog } = dialogsStore;
 
+    console.log("addChat show dialog:", toJS(dialog));
     const chat: NewDialog = {
       category: dialog.category,
       objectIdStrapi: dialog.id,

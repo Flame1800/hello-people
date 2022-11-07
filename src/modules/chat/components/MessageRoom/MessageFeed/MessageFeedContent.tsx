@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import _ from "lodash";
 import Message from "../MessageCard";
@@ -8,7 +8,6 @@ import roomStore from "../../../stores/roomStore";
 import { BeatLoader } from "react-spinners";
 import chatStore from "../../../stores/chatStore";
 import { MessageType } from "../../../models/Message";
-import dialogsStore from "../../../stores/dialogsStore";
 import getSortMessages from "../../../utils/groupMessages";
 
 const MessageFeedContent = () => {
@@ -22,17 +21,19 @@ const MessageFeedContent = () => {
     messagesRef.current?.scrollTo(0, messagesRef.current.scrollHeight);
   }, [currentMessages]);
 
-  useEffect(() => {
+  const readNewMessages = () => {
     const unreadMessagesIds = currentMessages
       .filter((message: MessageType) => {
         return message.isNew;
       })
-      .map((m: MessageType) => m?.entityId);
-
-    if (unreadMessagesIds.length === 0) return;
+      .map((m) => m.id);
 
     readMessages(unreadMessagesIds);
-  }, []);
+  };
+
+  useEffect(() => {
+    readNewMessages();
+  });
 
   const messagesDayBlocks = getSortMessages(currentMessages).map(
     ([date, messages]) => {

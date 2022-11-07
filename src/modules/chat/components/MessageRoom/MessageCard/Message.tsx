@@ -38,7 +38,7 @@ const Message = (props: MessageType) => {
   const messageInfo = (
     <MessageInfo>
       <p className="date">{makeMsgDate(date)}</p>
-      {isMe && <CheckMarkICon active={isNew} />}
+      {isMe && <CheckMarkICon active={!isNew} />}
     </MessageInfo>
   );
 
