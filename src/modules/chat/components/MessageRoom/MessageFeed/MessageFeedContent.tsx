@@ -30,7 +30,7 @@ const MessageFeedContent = () => {
       })
       .map((m) => m.id);
 
-    updateDialogCountMessages(unreadMessagesIds.length);
+    // updateDialogCountMessages(unreadMessagesIds.length);
     readMessages(unreadMessagesIds);
   };
 

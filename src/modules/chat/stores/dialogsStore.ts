@@ -16,7 +16,10 @@ class dialogsStore {
     if (countReadMessages <= 0) return;
 
     this.fetchedDialogs = this.fetchedDialogs.map((dialog) => {
-      if (dialog.id !== this.currentDialog?.id) {
+      if (
+        dialog.id !== this.currentDialog?.id &&
+        dialog.countNewMessages !== 0
+      ) {
         return dialog;
       }
 
