@@ -93,6 +93,7 @@ export default (apiUrl: string | undefined) => {
     });
 
     coreSocket.on("newPrivateChat", (dialog) => {
+      console.log("newPrivateChat", dialog);
       addDialog(dialog);
     });
 

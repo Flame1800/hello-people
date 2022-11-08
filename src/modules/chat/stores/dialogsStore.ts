@@ -25,7 +25,7 @@ class dialogsStore {
 
   increaseCountMessages = (dialogId: number) => {
     const newDialogs = this.fetchedDialogs.map((currDialog) => {
-      if (currDialog.id === dialogId) {
+      if (currDialog.id === dialogId && currDialog.countNewMessages) {
         currDialog.countNewMessages += 1;
         return currDialog;
       }
