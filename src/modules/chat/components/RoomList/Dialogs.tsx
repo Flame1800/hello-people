@@ -88,8 +88,7 @@ const Dialogs = ({
 
   const empty = <Empty>Тут пока нет чатов :(</Empty>;
   const dialogsList = useMemo(
-    () =>
-      dialogs.map((dialog) => <Dialog key={dialog.abbTitle} dialog={dialog} />),
+    () => dialogs.map((dialog) => <Dialog key={dialog.id} dialog={dialog} />),
     [dialogs]
   );
 

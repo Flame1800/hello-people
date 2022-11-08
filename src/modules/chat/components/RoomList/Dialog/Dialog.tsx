@@ -32,7 +32,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   const { setMessages } = roomStore;
 
   const selectDialogHandler = () => {
-    if (currentDialog?.chatId === dialog.chatId) return;
+    if (currentDialog?.id === dialog.id) return;
 
     if (currentDialog) {
       chatStore.leaveChat();
@@ -42,7 +42,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
     if (dialog && dialog.countNewMessages !== 0) {
       resetCountMessages(dialog.id);
     }
-    openChat(dialog.id, dialog.category, dialog);
+    openChat(dialog.objectId, dialog.category, dialog);
   };
 
   const title = <UserNameStyle>{abbTitle ?? "Нет названия"}</UserNameStyle>;
@@ -59,7 +59,7 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
 
   return (
     <DialogWrapper
-      active={currentDialog?.chatId === dialog.chatId}
+      active={currentDialog?.id === dialog.id}
       onClick={selectDialogHandler}
     >
       <DialogAvatar type={dialog.category} url={cover} theme={dialog?.theme} />

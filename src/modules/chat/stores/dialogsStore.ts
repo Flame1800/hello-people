@@ -12,20 +12,20 @@ class dialogsStore {
     makeAutoObservable(this);
   }
 
-  resetCountMessages = (dialogId: string) => {
-    this.fetchedDialogs = this.fetchedDialogs.map((currDialog) => {
-      if (currDialog.id !== dialogId) {
-        return currDialog;
+  resetCountMessages = (dialogId: number) => {
+    this.fetchedDialogs = this.fetchedDialogs.map((dialog) => {
+      if (dialog.id !== dialogId) {
+        return dialog;
       }
 
-      currDialog.countNewMessages = 0;
-      return currDialog;
+      dialog.countNewMessages = 0;
+      return dialog;
     });
   };
 
   increaseCountMessages = (dialogId: number) => {
     const newDialogs = this.fetchedDialogs.map((currDialog) => {
-      if (currDialog.chatId === dialogId) {
+      if (currDialog.id === dialogId) {
         currDialog.countNewMessages += 1;
         return currDialog;
       }
@@ -37,7 +37,7 @@ class dialogsStore {
     this.dialogs = newDialogs;
   };
 
-  deleteDialog = (dialogId: string) => {
+  deleteDialog = (dialogId: number) => {
     const newList = this.fetchedDialogs.filter(
       (dialog: DialogProps) => dialog.id !== dialogId
     );

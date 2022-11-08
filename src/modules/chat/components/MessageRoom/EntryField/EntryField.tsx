@@ -28,7 +28,7 @@ const EntryField = () => {
     }
 
     const newMessage: NewMessageType = {
-      chatId: currentDialog.chatId,
+      chatId: currentDialog.id,
       author: user,
       text: textMessage.trim(),
       date: new Date(),

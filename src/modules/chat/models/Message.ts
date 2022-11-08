@@ -16,7 +16,7 @@ export type MessageType = {
 };
 
 export type NewMessageType = {
-  chatId: number | string;
+  chatId: number;
   author: UserType;
   text: string;
   date: Date;

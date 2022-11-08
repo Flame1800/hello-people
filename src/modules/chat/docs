@@ -23,6 +23,7 @@ socket.on('chatInfo', (data) => {
 
 //Вход в чат
 socket.emit('joinChat', {chat: {objectIdStrapi, category}, readOnly}) //отправляешь факт входа в чат
+
 socket.on('userJoinChat', (data) =>  { //получаешь всю инфу по чату, в который зашел
     data = {users, msgs, chat}
     users = [{id, username, avatar}]

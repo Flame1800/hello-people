@@ -55,7 +55,7 @@ class ChatStore {
     dialogsStore.clearCurrentDialog();
   };
 
-  findMyChat = (dialogs: DialogProps[], id: number | string) => {
+  findMyChat = (dialogs: DialogProps[], id: number) => {
     const arr = dialogs.filter((d) => {
       return d.id === id;
     });
@@ -68,7 +68,7 @@ class ChatStore {
 
     if (this.socket && currentDialog) {
       this.socket.emit("removeChatFromFavorite", {
-        chatId: currentDialog.chatId,
+        chatId: currentDialog.id,
       });
       this.leaveChat();
       deleteDialog(currentDialog.id);
@@ -92,16 +92,17 @@ class ChatStore {
   };
 
   openChat = (
-    id: number | string,
+    objectId: string,
     category: CategoryType,
     dialog?: DialogProps
   ) => {
     const { fetchedDialogs, setCurrentDialog } = dialogsStore;
+    if (!dialog) return;
 
-    const isMyChat = this.findMyChat(fetchedDialogs, id);
+    const isMyChat = this.findMyChat(fetchedDialogs, dialog.id);
     const chat: NewDialog = {
       category,
-      objectIdStrapi: id,
+      objectIdStrapi: objectId,
     };
 
     if (this.socket) {

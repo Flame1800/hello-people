@@ -7,6 +7,7 @@ import MessageFeedContent from "./MessageFeed/MessageFeedContent";
 import dialogsStore from "../../stores/dialogsStore";
 import AddChatButton from "./AddChatButton/AddChatButton";
 import chatStore from "../../stores/chatStore";
+import { toJS } from "mobx";
 
 const MessageRoom = () => {
   const { fetchedDialogs, currentDialog } = dialogsStore;

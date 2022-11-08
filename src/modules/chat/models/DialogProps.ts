@@ -1,8 +1,8 @@
 import { CategoryType } from "./CategoryType";
 
 export type DialogProps = {
-  id: string;
-  chatId: number;
+  id: number;
+  objectId: string;
   category: CategoryType;
   cover?: string;
   abbTitle?: string;
