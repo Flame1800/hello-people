@@ -30,7 +30,8 @@ export default (apiUrl: string | undefined) => {
     addOnlineUser,
   } = roomStore;
   const { user } = UserStore;
-  const { setCurrentDialog, currentDialog } = dialogsStore;
+  const { setCurrentDialog, currentDialog, increaseCountMessages, addDialog } =
+    dialogsStore;
 
   useEffect(() => {
     if (!user || isReady) return;
@@ -86,7 +87,14 @@ export default (apiUrl: string | undefined) => {
       }
     });
 
-    // TODO: сделать newPrivateChat
+    coreSocket.on("newCount", (dialogId) => {
+      console.log("newCount", dialogId);
+      increaseCountMessages(dialogId);
+    });
+
+    coreSocket.on("newPrivateChat", (dialog) => {
+      addDialog(dialog);
+    });
 
     // return () => {
     //   chatStore.leaveChat();

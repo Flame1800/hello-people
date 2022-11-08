@@ -12,29 +12,42 @@ class dialogsStore {
     makeAutoObservable(this);
   }
 
-  updateDialogCountMessages = (countReadMessages: number) => {
-    if (countReadMessages <= 0) return;
-
-    this.fetchedDialogs = this.fetchedDialogs.map((dialog) => {
-      if (
-        dialog.id !== this.currentDialog?.id &&
-        dialog.countNewMessages !== 0
-      ) {
-        return dialog;
+  resetCountMessages = (dialogId: string) => {
+    this.fetchedDialogs = this.fetchedDialogs.map((currDialog) => {
+      if (currDialog.id !== dialogId) {
+        return currDialog;
       }
 
-      dialog.countNewMessages -= countReadMessages;
-      return dialog;
+      currDialog.countNewMessages = 0;
+      return currDialog;
     });
   };
 
-  deleteDialog = (dialogId: number | string) => {
+  increaseCountMessages = (dialogId: number) => {
+    const newDialogs = this.fetchedDialogs.map((currDialog) => {
+      if (currDialog.chatId === dialogId) {
+        currDialog.countNewMessages += 1;
+        return currDialog;
+      }
+
+      return currDialog;
+    });
+
+    this.fetchedDialogs = newDialogs;
+    this.dialogs = newDialogs;
+  };
+
+  deleteDialog = (dialogId: string) => {
     const newList = this.fetchedDialogs.filter(
       (dialog: DialogProps) => dialog.id !== dialogId
     );
 
     this.fetchedDialogs = newList;
     this.dialogs = newList;
+  };
+
+  addDialog = (dialog: DialogProps) => {
+    this.fetchedDialogs = [dialog, ...this.fetchedDialogs];
   };
 
   setCurrentDialog = (dialog: DialogProps | null) => {

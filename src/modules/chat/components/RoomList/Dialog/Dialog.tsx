@@ -28,7 +28,7 @@ export const categoryTitles: { [key: string]: string } = {
 const Dialog = ({ dialog }: { dialog: DialogProps }) => {
   const { cover, abbTitle, countNewMessages } = dialog;
   const { openChat } = chatStore;
-  const { currentDialog } = dialogsStore;
+  const { currentDialog, resetCountMessages } = dialogsStore;
   const { setMessages } = roomStore;
 
   const selectDialogHandler = () => {
@@ -39,6 +39,9 @@ const Dialog = ({ dialog }: { dialog: DialogProps }) => {
     }
 
     setMessages([]);
+    if (dialog && dialog.countNewMessages !== 0) {
+      resetCountMessages(dialog.id);
+    }
     openChat(dialog.id, dialog.category, dialog);
   };
 

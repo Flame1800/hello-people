@@ -9,12 +9,10 @@ import { BeatLoader } from "react-spinners";
 import chatStore from "../../../stores/chatStore";
 import { MessageType } from "../../../models/Message";
 import getSortMessages from "../../../utils/groupMessages";
-import dialogsStore from "../../../stores/dialogsStore";
 
 const MessageFeedContent = () => {
   const { currentMessages } = roomStore;
-  const { isWidget, loading, readMessages } = chatStore;
-  const { updateDialogCountMessages } = dialogsStore;
+  const { isWidget, loading, readMessages, user } = chatStore;
 
   const onScrollHandler = _.throttle(() => {}, 50);
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -23,19 +21,18 @@ const MessageFeedContent = () => {
     messagesRef.current?.scrollTo(0, messagesRef.current.scrollHeight);
   }, [currentMessages]);
 
-  const readNewMessages = () => {
+  useEffect(() => {
     const unreadMessagesIds = currentMessages
       .filter((message: MessageType) => {
-        return message.isNew;
+        return message.isNew && message.author.id !== user?.id;
       })
       .map((m) => m.id);
 
-    // updateDialogCountMessages(unreadMessagesIds.length);
-    readMessages(unreadMessagesIds);
-  };
+    if (unreadMessagesIds.length === 0) {
+      return;
+    }
 
-  useEffect(() => {
-    readNewMessages();
+    readMessages(unreadMessagesIds);
   });
 
   const messagesDayBlocks = getSortMessages(currentMessages).map(

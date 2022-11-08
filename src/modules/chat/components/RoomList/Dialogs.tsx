@@ -14,12 +14,6 @@ import PersonSvg from "./TabSvgIcons/PersonSvg";
 import { toJS } from "mobx";
 import ReactTooltip from "react-tooltip";
 
-type DialogFeedProps = {
-  setCurrentCategory: Function;
-  currentCategory: CategoryType;
-  category: CategoryType;
-};
-
 type TabsType = {
   category: CategoryType;
   title: string;
@@ -52,6 +46,12 @@ const tabs: TabsType[] = [
     icon: <PersonSvg />,
   },
 ];
+
+type DialogFeedProps = {
+  setCurrentCategory: Function;
+  currentCategory: CategoryType;
+  category: CategoryType;
+};
 
 const Dialogs = ({
   category,
