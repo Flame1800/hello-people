@@ -55,7 +55,7 @@ class ChatStore {
     dialogsStore.clearCurrentDialog();
   };
 
-  findMyChat = (dialogs: DialogProps[], id: number) => {
+  findMyChat = (dialogs: DialogProps[], id: number | undefined) => {
     const arr = dialogs.filter((d) => {
       return d.id === id;
     });
@@ -97,9 +97,8 @@ class ChatStore {
     dialog?: DialogProps
   ) => {
     const { fetchedDialogs, setCurrentDialog } = dialogsStore;
-    if (!dialog) return;
 
-    const isMyChat = this.findMyChat(fetchedDialogs, dialog.id);
+    const isMyChat = this.findMyChat(fetchedDialogs, dialog?.id);
     const chat: NewDialog = {
       category,
       objectIdStrapi: objectId,

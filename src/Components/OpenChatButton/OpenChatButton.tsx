@@ -22,7 +22,9 @@ const OpenChatButton = ({ entityId, category }: Props) => {
   const { openChat, leaveChat, loading } = chatStore;
   const { currentDialog } = dialogsStore;
 
-  const thisChatIsOpen = currentDialog?.id === entityId;
+  const stringEntityId = String(entityId);
+
+  const thisChatIsOpen = currentDialog?.objectId === stringEntityId;
 
   const openChatHandle = () => {
     if (!user) {
@@ -34,11 +36,11 @@ const OpenChatButton = ({ entityId, category }: Props) => {
     }
 
     if (isMobile) {
-      openChat(entityId, category);
+      openChat(stringEntityId, category);
       return router.push("/messenger");
     }
 
-    return openChat(entityId, category);
+    return openChat(stringEntityId, category);
   };
 
   const text = thisChatIsOpen ? "Закрыть чат" : "Открыть чат";

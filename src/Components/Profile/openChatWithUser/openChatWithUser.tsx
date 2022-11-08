@@ -18,7 +18,11 @@ const OpenChatWithUser = ({ currUser }: Props) => {
   const { openChat, leaveChat } = chatStore;
   const { currentDialog } = dialogsStore;
 
-  const thisChatIsOpen = currentDialog?.id === currUser.id;
+  const thisChatIsOpen = !!currentDialog?.objectId
+    .split("_")
+    .filter((userId: string) => userId === String(currUser.id))[0];
+
+  console.log("thisChatIsOpen", thisChatIsOpen);
 
   const openChatHandle = () => {
     if (!user) {
