@@ -9,9 +9,8 @@ import { categoryTitles } from "../../RoomList/Dialog/Dialog";
 
 const Profile = () => {
   const { currentDialog } = dialogsStore;
-  const avatar = currentDialog?.cover ?? "";
   const route = useRouter();
-  const link = `${route.basePath}/${currentDialog?.category}s/${currentDialog?.id}`;
+  const link = `${route.basePath}/${currentDialog?.category}s/${currentDialog?.objectId}`;
 
   return (
     <Wrapper>

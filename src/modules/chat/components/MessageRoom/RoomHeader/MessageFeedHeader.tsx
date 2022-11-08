@@ -25,7 +25,7 @@ const MessageFeedHeader = () => {
   const route = useRouter();
 
   const [modalActive, setModalActive] = useState(false);
-  const link = `${route.basePath}/${currentDialog?.category}s/${currentDialog?.id}`;
+  const link = `${route.basePath}/${currentDialog?.category}s/${currentDialog?.objectId}`;
 
   const goBackHandle = () => {
     chatStore.leaveChat(); // clear dialog

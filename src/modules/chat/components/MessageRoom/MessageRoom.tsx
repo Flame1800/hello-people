@@ -12,6 +12,8 @@ import { toJS } from "mobx";
 const MessageRoom = () => {
   const { fetchedDialogs, currentDialog } = dialogsStore;
   const { addChat, isWidget } = chatStore;
+
+  console.log("fetchedDialogs", toJS(fetchedDialogs));
   const isMyChat = fetchedDialogs.filter((d) => {
     return d.id === currentDialog?.id;
   })[0];

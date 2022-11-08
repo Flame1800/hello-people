@@ -87,7 +87,10 @@ class ChatStore {
     if (this.socket && currentDialog) {
       this.socket.emit("addChatToFavorite", chat);
       this.socket.emit("joinChat", { chat, readOnly: false });
-      setDialogs([...dialogs, currentDialog]);
+
+      const newDialog: DialogProps = { countNewMessages: 0, ...currentDialog };
+
+      setDialogs([newDialog, ...dialogs]);
     }
   };
 
