@@ -81,7 +81,7 @@ class ChatStore {
     console.log("addChat show dialog:", toJS(dialog));
     const chat: NewDialog = {
       category: dialog.category,
-      objectIdStrapi: dialog.id,
+      objectIdStrapi: dialog.objectId,
     };
 
     if (this.socket && currentDialog) {
