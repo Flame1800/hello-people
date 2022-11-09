@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, toJS } from "mobx";
 import { CategoryType } from "../models/CategoryType";
 import { DialogProps } from "../models/DialogProps";
 import dialog from "../components/RoomList/Dialog";
@@ -25,7 +25,10 @@ class dialogsStore {
 
   increaseCountMessages = (dialogId: number) => {
     const newDialogs = this.fetchedDialogs.map((currDialog) => {
-      if (currDialog.id === dialogId && currDialog.countNewMessages) {
+      if (
+        currDialog.id === dialogId &&
+        currDialog.countNewMessages !== undefined
+      ) {
         currDialog.countNewMessages += 1;
         return currDialog;
       }
@@ -47,7 +50,12 @@ class dialogsStore {
   };
 
   addDialog = (dialog: DialogProps) => {
-    this.fetchedDialogs = [dialog, ...this.fetchedDialogs];
+    const newList = [
+      { ...dialog, countNewMessages: 1 },
+      ...this.fetchedDialogs,
+    ];
+    this.fetchedDialogs = newList;
+    this.dialogs = newList;
   };
 
   setCurrentDialog = (dialog: DialogProps | null) => {

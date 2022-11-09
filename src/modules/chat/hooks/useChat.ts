@@ -47,16 +47,16 @@ export default (apiUrl: string | undefined) => {
     console.log("socket info", coreSocket);
 
     coreSocket?.on("getFavoriteChats", (data: DialogProps[]) => {
-      console.log("getFavoriteChats", data);
+      // console.log("getFavoriteChats", data);
       dialogsStore.setDialogs(data);
     });
 
     coreSocket?.on("userJoinChat", (data: ChatInfoTypes) => {
-      console.log("userJoinChat", data); //  data = {users, mgs, chat}
+      // console.log("userJoinChat", data); //  data = {users, mgs, chat}
     });
 
     coreSocket?.on("chatInfo", (data: ChatInfoTypes) => {
-      console.log("chatInfo", data);
+      // console.log("chatInfo", data);
 
       setLoading(false);
 
@@ -70,30 +70,30 @@ export default (apiUrl: string | undefined) => {
     });
 
     coreSocket?.on("newMsg", (data: MessageType) => {
-      console.log("newMsg", data);
+      // console.log("newMsg", data);
       addMessage(data);
     });
 
     coreSocket?.on("newMember", (data) => {
-      console.log("newMember", data);
+      // console.log("newMember", data);
       addChatUser(data);
     });
 
     coreSocket?.on("newOnlineUser", (data) => {
-      console.log("newOnlineUser", data);
+      // console.log("newOnlineUser", data);
 
       if (data.id !== user.id) {
         addOnlineUser(data);
       }
     });
 
-    coreSocket.on("newCount", (dialogId) => {
-      console.log("newCount", dialogId);
+    coreSocket?.on("newCount", (dialogId) => {
+      // console.log("newCount", dialogId);
       increaseCountMessages(dialogId);
     });
 
-    coreSocket.on("newPrivateChat", (dialog) => {
-      console.log("newPrivateChat", dialog);
+    coreSocket?.on("newPrivateChat", (dialog) => {
+      // console.log("newPrivateChat", dialog);
       addDialog(dialog);
     });
 

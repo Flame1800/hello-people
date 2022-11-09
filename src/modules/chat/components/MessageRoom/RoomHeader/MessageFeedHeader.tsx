@@ -17,10 +17,11 @@ import { observer } from "mobx-react-lite";
 import LinkWrapper from "../../common/LinkWrapper";
 import { useRouter } from "next/router";
 import DialogAvatar from "../../RoomList/Dialog/DialogAvatar";
+import { categoryTitles } from "../../RoomList/Dialog/Dialog";
 
 const MessageFeedHeader = () => {
   const { currentDialog } = dialogsStore;
-  const { onlineUsers } = roomStore;
+  const { chatUsers } = roomStore;
 
   const route = useRouter();
 
@@ -37,7 +38,9 @@ const MessageFeedHeader = () => {
         <UserName>{currentDialog?.abbTitle ?? "Нет названия"}</UserName>
       </LinkWrapper>
 
-      <UserStatus>в сети {onlineUsers?.length} человек</UserStatus>
+      <UserStatus>
+        {currentDialog && categoryTitles[currentDialog.category]}
+      </UserStatus>
     </UserInfo>
   );
 
