@@ -70,17 +70,17 @@ export default (apiUrl: string | undefined) => {
     });
 
     coreSocket?.on("newMsg", (data: MessageType) => {
-      // console.log("newMsg", data);
+      console.log("newMsg", data);
       addMessage(data);
     });
 
     coreSocket?.on("newMember", (data) => {
-      // console.log("newMember", data);
+      console.log("newMember", data);
       addChatUser(data);
     });
 
     coreSocket?.on("newOnlineUser", (data) => {
-      // console.log("newOnlineUser", data);
+      console.log("newOnlineUser", data);
 
       if (data.id !== user.id) {
         addOnlineUser(data);
@@ -88,12 +88,12 @@ export default (apiUrl: string | undefined) => {
     });
 
     coreSocket?.on("newCount", (dialogId) => {
-      // console.log("newCount", dialogId);
+      console.log("newCount", dialogId);
       increaseCountMessages(dialogId);
     });
 
     coreSocket?.on("newPrivateChat", (dialog) => {
-      // console.log("newPrivateChat", dialog);
+      console.log("newPrivateChat", dialog);
       addDialog(dialog);
     });
 
