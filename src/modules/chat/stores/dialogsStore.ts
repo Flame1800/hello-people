@@ -4,7 +4,6 @@ import { DialogProps } from "../models/DialogProps";
 import dialog from "../components/RoomList/Dialog";
 
 class dialogsStore {
-  fetchedDialogs: DialogProps[] = [];
   dialogs: DialogProps[] = [];
   currentDialog: DialogProps | null = null;
 
@@ -13,7 +12,7 @@ class dialogsStore {
   }
 
   resetCountMessages = (dialogId: number) => {
-    this.fetchedDialogs = this.fetchedDialogs.map((dialog) => {
+    this.dialogs = this.dialogs.map((dialog) => {
       if (dialog.id !== dialogId) {
         return dialog;
       }
@@ -24,7 +23,7 @@ class dialogsStore {
   };
 
   increaseCountMessages = (dialogId: number) => {
-    const newDialogs = this.fetchedDialogs.map((currDialog) => {
+    this.dialogs = this.dialogs.map((currDialog) => {
       if (
         currDialog.id === dialogId &&
         currDialog.countNewMessages !== undefined
@@ -35,27 +34,16 @@ class dialogsStore {
 
       return currDialog;
     });
-
-    this.fetchedDialogs = newDialogs;
-    this.dialogs = newDialogs;
   };
 
   deleteDialog = (dialogId: number) => {
-    const newList = this.fetchedDialogs.filter(
+    this.dialogs = this.dialogs.filter(
       (dialog: DialogProps) => dialog.id !== dialogId
     );
-
-    this.fetchedDialogs = newList;
-    this.dialogs = newList;
   };
 
   addDialog = (dialog: DialogProps) => {
-    const newList = [
-      { ...dialog, countNewMessages: 1 },
-      ...this.fetchedDialogs,
-    ];
-    this.fetchedDialogs = newList;
-    this.dialogs = newList;
+    this.dialogs = [{ ...dialog, countNewMessages: 1 }, ...this.dialogs];
   };
 
   setCurrentDialog = (dialog: DialogProps | null) => {
@@ -68,26 +56,22 @@ class dialogsStore {
 
   setDialogs = (dialogs: DialogProps[]) => {
     this.dialogs = dialogs;
-    this.fetchedDialogs = dialogs;
   };
 
-  filterDialogs = (category: CategoryType) => {
+  getFilterDialogs = (category: CategoryType) => {
     if (category === "all") {
-      this.dialogs = this.fetchedDialogs;
-      return;
+      return this.dialogs;
     }
-
-    this.dialogs = this.fetchedDialogs.filter((d) => d.category === category);
+    return this.dialogs.filter((d) => d.category === category);
   };
 
   getSearchDialogs = (search: string) => {
     if (search.length === 0) {
-      this.dialogs = this.fetchedDialogs;
-      return;
+      return this.dialogs;
     }
     const mappedSearch = search.toLowerCase();
 
-    this.dialogs = this.fetchedDialogs.filter((dialog) =>
+    return this.dialogs.filter((dialog) =>
       dialog.abbTitle?.toLowerCase().includes(mappedSearch)
     );
   };

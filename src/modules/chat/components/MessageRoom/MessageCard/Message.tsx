@@ -28,7 +28,12 @@ const Message = (props: MessageType) => {
   const isMe = currentUser?.id === user?.id;
 
   const avatar = currentDialog?.category !== "private" && !isMe && (
-    <MessageAvatar alt="avatar" src={API_URL + currentUser?.avatar} />
+    <MessageAvatar
+      alt="avatar"
+      src={
+        currentUser?.avatar ? API_URL + currentUser?.avatar : "/img/avatar.svg"
+      }
+    />
   );
 
   const userNameInMessage = !isMe && currentDialog?.category !== "private" && (

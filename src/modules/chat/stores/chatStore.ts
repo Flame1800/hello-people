@@ -99,9 +99,9 @@ class ChatStore {
     category: CategoryType,
     dialog?: DialogProps
   ) => {
-    const { fetchedDialogs, setCurrentDialog } = dialogsStore;
+    const { dialogs, setCurrentDialog } = dialogsStore;
 
-    const isMyChat = this.findMyChat(fetchedDialogs, dialog?.id);
+    const isMyChat = this.findMyChat(dialogs, dialog?.id);
     const chat: NewDialog = {
       category,
       objectIdStrapi: objectId,

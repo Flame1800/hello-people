@@ -31,6 +31,7 @@ const Search = () => {
 };
 
 const Wrapper = styled.div`
+  position: relative;
   max-width: 380px;
   display: flex;
   margin-top: 10px;
@@ -44,7 +45,7 @@ const Wrapper = styled.div`
 
   img {
     position: absolute;
-    right: 40px;
+    right: 25px;
     width: 32px;
     height: 32px;
     cursor: pointer;

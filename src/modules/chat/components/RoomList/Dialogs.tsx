@@ -47,22 +47,21 @@ const tabs: TabsType[] = [
   },
 ];
 
-type DialogFeedProps = {
-  setCurrentCategory: Function;
-  currentCategory: CategoryType;
-  category: CategoryType;
-};
+const Dialogs = () => {
+  const { dialogs } = dialogsStore;
+  const [currentCategory, setCurrentCategory] = useState<CategoryType>(
+    tabs[0].category
+  );
 
-const Dialogs = ({
-  category,
-  setCurrentCategory,
-  currentCategory,
-}: DialogFeedProps) => {
-  const { dialogs, filterDialogs } = dialogsStore;
+  const [filteredDialogs, setFilteredDialogs] = useState(dialogs);
 
   useEffect(() => {
-    filterDialogs(category);
-  }, [category]);
+    if (currentCategory === "all") {
+      console.log(currentCategory === "all");
+      return setFilteredDialogs(dialogs);
+    }
+    setFilteredDialogs(dialogs.filter((d) => d.category === currentCategory));
+  }, [currentCategory, dialogs]);
 
   const tabComponents = (
     <TabsStyle>
@@ -88,8 +87,11 @@ const Dialogs = ({
 
   const empty = <Empty>Тут пока нет чатов :(</Empty>;
   const dialogsList = useMemo(
-    () => dialogs.map((dialog) => <Dialog key={dialog.id} dialog={dialog} />),
-    [dialogs]
+    () =>
+      filteredDialogs.map((dialog) => (
+        <Dialog key={dialog?.id} dialog={dialog} />
+      )),
+    [filteredDialogs]
   );
 
   return (
@@ -97,7 +99,9 @@ const Dialogs = ({
       <ComponentName />
       <Search />
       {tabComponents}
-      <DialogsList>{!dialogs.length ? empty : dialogsList}</DialogsList>
+      <DialogsList>
+        {filteredDialogs.length === 0 ? empty : dialogsList}
+      </DialogsList>
     </Content>
   );
 };

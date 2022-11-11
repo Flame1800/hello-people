@@ -7,6 +7,7 @@ import MessengerButton from "../SideBar/Nav/NavButtonsSvg/MessengerButton";
 import { observer } from "mobx-react-lite";
 import Link from "next/link";
 import UiStateStore from "../../Stores/UiStateStore";
+import { toJS } from "mobx";
 
 const UserUX = () => {
   if (!UserStore.user) {
@@ -17,12 +18,14 @@ const UserUX = () => {
     );
   }
 
+  console.log(toJS(UserStore.user));
+
   return (
     <Wrapper>
       <AddButton />
       <Link href={`/user/${UserStore?.user?.id}`}>
         <a>
-          <UserAvatar url={UserStore?.user.cover?.url} />
+          <UserAvatar url={UserStore?.user.avatar} />
         </a>
       </Link>
     </Wrapper>

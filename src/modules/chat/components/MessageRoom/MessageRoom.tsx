@@ -7,14 +7,12 @@ import MessageFeedContent from "./MessageFeed/MessageFeedContent";
 import dialogsStore from "../../stores/dialogsStore";
 import AddChatButton from "./AddChatButton/AddChatButton";
 import chatStore from "../../stores/chatStore";
-import { toJS } from "mobx";
 
 const MessageRoom = () => {
-  const { fetchedDialogs, currentDialog } = dialogsStore;
+  const { dialogs, currentDialog } = dialogsStore;
   const { addChat, isWidget } = chatStore;
 
-  console.log("fetchedDialogs", toJS(fetchedDialogs));
-  const isMyChat = fetchedDialogs.filter((d) => {
+  const isMyChat = dialogs.filter((d) => {
     return d.id === currentDialog?.id;
   })[0];
 
