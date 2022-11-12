@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PinnedPlace from "../PinnedPlace";
 import NameService from "../../Common/Services/NameService";
@@ -16,27 +16,17 @@ const EventCard = ({ event }) => {
     .map(({ attributes }) => attributes.title)
     .join(", ");
 
+  const imgUrl = attributes.cover.data
+    ? API.url + attributes.cover.data.attributes.url
+    : "/img/mock-avatar.svg";
+
   return (
     <Wrapper id={event.id}>
       <div className="card">
         <div className="event">
-          <Link href={`/events/${event.id}`}>
-            <a className="cover">
-              {attributes.cover.data ? (
-                <img
-                  className="gallery"
-                  src={API.url + attributes.cover.data.attributes.url}
-                  alt="обложка"
-                />
-              ) : (
-                <img
-                  className="gallery"
-                  src="/img/mock-avatar.svg"
-                  alt="обложка"
-                />
-              )}
-            </a>
-          </Link>
+          <div className="cover">
+            <img className="gallery" src={imgUrl} alt="обложка" />
+          </div>
           <div className="info">
             <Link href={`/events/${event.id}`}>
               <a>

@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+import FsLightbox from "fslightbox-react";
 
 type Props = {
   pictures: any;
 };
 
 const PageCarousel: React.FC<Props> = ({ pictures }) => {
+  const [lightboxController, setLightboxController] = useState({
+    toggler: false,
+    slide: 1,
+  });
+
+  function openLightboxOnSlide(number: number) {
+    setLightboxController({
+      toggler: !lightboxController.toggler,
+      slide: number,
+    });
+  }
+
   return (
     <Wrapper>
       {pictures.data ? (
@@ -27,13 +40,14 @@ const PageCarousel: React.FC<Props> = ({ pictures }) => {
             },
           }}
         >
-          {pictures.data.map((picture: any) => {
+          {pictures.data.map((picture: Image, id: number) => {
             return (
               <SwiperSlide>
                 <img
                   src={process.env.SERVER_URL_PROD + picture.attributes.url}
                   alt="фото места"
                   className="image"
+                  onClick={() => openLightboxOnSlide(id + 1)}
                 />
               </SwiperSlide>
             );
@@ -42,6 +56,13 @@ const PageCarousel: React.FC<Props> = ({ pictures }) => {
       ) : (
         <div className="no-photo">Нет фото</div>
       )}
+      <FsLightbox
+        toggler={lightboxController.toggler}
+        sources={pictures?.data?.map(
+          (pic: Image) => process.env.SERVER_URL_PROD + pic.attributes.url
+        )}
+        slide={lightboxController.slide}
+      />
     </Wrapper>
   );
 };
@@ -80,6 +101,7 @@ const Wrapper = styled.div`
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
+    cursor: pointer;
 
     @media (max-width: 726px) {
       border-radius: 20px 20px 0 0;

@@ -1,16 +1,12 @@
 import React from "react";
-import { API_URL } from "../../../../../Constants/api";
 import styled from "styled-components";
 import dialogsStore from "../../../stores/dialogsStore";
-import { useRouter } from "next/router";
 import LinkWrapper from "../../common/LinkWrapper";
 import DialogAvatar from "../../RoomList/Dialog/DialogAvatar";
 import { categoryTitles } from "../../RoomList/Dialog/Dialog";
 
-const Profile = () => {
+const Profile = ({ link }: { link: string }) => {
   const { currentDialog } = dialogsStore;
-  const route = useRouter();
-  const link = `${route.basePath}/${currentDialog?.category}s/${currentDialog?.objectId}`;
 
   return (
     <Wrapper>
@@ -39,6 +35,7 @@ const Wrapper = styled.div`
 `;
 
 const Name = styled.div`
+  cursor: pointer;
   margin-top: 10px;
   font-size: 18px;
   font-weight: 600;

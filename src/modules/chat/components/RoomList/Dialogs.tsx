@@ -4,17 +4,16 @@ import { CategoryType } from "../../models/CategoryType";
 import dialogsStore from "../../stores/dialogsStore";
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import ComponentName from "../Header/ComponentName";
-import Search from "../Header/Search";
-import Tab from "../common/Tab";
+import ComponentName from "./Header/ComponentName";
+import Search from "./Header/Search";
+import DialogTabs from "./DialogTabs/DialogTabs";
 import PlacesSvg from "./TabSvgIcons/PlacesSvg";
 import EventSvg from "./TabSvgIcons/EventSvg";
 import MeetsSvg from "./TabSvgIcons/MeetsSvg";
 import PersonSvg from "./TabSvgIcons/PersonSvg";
-import { toJS } from "mobx";
-import ReactTooltip from "react-tooltip";
+import { DialogProps } from "../../models/DialogProps";
 
-type TabsType = {
+export type TabsType = {
   category: CategoryType;
   title: string;
   icon?: React.ReactChild;
@@ -54,36 +53,30 @@ const Dialogs = () => {
   );
 
   const [filteredDialogs, setFilteredDialogs] = useState(dialogs);
+  const [searchText, setSearchText] = useState("");
+
+  const searchDialogs = (sDialogs: DialogProps[]) => {
+    if (searchText.length === 0) {
+      return sDialogs;
+    }
+
+    const lowSearch = searchText.toLowerCase();
+
+    return sDialogs.filter((dialog) =>
+      dialog.abbTitle?.toLowerCase().includes(lowSearch)
+    );
+  };
 
   useEffect(() => {
     if (currentCategory === "all") {
-      console.log(currentCategory === "all");
-      return setFilteredDialogs(dialogs);
+      return setFilteredDialogs(searchDialogs(dialogs));
     }
-    setFilteredDialogs(dialogs.filter((d) => d.category === currentCategory));
-  }, [currentCategory, dialogs]);
 
-  const tabComponents = (
-    <TabsStyle>
-      {tabs.map(({ category, title, icon }) => {
-        return (
-          <a
-            data-tip
-            data-for={category}
-            key={category}
-            onClick={() => setCurrentCategory(category)}
-          >
-            <Tab active={currentCategory === category}>
-              {title === "Все" ? title : icon}
-            </Tab>
-            <ReactTooltip id={category} effect="solid">
-              <p>{title}</p>
-            </ReactTooltip>
-          </a>
-        );
-      })}
-    </TabsStyle>
-  );
+    const results = searchDialogs(
+      dialogs.filter((d) => d.category === currentCategory)
+    );
+    setFilteredDialogs(results);
+  }, [currentCategory, dialogs, searchText]);
 
   const empty = <Empty>Тут пока нет чатов :(</Empty>;
   const dialogsList = useMemo(
@@ -97,8 +90,12 @@ const Dialogs = () => {
   return (
     <Content>
       <ComponentName />
-      <Search />
-      {tabComponents}
+      <Search searchText={searchText} setSearchText={setSearchText} />
+      <DialogTabs
+        tabs={tabs}
+        currentCategory={currentCategory}
+        setCurrentCategory={setCurrentCategory}
+      />
       <DialogsList>
         {filteredDialogs.length === 0 ? empty : dialogsList}
       </DialogsList>
@@ -134,17 +131,6 @@ const DialogsList = styled.div`
     border: 5px solid #fff;
     transition: 0.5s;
   }
-`;
-
-const TabsStyle = styled.div`
-  display: flex;
-  overflow: auto;
-  &::-webkit-scrollbar {
-    width: 0;
-  }
-  justify-content: space-between;
-  margin-top: 24px;
-  margin-bottom: 20px;
 `;
 
 const Empty = styled.div`

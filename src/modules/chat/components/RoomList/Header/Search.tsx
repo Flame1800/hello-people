@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import dialogsStore from "../../stores/dialogsStore";
 
-const Search = () => {
-  const [searchText, setSearchText] = useState("");
+type Props = {
+  searchText: string;
+  setSearchText: Function;
+};
 
-  useEffect(() => {
-    dialogsStore.getSearchDialogs(searchText);
-  }, [searchText]);
-
+const Search = ({ searchText, setSearchText }: Props) => {
   return (
     <Wrapper>
       <input

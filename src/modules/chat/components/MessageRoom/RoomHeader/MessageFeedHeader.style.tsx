@@ -23,6 +23,7 @@ export const UserInfo = styled.div`
 `;
 
 export const UserName = styled.span`
+  cursor: pointer;
   font-weight: 600;
   font-size: 16px;
   line-height: 25px;

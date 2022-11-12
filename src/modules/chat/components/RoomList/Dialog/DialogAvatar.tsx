@@ -38,6 +38,7 @@ const Wrapper = styled.div<{
   align-items: center;
   font-size: 9px;
   color: #fff;
+  cursor: pointer;
 
   ${(props) =>
     props.size === "large" &&

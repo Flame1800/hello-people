@@ -30,8 +30,13 @@ export default (apiUrl: string | undefined) => {
     addOnlineUser,
   } = roomStore;
   const { user } = UserStore;
-  const { setCurrentDialog, currentDialog, increaseCountMessages, addDialog } =
-    dialogsStore;
+  const {
+    setCurrentDialog,
+    currentDialog,
+    increaseCountMessages,
+    addDialog,
+    computeSumNotifications,
+  } = dialogsStore;
 
   useEffect(() => {
     if (!user || isReady) return;
@@ -47,7 +52,7 @@ export default (apiUrl: string | undefined) => {
     console.log("socket info", coreSocket);
 
     coreSocket?.on("getFavoriteChats", (data: DialogProps[]) => {
-      // console.log("getFavoriteChats", data);
+      console.log("getFavoriteChats", data);
       dialogsStore.setDialogs(data);
     });
 
@@ -56,8 +61,7 @@ export default (apiUrl: string | undefined) => {
     });
 
     coreSocket?.on("chatInfo", (data: ChatInfoTypes) => {
-      // console.log("chatInfo", data);
-
+      console.log("chatInfo", data);
       setLoading(false);
 
       if (!currentDialog) {

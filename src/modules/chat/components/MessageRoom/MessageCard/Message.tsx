@@ -14,9 +14,6 @@ import {
 import { MessageType } from "../../../models/Message";
 import dialogsStore from "../../../stores/dialogsStore";
 import makeMsgDate from "../../../utils/makeMsgDate";
-import { API_URL } from "../../../../../Constants/api";
-import { observer } from "mobx-react-lite";
-
 const Message = (props: MessageType) => {
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -28,16 +25,24 @@ const Message = (props: MessageType) => {
   const isMe = currentUser?.id === user?.id;
 
   const avatar = currentDialog?.category !== "private" && !isMe && (
-    <MessageAvatar
-      alt="avatar"
-      src={
-        currentUser?.avatar ? API_URL + currentUser?.avatar : "/img/avatar.svg"
-      }
-    />
+    <Link href={`/user/${currentUser?.id}`}>
+      <a>
+        <MessageAvatar
+          alt="avatar"
+          src={
+            currentUser?.avatar
+              ? API_URL + currentUser?.avatar
+              : "/img/avatar.svg"
+          }
+        />
+      </a>
+    </Link>
   );
 
   const userNameInMessage = !isMe && currentDialog?.category !== "private" && (
-    <MessageUserName>{currentUser?.username}</MessageUserName>
+    <Link href={`/user/${currentUser?.id}`}>
+      <MessageUserName>{currentUser?.username}</MessageUserName>
+    </Link>
   );
 
   const messageInfo = (
@@ -67,5 +72,9 @@ const Message = (props: MessageType) => {
   }
   return <MessageWrapper ref={elementRef}>{content}</MessageWrapper>;
 };
+import { API_URL } from "../../../../../Constants/api";
+import { observer } from "mobx-react-lite";
+
+import Link from "next/link";
 
 export default observer(Message);

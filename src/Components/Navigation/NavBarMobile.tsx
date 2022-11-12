@@ -12,9 +12,15 @@ import UiStateStore from "../../Stores/UiStateStore";
 import UserStore from "../../Stores/UserStore";
 import { observer } from "mobx-react-lite";
 import MenuIcon from "../SideBar/Nav/NavButtonsSvg/MenuIcon";
+import dialogsStore from "../../modules/chat/stores/dialogsStore";
 
 const NavBar = () => {
   const route = useRouter();
+  const { sumNotifications } = dialogsStore;
+
+  const messageNotifications = sumNotifications !== 0 && (
+    <NotificationSign>{sumNotifications}</NotificationSign>
+  );
 
   return (
     <Wrapper>
@@ -31,6 +37,7 @@ const NavBar = () => {
         </Link>
         <Link href="/messenger">
           <NavLinkStyle href="" active={route.asPath === "/messenger"}>
+            {messageNotifications}
             <MessengerButton />
           </NavLinkStyle>
         </Link>
@@ -48,7 +55,7 @@ const NavBar = () => {
           </NavLinkStyle>
         ) : (
           <Link href={`/menu`}>
-            <NavLinkStyle href="" active={route.asPath === "/user"}>
+            <NavLinkStyle href="" active={route.asPath === "/menu"}>
               <MenuIcon />
             </NavLinkStyle>
           </Link>
@@ -57,6 +64,23 @@ const NavBar = () => {
     </Wrapper>
   );
 };
+
+const NotificationSign = styled.div`
+  right: -10px;
+  top: -12px;
+  position: absolute;
+  padding: 0 4px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 10px;
+  background: ${theme.color.orange};
+  color: #fff;
+  font-weight: 600;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   position: fixed;
@@ -90,6 +114,7 @@ interface PropsNavLink {
 }
 
 const NavLinkStyle = styled.a`
+  position: relative;
   svg {
     fill: ${(props: PropsNavLink) =>
       props.active ? theme.color.orange : "#000"} !important;

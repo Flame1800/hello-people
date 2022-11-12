@@ -64,7 +64,7 @@ export const Description = styled.div`
   flex-direction: column;
   white-space: pre-line;
   margin-top: 20px;
-  max-width: 330px;
+  max-width: 290px;
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;

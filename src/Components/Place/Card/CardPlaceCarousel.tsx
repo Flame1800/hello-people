@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import IndicatorDots from "../../Common/Carousel/IndicatorDots";
 import Buttons from "../../Common/Carousel/Buttons";
 import styled from "styled-components";
 import Carousel from "re-carousel";
 import uuid from "react-uuid";
 
-const CardPlaceCarousel = ({ pictures, cover }) => {
+type Props = {
+  pictures: { data: Image[] };
+  cover: { data: Image };
+};
+
+const CardPlaceCarousel = ({ pictures, cover }: Props) => {
   const [allPictures, setAllPictures] = React.useState([]);
 
   React.useEffect(() => {
-    const arr = pictures.data ? pictures.data : [];
+    const arr: any = pictures.data ? pictures.data : [];
     arr.reverse().push(cover.data);
     arr.reverse();
 
@@ -49,6 +54,7 @@ const CardPlaceCarousel = ({ pictures, cover }) => {
 const Wrapper = styled.div`
   width: 100% !important;
   height: 170px;
+  cursor: pointer;
 
   .cover {
     display: flex;

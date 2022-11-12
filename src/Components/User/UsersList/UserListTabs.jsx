@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../styles/theme";
 import UserStore from "../../../Stores/UserStore";
-import Search from "../../../modules/chat/components/Header/Search";
+import Search from "../../../modules/chat/components/RoomList/Header/Search";
 import { useRouter } from "next/router";
 
 const UserListTabs = () => {

@@ -24,6 +24,8 @@ const ProfileHead = ({ user }: { user: User }) => {
   const me = UserStore.user;
   const router = useRouter();
 
+  const isMe = me?.id === user.id;
+
   const logout = () => {
     UserStore.logout();
     router.push(`/events`);
@@ -39,11 +41,13 @@ const ProfileHead = ({ user }: { user: User }) => {
   return (
     <WrapperHead>
       <Header>
-        <UserAvatar size="lg" url={user.avatar} />
+        <div>
+          <UserAvatar size="lg" url={user.avatar} />
+        </div>
         <Info>
           <Name>
-            {user.username ?? "Пользователь не найден"}{" "}
-            {me && !isMobile && dropdownMenu}
+            {user.username ?? "Пользователь не найден"}
+            {isMe && !isMobile && dropdownMenu}
           </Name>
           <div className="first-name">{user.name}</div>
           <Description>{user.description}</Description>

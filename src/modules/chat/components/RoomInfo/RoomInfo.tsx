@@ -6,15 +6,18 @@ import chatStore from "../../stores/chatStore";
 import Profile from "./Profile/Profile";
 import Members from "./Members/Members";
 import { observer } from "mobx-react-lite";
+import dialogsStore from "../../stores/dialogsStore";
 
-type ModalProps = {
+type Props = {
   active: boolean;
   setActive: Dispatch<SetStateAction<boolean>>;
+  link: string;
 };
 
-const RoomInfo: React.FC<ModalProps> = (props) => {
-  const { active, setActive } = props;
+const RoomInfo = (props: Props) => {
+  const { active, setActive, link } = props;
   const { deleteChat, isWidget } = chatStore;
+  const { currentDialog } = dialogsStore;
 
   if (!active) {
     return null;
@@ -32,8 +35,8 @@ const RoomInfo: React.FC<ModalProps> = (props) => {
         </div>
         <div className="title">Информация</div>
       </div>
-      <Profile />
-      <Members />
+      <Profile link={link} />
+      {currentDialog?.category !== "private" && <Members />}
       <ButtonOut isWidget={isWidget} onClick={deleteChatHandle}>
         Покинуть чат
       </ButtonOut>

@@ -7,7 +7,8 @@ export const MessageWrapper = styled.div`
   margin-left: 10px;
 `;
 
-export const MessageUserName = styled.div`
+export const MessageUserName = styled.a`
+  cursor: pointer;
   color: #424242;
   font-weight: 500;
   margin-bottom: 3px;

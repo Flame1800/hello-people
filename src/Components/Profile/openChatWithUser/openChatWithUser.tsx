@@ -18,9 +18,9 @@ const OpenChatWithUser = ({ currUser }: Props) => {
   const { openChat, leaveChat } = chatStore;
   const { currentDialog } = dialogsStore;
 
-  const thisChatIsOpen = !!currentDialog?.objectId
-    .split("_")
-    .filter((userId: string) => userId === String(currUser.id))[0];
+  const thisChatIsOpen =
+    currentDialog?.objectId === `${user?.id}_${currUser.id}` ||
+    currentDialog?.objectId === `${currUser.id}_${user?.id}`;
 
   console.log("thisChatIsOpen", thisChatIsOpen);
 
@@ -29,16 +29,18 @@ const OpenChatWithUser = ({ currUser }: Props) => {
       return UiStateStore.toggleAuthModal();
     }
 
+    const chatId = [currUser.id, user.id].sort().join("_");
+
     if (thisChatIsOpen) {
       return leaveChat();
     }
 
-    const chatId = [currUser.id, user.id].sort().join("_");
-    openChat(chatId, "private");
-
     if (isMobile) {
+      openChat(chatId, "private");
       return router.push("/messenger");
     }
+
+    return openChat(chatId, "private");
   };
 
   return (
