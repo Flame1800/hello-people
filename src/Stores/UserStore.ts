@@ -23,6 +23,7 @@ class UserStore {
       this.user = currUserPopulate.data;
     } catch (e) {
       console.error(e);
+      this.loading = false;
     } finally {
       this.loading = false;
     }
