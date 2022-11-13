@@ -16,11 +16,13 @@ import dialogsStore from "../../modules/chat/stores/dialogsStore";
 
 const NavBar = () => {
   const route = useRouter();
-  const { sumNotifications } = dialogsStore;
+  const { sumNotifications, currentDialog } = dialogsStore;
 
   const messageNotifications = sumNotifications !== 0 && (
     <NotificationSign>{sumNotifications}</NotificationSign>
   );
+
+  if (currentDialog) return null;
 
   return (
     <Wrapper>

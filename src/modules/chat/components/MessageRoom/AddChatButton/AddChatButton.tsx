@@ -30,8 +30,8 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
   height: 76px;
   width: 100%;
   background: #ffffff;
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
-  border-radius: 20px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.6);
+  border-radius: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +43,10 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
   z-index: 500;
   transition: 0.3s;
 
+  @media screen and (max-width: 1000px) {
+    border-radius: 20px 20px 0 0;
+  }
+
   ${(props) =>
     !props.isWidget &&
     css`
@@ -51,7 +55,6 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
       font-size: 20px;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
     `}
-
   &:hover {
     background: rgba(252, 81, 48, 0.07);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);

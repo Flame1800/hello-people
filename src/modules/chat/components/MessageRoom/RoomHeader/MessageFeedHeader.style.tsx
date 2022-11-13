@@ -4,11 +4,17 @@ export const MessageFeedHeaderStyle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  border-bottom: 1px solid #f6f6f6;
+  min-height: 75px;
+  border-bottom: 1px solid #eaeaea;
+  position: sticky;
+  width: 100%;
+  background: #fff;
+  z-index: 10;
+  border-radius: 32px 32px 0 0;
+  padding: 0 15px;
 
-  @media (min-width: 1420px) {
-    padding-top: 15px;
+  @media screen and (max-width: 1000px) {
+    border-radius: 0;
   }
 `;
 

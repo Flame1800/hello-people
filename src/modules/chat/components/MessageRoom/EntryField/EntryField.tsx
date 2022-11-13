@@ -6,6 +6,7 @@ import { NewMessageType } from "../../../models/Message";
 import dialogsStore from "../../../stores/dialogsStore";
 import EmodjiPicker from "./EmojiPicker";
 import { TextareaAutosize } from "@mui/material";
+import { theme } from "../../../../../../styles/theme";
 
 const EntryField = () => {
   const [textMessage, setTextMessage] = useState("");
@@ -76,13 +77,17 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
   bottom: 0;
   width: 100%;
   background: #ffffff;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.07);
-  border-radius: 20px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.18);
+  border-radius: ${theme.borderRadius.main};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
   z-index: 500;
+
+  @media screen and (max-width: 1000px) {
+    border-radius: 22px 22px 0 0;
+  }
 
   .emodji-btn {
     margin-right: 10px;
@@ -98,6 +103,7 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
     !props.isWidget &&
     css`
       border: 1px solid rgba(234, 234, 234, 0.95);
+      border-radius: 0 0 28px 0;
       box-shadow: none;
     `};
 

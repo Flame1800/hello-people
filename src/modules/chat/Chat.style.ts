@@ -5,10 +5,13 @@ export const ChatWrapper = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  padding: 30px 20px;
   height: 80vh;
   border-radius: 30px;
   box-shadow: ${theme.boxShadow.mainComponent};
+
+  @media screen and (max-width: 1000px) {
+    border-radius: 0;
+  }
 
   @media (max-width: 1424px) {
     height: 100vh;

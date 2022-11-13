@@ -108,12 +108,13 @@ const Content = styled.div`
   max-width: 320px;
   display: flex;
   flex-direction: column;
+  padding: 0 10px;
 `;
 
 const DialogsList = styled.div`
   overflow: auto;
-  height: 65vh;
-  padding-bottom: 60px;
+  height: 60vh;
+  padding-bottom: 20px;
 
   &:hover {
     &::-webkit-scrollbar-thumb {
