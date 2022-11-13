@@ -21,7 +21,8 @@ export const MessageRoomStyle = styled.div<{ isWidget: boolean }>`
     bottom: 0;
     left: 0;
     right: 0;
-    height: auto;
+    height: 100vh;
+    max-height: -webkit-fill-available;
   }
 `;
 

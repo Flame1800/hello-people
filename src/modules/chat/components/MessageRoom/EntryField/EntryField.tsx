@@ -87,7 +87,7 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
 
   @media screen and (max-width: 1000px) {
     border-radius: 22px 22px 0 0;
-    position: relative;
+    position: sticky;
   }
 
   .emodji-btn {
