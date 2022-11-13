@@ -7,19 +7,42 @@ import MessageFeedContent from "./MessageFeed/MessageFeedContent";
 import dialogsStore from "../../stores/dialogsStore";
 import AddChatButton from "./AddChatButton/AddChatButton";
 import chatStore from "../../stores/chatStore";
+import roomStore from "../../stores/roomStore";
+import RoomInfo from "../RoomInfo/RoomInfo";
+import userStore from "../../../../Stores/UserStore";
 
 const MessageRoom = () => {
-  const { dialogs, currentDialog } = dialogsStore;
+  const { dialogs, currentDialog, clearCurrentDialog } = dialogsStore;
   const { addChat, isWidget } = chatStore;
 
   const isMyChat = dialogs.filter((d) => {
     return d.id === currentDialog?.id;
   })[0];
 
+  const linkCategory =
+    currentDialog?.category === "private"
+      ? "user"
+      : `${currentDialog?.category}s`;
+
+  const linkId =
+    currentDialog?.category === "private"
+      ? currentDialog?.objectId
+          .split("_")
+          .find((id) => Number(id) !== userStore.user?.id)
+      : currentDialog?.objectId;
+
+  const link = `/${linkCategory}/${linkId}`;
+
   useEffect(() => {
     if (currentDialog && currentDialog?.category === "private" && !isMyChat) {
       addChat(currentDialog);
     }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      clearCurrentDialog();
+    };
   }, []);
 
   if (!currentDialog) {
@@ -30,9 +53,17 @@ const MessageRoom = () => {
     );
   }
 
+  if (roomStore.chatInfoModal) {
+    return (
+      <MessageRoomStyle isWidget={isWidget}>
+        <RoomInfo link={link} />
+      </MessageRoomStyle>
+    );
+  }
+
   return (
     <MessageRoomStyle isWidget={isWidget}>
-      <MessageFeedHeader />
+      <MessageFeedHeader link={link} />
       <MessageFeedContent />
       {isMyChat ? <EntryField /> : <AddChatButton />}
     </MessageRoomStyle>

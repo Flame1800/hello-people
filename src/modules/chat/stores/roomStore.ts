@@ -16,10 +16,15 @@ class RoomStore {
   currentMessages: MessageType[] = [];
   chatUsers: UserType[] = [];
   onlineUsers: UserType[] = [];
+  chatInfoModal = false;
 
   constructor() {
     makeAutoObservable(this);
   }
+
+  toggleChatInfoModal = () => {
+    this.chatInfoModal = !this.chatInfoModal;
+  };
 
   setMessages = (messages: MessageType[]) => {
     this.currentMessages = messages

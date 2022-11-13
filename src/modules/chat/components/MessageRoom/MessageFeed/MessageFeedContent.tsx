@@ -75,6 +75,11 @@ const MessagesWrapper = styled.div<{ isWidget: boolean }>`
   padding-top: 30px;
   overflow: hidden scroll;
   margin-bottom: ${(props) => (props.isWidget ? "80px" : "50px")};
+  height: 100%;
+
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 0 !important;
+  }
 
   &::-webkit-scrollbar {
     width: 16px;

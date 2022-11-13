@@ -5,9 +5,6 @@ export const MessageRoomStyle = styled.div<{ isWidget: boolean }>`
   background: #fff;
   display: flex;
   flex-direction: column;
-  top: 0;
-  right: 0;
-  left: 0;
   height: 80vh;
   border-radius: 32px;
 
@@ -20,11 +17,11 @@ export const MessageRoomStyle = styled.div<{ isWidget: boolean }>`
 
   @media (max-width: 1024px) {
     position: absolute;
-    height: 100vh;
-  }
-
-  @media (max-width: 1430px) {
-    padding-bottom: 10px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
   }
 `;
 

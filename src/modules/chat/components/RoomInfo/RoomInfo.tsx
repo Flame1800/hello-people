@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import BackSvg from "../MessageRoom/RoomHeader/back.svg";
 import { theme } from "../../../../../styles/theme";
 import chatStore from "../../stores/chatStore";
@@ -7,21 +7,17 @@ import Profile from "./Profile/Profile";
 import Members from "./Members/Members";
 import { observer } from "mobx-react-lite";
 import dialogsStore from "../../stores/dialogsStore";
+import roomStore from "../../stores/roomStore";
 
 type Props = {
-  active: boolean;
-  setActive: Dispatch<SetStateAction<boolean>>;
   link: string;
 };
 
 const RoomInfo = (props: Props) => {
-  const { active, setActive, link } = props;
+  const { link } = props;
+  const { toggleChatInfoModal, chatInfoModal } = roomStore;
   const { deleteChat, isWidget } = chatStore;
   const { currentDialog } = dialogsStore;
-
-  if (!active) {
-    return null;
-  }
 
   const deleteChatHandle = () => {
     deleteChat();
@@ -31,7 +27,7 @@ const RoomInfo = (props: Props) => {
     <Wrapper>
       <div className="head">
         <div className="back">
-          <BackSvg onClick={() => setActive(false)} />
+          <BackSvg onClick={() => toggleChatInfoModal()} />
         </div>
         <div className="title">Информация</div>
       </div>
@@ -58,6 +54,7 @@ const ButtonOut = styled.div<{ isWidget: boolean }>`
   width: 100%;
   background: #fff;
   position: absolute;
+  border-radius: 32px;
 
   &:hover {
     background: rgb(255, 221, 216);
@@ -75,7 +72,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding-top: 20px;
   z-index: 600;
-  border-radius: 20px;
+  border-radius: 32px;
 
   .head {
     .back {

@@ -17,28 +17,11 @@ import LinkWrapper from "../../common/LinkWrapper";
 import { useRouter } from "next/router";
 import DialogAvatar from "../../RoomList/Dialog/DialogAvatar";
 import { categoryTitles } from "../../RoomList/Dialog/Dialog";
-import userStore from "../../../../../Stores/UserStore";
 
-const MessageFeedHeader = () => {
+const MessageFeedHeader = ({ link }: { link: string }) => {
   const { currentDialog } = dialogsStore;
 
   const route = useRouter();
-
-  const [modalActive, setModalActive] = useState(false);
-
-  const linkCategory =
-    currentDialog?.category === "private"
-      ? "user"
-      : `${currentDialog?.category}s`;
-
-  const linkId =
-    currentDialog?.category === "private"
-      ? currentDialog?.objectId
-          .split("_")
-          .find((id) => Number(id) !== userStore.user?.id)
-      : currentDialog?.objectId;
-
-  const link = `${route.basePath}/${linkCategory}/${linkId}`;
 
   const goBackHandle = () => {
     chatStore.leaveChat(); // clear dialog
@@ -54,10 +37,6 @@ const MessageFeedHeader = () => {
         {currentDialog && categoryTitles[currentDialog.category]}
       </UserStatus>
     </UserInfo>
-  );
-
-  const modal = (
-    <RoomInfo link={link} active={modalActive} setActive={setModalActive} />
   );
 
   return (
@@ -76,9 +55,8 @@ const MessageFeedHeader = () => {
       <MenuSvg
         src="/img/menu.svg"
         alt="back"
-        onClick={() => setModalActive(true)}
+        onClick={() => roomStore.toggleChatInfoModal()}
       />
-      {modal}
     </MessageFeedHeaderStyle>
   );
 };
