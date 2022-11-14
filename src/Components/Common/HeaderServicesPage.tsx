@@ -10,7 +10,7 @@ type ServiceProps = {
 const HeaderServicesPage = ({ children, link }: ServiceProps) => {
   return (
     <Wrapper>
-      <div className="title">{children}</div>
+      <h1 className="title">{children}</h1>
       {link && (
         <Link href={link}>
           <a className="add-btn">

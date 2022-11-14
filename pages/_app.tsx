@@ -10,6 +10,7 @@ import UserStore from "../src/Stores/UserStore";
 import { observer } from "mobx-react-lite";
 import useChat from "../src/modules/chat/hooks/useChat";
 import { SOCKET_URL } from "../src/Constants/api";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -39,6 +40,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no"
+        />
+      </Head>
       <NextNProgress
         color={theme.color.orange}
         startPosition={0.3}

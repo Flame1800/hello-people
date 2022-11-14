@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   margin-bottom: 10px;
   max-width: 680px;
 `;
-const Title = styled.div`
+const Title = styled.h1`
   font-size: 24px;
   font-weight: bold;
   color: #313131;

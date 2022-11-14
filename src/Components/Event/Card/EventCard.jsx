@@ -8,6 +8,7 @@ import makeBeautyDate from "../../../Helpers/makeBeautyDate";
 import Link from "next/link";
 import { observer } from "mobx-react-lite";
 import MetaActionsEvent from "../MetaActionsEvent";
+import Head from "next/head";
 
 const EventCard = ({ event }) => {
   const { attributes } = event;
@@ -22,13 +23,17 @@ const EventCard = ({ event }) => {
 
   return (
     <Wrapper id={event.id}>
+      <Head>
+        <meta property="og:title" content={attributes.title} />
+        <meta property="og:image" content={imgUrl} />
+      </Head>
       <div className="card">
         <div className="event">
           <div className="cover">
             <img className="gallery" src={imgUrl} alt="обложка" />
           </div>
           <div className="info">
-            <Link href={`/events/${event.id}`}>
+            <Link href={`/events/${event.attributes.slug}`}>
               <a>
                 <div className="name-wrap">
                   <NameService
@@ -39,7 +44,7 @@ const EventCard = ({ event }) => {
               </a>
             </Link>
             <div className="event-meta">
-              <Link href={`/events/${event.id}`}>
+              <Link href={`/events/${event.attributes.slug}`}>
                 <a>
                   <div className="date">
                     {makeBeautyDate(attributes.dateStart)}

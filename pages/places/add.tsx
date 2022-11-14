@@ -47,7 +47,7 @@ const AddEvent = () => {
       />
       <div className="banner">
         <img src="/img/Map-location.svg" alt="место" />
-        <div className="title">Добавить место</div>
+        <h1 className="title">Добавить место</h1>
         <div className="sub-title">
           Отправьте анкету на добавление места и после модерации вы сможете
           найти ее в местах HelloPeople

@@ -55,10 +55,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
           />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no"
-          />
           <meta name="MobileOptimized" content="176" />
           <script
             dangerouslySetInnerHTML={{
@@ -87,6 +83,11 @@ class MyDocument extends Document {
               />
             </div>
           </noscript>
+          <script
+            type="text/javascript"
+            src="https://vk.com/js/api/share.js?93"
+            charSet="windows-1251"
+          ></script>
         </Head>
         <body>
           <Main />

@@ -27,7 +27,7 @@ const ProfileContetnt = () => {
         <a>
           <UserAvatar
             alt={`изображение ${user?.username}`}
-            src={`${API_URL}${user?.avatar}`}
+            src={user?.avatar ? `${API_URL}${user?.avatar}` : "/img/avatar.svg"}
           />
           <UserName>{user?.username}</UserName>
         </a>
@@ -74,7 +74,7 @@ const UserAvatar = styled.img`
   object-fit: cover;
 `;
 
-const UserName = styled.div`
+const UserName = styled.h1`
   margin-left: 10px;
   margin-top: 15px;
   font-weight: 600;

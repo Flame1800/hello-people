@@ -51,7 +51,7 @@ const AddEvent = () => {
       />
       <div className="banner">
         <img src="/img/calendar.svg" alt="календарь" />
-        <div className="title">Добавить мероприятие</div>
+        <h1 className="title">Добавить мероприятие</h1>
         <div className="sub-title">
           Отправьте анкету на добавление события и после модерации вы сможете
           найти ее в афише HelloPeople
@@ -70,7 +70,7 @@ const AddEvent = () => {
 
 const Wrapper = styled.div`
   margin: 0 20px 64px 20px;
-  padding: 0 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;

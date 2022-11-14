@@ -20,7 +20,7 @@ const PlaceCard: React.FC<Props> = ({ card }) => {
         cover={attributes.cover}
       />
       <div className="content">
-        <Link href={`/places/${card.id}`}>
+        <Link href={`/places/${card.attributes.slug}`}>
           <a>
             <div className="name">{attributes.title}</div>
             <div className="location">{attributes.location}</div>

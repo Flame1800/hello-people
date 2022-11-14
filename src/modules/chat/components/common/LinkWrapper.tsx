@@ -10,12 +10,12 @@ type Props = {
 const LinkWrapper = ({ children, href }: Props) => {
   return (
     <Link href={href}>
-      <AStyled>{children}</AStyled>
+      <AStyled href={href}>{children}</AStyled>
     </Link>
   );
 };
 
-const AStyled = styled.div`
+const AStyled = styled.a`
   display: contents;
 `;
 

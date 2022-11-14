@@ -29,7 +29,7 @@ const MessageRoom = () => {
       ? currentDialog?.objectId
           .split("_")
           .find((id) => Number(id) !== userStore.user?.id)
-      : currentDialog?.objectId;
+      : `id/${currentDialog?.objectId}`;
 
   const link = `/${linkCategory}/${linkId}`;
 

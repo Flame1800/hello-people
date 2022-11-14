@@ -28,6 +28,8 @@ const queryGetEvents = qs.stringify(queryEventsOptions);
 
 // Meets
 API.getMeets = () => server(`/meets?populate=*&sort[0]=createdAt:desc`);
+API.getMeet = (id: number) =>
+  server(`/meets/${id}?populate=*&sort[0]=createdAt:desc`);
 API.addMeet = (meet: MeetType) => server.post(`/meets?populate=*`, meet);
 API.deleteMeet = (id: number) => server.delete(`/meets/${id}`);
 API.getUserMeets = (id: number) =>
@@ -49,14 +51,18 @@ API.getPlaceCategories = () => server(`/categories?filters[type][$eq]=service`);
 
 // Events
 API.getEvents = () => server(`/parties?${queryGetEvents}`);
-API.getEvent = (id: number) => server(`/parties/${id}?${queryGetEvents}`);
+API.getEvent = (slug: string) =>
+  server(`/parties?filters[slug]=${slug}&${queryGetEvents}`);
+API.getEventById = (id: number) => server(`/parties/${id}?${queryGetEvents}`);
 API.getUserEvents = (id: any) =>
   server(`/parties?${queryGetEvents}&filters[likes][id][$eq]=${id}`);
 
 // Places
 API.getPlaces = (length = 0) =>
   server(`/places?populate=*&pagination[start]=${length}&pagination[limit]=15`);
-API.getPlace = (id: number) => server(`/places/${id}?populate=*`);
+API.getPlace = (slug: string) =>
+  server(`/places?filters[slug]=${slug}&populate=*`);
+API.getPlaceById = (id: number) => server(`/places/${id}?populate=*`);
 API.getUserPlaces = (id: number) =>
   server(`/places?populate=*&filters[likes][id][$eq]=${id}`);
 

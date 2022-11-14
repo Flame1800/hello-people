@@ -6,7 +6,6 @@ export const MessageFeedHeaderStyle = styled.div`
   align-items: center;
   min-height: 75px;
   border-bottom: 1px solid #eaeaea;
-  position: sticky;
   width: 100%;
   background: #fff;
   z-index: 10;

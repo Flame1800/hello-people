@@ -6,7 +6,7 @@ import { theme } from "../../../../styles/theme";
 const NameService = ({ name, category }) => {
   return (
     <Wrapper>
-      <div className="name">{name}</div>
+      <h1 className="name">{name}</h1>
       {category && <div className="category">{category}</div>}
     </Wrapper>
   );

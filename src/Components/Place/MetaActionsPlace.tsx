@@ -33,10 +33,10 @@ const MetaActionsPlace = ({ place }: MetaActionsType) => {
 };
 
 const Wrapper = styled.div`
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5px;
 `;
 
 export default observer(MetaActionsPlace);

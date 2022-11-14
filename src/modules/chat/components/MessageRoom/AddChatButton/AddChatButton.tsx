@@ -30,7 +30,7 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
   height: 76px;
   width: 100%;
   background: #ffffff;
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 10px 18px rgba(234, 234, 234, 0.6);
   border-radius: 32px;
   display: flex;
   justify-content: center;
@@ -45,6 +45,7 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
 
   @media screen and (max-width: 1000px) {
     border-radius: 20px 20px 0 0;
+    position: sticky;
   }
 
   ${(props) =>
@@ -53,7 +54,7 @@ const Wrapper = styled.div<{ isWidget: boolean }>`
       height: 50px;
       font-weight: 500;
       font-size: 20px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 1px 4px rgba(241, 241, 241, 0.18);
     `}
   &:hover {
     background: rgba(252, 81, 48, 0.07);

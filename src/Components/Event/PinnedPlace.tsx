@@ -13,7 +13,7 @@ const PinnedPlace: React.FC<PropsType> = ({ place }) => {
     <Wrapper>
       <div className="title">Место</div>
       <div className="place">
-        <Link href={`/places/${place.id}`}>
+        <Link href={`/places/${place.attributes.slug}`}>
           <a className="name">{place.attributes.abbTitle}</a>
         </Link>
         <Carousel

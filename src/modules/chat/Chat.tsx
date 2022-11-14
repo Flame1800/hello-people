@@ -50,6 +50,7 @@ const Plug = styled.div`
 
   @media (max-width: 1424px) {
     height: 100vh;
+    max-height: -webkit-fill-available;
   }
 
   .caption {

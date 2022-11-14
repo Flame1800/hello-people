@@ -16,7 +16,9 @@ const MobileMenu = () => {
   const noAuth = (
     <>
       <Title>Войдите или зарегистрируйтесь в HelloPeople</Title>
-      <ButtonStyle onClick={() => toggleAuthModal()}>Войти</ButtonStyle>
+      <ButtonStyle onClick={() => toggleAuthModal()}>
+        Войти / Зарегистрироваться
+      </ButtonStyle>
     </>
   );
 

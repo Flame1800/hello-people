@@ -52,7 +52,7 @@ export const Info = styled.div`
   }
 `;
 
-export const Name = styled.div`
+export const Name = styled.h1`
   font-style: normal;
   display: flex;
   font-weight: 700;

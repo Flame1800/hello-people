@@ -71,7 +71,7 @@ const AddMeet = () => {
     <>
       <div className="banner">
         <img src="/img/big-fire.svg" alt="календарь" />
-        <div className="title">Добавить встречу</div>
+        <h1 className="title">Добавить встречу</h1>
         <div className="sub-title">
           Расскажите кого вы ищете и в каком месте хотели бы провести время
         </div>

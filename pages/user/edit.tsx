@@ -86,7 +86,7 @@ const EditProfile = () => {
         description={`Редактировать профиль`}
       />
       <div className="content">
-        <div className="title">Редактировать профиль</div>
+        <h1 className="title">Редактировать профиль</h1>
         <div className="form">
           <UserAvatar url={user.cover?.url} size="lg" />
           <label htmlFor="avatar" className="input__file-button">

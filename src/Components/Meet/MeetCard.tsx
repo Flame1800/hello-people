@@ -10,6 +10,7 @@ import MenuItem from "../Common/SimpleMenu/MenuItem";
 import UserStore from "../../Stores/UserStore";
 import API from "../../Helpers/API";
 import DateMeet from "./DateMeet";
+import Link from "next/link";
 
 type Props = {
   meet: MeetType | null;
@@ -49,12 +50,14 @@ const MeetCard = ({ meet }: Props) => {
         <UserBadge user={meet.attributes.author.data} size="sm" />
         {user?.id === author?.id && dropdown}
       </div>
-      <div className="text">
-        <div className="title">{meet.attributes.title}</div>
-        <div className="text">{meet.attributes.description}</div>
-      </div>
+      <Link href={`/meets/id/${meet.id}`}>
+        <a className="text" href={`/meets/id/${meet.id}`}>
+          <div className="title">{meet.attributes.title}</div>
+          <div className="text">{meet.attributes.description}</div>
+        </a>
+      </Link>
       <div className="meta">
-        <ChatButtons meetId={meet.id} />
+        <ChatButtons meet={meet} />
         <div className="info">
           <PlaceMeet place={meet.attributes.place} />
           <DateMeet date={meet.attributes.date} />

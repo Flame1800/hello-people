@@ -19,7 +19,7 @@ const PlacePage: NextPage<Props> = ({ place }) => {
   return (
     <Wrapper>
       <SeoHead
-        title={`${place.attributes.title} ${CITY} HelloPeople`}
+        title={`${place.attributes.title} - ${CITY} HelloPeople`}
         description={place.attributes.description}
         keywords={place.attributes.categories?.data
           .map((cat: Category) => cat.attributes.title)
@@ -64,9 +64,9 @@ const Wrapper = styled.div`
 `;
 
 PlacePage.getInitialProps = async (ctx) => {
-  const placeRequest = await API.getPlace(ctx.query.id);
+  const placeRequest = await API.getPlace(ctx.query.slug);
 
-  return { place: placeRequest.data.data };
+  return { place: placeRequest.data.data[0] };
 };
 
 export default PlacePage;

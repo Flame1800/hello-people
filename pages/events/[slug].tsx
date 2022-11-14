@@ -7,6 +7,7 @@ import EventCard from "../../src/Components/Event/Card/EventCard";
 import CommentsBlock from "../../src/Components/Comments/CommnetsBlock";
 import SeoHead from "../../src/Components/Layouts/SeoHead";
 import { CITY } from "../../src/Constants/city";
+import Head from "next/head";
 
 type EventProps = {
   event: EventType;
@@ -16,7 +17,7 @@ const EventPage: NextPage<EventProps> = ({ event }) => {
   return (
     <Wrapper>
       <SeoHead
-        title={`${event.attributes.title} ${CITY} HelloPeople`}
+        title={`${event.attributes.title} - ${CITY} HelloPeople`}
         description={event.attributes.description}
         keywords={event.attributes.categories?.data
           .map((cat) => cat.attributes.title)
@@ -65,9 +66,9 @@ const Wrapper = styled.div`
 `;
 
 EventPage.getInitialProps = async (ctx) => {
-  const eventRequest = await API.getEvent(ctx.query.id);
+  const eventRequest = await API.getEvent(ctx.query.slug);
 
-  return { event: eventRequest.data.data };
+  return { event: eventRequest.data.data[0] };
 };
 
 export default EventPage;
