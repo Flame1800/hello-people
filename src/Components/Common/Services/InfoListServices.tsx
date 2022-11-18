@@ -41,7 +41,7 @@ const InfoListServices = ({ date, address, link, phone }: PropTypes) => {
 };
 
 const Wrapper = styled.div`
-  margin: 50px 0;
+  margin: 35px 0;
 
   a {
     font-weight: 600;

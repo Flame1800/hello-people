@@ -65,7 +65,7 @@ const Wrapper = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  padding: 0 30px;
+  padding: 0 20px;
 `;
 
 const Under = styled.div`

@@ -21,7 +21,7 @@ const Description = ({ data }: PropsTypes) => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 30px;
 
   .title {

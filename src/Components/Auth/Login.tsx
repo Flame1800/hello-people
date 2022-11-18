@@ -64,8 +64,8 @@ const Login = ({ setMode, close }: Props) => {
 
   return (
     <Wrapper>
-      <GoogleRegister />
-      <div className="or">или</div>
+      {/*<GoogleRegister />*/}
+      {/*<div className="or">или</div>*/}
       <form onSubmit={clickLoginHandle} className="form">
         <InputStyle
           ref={focusRef}
@@ -75,7 +75,6 @@ const Login = ({ setMode, close }: Props) => {
             setIdentifier(e.target.value)
           }
           name="email"
-          type="email"
         />
         <InputStyle
           placeholder="Пароль"
@@ -91,9 +90,9 @@ const Login = ({ setMode, close }: Props) => {
         </ButtonStyle>
         {error && <div className="error-msg">{error}</div>}
 
-        <div className="change-btn">
-          <div onClick={clickForgotPasswordHandle}>Забыли пароль?</div>
-          <div onClick={() => setMode("reg")}>Регистрация</div>
+        {/*<div onClick={clickForgotPasswordHandle}>Забыли пароль?</div>*/}
+        <div className="change-btn" onClick={() => setMode("reg")}>
+          Регистрация
         </div>
       </form>
     </Wrapper>
@@ -130,17 +129,22 @@ const Wrapper = styled.div`
 
   .change-btn {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 27px;
     color: ${theme.color.orange};
     margin-top: 40px;
+    padding: 10px 40px;
     cursor: pointer;
     border-radius: 10px;
     transition: 0.2s;
+
+    &:hover {
+      background: #f9f9f9;
+    }
   }
 `;
 

@@ -9,19 +9,14 @@ const Actual = () => {
     <Wrapper>
       <Title>Актуальное</Title>
       <ActualPosts />
-      <Footer />
     </Wrapper>
   );
 };
 
 export const Wrapper = styled.div`
-  margin-top: 20px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  box-shadow: 0 0 10px -6px;
-  border-radius: ${theme.borderRadius.main};
-  height: 100%;
 
   @media (max-width: 1424px) {
     position: relative;

@@ -62,8 +62,8 @@ const Register: React.FC<Props> = ({ setMode, close }) => {
 
   return (
     <Wrapper>
-      <GoogleRegister />
-      <div className="or">или</div>
+      {/*<GoogleRegister />*/}
+      {/*<div className="or">или</div>*/}
       <form onSubmit={register} className="form">
         <InputStyle
           ref={focusRef}

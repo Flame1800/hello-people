@@ -9,20 +9,45 @@ export const Wrapper = styled.div`
   display: none;
   flex-direction: column;
   height: 80vh;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 0 10px -6px;
+  align-items: center;
 
   @media (min-width: 1424px) {
     display: flex;
   }
 `;
 
+export const Content = styled.div`
+  height: 95%;
+  width: 100%;
+  padding: 0 10px;
+  overflow: auto;
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: rgba(218, 218, 218, 0.8);
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    opacity: 1;
+    border-radius: 8px;
+    transition: 0.5s;
+  }
+`;
+
 export const NavLinks = styled.div`
-  border-radius: 32px;
   padding: 20px;
+  width: 100%;
   flex-direction: column;
-  background: #fff;
   display: flex;
   justify-content: center;
-  box-shadow: 0 0 10px -6px;
 `;
 
 export const NavLinkStyle = styled.div<{ active?: boolean }>`

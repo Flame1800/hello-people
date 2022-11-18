@@ -49,12 +49,10 @@ const ProfileContetnt = () => {
         </Logout>
       </UserFooter>
       <Link href={`/user/${user?.id}`}>
-        <a>
-          <ProfileButton>
-            <ProfileIcon />
-            Мой профиль
-          </ProfileButton>
-        </a>
+        <ProfileButton>
+          <ProfileIcon />
+          Мой профиль
+        </ProfileButton>
       </Link>
     </Profile>
   );
@@ -94,6 +92,7 @@ const UserLink = styled.span`
   font-size: 15px;
   line-height: 20px;
   color: #868686;
+  margin-right: 10px;
 
   img {
     margin-left: 10px;
@@ -108,7 +107,8 @@ const Logout = styled.div`
   font-weight: 600;
 `;
 
-const ProfileButton = styled.div`
+const ProfileButton = styled.a`
+  margin-bottom: 20px;
   height: 60px;
   width: 100%;
   border-radius: 20px;

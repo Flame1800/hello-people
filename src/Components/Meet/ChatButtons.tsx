@@ -8,6 +8,7 @@ import { isMobile } from "react-device-detect";
 import { useRouter } from "next/router";
 import { theme } from "../../../styles/theme";
 import API from "../../Helpers/API";
+import ShareVkButton from "../Common/ShareVkButton/ShareVkButton";
 
 type Props = {
   meet: MeetType;
@@ -20,7 +21,6 @@ const ChatButtons = ({ meet }: Props) => {
   const { openChat, leaveChat } = chatStore;
   const { currentDialog } = dialogsStore;
 
-  const vkRef = useRef<HTMLHeadingElement>(null);
   const thisChatIsOpen = currentDialog?.id === meetId;
 
   const openChatHandle = () => {
@@ -38,27 +38,16 @@ const ChatButtons = ({ meet }: Props) => {
     }
   };
 
-  useLayoutEffect(() => {
-    vkRef.current.innerHTML = VK.Share.button(
-      {
-        url: `${API.url}/meets/id/${meet.id}`,
-        title: meet.attributes.title,
-        noparse: false,
-      },
-      {
-        type: "custom",
-        text: "<img src='/img/vk-logo.svg' width='24' height='24' />",
-      }
-    );
-  }, []);
-
   return (
     <Wrapper>
       <ChatBtn onClick={openChatHandle}>
         чат
         <img src="/img/message-blue-icon.svg" alt="smile" />
       </ChatBtn>
-      <div className="vk-share-btn" ref={vkRef}></div>
+      <ShareVkButton
+        url={`${API.url}/meets/id/${meet.id}`}
+        title={meet.attributes.title}
+      />
     </Wrapper>
   );
 };
@@ -66,17 +55,6 @@ const ChatButtons = ({ meet }: Props) => {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-
-  .vk-share-btn {
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-
-    span {
-      display: flex;
-      align-items: center;
-    }
-  }
 `;
 
 const ChatBtn = styled.div`
@@ -92,6 +70,7 @@ const ChatBtn = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-right: 10px;
 
   img {
     margin-left: 6px;

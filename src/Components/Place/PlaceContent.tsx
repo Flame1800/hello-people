@@ -39,7 +39,6 @@ const PlaceContent = ({ place }: PlaceContentType) => {
           phone={attributes.tel}
           link2gis={attributes.maplink}
         />
-        <div className="place-title">{attributes.title}</div>
         <Description data={attributes.description} />
       </div>
     </Wrapper>

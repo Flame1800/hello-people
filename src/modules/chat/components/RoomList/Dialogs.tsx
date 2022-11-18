@@ -113,8 +113,12 @@ const Content = styled.div`
 
 const DialogsList = styled.div`
   overflow: auto;
-  height: 60vh;
   padding-bottom: 20px;
+  height: calc(80vh - 212px);
+
+  @media screen and (max-width: 600px) {
+    height: calc(100vh - 212px);
+  }
 
   &:hover {
     &::-webkit-scrollbar-thumb {

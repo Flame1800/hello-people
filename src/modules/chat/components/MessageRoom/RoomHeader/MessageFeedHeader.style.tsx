@@ -12,6 +12,10 @@ export const MessageFeedHeaderStyle = styled.div`
   border-radius: 32px 32px 0 0;
   padding: 0 15px;
 
+  @media screen and (max-width: 600px) {
+    position: fixed;
+  }
+
   @media screen and (max-width: 1000px) {
     border-radius: 0;
   }

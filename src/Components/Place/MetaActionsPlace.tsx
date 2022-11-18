@@ -23,7 +23,7 @@ const MetaActionsPlace = ({ place }: MetaActionsType) => {
         <Like value={attributes?.likes?.data.length || 0} active={false} />
       )}
 
-      <Link href={`/places/${place.id}#comments`}>
+      <Link href={`/places/${place.attributes.slug}#comments`}>
         <a>
           <Comment value={attributes.comments.data.length} />
         </a>

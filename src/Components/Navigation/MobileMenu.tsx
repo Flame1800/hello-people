@@ -22,14 +22,6 @@ const MobileMenu = () => {
     </>
   );
 
-  if (!isMobile) {
-    return (
-      <Wrapper>
-        <div>Выберите пункт в меню слева</div>
-      </Wrapper>
-    );
-  }
-
   return (
     <Wrapper>
       {user ? <ProfileContetnt /> : noAuth}
@@ -46,6 +38,8 @@ const Wrapper = styled.div`
   padding-bottom: 100px;
   background: #fff;
   z-index: 110;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 1424px) {
     padding: 0;

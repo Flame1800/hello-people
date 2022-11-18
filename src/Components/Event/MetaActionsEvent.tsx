@@ -14,26 +14,6 @@ type MetaActionsType = {
 
 const MetaActionsEvent = ({ event }: MetaActionsType) => {
   const { attributes } = event;
-  const vkRef = useRef<HTMLHeadingElement>(null);
-
-  const imgUrl = attributes.cover?.data
-    ? API.url + attributes.cover.data.attributes.url
-    : "/img/mock-avatar.svg";
-
-  useLayoutEffect(() => {
-    vkRef.current.innerHTML = VK.Share.button(
-      {
-        url: `${API.url}/events/${event.id}`,
-        title: event.attributes.title,
-        image: imgUrl,
-        noparse: false,
-      },
-      {
-        type: "custom",
-        text: "<img src='/img/vk-logo.svg' width='24' height='24' />",
-      }
-    );
-  }, []);
 
   return (
     <Wrapper>
@@ -42,12 +22,11 @@ const MetaActionsEvent = ({ event }: MetaActionsType) => {
       ) : (
         <Like value={attributes?.likes?.data.length || 0} active={false} />
       )}
-      <Link href={`/events/${event.id}#comments`}>
+      <Link href={`/events/${event.attributes.slug}#comments`}>
         <a>
           <Comment value={attributes.comments.data.length} />
         </a>
       </Link>
-      <div className="vk-share-btn" ref={vkRef}></div>
     </Wrapper>
   );
 };
@@ -57,17 +36,6 @@ const Wrapper = styled.div`
   margin-top: 20px;
   display: flex;
   align-items: center;
-
-  .vk-share-btn {
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-
-    span {
-      display: flex;
-      align-items: center;
-    }
-  }
 `;
 
 export default MetaActionsEvent;

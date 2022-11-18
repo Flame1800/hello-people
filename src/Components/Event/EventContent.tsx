@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 import { ButtonStyle } from "../../../styles/commonStyles";
 import InfoListServices from "../Common/Services/InfoListServices";
@@ -12,6 +12,9 @@ import UiStateStore from "../../Stores/UiStateStore";
 import { observer } from "mobx-react-lite";
 import OpenChatButton from "../OpenChatButton/OpenChatButton";
 import { theme } from "../../../styles/theme";
+import API from "../../Helpers/API";
+import ShareVkButton from "../Common/ShareVkButton/ShareVkButton";
+import { API_URL } from "../../Constants/api";
 
 type PropsType = {
   event: EventType;
@@ -19,6 +22,10 @@ type PropsType = {
 
 const EventContent = ({ event }: PropsType) => {
   const { attributes } = event;
+
+  const imgUrl = attributes.cover?.data
+    ? API.url + attributes.cover.data.attributes.url
+    : "/img/mock-avatar.svg";
 
   return (
     <Wrapper>
@@ -38,7 +45,11 @@ const EventContent = ({ event }: PropsType) => {
           phone={attributes.tel}
           link2gis={attributes.maplink}
         />
-        <div className="title">{attributes.title}</div>
+        <ShareVkButton
+          url={`${API_URL}/events/id/${event.id}`}
+          title={event.attributes.title}
+          image={imgUrl}
+        />
         <Description data={attributes.description} />
       </div>
     </Wrapper>

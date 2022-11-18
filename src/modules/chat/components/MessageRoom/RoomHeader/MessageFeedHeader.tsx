@@ -17,11 +17,12 @@ import LinkWrapper from "../../common/LinkWrapper";
 import { useRouter } from "next/router";
 import DialogAvatar from "../../RoomList/Dialog/DialogAvatar";
 import { categoryTitles } from "../../RoomList/Dialog/Dialog";
+import { isMobile } from "react-device-detect";
 
 const MessageFeedHeader = ({ link }: { link: string }) => {
   const { currentDialog } = dialogsStore;
 
-  const route = useRouter();
+  const router = useRouter();
 
   const goBackHandle = () => {
     chatStore.leaveChat(); // clear dialog

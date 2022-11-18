@@ -43,7 +43,7 @@ const Footer = () => {
 };
 
 const FooterTag = styled.footer`
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
 
