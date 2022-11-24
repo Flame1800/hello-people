@@ -77,6 +77,8 @@ const Wrapper = styled.div`
   padding: 20px;
   margin-bottom: 30px;
   box-shadow: 0 0 10px -6px;
+  position: relative;
+  z-index: 1;
 
   .card {
     display: flex;
