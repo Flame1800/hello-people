@@ -75,7 +75,7 @@ const Title = styled.div`
   align-items: center;
   font-size: 18px;
   font-weight: 700;
-  margin: 0px auto 16px;
+  margin: 0 auto 16px;
 `;
 
 const CommentsLength = styled.div`

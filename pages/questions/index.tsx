@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 `;
 
 Questions.getInitialProps = async () => {
-  const questionsReq = await API.getMeets();
+  const questionsReq = await API.getQuestions();
 
   return { questions: questionsReq.data.data };
 };

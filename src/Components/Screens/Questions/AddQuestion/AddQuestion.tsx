@@ -44,8 +44,8 @@ const AddMeet = () => {
         author: user.id,
       };
       setLoading(true);
-      // const newQuestion = await API.addMeet({ data });
-      // setMeet(newQuestion.data.data);
+      const newQuestion = await API.addQuestion({ data });
+      setMeet(newQuestion.data.data);
     } catch (e) {
       console.error(e);
     } finally {
@@ -90,7 +90,7 @@ const AddMeet = () => {
       <div className="form">
         <Link href="/questions">
           <a>
-            <ButtonStyle>Перейти к встречам</ButtonStyle>
+            <ButtonStyle>Перейти к вопросам</ButtonStyle>
           </a>
         </Link>
       </div>

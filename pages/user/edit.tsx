@@ -14,6 +14,7 @@ import UserStore from "../../src/Stores/UserStore";
 import UserAvatar from "../../src/Components/User/UserAvatar";
 import SeoHead from "../../src/Components/Layouts/SeoHead";
 import userStore from "../../src/Stores/UserStore";
+import { toJS } from "mobx";
 
 const EditProfile = () => {
   const router = useRouter();
@@ -88,7 +89,7 @@ const EditProfile = () => {
       <div className="content">
         <h1 className="title">Редактировать профиль</h1>
         <div className="form">
-          <UserAvatar url={user.cover?.url} size="lg" />
+          <UserAvatar url={user.avatar} size="lg" />
           <label htmlFor="avatar" className="input__file-button">
             <div className="btn-upload">Изменить аватар</div>
           </label>

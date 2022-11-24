@@ -17,6 +17,7 @@ import {
   Meta,
 } from "./ProfileHead.style";
 import { isMobile } from "react-device-detect";
+import { toJS } from "mobx";
 
 const ProfileHead = ({ user }: { user: User }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);

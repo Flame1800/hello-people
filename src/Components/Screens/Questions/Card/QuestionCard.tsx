@@ -7,6 +7,7 @@ import UserStore from "../../../../Stores/UserStore";
 import SimpleMenu from "../../../Common/SimpleMenu/SimpleMenu";
 import MenuItem from "../../../Common/SimpleMenu/MenuItem";
 import API from "../../../../Helpers/API";
+import makeBeautyDate from "../../../../Helpers/makeBeautyDate";
 
 type Props = {
   meet: MeetType | null;
@@ -46,6 +47,7 @@ const QuestionCard = ({ meet }: Props) => {
           <div className="text">{meet.attributes.description}</div>
         </a>
       </Link>
+      <div className="date">{makeBeautyDate(meet.attributes.updatedAt)}</div>
     </Wrapper>
   );
 };
@@ -63,8 +65,11 @@ const Wrapper = styled.div`
   justify-content: space-between;
   margin: 10px;
 
-  @media (min-width: 768px) {
-    max-width: 600px;
+  .date {
+    width: 100%;
+    text-align: right;
+    font-size: 14px;
+    color: ${theme.color.gray};
   }
 
   .head {

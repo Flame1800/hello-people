@@ -38,6 +38,20 @@ API.getUserMeets = (id: number) =>
   server(
     `/meets?populate=*&sort[0]=createdAt:desc&filters[author][id][$eq]=${id}`
   );
+
+// Questions
+API.getQuestions = () => server(`/questions?populate=*&sort[0]=createdAt:desc`);
+API.getQuestion = (id: number) =>
+  server(`/questions/${id}?populate=*&sort[0]=createdAt:desc`);
+API.addQuestion = (question: QuestionType) =>
+  server.post(`/questions?populate=*`, question, getJwtToken());
+API.deleteQuestion = (id: number) =>
+  server.delete(`/questions/${id}`, getJwtToken());
+API.getUserQuestions = (id: number) =>
+  server(
+    `/questions?populate=*&sort[0]=createdAt:desc&filters[author][id][$eq]=${id}`
+  );
+
 // Posts
 API.getPosts = () => server("/posts?populate=*");
 API.getActualPosts = () =>
@@ -80,7 +94,8 @@ API.getUserSubscribers = () => server(`/users?filter[subsribers][$eq]=`);
 // User Auth
 
 // Other
-API.uploadFile = (data: FormData) => server.post(`/upload`, data);
+API.uploadFile = (data: FormData) =>
+  server.post(`/upload`, data, getJwtToken());
 API.deleteFile = (id: number) => server.delete(`/upload/files/${id}`);
 
 // Comments
