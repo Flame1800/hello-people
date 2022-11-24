@@ -8,6 +8,7 @@ import userStore from "../../Stores/UserStore";
 import ProfileContetnt from "./ProfileContetnt";
 import { observer } from "mobx-react-lite";
 import { isMobile } from "react-device-detect";
+import Nav from "./Nav";
 
 const MobileMenu = () => {
   const { toggleAuthModal } = UiStateStore;
@@ -25,6 +26,7 @@ const MobileMenu = () => {
   return (
     <Wrapper>
       {user ? <ProfileContetnt /> : noAuth}
+      <Nav />
       <Actual />
     </Wrapper>
   );

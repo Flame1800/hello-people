@@ -49,6 +49,7 @@ const Post = styled.div`
   padding: 10px 15px;
   margin-bottom: 20px;
   cursor: pointer;
+  max-width: 290px;
 
   &:hover {
     background: rgba(239, 239, 239, 0.45);
@@ -66,6 +67,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+
+  @media (max-width: 1424px) {
+    padding: 0;
+  }
 `;
 
 const Under = styled.div`

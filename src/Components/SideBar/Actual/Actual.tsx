@@ -20,7 +20,6 @@ export const Wrapper = styled.div`
 
   @media (max-width: 1424px) {
     position: relative;
-    border: 1px solid #e8e8e8;
     border-radius: 21px;
     box-shadow: none;
   }
@@ -34,6 +33,10 @@ const Title = styled.div`
   font-size: 20px;
   line-height: 27px;
   color: #000000;
+
+  @media (max-width: 1424px) {
+    text-align: left;
+  }
 `;
 
 export default Actual;
