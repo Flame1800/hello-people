@@ -32,8 +32,7 @@ const MetaActionsEvent = ({ event }: MetaActionsType) => {
 };
 
 const Wrapper = styled.div`
-  margin-left: 10px;
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
 `;

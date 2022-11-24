@@ -50,7 +50,7 @@ const Login = ({ setMode, close }: Props) => {
         path: "/",
       });
 
-      UserStore.setUserByToken(data.jwt);
+      UserStore.setUserByToken();
       close();
     } catch (e: any) {
       console.log(e);

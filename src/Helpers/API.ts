@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as qs from "querystring";
+import getJwtToken from "./getJwtToken";
 
 const API: any = {};
 
@@ -30,8 +31,9 @@ const queryGetEvents = qs.stringify(queryEventsOptions);
 API.getMeets = () => server(`/meets?populate=*&sort[0]=createdAt:desc`);
 API.getMeet = (id: number) =>
   server(`/meets/${id}?populate=*&sort[0]=createdAt:desc`);
-API.addMeet = (meet: MeetType) => server.post(`/meets?populate=*`, meet);
-API.deleteMeet = (id: number) => server.delete(`/meets/${id}`);
+API.addMeet = (meet: MeetType) =>
+  server.post(`/meets?populate=*`, meet, getJwtToken());
+API.deleteMeet = (id: number) => server.delete(`/meets/${id}`, getJwtToken());
 API.getUserMeets = (id: number) =>
   server(
     `/meets?populate=*&sort[0]=createdAt:desc&filters[author][id][$eq]=${id}`
@@ -67,15 +69,11 @@ API.getUserPlaces = (id: number) =>
   server(`/places?populate=*&filters[likes][id][$eq]=${id}`);
 
 // User
-API.getUserMe = (token: string) =>
-  server(`/users/me?populate=*`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+API.getUserMe = () => server(`/users/me?populate=*`, getJwtToken());
 
 API.getUser = (id: number) => server(`/users/${id}?populate=*`);
-API.updateUser = (id: number, data: any) => server.put(`/users/${id}`, data);
+API.updateUser = (id: number, data: any) =>
+  server.put(`/users/${id}`, data, getJwtToken());
 API.getUsers = () => server(`/users`);
 API.getUserSubscribers = () => server(`/users?filter[subsribers][$eq]=`);
 
@@ -102,18 +100,11 @@ API.getComments = (id: number, model: string) =>
     `/comments?${queryGetComments}&filters[${model}][id][$eq]=${id}&populate=*&sort[0]=createdAt:asc`
   );
 
-API.addComment = (data: CommentEntity, token: string) =>
-  server.post(`/comments?&populate=*`, data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+API.addComment = (data: CommentEntity, token: string) => {
+  return server.post(`/comments?&populate=*`, data, getJwtToken());
+};
 
 API.removeComment = (id: number, token: string) =>
-  server.delete(`/comments/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  server.delete(`/comments/${id}`, getJwtToken());
 
 export default API;

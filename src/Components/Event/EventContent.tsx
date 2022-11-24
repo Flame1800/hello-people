@@ -46,7 +46,7 @@ const EventContent = ({ event }: PropsType) => {
           link2gis={attributes.maplink}
         />
         <ShareVkButton
-          url={`${API_URL}/events/id/${event.id}`}
+          url={encodeURIComponent(`${API_URL}/events/id/${event.id}`)}
           title={event.attributes.title}
           image={imgUrl}
         />

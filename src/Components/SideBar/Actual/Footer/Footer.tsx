@@ -43,6 +43,8 @@ const Footer = () => {
 };
 
 const FooterTag = styled.footer`
+  border-top: 1px solid #e8e8e8;
+  padding-top: 20px;
   position: relative;
   bottom: 0;
   width: 100%;
@@ -87,7 +89,6 @@ const Creators = styled.div`
 
 const Under = styled.div`
   margin-top: 18px;
-  border-top: 1px solid #e8e8e8;
   padding: 10px 30px;
   display: flex;
   justify-content: space-between;

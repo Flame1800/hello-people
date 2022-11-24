@@ -13,11 +13,11 @@ class UserStore {
     makeAutoObservable(this);
   }
 
-  setUserByToken = async (jwt: string) => {
+  setUserByToken = async () => {
     this.loading = true;
 
     try {
-      const currUser = await API.getUserMe(jwt);
+      const currUser = await API.getUserMe();
       const currUserPopulate = await API.getUser(currUser.data.id);
 
       this.user = currUserPopulate.data;

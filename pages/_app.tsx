@@ -14,26 +14,7 @@ import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    const cookie = parseCookies();
-    UserStore.setUserByToken(cookie.jwt);
-  }, []);
-
-  useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker
-          .getRegistrations()
-          .then(function (registrations) {
-            for (let registration of registrations) {
-              console.log(
-                "[BROWSER] - Uninstalled service worker successful.",
-                registration
-              );
-              registration.unregister();
-            }
-          });
-      });
-    }
+    UserStore.setUserByToken();
   }, []);
 
   useChat(SOCKET_URL);

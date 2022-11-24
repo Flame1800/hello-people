@@ -30,13 +30,8 @@ export default (apiUrl: string | undefined) => {
     addOnlineUser,
   } = roomStore;
   const { user } = UserStore;
-  const {
-    setCurrentDialog,
-    currentDialog,
-    increaseCountMessages,
-    addDialog,
-    computeSumNotifications,
-  } = dialogsStore;
+  const { setCurrentDialog, currentDialog, increaseCountMessages, addDialog } =
+    dialogsStore;
 
   useEffect(() => {
     if (!user || isReady) return;

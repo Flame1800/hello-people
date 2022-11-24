@@ -13,6 +13,7 @@ import { observer } from "mobx-react-lite";
 import MainLoader from "../MainLoader/MainLoader";
 import PWAInstall from "../PWAInstall/PWAInstall";
 import MobileMenu from "../Navigation/MobileMenu";
+import Alert from "../Common/Alert/Alert";
 
 type LayoutType = {
   children: ReactChildren;
@@ -29,6 +30,11 @@ const Layout = ({ children }: LayoutType) => {
       <UsersListModal />
       <CreateEventListModal />
       <PWAInstall />
+      <Alert title="Добро пожаловать в HelloPeople (BETA)">
+        Это первая версия HelloPeople. Она все еще находится в разработке, так
+        что сам могут попадаться ошибки, но вы можете помочь нам в их
+        исправлении, подробнее читайте <a href="/">здесь</a>
+      </Alert>
     </>
   );
 

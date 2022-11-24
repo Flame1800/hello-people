@@ -6,7 +6,6 @@ import Document, {
   NextScript,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import { CITY } from "../src/Constants/city";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -57,6 +56,15 @@ class MyDocument extends Document {
           />
           <meta name="MobileOptimized" content="176" />
           <script
+            type="text/javascript"
+            src="https://vk.com/js/api/share.js?93"
+            charSet="windows-1251"
+          ></script>
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+          <script
             dangerouslySetInnerHTML={{
               __html: `
                   (function(m,e,t,r,i,k,a){m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};
@@ -83,15 +91,6 @@ class MyDocument extends Document {
               />
             </div>
           </noscript>
-          <script
-            type="text/javascript"
-            src="https://vk.com/js/api/share.js?93"
-            charSet="windows-1251"
-          ></script>
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
         </body>
       </Html>
     );

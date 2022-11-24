@@ -50,8 +50,7 @@ const Register: React.FC<Props> = ({ setMode, close }) => {
         path: "/",
       });
 
-      const cookie = parseCookies();
-      UserStore.setUserByToken(cookie.jwt);
+      UserStore.setUserByToken();
       close();
     } catch (e: any) {
       setError("Этот email уже занят");

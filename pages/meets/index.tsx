@@ -16,7 +16,7 @@ const Meets = ({ meets }: Props) => {
       <SeoHead
         title={`Встречи, знакомся с людми, находит компании ${CITY}е HelloPeople`}
         description={`Знакомтесь и находите единомышленников с помощью встреч в HelloPeople`}
-        keywords={`Знакомства, вчтречи, компания, вечеринки, друзья, знакомства на вечер, куда сходить`}
+        keywords={`Знакомства, встречи, компания, вечеринки, друзья, знакомства на вечер, куда сходить`}
       />
       <HeaderServicesPage link="/meets/add">ВСТРЕЧИ</HeaderServicesPage>
       <div className="cards">

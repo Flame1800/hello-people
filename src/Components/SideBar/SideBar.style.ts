@@ -25,20 +25,8 @@ export const Content = styled.div`
   padding: 0 10px;
   overflow: auto;
 
-  &:hover {
-    &::-webkit-scrollbar-thumb {
-      background: rgba(218, 218, 218, 0.8);
-    }
-  }
-
   &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    opacity: 1;
-    border-radius: 8px;
-    transition: 0.5s;
+    width: 0;
   }
 `;
 

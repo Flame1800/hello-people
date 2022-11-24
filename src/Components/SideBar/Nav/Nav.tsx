@@ -7,6 +7,7 @@ import MeetsButton from "./NavButtonsSvg/MeetsButton";
 import MessengerButton from "./NavButtonsSvg/MessengerButton";
 import { useRouter } from "next/router";
 import { Wrapper, NavLinkStyle, NavLinks } from "../SideBar.style";
+import QuestionIcon from "./NavButtonsSvg/QuestionIcon";
 
 const Nav = () => {
   const route = useRouter();
@@ -26,6 +27,11 @@ const Nav = () => {
       title: "Встречи",
       route: "/meets",
       icon: <MeetsButton />,
+    },
+    {
+      title: "Вопросы",
+      route: "/questions",
+      icon: <QuestionIcon />,
     },
     {
       title: "Мессенджер",

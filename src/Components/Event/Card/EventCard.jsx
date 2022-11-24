@@ -21,6 +21,8 @@ const EventCard = ({ event }) => {
     ? API.url + attributes.cover.data.attributes.url
     : "/img/mock-avatar.svg";
 
+  const link = encodeURIComponent(event.attributes.slug);
+
   return (
     <Wrapper id={event.id}>
       <Head>
@@ -33,8 +35,8 @@ const EventCard = ({ event }) => {
             <img className="gallery" src={imgUrl} alt="обложка" />
           </div>
           <div className="info">
-            <Link href={`/events/${event.attributes.slug}`}>
-              <a>
+            <Link href={`/events/${encodeURIComponent(link)}`}>
+              <a href={`/events/${encodeURIComponent(link)}`}>
                 <div className="name-wrap">
                   <NameService
                     name={attributes.abbTitle}
@@ -149,7 +151,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
 
     @media (min-width: 768px) {
       max-width: 300px;
