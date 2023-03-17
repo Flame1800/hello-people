@@ -7,6 +7,9 @@ import Document, {
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import YandexMetrika from "../src/Components/YandexMetrika";
+import { CITY } from "../src/Constants/city";
+import React from "react";
+import { NextSeo } from "next-seo";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -38,10 +41,26 @@ class MyDocument extends Document {
   }
 
   render() {
-    // @ts-ignore
     return (
       <Html lang="ru">
+        <NextSeo
+          canonical="https://hellopeople.online/"
+          openGraph={{
+            url: "https://hellopeople.online/",
+            title: "Афиша событий в {CITY}е - HelloPeople",
+            description:
+              "Куда сходить в ${CITY}е, свежие, актуальные мероприятия, вечеринки, концерты, квизы, театры и мастер-классы",
+            images: [],
+            siteName: "HelloPeople",
+          }}
+          twitter={{
+            handle: "@handle",
+            site: "@site",
+            cardType: "summary_large_image",
+          }}
+        />
         <Head>
+          <title>Афиша событий в {CITY}е - HelloPeople</title>
           <meta charSet="UTF-8" />
           <link rel="manifest" href="/manifest.json" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -60,7 +79,7 @@ class MyDocument extends Document {
             type="text/javascript"
             src="https://vk.com/js/api/share.js?93"
             charSet="windows-1251"
-          ></script>
+          />
           <YandexMetrika
             yid={91158101}
             clickmap={true}

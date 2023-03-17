@@ -12,7 +12,6 @@ import UserStore from "../../Stores/UserStore";
 import { observer } from "mobx-react-lite";
 import MainLoader from "../MainLoader/MainLoader";
 import PWAInstall from "../PWAInstall/PWAInstall";
-import MobileMenu from "../Navigation/MobileMenu";
 import Alert from "../Common/Alert/Alert";
 
 type LayoutType = {
@@ -38,12 +37,9 @@ const Layout = ({ children }: LayoutType) => {
     </>
   );
 
-  if (loading) {
-    return <MainLoader />;
-  }
-
   return (
     <Wrapper>
+      {loading && <MainLoader />}
       <Header />
       <NavBarMobile />
       <div className="container">

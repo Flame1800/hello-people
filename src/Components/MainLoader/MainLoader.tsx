@@ -13,13 +13,16 @@ const MainLoader = () => {
 };
 
 const Wrapper = styled.div`
+  z-index: 1000;
+  position: absolute;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   user-select: none;
+  background: #fff;
 `;
 
 const MainLogo = styled.img`

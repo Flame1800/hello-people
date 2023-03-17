@@ -29,6 +29,7 @@
     "mobx": "^6.5.0",
     "mobx-react-lite": "^3.3.0",
     "next": "^12.3.1",
+    "next-seo": "^5.15.0",
     "next-service-worker": "^0.0.4",
     "next-sw": "^2.1.2",
     "nextjs-progressbar": "^0.0.14",

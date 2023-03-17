@@ -6,7 +6,7 @@ import axios from "axios";
 
 class EventsStore {
   events: Array<EventType> = [];
-  mode: string = "new";
+  mode: string = "past"; // new, past
   loading: boolean = false;
 
   constructor() {
